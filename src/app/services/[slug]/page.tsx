@@ -1,0 +1,1149 @@
+'use client';
+
+import { notFound } from 'next/navigation';
+import styles from './ServiceDetail.module.css';
+import { useParams } from 'next/navigation';
+
+const serviceData: {
+  [key: string]: {
+    title: string;
+    description: string;
+    longDescription: string;
+    features: string[];
+    benefits: string[];
+    category: 'online' | 'offline';
+  };
+} = {
+  'advertising-agency-bangalore': {
+    title: 'Advertising Agency In Bangalore',
+    description: 'Premier advertising solutions for businesses in Bangalore.',
+    longDescription: 'As a leading advertising agency in Bangalore, we specialize in creating comprehensive marketing strategies tailored to your business needs. We combine creative excellence with data-driven insights to deliver results that exceed expectations.',
+    features: [
+      'Strategic Campaign Planning',
+      'Creative Design & Execution',
+      'Media Planning & Buying',
+      'Digital & Traditional Media',
+      'Performance Analytics',
+      'Brand Positioning'
+    ],
+    benefits: [
+      'Increased Brand Visibility',
+      'Higher Engagement Rates',
+      'Better ROI on Marketing Spend',
+      'Targeted Audience Reach',
+      'Measurable Results',
+      'Expert Guidance'
+    ],
+    category: 'online'
+  },
+  'digital-marketing-service': {
+    title: 'Digital Marketing Service',
+    description: 'Comprehensive digital marketing strategies to boost your online presence.',
+    longDescription: 'Our digital marketing services encompass all aspects of online promotion, from SEO to social media marketing. We help businesses establish a strong digital footprint and engage with their target audience effectively.',
+    features: [
+      'SEO Optimization',
+      'Social Media Marketing',
+      'Email Marketing',
+      'Content Marketing',
+      'PPC Advertising',
+      'Analytics & Reporting'
+    ],
+    benefits: [
+      'Enhanced Online Visibility',
+      'Increased Website Traffic',
+      'Higher Conversion Rates',
+      'Cost-Effective Marketing',
+      'Real-Time Performance Tracking',
+      'Scalable Solutions'
+    ],
+    category: 'online'
+  },
+  'seo': {
+    title: 'Search Engine Optimization',
+    description: 'Improve your search engine rankings and increase organic traffic.',
+    longDescription: 'Our SEO services are designed to improve your website\'s visibility in search engine results. We use proven techniques and best practices to increase organic traffic and enhance your online presence.',
+    features: [
+      'Keyword Research',
+      'On-Page Optimization',
+      'Off-Page Optimization',
+      'Technical SEO',
+      'Link Building',
+      'SEO Audits'
+    ],
+    benefits: [
+      'Higher Search Rankings',
+      'Increased Organic Traffic',
+      'Better User Experience',
+      'Long-Term Results',
+      'Cost-Effective Marketing',
+      'Competitive Advantage'
+    ],
+    category: 'online'
+  },
+  'sem': {
+    title: 'Search Engine Marketing',
+    description: 'Strategic paid search advertising to reach your target audience.',
+    longDescription: 'Our SEM services help you reach potential customers through targeted paid search campaigns. We optimize every aspect of your campaigns to maximize ROI and drive qualified traffic to your website.',
+    features: [
+      'PPC Campaign Management',
+      'Keyword Selection & Bidding',
+      'Ad Copy Optimization',
+      'Landing Page Optimization',
+      'Conversion Tracking',
+      'Budget Management'
+    ],
+    benefits: [
+      'Immediate Results',
+      'Highly Targeted Reach',
+      'Measurable ROI',
+      'Quick Market Testing',
+      'Complete Control',
+      'Scalable Campaigns'
+    ],
+    category: 'online'
+  },
+  'online-reputation-management': {
+    title: 'Online Reputation Management',
+    description: 'Protect and enhance your brand image across digital platforms.',
+    longDescription: 'We help you manage and improve your online reputation across all digital channels. Our proactive approach ensures your brand maintains a positive image and credibility online.',
+    features: [
+      'Brand Monitoring',
+      'Review Management',
+      'Content Creation',
+      'Crisis Management',
+      'Social Listening',
+      'Reputation Analysis'
+    ],
+    benefits: [
+      'Enhanced Brand Trust',
+      'Positive Online Presence',
+      'Crisis Prevention',
+      'Customer Confidence',
+      'Competitive Edge',
+      'Business Growth'
+    ],
+    category: 'online'
+  },
+  'website-design-development': {
+    title: 'Website Designing and Development',
+    description: 'Create stunning, functional websites that drive conversions.',
+    longDescription: 'Our web design and development team creates responsive, user-friendly websites that not only look great but also perform exceptionally well in driving business results.',
+    features: [
+      'Responsive Design',
+      'User Experience Optimization',
+      'E-Commerce Integration',
+      'CMS Integration',
+      'Performance Optimization',
+      'Security Implementation'
+    ],
+    benefits: [
+      'Professional Online Presence',
+      'Improved User Engagement',
+      'Higher Conversion Rates',
+      'Mobile-Friendly Experience',
+      'SEO-Optimized',
+      'Scalable Architecture'
+    ],
+    category: 'online'
+  },
+  'social-media-optimization': {
+    title: 'Social Media Optimization',
+    description: 'Maximize your social media presence and engagement.',
+    longDescription: 'We optimize your social media profiles and content strategy to increase visibility, engagement, and follower growth across all major platforms.',
+    features: [
+      'Profile Optimization',
+      'Content Strategy',
+      'Community Management',
+      'Analytics & Reporting',
+      'Trend Analysis',
+      'Engagement Optimization'
+    ],
+    benefits: [
+      'Increased Followers',
+      'Higher Engagement Rates',
+      'Brand Awareness',
+      'Community Building',
+      'Social Proof',
+      'Customer Insights'
+    ],
+    category: 'online'
+  },
+  'social-media-marketing': {
+    title: 'Social Media Marketing',
+    description: 'Comprehensive social media marketing strategies for brand growth.',
+    longDescription: 'Our social media marketing services help you reach and engage your target audience through strategic content and campaigns across Facebook, Instagram, LinkedIn, Twitter, and more.',
+    features: [
+      'Content Creation',
+      'Campaign Management',
+      'Paid Social Advertising',
+      'Influencer Partnerships',
+      'Community Management',
+      'Performance Analytics'
+    ],
+    benefits: [
+      'Brand Visibility',
+      'Customer Engagement',
+      'Lead Generation',
+      'Sales Growth',
+      'Brand Loyalty',
+      'Cost-Effective Marketing'
+    ],
+    category: 'online'
+  },
+  'software-design-development': {
+    title: 'Software Design & Development',
+    description: 'Custom software solutions tailored to your business needs.',
+    longDescription: 'We develop robust, scalable software solutions that help you streamline operations, improve efficiency, and achieve your business objectives.',
+    features: [
+      'Custom Development',
+      'Web Applications',
+      'Mobile Apps',
+      'API Integration',
+      'Cloud Solutions',
+      'Maintenance & Support'
+    ],
+    benefits: [
+      'Tailored Solutions',
+      'Improved Efficiency',
+      'Cost Savings',
+      'Scalability',
+      'Reliable Support',
+      'Future-Proof Technology'
+    ],
+    category: 'online'
+  },
+  'geolocation-sms': {
+    title: 'Geolocation Analytical SMS',
+    description: 'Targeted SMS campaigns using geolocation data.',
+    longDescription: 'Reach your customers with location-based SMS messages that drive immediate action and engagement. Our geolocation SMS platform provides precise targeting and analytics.',
+    features: [
+      'Location-Based Targeting',
+      'Real-Time Messaging',
+      'Analytics Dashboard',
+      'Campaign Management',
+      'Compliance Tracking',
+      'Integration Options'
+    ],
+    benefits: [
+      'Targeted Messaging',
+      'High Open Rates',
+      'Immediate Response',
+      'Cost-Effective',
+      'Better Targeting',
+      'Measurable Results'
+    ],
+    category: 'online'
+  },
+  'ai-advertising-agency': {
+    title: 'AI Advertising Agency',
+    description: 'Leverage artificial intelligence for smarter advertising strategies.',
+    longDescription: 'Our AI-powered advertising platform uses machine learning and data analytics to optimize your campaigns and deliver superior results.',
+    features: [
+      'AI Campaign Optimization',
+      'Predictive Analytics',
+      'Automated Bidding',
+      'Smart Targeting',
+      'Performance Prediction',
+      'Continuous Learning'
+    ],
+    benefits: [
+      'Better Campaign Performance',
+      'Improved ROI',
+      'Faster Optimization',
+      'Better Insights',
+      'Competitive Advantage',
+      'Future-Ready Strategy'
+    ],
+    category: 'online'
+  },
+  'creative-designing': {
+    title: 'Creative Designing',
+    description: 'Professional creative design services for all your marketing needs.',
+    longDescription: 'Our creative design team produces stunning visual content that captures attention and communicates your brand message effectively.',
+    features: [
+      'Logo Design',
+      'Branding Materials',
+      'Marketing Collaterals',
+      'Packaging Design',
+      'Illustration',
+      'Animation'
+    ],
+    benefits: [
+      'Strong Brand Identity',
+      'Professional Image',
+      'Increased Engagement',
+      'Memorable Designs',
+      'Consistent Branding',
+      'Creative Excellence'
+    ],
+    category: 'offline'
+  },
+  'api-integration': {
+    title: 'API Integration',
+    description: 'Seamless API integration for enhanced functionality.',
+    longDescription: 'We provide expert API integration services to connect your systems with third-party applications and services.',
+    features: [
+      'API Development',
+      'Third-Party Integration',
+      'Data Synchronization',
+      'Custom Solutions',
+      'Security Implementation',
+      'Ongoing Support'
+    ],
+    benefits: [
+      'Enhanced Functionality',
+      'Better Integration',
+      'Improved Efficiency',
+      'Scalability',
+      'Cost Reduction',
+      'Seamless Operation'
+    ],
+    category: 'offline'
+  },
+  'ecommerce-solutions': {
+    title: 'Ecommerce Solutions',
+    description: 'Complete e-commerce solutions to grow your online business.',
+    longDescription: 'We provide end-to-end e-commerce solutions including platform setup, payment integration, and optimization for maximum sales.',
+    features: [
+      'Platform Setup',
+      'Payment Gateway Integration',
+      'Inventory Management',
+      'Order Tracking',
+      'Customer Portal',
+      'Analytics Dashboard'
+    ],
+    benefits: [
+      'Increased Sales',
+      'Better Customer Experience',
+      'Reduced Cart Abandonment',
+      'Improved Conversion',
+      'Easy Management',
+      'Scalable Growth'
+    ],
+    category: 'offline'
+  },
+  'email-marketing': {
+    title: 'Email Marketing',
+    description: 'Effective email marketing campaigns to reach your audience.',
+    longDescription: 'Our email marketing services help you build relationships with customers through targeted, personalized email campaigns.',
+    features: [
+      'Email Campaign Design',
+      'List Management',
+      'Automation',
+      'Personalization',
+      'A/B Testing',
+      'Analytics & Reporting'
+    ],
+    benefits: [
+      'High ROI',
+      'Direct Customer Communication',
+      'Customer Retention',
+      'Lead Nurturing',
+      'Cost-Effective',
+      'Measurable Results'
+    ],
+    category: 'offline'
+  },
+  'mobile-app-development': {
+    title: 'Mobile Application Development',
+    description: 'Custom mobile app development for iOS and Android.',
+    longDescription: 'We develop feature-rich mobile applications that provide excellent user experience and drive business results.',
+    features: [
+      'iOS Development',
+      'Android Development',
+      'Cross-Platform Solutions',
+      'UI/UX Design',
+      'App Store Optimization',
+      'Maintenance Support'
+    ],
+    benefits: [
+      'Wider Audience Reach',
+      'Better Engagement',
+      'Brand Loyalty',
+      'Additional Revenue',
+      'Competitive Edge',
+      'Future Growth'
+    ],
+    category: 'offline'
+  },
+  'real-estate-marketing': {
+    title: 'Real Estate Online Marketing Service',
+    description: 'Specialized marketing solutions for real estate businesses.',
+    longDescription: 'Our real estate marketing services help you reach qualified buyers and sellers through targeted online campaigns.',
+    features: [
+      'Property Listings',
+      'Virtual Tours',
+      'Lead Generation',
+      'Email Campaigns',
+      'Social Media Marketing',
+      'Analytics'
+    ],
+    benefits: [
+      'More Qualified Leads',
+      'Faster Sales',
+      'Better Pricing',
+      'Wider Exposure',
+      'Cost Savings',
+      'Market Analysis'
+    ],
+    category: 'offline'
+  },
+  'display-advertisement': {
+    title: 'Display Advertisement',
+    description: 'Strategic display advertising across premium networks.',
+    longDescription: 'Reach your target audience through eye-catching display ads on relevant websites and platforms.',
+    features: [
+      'Banner Design',
+      'Network Placement',
+      'Audience Targeting',
+      'Performance Tracking',
+      'Optimization',
+      'Campaign Management'
+    ],
+    benefits: [
+      'Brand Awareness',
+      'Targeted Reach',
+      'Professional Appearance',
+      'Flexible Placement',
+      'Measurable Results',
+      'Cost Control'
+    ],
+    category: 'offline'
+  },
+  'blog-articles': {
+    title: 'Blog Articles',
+    description: 'High-quality blog content that engages and converts.',
+    longDescription: 'We create compelling blog articles that attract traffic, establish authority, and convert readers into customers.',
+    features: [
+      'Content Writing',
+      'SEO Optimization',
+      'Topic Research',
+      'Editorial Calendar',
+      'Publishing Support',
+      'Performance Analysis'
+    ],
+    benefits: [
+      'Increased Traffic',
+      'SEO Benefits',
+      'Thought Leadership',
+      'Customer Engagement',
+      'Lead Generation',
+      'Brand Authority'
+    ],
+    category: 'offline'
+  },
+  'classified-portal': {
+    title: 'Classified Portal Management',
+    description: 'Complete classified portal development and management.',
+    longDescription: 'We develop and manage classified portals that connect buyers and sellers efficiently.',
+    features: [
+      'Portal Development',
+      'User Management',
+      'Listing Management',
+      'Payment Integration',
+      'Search Functionality',
+      'Mobile Responsive'
+    ],
+    benefits: [
+      'Reliable Platform',
+      'User-Friendly Interface',
+      'Revenue Generation',
+      'Scalability',
+      'Reduced Support Costs',
+      'Growth Potential'
+    ],
+    category: 'offline'
+  },
+  'press-releases': {
+    title: 'Press Releases Services',
+    description: 'Professional press release writing and distribution.',
+    longDescription: 'Our press release services help you communicate important news and announcements to media and stakeholders.',
+    features: [
+      'Press Release Writing',
+      'Media Distribution',
+      'Press Kit Development',
+      'Media Relations',
+      'Coverage Tracking',
+      'PR Strategy'
+    ],
+    benefits: [
+      'Media Coverage',
+      'Brand Visibility',
+      'Thought Leadership',
+      'Crisis Communication',
+      'Stakeholder Trust',
+      'Market Awareness'
+    ],
+    category: 'offline'
+  },
+  'bus-branding': {
+    title: 'Bus Branding',
+    description: 'High-impact bus advertising solutions.',
+    longDescription: 'Reach thousands of commuters with our comprehensive bus branding and advertising solutions.',
+    features: [
+      'Interior & Exterior Wraps',
+      'Strategic Placement',
+      'Design Services',
+      'Installation Support',
+      'Wide Coverage',
+      'Long Visibility'
+    ],
+    benefits: [
+      'High Visibility',
+      'Daily Impressions',
+      'Local Targeting',
+      'Cost-Effective',
+      'Brand Recall',
+      'Continuous Exposure'
+    ],
+    category: 'offline'
+  },
+  'rwa-activation': {
+    title: 'RWA Activation',
+    description: 'Community-focused RWA activation campaigns.',
+    longDescription: 'We design and execute RWA activation campaigns that engage residents and build community relationships.',
+    features: [
+      'Community Events',
+      'Product Sampling',
+      'Resident Engagement',
+      'Newsletter Distribution',
+      'Community Building',
+      'Feedback Collection'
+    ],
+    benefits: [
+      'Direct Community Reach',
+      'High Engagement',
+      'Brand Trust',
+      'Local Market Penetration',
+      'Word-of-Mouth',
+      'Community Loyalty'
+    ],
+    category: 'offline'
+  },
+  'btl-advertising': {
+    title: 'BTL Advertising',
+    description: 'Below-the-line advertising solutions for direct engagement.',
+    longDescription: 'Our BTL advertising services create direct engagement opportunities with your target audience.',
+    features: [
+      'Ground Activations',
+      'Sampling Programs',
+      'Event Marketing',
+      'Guerrilla Marketing',
+      'Experiential Marketing',
+      'Direct Sales Support'
+    ],
+    benefits: [
+      'Direct Consumer Engagement',
+      'High Participation',
+      'Immediate Feedback',
+      'Sales Boost',
+      'Brand Experience',
+      'Customer Conversion'
+    ],
+    category: 'offline'
+  },
+  'mall-advertising': {
+    title: 'Advertising Activities In Malls & Multiplex',
+    description: 'Premium advertising at high-traffic mall locations.',
+    longDescription: 'Reach affluent consumers with targeted advertising placements in malls and multiplex cinemas.',
+    features: [
+      'Display Boards',
+      'Digital Screens',
+      'Kiosk Placement',
+      'Sampling Zones',
+      'Event Sponsorships',
+      'Premium Locations'
+    ],
+    benefits: [
+      'High-Value Audience',
+      'Premium Locations',
+      'Multiple Touch Points',
+      'Brand Prestige',
+      'Sales Opportunities',
+      'Weekend Traffic'
+    ],
+    category: 'offline'
+  },
+  'tech-park-ads': {
+    title: 'Advertisements In Tech Parks',
+    description: 'Targeted advertising in technology parks and IT hubs.',
+    longDescription: 'Reach tech-savvy professionals and IT companies with strategic advertising in technology parks.',
+    features: [
+      'Office Building Ads',
+      'Digital Displays',
+      'Cafeteria Advertising',
+      'Parking Lot Placement',
+      'Professional Targeting',
+      'High-Value Audience'
+    ],
+    benefits: [
+      'Tech-Savvy Audience',
+      'Professional Demographic',
+      'B2B Opportunities',
+      'High Purchasing Power',
+      'Brand Association',
+      'Qualified Leads'
+    ],
+    category: 'offline'
+  },
+  'airport-advertising': {
+    title: 'Advertising in Airports',
+    description: 'Premium airport advertising to reach affluent travelers.',
+    longDescription: 'Capture attention of high-value travelers with strategic advertising placements throughout airport facilities.',
+    features: [
+      'Terminal Advertising',
+      'Baggage Claim Display',
+      'Gate Advertising',
+      'Digital Screens',
+      'Premium Locations',
+      'High-Value Audience'
+    ],
+    benefits: [
+      'Affluent Audience',
+      'Premium Exposure',
+      'International Reach',
+      'High-Frequency Viewing',
+      'Brand Association',
+      'Business Travelers'
+    ],
+    category: 'offline'
+  },
+  'paper-insertion': {
+    title: 'Paper Insertion',
+    description: 'Newspaper and magazine insertion services.',
+    longDescription: 'Distribute your promotional materials through newspaper and magazine insertions to reach broad audiences.',
+    features: [
+      'Newspaper Insertion',
+      'Magazine Insertion',
+      'Targeted Publications',
+      'Design Support',
+      'Bulk Distribution',
+      'Wide Reach'
+    ],
+    benefits: [
+      'Broad Audience Reach',
+      'Demographic Targeting',
+      'High Credibility',
+      'Multiple Formats',
+      'Print + Digital',
+      'Cost-Effective'
+    ],
+    category: 'offline'
+  },
+  'cafe-gym-ads': {
+    title: 'Advertisements In Cafes Gyms & Super Markets',
+    description: 'Strategic advertising in fitness and retail locations.',
+    longDescription: 'Reach health-conscious and shopping audiences with ads in cafes, gyms, and supermarkets.',
+    features: [
+      'Location Selection',
+      'Display Setup',
+      'Promotional Stands',
+      'Sampling Support',
+      'High Traffic Areas',
+      'Lifestyle Targeting'
+    ],
+    benefits: [
+      'Lifestyle-Focused Audience',
+      'Health-Conscious Demographic',
+      'High Engagement',
+      'Multiple Touchpoints',
+      'Impulse Purchase Opportunity',
+      'Regular Exposure'
+    ],
+    category: 'offline'
+  },
+  'atm-ads': {
+    title: 'Advertisement in ATMs',
+    description: 'Advertising on ATM screens and kiosks.',
+    longDescription: 'Reach customers during their financial transactions with targeted ATM advertising.',
+    features: [
+      'Screen Advertising',
+      'Receipt Advertising',
+      'Display Options',
+      'Multiple Placements',
+      'Captive Audience',
+      'Financial Segment'
+    ],
+    benefits: [
+      'Captive Attention',
+      'Financial Segment Targeting',
+      'Multiple Impressions',
+      'Brand Recall',
+      'Cost-Effective',
+      'Unique Placement'
+    ],
+    category: 'offline'
+  },
+  'auto-rickshaw-ads': {
+    title: 'Auto Rickshaw Advertising',
+    description: 'Mobile advertising on auto-rickshaws.',
+    longDescription: 'Advertise on auto-rickshaws that cover extensive routes and reach local audiences daily.',
+    features: [
+      'Vehicle Wraps',
+      'Mobile Advertising',
+      'Route Coverage',
+      'Local Targeting',
+      'Multiple Vehicles',
+      'Daily Exposure'
+    ],
+    benefits: [
+      'Mobile Reach',
+      'Local Market Penetration',
+      'Daily Impressions',
+      'Cost-Effective',
+      'Wide Coverage',
+      'Quick Response'
+    ],
+    category: 'offline'
+  },
+  'magazine-ads': {
+    title: 'Advertisement in Magazines',
+    description: 'Premium magazine advertising for targeted readership.',
+    longDescription: 'Reach magazine readers with strategic full-page or partial advertisements in leading publications.',
+    features: [
+      'Magazine Selection',
+      'Ad Design',
+      'Multiple Placements',
+      'Demographic Targeting',
+      'Long Shelf Life',
+      'Premium Positioning'
+    ],
+    benefits: [
+      'Targeted Readership',
+      'Premium Association',
+      'Long Shelf Life',
+      'High-Quality Audience',
+      'Detailed Messaging',
+      'Professional Credibility'
+    ],
+    category: 'offline'
+  },
+  'parking-ads': {
+    title: 'Advertising in Public & Private Parking Lots',
+    description: 'Strategic advertising in parking facilities.',
+    longDescription: 'Reach car owners with targeted advertising in public and private parking lots.',
+    features: [
+      'Parking Lot Banners',
+      'Wall Advertising',
+      'Floor Displays',
+      'Gate Signage',
+      'Captive Audience',
+      'Premium Placement'
+    ],
+    benefits: [
+      'Affluent Audience',
+      'Vehicle Owners',
+      'Extended Viewing Time',
+      'Urban Market',
+      'Local Targeting',
+      'Multiple Exposures'
+    ],
+    category: 'offline'
+  },
+  'branding-rebranding': {
+    title: 'Branding Re-Branding',
+    description: 'Complete branding and rebranding solutions.',
+    longDescription: 'We help you create or refresh your brand identity with comprehensive branding and rebranding strategies.',
+    features: [
+      'Brand Strategy',
+      'Logo Design',
+      'Brand Guidelines',
+      'Visual Identity',
+      'Brand Messaging',
+      'Launch Strategy'
+    ],
+    benefits: [
+      'Strong Brand Identity',
+      'Market Differentiation',
+      'Customer Recognition',
+      'Brand Evolution',
+      'Market Positioning',
+      'Growth Foundation'
+    ],
+    category: 'offline'
+  },
+  'corporate-gifts': {
+    title: 'Corporate Gifts',
+    description: 'Customized corporate gift solutions.',
+    longDescription: 'We provide thoughtfully curated corporate gifts that strengthen client and employee relationships.',
+    features: [
+      'Gift Selection',
+      'Customization',
+      'Branding Options',
+      'Packaging Design',
+      'Bulk Orders',
+      'Delivery Support'
+    ],
+    benefits: [
+      'Client Appreciation',
+      'Brand Recall',
+      'Relationship Building',
+      'Professional Image',
+      'Employee Morale',
+      'Loyalty Enhancement'
+    ],
+    category: 'offline'
+  },
+  'corporate-training': {
+    title: 'Corporate Training Services',
+    description: 'Professional corporate training and development programs.',
+    longDescription: 'We provide tailored corporate training programs to develop employee skills and competencies.',
+    features: [
+      'Training Design',
+      'Expert Trainers',
+      'Customized Programs',
+      'On-Site or Virtual',
+      'Assessment & Feedback',
+      'Certification Options'
+    ],
+    benefits: [
+      'Improved Productivity',
+      'Employee Skill Development',
+      'Better Performance',
+      'Team Building',
+      'Reduced Turnover',
+      'Competitive Advantage'
+    ],
+    category: 'offline'
+  },
+  'event-management': {
+    title: 'Event Management',
+    description: 'Full-service event management and execution.',
+    longDescription: 'We plan and execute memorable events that leave lasting impressions on your audience.',
+    features: [
+      'Event Planning',
+      'Venue Selection',
+      'Vendor Coordination',
+      'On-Site Management',
+      'Audio/Visual Setup',
+      'Post-Event Analysis'
+    ],
+    benefits: [
+      'Professional Execution',
+      'Brand Experience',
+      'Audience Engagement',
+      'Network Building',
+      'Market Buzz',
+      'Measurable Results'
+    ],
+    category: 'offline'
+  },
+  'fm-campaigns': {
+    title: 'FM Campaigns',
+    description: 'Radio advertising campaigns on FM channels.',
+    longDescription: 'Reach audiences through engaging FM radio advertising campaigns.',
+    features: [
+      'Radio Spot Creation',
+      'Channel Selection',
+      'Time Slot Booking',
+      'Creative Production',
+      'Campaign Management',
+      'Listener Analytics'
+    ],
+    benefits: [
+      'Mass Reach',
+      'Frequency Building',
+      'Audio Branding',
+      'Cost-Effective',
+      'Listener Engagement',
+      'Quick Launch'
+    ],
+    category: 'offline'
+  },
+  'fabrications': {
+    title: 'Fabrications',
+    description: 'Custom fabrication services for marketing materials.',
+    longDescription: 'We create custom fabricated structures and displays for your marketing and branding needs.',
+    features: [
+      'Custom Design',
+      'Material Selection',
+      'Structural Engineering',
+      'Installation Support',
+      'Quality Assurance',
+      'Maintenance Support'
+    ],
+    benefits: [
+      'Unique Displays',
+      'Brand Differentiation',
+      'Long-Lasting',
+      'Professional Appeal',
+      'Customization',
+      'Durable Materials'
+    ],
+    category: 'offline'
+  },
+  'hoarding-services': {
+    title: 'Hoarding Services',
+    description: 'Strategic billboard and hoarding advertising.',
+    longDescription: 'Maximize brand visibility with strategically placed billboards and hoardings in high-traffic areas.',
+    features: [
+      'Prime Locations',
+      'Design Services',
+      'Installation',
+      'Maintenance',
+      'Size Options',
+      'Long-Term Placements'
+    ],
+    benefits: [
+      'Maximum Visibility',
+      'High Traffic Areas',
+      'Brand Awareness',
+      'Large Format Impact',
+      'Long-Term Exposure',
+      'Cost-Effective'
+    ],
+    category: 'offline'
+  },
+  'marketing-collaterals': {
+    title: 'Marketing Collaterals',
+    description: 'Professional marketing collateral materials.',
+    longDescription: 'We design and produce comprehensive marketing collateral materials that represent your brand professionally.',
+    features: [
+      'Brochure Design',
+      'Business Cards',
+      'Letterheads',
+      'Flyers & Posters',
+      'Packaging Design',
+      'Printing Services'
+    ],
+    benefits: [
+      'Professional Image',
+      'Brand Consistency',
+      'Increased Credibility',
+      'Marketing Effectiveness',
+      'Print Quality',
+      'Comprehensive Solutions'
+    ],
+    category: 'offline'
+  },
+  'startup-marketing': {
+    title: 'Marketing Services for Start-ups',
+    description: 'Tailored marketing solutions for startups.',
+    longDescription: 'We provide cost-effective, growth-focused marketing services designed specifically for startups.',
+    features: [
+      'Growth Strategy',
+      'Digital Marketing',
+      'Brand Building',
+      'Social Media',
+      'Content Marketing',
+      'Analytics'
+    ],
+    benefits: [
+      'Affordable Solutions',
+      'Rapid Growth',
+      'Market Traction',
+      'Brand Awareness',
+      'Cost Efficiency',
+      'Scalability'
+    ],
+    category: 'offline'
+  },
+  'photographic-services': {
+    title: 'Photographic Services',
+    description: 'Professional photography for all occasions.',
+    longDescription: 'Our photography services capture your brand, products, and events in stunning visual detail.',
+    features: [
+      'Product Photography',
+      'Event Photography',
+      'Corporate Photography',
+      'Editing Services',
+      'Photo Retouching',
+      'Digital Delivery'
+    ],
+    benefits: [
+      'Professional Quality',
+      'High-Impact Visuals',
+      'Brand Representation',
+      'Engagement Increase',
+      'Versatile Usage',
+      'Premium Feel'
+    ],
+    category: 'offline'
+  },
+  'pr-services': {
+    title: 'PR Services',
+    description: 'Comprehensive public relations services.',
+    longDescription: 'We manage your public image and media relations to build brand credibility and positive reputation.',
+    features: [
+      'Media Relations',
+      'Press Releases',
+      'Crisis Management',
+      'Event Publicity',
+      'Media Pitch',
+      'Coverage Tracking'
+    ],
+    benefits: [
+      'Media Coverage',
+      'Brand Credibility',
+      'Crisis Management',
+      'Thought Leadership',
+      'Stakeholder Trust',
+      'Market Awareness'
+    ],
+    category: 'offline'
+  },
+  'printing-services': {
+    title: 'Printing Services',
+    description: 'High-quality printing services for all materials.',
+    longDescription: 'We provide professional printing services for business collaterals, promotional materials, and packaging.',
+    features: [
+      'Offset Printing',
+      'Digital Printing',
+      'Large Format Printing',
+      'Finishing Services',
+      'Quality Assurance',
+      'Fast Turnaround'
+    ],
+    benefits: [
+      'Professional Quality',
+      'Cost-Effective',
+      'Multiple Options',
+      'Fast Delivery',
+      'Bulk Capabilities',
+      'Premium Finishes'
+    ],
+    category: 'offline'
+  },
+  'retail-advertising': {
+    title: 'Retail Advertising',
+    description: 'Point-of-sale advertising and retail promotions.',
+    longDescription: 'We create impactful in-store advertising that drives retail sales and increases product visibility.',
+    features: [
+      'POS Display',
+      'Shelf Talkers',
+      'Danglers',
+      'Floor Graphics',
+      'Promotional Stands',
+      'Sampling Setup'
+    ],
+    benefits: [
+      'Impulse Purchases',
+      'Product Visibility',
+      'Sales Increase',
+      'Customer Attention',
+      'Promotional Support',
+      'Brand Presence'
+    ],
+    category: 'offline'
+  },
+  'real-estate-videography': {
+    title: 'Real Estate Videography',
+    description: 'Professional real estate video production.',
+    longDescription: 'We create compelling video content that showcases properties and attracts qualified buyers.',
+    features: [
+      'Property Walkthroughs',
+      '360 Videos',
+      'Drone Footage',
+      'Virtual Tours',
+      'Professional Editing',
+      'Listing Optimization'
+    ],
+    benefits: [
+      'Increased Inquiries',
+      'Better Property Showcase',
+      'Faster Sales',
+      'Competitive Edge',
+      'Modern Presentation',
+      'Higher Engagement'
+    ],
+    category: 'offline'
+  },
+  'signage': {
+    title: 'Signage',
+    description: 'Professional signage design and installation.',
+    longDescription: 'We design and install eye-catching signage that effectively communicates your brand message.',
+    features: [
+      'Signage Design',
+      'Various Materials',
+      'Installation Services',
+      'Maintenance Support',
+      'Custom Solutions',
+      'Lighting Options'
+    ],
+    benefits: [
+      'Brand Visibility',
+      'Wayfinding',
+      'Professional Image',
+      'Customer Attraction',
+      'Long-Term Investment',
+      'Durable Materials'
+    ],
+    category: 'offline'
+  },
+  'washroom-advertising': {
+    title: 'Washroom Advertising',
+    description: 'Strategic advertising in washroom facilities.',
+    longDescription: 'Reach audiences in a captive environment with targeted washroom advertising.',
+    features: [
+      'Mirror Advertising',
+      'Wall Displays',
+      'Dispenser Advertising',
+      'Premium Locations',
+      'Targeted Audience',
+      'Frequent Exposure'
+    ],
+    benefits: [
+      'Captive Attention',
+      'High Visibility',
+      'Frequent Exposure',
+      'Targeted Demographics',
+      'Premium Placement',
+      'Cost-Effective'
+    ],
+    category: 'offline'
+  }
+};
+
+export default function ServiceDetailPage() {
+  const params = useParams();
+  const slug = params.slug as string;
+
+  const service = serviceData[slug];
+
+  if (!service) {
+    notFound();
+  }
+
+  return (
+    <main className={styles.serviceDetail}>
+      <div className={styles.heroSection}>
+        <div className="container">
+          <h1 className={styles.title}>{service.title}</h1>
+          <p className={styles.description}>{service.description}</p>
+        </div>
+      </div>
+
+      <div className={styles.contentSection}>
+        <div className="container">
+          <p className={styles.longDescription}>{service.longDescription}</p>
+
+          <div className={styles.gridContainer}>
+            <div className={styles.featureBox}>
+              <h2 className={styles.boxTitle}>Key Features</h2>
+              <ul className={styles.list}>
+                {service.features.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.benefitBox}>
+              <h2 className={styles.boxTitle}>Benefits</h2>
+              <ul className={styles.list}>
+                {service.benefits.map((benefit, index) => (
+                  <li key={index}>{benefit}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className={styles.ctaSection}>
+            <h3 className={styles.ctaTitle}>Ready to Get Started?</h3>
+            <p className={styles.ctaText}>Let's discuss how our {service.title.toLowerCase()} can benefit your business.</p>
+            <button className={styles.ctaButton}>Contact Us Today</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}

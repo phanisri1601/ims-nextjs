@@ -1,45 +1,120 @@
 'use client';
 
-import { FaSearch, FaBullhorn, FaChartBar, FaBuilding, FaPlane, FaBus } from 'react-icons/fa';
+import Link from 'next/link';
 import ScrollReveal from './ScrollReveal';
 import styles from './Services.module.css';
 
 export default function Services() {
-    const services = [
-        {
-            icon: <FaSearch />,
-            title: 'Online Reputation Management',
-            description: 'Protect and enhance your brand image across digital platforms with strategic reputation management.'
-        },
-        {
-            icon: <FaBullhorn />,
-            title: 'Digital Marketing',
-            description: 'Comprehensive digital marketing strategies to boost your online presence and drive conversions.'
-        },
-        {
-            icon: <FaChartBar />,
-            title: 'SEO',
-            description: 'Improve your search engine rankings and increase organic traffic with proven SEO techniques.'
-        },
-        {
-            icon: <FaBuilding />,
-            title: 'RWA Activation',
-            description: 'Engage residential welfare associations with targeted activation campaigns and community outreach.'
-        },
-        {
-            icon: <FaPlane />,
-            title: 'Airport Advertising',
-            description: 'Capture high-value audiences with premium advertising placements at major airports.'
-        },
-        {
-            icon: <FaBus />,
-            title: 'Bus Branding',
-            description: 'Mobile advertising solutions that reach thousands of commuters daily across the city.'
-        }
+    const onlineServices = [
+        'Advertising Agency In Bangalore',
+        'Digital Marketing Service',
+        'Search Engine Optimization',
+        'Search Engine Marketing',
+        'Online Reputation Management',
+        'Website Designing and Development',
+        'Social Media Optimization',
+        'Social Media Marketing',
+        'Software Design & Development',
+        'Geolocation Analytical SMS',
+        'AI Advertising Agency',
+        'Creative Designing',
+        'API Integration',
+        'Ecommerce Solutions',
+        'Email Marketing',
+        'Mobile Application Development',
+        'Real Estate Online Marketing Service',
+        'Display Advertisement',
+        'Blog Articles',
+        'Classified Portal Management',
+        'Press Releases Services',
     ];
 
-    const onlineServices = services.slice(0, 3);
-    const offlineServices = services.slice(3, 6);
+    const offlineServices = [
+        'Bus Branding',
+        'RWA Activation',
+        'BTL Advertising',
+        'Advertising Activities In Malls & Multiplex',
+        'Advertisements In Tech Parks',
+        'Advertising in Airports',
+        'Paper Insertion',
+        'Advertisements In Cafes Gyms & Super Markets',
+        'Advertisement in ATMs',
+        'Auto Rickshaw Advertising',
+        'Advertisement in Magazines',
+        'Advertising in Public & Private Parking Lots',
+        'Branding Re-Branding',
+        'Corporate Gifts',
+        'Corporate Training Services',
+        'Event Management',
+        'FM Campaigns',
+        'Fabrications',
+        'Hoarding Services',
+        'Marketing Collaterals',
+        'Marketing Services for Start-ups',
+        'Photographic Services',
+        'PR Services',
+        'Printing Services',
+        'Retail Advertising',
+        'Real Estate Videography',
+        'Signage',
+        'Washroom Advertising',
+    ];
+
+    const serviceUrlMap: { [key: string]: string } = {
+        'Advertising Agency In Bangalore': '/services/advertising-agency-bangalore',
+        'Digital Marketing Service': '/services/digital-marketing-service',
+        'Search Engine Optimization': '/services/seo',
+        'Search Engine Marketing': '/services/sem',
+        'Online Reputation Management': '/services/online-reputation-management',
+        'Website Designing and Development': '/services/website-design-development',
+        'Social Media Optimization': '/services/social-media-optimization',
+        'Social Media Marketing': '/services/social-media-marketing',
+        'Software Design & Development': '/services/software-design-development',
+        'Geolocation Analytical SMS': '/services/geolocation-sms',
+        'AI Advertising Agency': '/services/ai-advertising-agency',
+        'Creative Designing': '/services/creative-designing',
+        'API Integration': '/services/api-integration',
+        'Ecommerce Solutions': '/services/ecommerce-solutions',
+        'Email Marketing': '/services/email-marketing',
+        'Mobile Application Development': '/services/mobile-app-development',
+        'Real Estate Online Marketing Service': '/services/real-estate-marketing',
+        'Display Advertisement': '/services/display-advertisement',
+        'Blog Articles': '/services/blog-articles',
+        'Classified Portal Management': '/services/classified-portal',
+        'Press Releases Services': '/services/press-releases',
+        'Bus Branding': '/services/bus-branding',
+        'RWA Activation': '/services/rwa-activation',
+        'BTL Advertising': '/services/btl-advertising',
+        'Advertising Activities In Malls & Multiplex': '/services/mall-advertising',
+        'Advertisements In Tech Parks': '/services/tech-park-ads',
+        'Advertising in Airports': '/services/airport-advertising',
+        'Paper Insertion': '/services/paper-insertion',
+        'Advertisements In Cafes Gyms & Super Markets': '/services/cafe-gym-ads',
+        'Advertisement in ATMs': '/services/atm-ads',
+        'Auto Rickshaw Advertising': '/services/auto-rickshaw-ads',
+        'Advertisement in Magazines': '/services/magazine-ads',
+        'Advertising in Public & Private Parking Lots': '/services/parking-ads',
+        'Branding Re-Branding': '/services/branding-rebranding',
+        'Corporate Gifts': '/services/corporate-gifts',
+        'Corporate Training Services': '/services/corporate-training',
+        'Event Management': '/services/event-management',
+        'FM Campaigns': '/services/fm-campaigns',
+        'Fabrications': '/services/fabrications',
+        'Hoarding Services': '/services/hoarding-services',
+        'Marketing Collaterals': '/services/marketing-collaterals',
+        'Marketing Services for Start-ups': '/services/startup-marketing',
+        'Photographic Services': '/services/photographic-services',
+        'PR Services': '/services/pr-services',
+        'Printing Services': '/services/printing-services',
+        'Retail Advertising': '/services/retail-advertising',
+        'Real Estate Videography': '/services/real-estate-videography',
+        'Signage': '/services/signage',
+        'Washroom Advertising': '/services/washroom-advertising',
+    };
+
+    const getServiceUrl = (service: string) => {
+        return serviceUrlMap[service] || '/services';
+    };
 
     return (
         <section className={styles.services} id="services">
@@ -51,45 +126,44 @@ export default function Services() {
                     </p>
                 </ScrollReveal>
 
-                {/* Online Services Section */}
-                <div id="online-services" style={{ scrollMarginTop: '100px' }}>
-                    <ScrollReveal delay={0.3}>
-                        <h3 className={styles.sectionHeading}>Online Services</h3>
-                    </ScrollReveal>
-                    <div className={styles.servicesGrid}>
-                        {onlineServices.map((service, index) => (
-                            <ScrollReveal key={index} delay={0.1 + index * 0.1}>
-                                <div className={styles.serviceCard}>
-                                    <div className={styles.iconContainer}>
-                                        {service.icon}
-                                    </div>
-                                    <h3 className={styles.serviceTitle}>{service.title}</h3>
-                                    <p className={styles.serviceDescription}>{service.description}</p>
-                                    <button className={styles.learnMore}>Learn More →</button>
-                                </div>
-                            </ScrollReveal>
-                        ))}
+                {/* Services Grid */}
+                <div className={styles.servicesWrapper}>
+                    {/* Online Services Section */}
+                    <div id="online-services" style={{ scrollMarginTop: '100px' }} className={styles.servicesSection}>
+                        <ScrollReveal delay={0.3}>
+                            <h3 className={styles.sectionHeading}>Online</h3>
+                        </ScrollReveal>
+                        <div className={styles.servicesColumn}>
+                            {onlineServices.map((service, index) => (
+                                <ScrollReveal key={index} delay={0.1 + (index % 6) * 0.05}>
+                                    <Link 
+                                        href={getServiceUrl(service)}
+                                        className={styles.serviceLink}
+                                    >
+                                        {service}
+                                    </Link>
+                                </ScrollReveal>
+                            ))}
+                        </div>
                     </div>
-                </div>
 
-                {/* Offline Services Section */}
-                <div id="offline-services" style={{ scrollMarginTop: '100px', marginTop: '4rem' }}>
-                    <ScrollReveal delay={0.4}>
-                        <h3 className={styles.sectionHeading}>Offline Services</h3>
-                    </ScrollReveal>
-                    <div className={styles.servicesGrid}>
-                        {offlineServices.map((service, index) => (
-                            <ScrollReveal key={index} delay={0.1 + index * 0.1}>
-                                <div className={styles.serviceCard}>
-                                    <div className={styles.iconContainer}>
-                                        {service.icon}
-                                    </div>
-                                    <h3 className={styles.serviceTitle}>{service.title}</h3>
-                                    <p className={styles.serviceDescription}>{service.description}</p>
-                                    <button className={styles.learnMore}>Learn More →</button>
-                                </div>
-                            </ScrollReveal>
-                        ))}
+                    {/* Offline Services Section */}
+                    <div id="offline-services" style={{ scrollMarginTop: '100px' }} className={styles.servicesSection}>
+                        <ScrollReveal delay={0.4}>
+                            <h3 className={styles.sectionHeading}>Offline</h3>
+                        </ScrollReveal>
+                        <div className={styles.servicesColumn}>
+                            {offlineServices.map((service, index) => (
+                                <ScrollReveal key={index} delay={0.1 + (index % 6) * 0.05}>
+                                    <Link 
+                                        href={getServiceUrl(service)}
+                                        className={styles.serviceLink}
+                                    >
+                                        {service}
+                                    </Link>
+                                </ScrollReveal>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

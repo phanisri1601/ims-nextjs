@@ -5,10 +5,117 @@ import Link from 'next/link';
 import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
 import styles from './Header.module.css';
 
+const serviceUrlMap: { [key: string]: string } = {
+  'Advertising Agency In Bangalore': '/services/advertising-agency-bangalore',
+  'Digital Marketing Service': '/services/digital-marketing-service',
+  'Search Engine Optimization': '/services/seo',
+  'Search Engine Marketing': '/services/sem',
+  'Online Reputation Management': '/services/online-reputation-management',
+  'Website Designing and Development': '/services/website-design-development',
+  'Social Media Optimization': '/services/social-media-optimization',
+  'Social Media Marketing': '/services/social-media-marketing',
+  'Software Design & Development': '/services/software-design-development',
+  'Geolocation Analytical SMS': '/services/geolocation-sms',
+  'AI Advertising Agency': '/services/ai-advertising-agency',
+  'Creative Designing': '/services/creative-designing',
+  'API Integration': '/services/api-integration',
+  'Ecommerce Solutions': '/services/ecommerce-solutions',
+  'Email Marketing': '/services/email-marketing',
+  'Mobile Application Development': '/services/mobile-app-development',
+  'Real Estate Online Marketing Service': '/services/real-estate-marketing',
+  'Display Advertisement': '/services/display-advertisement',
+  'Blog Articles': '/services/blog-articles',
+  'Classified Portal Management': '/services/classified-portal',
+  'Press Releases Services': '/services/press-releases',
+  'Bus Branding': '/services/bus-branding',
+  'RWA Activation': '/services/rwa-activation',
+  'BTL Advertising': '/services/btl-advertising',
+  'Advertising Activities In Malls & Multiplex': '/services/mall-advertising',
+  'Advertisements In Tech Parks': '/services/tech-park-ads',
+  'Advertising in Airports': '/services/airport-advertising',
+  'Paper Insertion': '/services/paper-insertion',
+  'Advertisements In Cafes Gyms & Super Markets': '/services/cafe-gym-ads',
+  'Advertisement in ATMs': '/services/atm-ads',
+  'Auto Rickshaw Advertising': '/services/auto-rickshaw-ads',
+  'Advertisement in Magazines': '/services/magazine-ads',
+  'Advertising in Public & Private Parking Lots': '/services/parking-ads',
+  'Branding Re-Branding': '/services/branding-rebranding',
+  'Corporate Gifts': '/services/corporate-gifts',
+  'Corporate Training Services': '/services/corporate-training',
+  'Event Management': '/services/event-management',
+  'FM Campaigns': '/services/fm-campaigns',
+  'Fabrications': '/services/fabrications',
+  'Hoarding Services': '/services/hoarding-services',
+  'Marketing Collaterals': '/services/marketing-collaterals',
+  'Marketing Services for Start-ups': '/services/startup-marketing',
+  'Photographic Services': '/services/photographic-services',
+  'PR Services': '/services/pr-services',
+  'Printing Services': '/services/printing-services',
+  'Retail Advertising': '/services/retail-advertising',
+  'Real Estate Videography': '/services/real-estate-videography',
+  'Signage': '/services/signage',
+  'Washroom Advertising': '/services/washroom-advertising',
+};
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+
+  const onlineServices = [
+    'Advertising Agency In Bangalore',
+    'Digital Marketing Service',
+    'Search Engine Optimization',
+    'Search Engine Marketing',
+    'Online Reputation Management',
+    'Website Designing and Development',
+    'Social Media Optimization',
+    'Social Media Marketing',
+    'Software Design & Development',
+    'Geolocation Analytical SMS',
+    'AI Advertising Agency',
+    'Creative Designing',
+    'API Integration',
+    'Ecommerce Solutions',
+    'Email Marketing',
+    'Mobile Application Development',
+    'Real Estate Online Marketing Service',
+    'Display Advertisement',
+    'Blog Articles',
+    'Classified Portal Management',
+    'Press Releases Services',
+  ];
+
+  const offlineServices = [
+    'Bus Branding',
+    'RWA Activation',
+    'BTL Advertising',
+    'Advertising Activities In Malls & Multiplex',
+    'Advertisements In Tech Parks',
+    'Advertising in Airports',
+    'Paper Insertion',
+    'Advertisements In Cafes Gyms & Super Markets',
+    'Advertisement in ATMs',
+    'Auto Rickshaw Advertising',
+    'Advertisement in Magazines',
+    'Advertising in Public & Private Parking Lots',
+    'Branding Re-Branding',
+    'Corporate Gifts',
+    'Corporate Training Services',
+    'Event Management',
+    'FM Campaigns',
+    'Fabrications',
+    'Hoarding Services',
+    'Marketing Collaterals',
+    'Marketing Services for Start-ups',
+    'Photographic Services',
+    'PR Services',
+    'Printing Services',
+    'Retail Advertising',
+    'Real Estate Videography',
+    'Signage',
+    'Washroom Advertising',
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +125,15 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleServiceClick = () => {
+    setIsServicesOpen(false);
+    setIsMenuOpen(false);
+  };
+
+  const getServiceUrl = (service: string) => {
+    return serviceUrlMap[service] || '/services';
+  };
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
@@ -52,26 +168,39 @@ export default function Header() {
                   onMouseEnter={() => setIsServicesOpen(true)}
                   onMouseLeave={() => setIsServicesOpen(false)}
                 >
-                  <Link 
-                    href="/#online-services" 
-                    className={styles.dropdownItem}
-                    onClick={() => {
-                      setIsServicesOpen(false);
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Online Services
-                  </Link>
-                  <Link 
-                    href="/#offline-services" 
-                    className={styles.dropdownItem}
-                    onClick={() => {
-                      setIsServicesOpen(false);
-                      setIsMenuOpen(false);
-                    }}
-                  >
-                    Offline Services
-                  </Link>
+                  <div className={styles.dropdownSection}>
+                    <div className={styles.dropdownSectionTitle}>Online</div>
+                    <div className={styles.servicesList}>
+                      {onlineServices.map((service, index) => (
+                        <Link 
+                          key={index}
+                          href={getServiceUrl(service)}
+                          className={styles.dropdownItem}
+                          onClick={handleServiceClick}
+                          title={service}
+                        >
+                          {service}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.dropdownSection}>
+                    <div className={styles.dropdownSectionTitle}>Offline</div>
+                    <div className={styles.servicesList}>
+                      {offlineServices.map((service, index) => (
+                        <Link 
+                          key={index}
+                          href={getServiceUrl(service)}
+                          className={styles.dropdownItem}
+                          onClick={handleServiceClick}
+                          title={service}
+                        >
+                          {service}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
