@@ -131,6 +131,61 @@
   max-width: 800px;
 }
 
+/* Staggered entry animations for injected HTML content */
+.longDescription > * {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.longDescription > *:nth-child(1)  { animation-delay: 0.06s; }
+.longDescription > *:nth-child(2)  { animation-delay: 0.12s; }
+.longDescription > *:nth-child(3)  { animation-delay: 0.18s; }
+.longDescription > *:nth-child(4)  { animation-delay: 0.24s; }
+.longDescription > *:nth-child(5)  { animation-delay: 0.30s; }
+.longDescription > *:nth-child(6)  { animation-delay: 0.36s; }
+.longDescription > *:nth-child(7)  { animation-delay: 0.42s; }
+.longDescription > *:nth-child(8)  { animation-delay: 0.48s; }
+.longDescription > *:nth-child(9)  { animation-delay: 0.54s; }
+.longDescription > *:nth-child(10) { animation-delay: 0.60s; }
+
+/* Typography and spacing for injected content */
+.longDescription h2 {
+  font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+  color: var(--color-text-primary);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.2;
+}
+.longDescription h3 {
+  font-size: clamp(1.15rem, 2.4vw, 1.3rem);
+  color: var(--color-accent-primary);
+  margin: 1rem 0 0.5rem 0;
+}
+.longDescription h4 {
+  font-size: 1.02rem;
+  margin: 0.6rem 0 0.4rem 0;
+}
+.longDescription p {
+  margin: 0 0 1rem 0;
+  color: var(--color-text-secondary);
+}
+.longDescription ul {
+  margin: 0 0 1rem 1.25rem;
+  padding: 0;
+}
+.longDescription li {
+  margin: 0.4rem 0;
+}
+
+/* Make sure lists inside longDescription have subtle markers */
+.longDescription ul {
+  list-style: disc;
+}
+
+/* Slight entrance for the entire block */
+.longDescription {
+  animation: fadeIn 360ms ease-out;
+}
+
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;

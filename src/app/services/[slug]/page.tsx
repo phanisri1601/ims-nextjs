@@ -17,7 +17,80 @@ const serviceData: {
   'advertising-agency-bangalore': {
     title: 'Advertising Agency In Bangalore',
     description: 'Premier advertising solutions for businesses in Bangalore.',
-    longDescription: 'As a leading advertising agency in Bangalore, we specialize in creating comprehensive marketing strategies tailored to your business needs. We combine creative excellence with data-driven insights to deliver results that exceed expectations.',
+    longDescription: `
+      <h2>Advertising Agency in Bangalore</h2>
+      <p>As a leading advertising agency in Bangalore, we specialize in creating comprehensive marketing strategies tailored to your business needs. We combine creative excellence with data-driven insights to deliver measurable results that exceed expectations.</p>
+
+      <h3>Who are we?</h3>
+      <p>We are a full-service advertising and digital marketing agency based in Bangalore, delivering end-to-end solutions across online and offline channels. Our team comprises experienced strategists, creative designers, media planners and performance marketers committed to building brands and driving growth.</p>
+
+      <h3>Our Strengths</h3>
+      <ul>
+        <li>In-house creative and campaign execution</li>
+        <li>Data-driven planning and measurable reporting</li>
+        <li>Experienced media buying across digital and traditional channels</li>
+        <li>Transparent pricing and timely project delivery</li>
+        <li>Solutions tailored to startups, SMEs and enterprises</li>
+      </ul>
+
+      <h3>360&deg; Digital Marketing Solution</h3>
+      <p>We provide a comprehensive digital marketing suite covering SEO, SEM, social media marketing, content strategy, email marketing and performance advertising. Our campaigns are designed to increase visibility, generate qualified leads and improve conversions.</p>
+
+      <h3>Creative Design & Branding</h3>
+      <p>Our creative team delivers compelling design across branding, print, digital creatives and product launches. We build strong visual identities that resonate with your target audience and support brand recall.</p>
+
+      <h3>Maximise Your Lead Generation</h3>
+      <p>We combine targeted digital campaigns with offline activations to drive high-quality leads for your business. From paid campaigns to experiential marketing, we ensure enquiries convert into customers.</p>
+
+      <h3>Our Advertising Services</h3>
+      <p>We offer a wide range of online and offline advertising services to meet diverse marketing objectives:</p>
+      <h4>Online Services</h4>
+      <ul>
+        <li>Search Engine Optimization (SEO)</li>
+        <li>Search Engine Marketing (PPC)</li>
+        <li>Social Media Marketing & Paid Social</li>
+        <li>Display & Programmatic Advertising</li>
+        <li>Online Reputation Management (ORM)</li>
+        <li>Email Marketing & Automation</li>
+      </ul>
+
+      <h4>Offline Services</h4>
+      <ul>
+        <li>Hoardings & Billboards</li>
+        <li>Bus Branding & Transit Ads</li>
+        <li>Airport Advertising</li>
+        <li>Mall & Multiplex Advertising</li>
+        <li>RWA Activations & Ground Events</li>
+        <li>Product Sampling & Brand Activations</li>
+      </ul>
+
+      <h3>Industry Solutions</h3>
+      <p>We specialise in marketing for multiple sectors including real estate, retail, startups and product launches. Our campaigns are customized for sector-specific KPIs and buyer journeys.</p>
+
+      <h3>Why Choose Us</h3>
+      <ul>
+        <li>Strategic planning with measurable outcomes</li>
+        <li>Integrated online + offline campaign capabilities</li>
+        <li>Creative excellence that drives attention</li>
+        <li>Dedicated account management and transparent reporting</li>
+      </ul>
+
+      <h3>Product Launch & Brand Activation</h3>
+      <p>We plan and execute product launches and brand activations that create buzz and meaningful consumer engagement — from pre-launch hype to on-ground activations and post-launch analysis.</p>
+
+      <h3>Real Estate & Start-up Marketing</h3>
+      <p>For real estate developers, we provide targeted property marketing, virtual tours and lead nurturing. For startups, we offer lean, scalable marketing strategies to accelerate traction and growth.</p>
+
+      <h3>Contact & Next Steps</h3>
+      <p>If you want to discuss how our advertising services can help your brand in Bangalore, reach out to us:</p>
+      <ul>
+        <li><strong>Phone:</strong> +91 888 056 4488</li>
+        <li><strong>Email:</strong> info@imsolutions.mobi</li>
+        <li><strong>Corporate Office:</strong> #122, 8th Main Road, Bangalore</li>
+      </ul>
+
+      <p>We'd love to understand your objectives and propose a campaign that delivers results. Contact us today for a free consultation.</p>
+    `,
     features: [
       'Strategic Campaign Planning',
       'Creative Design & Execution',
@@ -1123,7 +1196,7 @@ export default function ServiceDetailPage() {
 
       <div className={styles.contentSection}>
         <div className="container">
-          <p className={styles.longDescription}>{service.longDescription}</p>
+          <div className={styles.longDescription} dangerouslySetInnerHTML={{ __html: service.longDescription }} />
 
           <div className={styles.gridContainer}>
             <div className={styles.featureBox}>

@@ -101,23 +101,26 @@
 }
 
 .dropdownMenu {
-    position: absolute;
-    top: calc(100% + 0.5rem);
+    /* Anchor dropdown to the viewport to avoid parent clipping */
+    position: fixed;
+    top: 72px; /* roughly header height; keeps dropdown below the header */
     left: 50%;
     transform: translateX(-50%);
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
     border-radius: 8px;
     box-shadow: var(--shadow-lg);
-    animation: fadeIn 0.3s ease;
-    z-index: 1001;
-    padding: 1.5rem;
-    min-width: 1400px;
+    animation: fadeIn 0.18s ease;
+    z-index: 1200;
+    padding: 1rem 1.25rem;
+    /* fit within viewport with comfortable padding */
+    width: min(1200px, calc(100vw - 64px));
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    max-height: none;
-    overflow: visible;
+    gap: 1.25rem 1.75rem;
+    max-height: calc(100vh - 120px);
+    overflow: auto;
+    box-sizing: border-box;
 }
 
 .dropdownSection {
@@ -149,15 +152,16 @@
     transition: all 0.2s ease;
     font-size: 0.85rem;
     border-radius: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    /* allow wrapping so long service names remain visible */
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .dropdownItem:hover {
     background: var(--color-bg-secondary);
     color: var(--color-accent-primary);
-    padding-left: 1rem;
+    transform: translateX(6px);
 }
 
 .menuToggle {
