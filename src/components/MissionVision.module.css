@@ -1,0 +1,113 @@
+.missionVisionSection {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.section {
+    margin-bottom: 4rem;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.textContent {
+    color: var(--color-text-primary);
+}
+
+.title {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.description {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.additionalText {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+.imageWrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(255, 0, 51, 0.15);
+    max-width: 500px;
+    aspect-ratio: 4/3;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Mission: Text left, Image right (default order is correct) */
+
+/* Vision: Image left, Text right - reverse the order */
+.section:nth-child(2) .contentWrapper {
+    grid-template-columns: 1fr 1fr;
+}
+
+.section:nth-child(2) .imageWrapper {
+    order: 1;
+}
+
+.section:nth-child(2) .textContent {
+    order: 2;
+}
+
+@media (max-width: 968px) {
+    .missionVisionSection {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .section {
+        margin-bottom: 3rem;
+    }
+
+    .contentWrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .section:nth-child(2) .imageWrapper {
+        order: -1;
+    }
+
+    .section:nth-child(2) .textContent {
+        order: 1;
+    }
+
+    .imageWrapper {
+        max-width: 100%;
+    }
+}
+

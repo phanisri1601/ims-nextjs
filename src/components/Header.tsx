@@ -40,13 +40,38 @@ export default function Header() {
               onMouseEnter={() => setIsServicesOpen(true)}
               onMouseLeave={() => setIsServicesOpen(false)}
             >
-              <button className={styles.navLink}>
-                Services <FaChevronDown className={styles.chevron} />
+              <button 
+                className={styles.navLink}
+                onMouseEnter={() => setIsServicesOpen(true)}
+              >
+                Services <FaChevronDown className={`${styles.chevron} ${isServicesOpen ? styles.chevronRotated : ''}`} />
               </button>
               {isServicesOpen && (
-                <div className={styles.dropdownMenu}>
-                  <Link href="/services#online" className={styles.dropdownItem}>Online Services</Link>
-                  <Link href="/services#offline" className={styles.dropdownItem}>Offline Services</Link>
+                <div 
+                  className={styles.dropdownMenu}
+                  onMouseEnter={() => setIsServicesOpen(true)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
+                >
+                  <Link 
+                    href="/#online-services" 
+                    className={styles.dropdownItem}
+                    onClick={() => {
+                      setIsServicesOpen(false);
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Online Services
+                  </Link>
+                  <Link 
+                    href="/#offline-services" 
+                    className={styles.dropdownItem}
+                    onClick={() => {
+                      setIsServicesOpen(false);
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    Offline Services
+                  </Link>
                 </div>
               )}
             </div>

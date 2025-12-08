@@ -38,8 +38,11 @@ export default function Services() {
         }
     ];
 
+    const onlineServices = services.slice(0, 3);
+    const offlineServices = services.slice(3, 6);
+
     return (
-        <section className={styles.services}>
+        <section className={styles.services} id="services">
             <div className="container">
                 <ScrollReveal delay={0.2}>
                     <h2 className="section-title">OUR ADVERTISING SERVICES</h2>
@@ -48,19 +51,46 @@ export default function Services() {
                     </p>
                 </ScrollReveal>
 
-                <div className={styles.servicesGrid}>
-                    {services.map((service, index) => (
-                        <ScrollReveal key={index} delay={0.1 + index * 0.1}>
-                            <div className={styles.serviceCard}>
-                                <div className={styles.iconContainer}>
-                                    {service.icon}
+                {/* Online Services Section */}
+                <div id="online-services" style={{ scrollMarginTop: '100px' }}>
+                    <ScrollReveal delay={0.3}>
+                        <h3 className={styles.sectionHeading}>Online Services</h3>
+                    </ScrollReveal>
+                    <div className={styles.servicesGrid}>
+                        {onlineServices.map((service, index) => (
+                            <ScrollReveal key={index} delay={0.1 + index * 0.1}>
+                                <div className={styles.serviceCard}>
+                                    <div className={styles.iconContainer}>
+                                        {service.icon}
+                                    </div>
+                                    <h3 className={styles.serviceTitle}>{service.title}</h3>
+                                    <p className={styles.serviceDescription}>{service.description}</p>
+                                    <button className={styles.learnMore}>Learn More →</button>
                                 </div>
-                                <h3 className={styles.serviceTitle}>{service.title}</h3>
-                                <p className={styles.serviceDescription}>{service.description}</p>
-                                <button className={styles.learnMore}>Learn More →</button>
-                            </div>
-                        </ScrollReveal>
-                    ))}
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Offline Services Section */}
+                <div id="offline-services" style={{ scrollMarginTop: '100px', marginTop: '4rem' }}>
+                    <ScrollReveal delay={0.4}>
+                        <h3 className={styles.sectionHeading}>Offline Services</h3>
+                    </ScrollReveal>
+                    <div className={styles.servicesGrid}>
+                        {offlineServices.map((service, index) => (
+                            <ScrollReveal key={index} delay={0.1 + index * 0.1}>
+                                <div className={styles.serviceCard}>
+                                    <div className={styles.iconContainer}>
+                                        {service.icon}
+                                    </div>
+                                    <h3 className={styles.serviceTitle}>{service.title}</h3>
+                                    <p className={styles.serviceDescription}>{service.description}</p>
+                                    <button className={styles.learnMore}>Learn More →</button>
+                                </div>
+                            </ScrollReveal>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

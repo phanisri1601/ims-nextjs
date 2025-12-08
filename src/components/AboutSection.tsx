@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
 import styles from "./AboutSection.module.css";
 
 export default function AboutSection() {
@@ -9,59 +8,60 @@ export default function AboutSection() {
         <section className={styles.aboutSection}>
             <div className={styles.container}>
                 <div className={styles.contentWrapper}>
-                    {/* Left Content - Text */}
+                    {/* Left Content - Image */}
+                    <motion.div 
+                        className={styles.imageWrapper}
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: false, amount: 0.3 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <TiltImage />
+                    </motion.div>
+
+                    {/* Right Content - Text */}
                     <div className={styles.textContent}>
                         <motion.span
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, amount: 0.3 }}
                             transition={{ duration: 0.5 }}
                             className={styles.eyebrow}
                         >
-                            ABOUT IM SOLUTIONS
+                            ABOUT
                         </motion.span>
 
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.1 }}
                             className={styles.title}
                         >
-                            <span className={styles.gradientText}>IM SOLUTIONS</span>
-                            <br />
-
+                            IM SOLUTIONS
                         </motion.h2>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, amount: 0.3 }}
+                            transition={{ duration: 0.5, delay: 0.15 }}
+                            className={styles.subtitle}
+                        >
+                            Where we take advertising to the next big level!
+                        </motion.p>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                             className={styles.description}
                         >
                             <p>
-                                With the right advertising, you don&apos;t just get results but you <span className={styles.highlight}>multiply your profits.</span> IM Solutions delivers just that. We are a team of experts creating unconventional ads that truly makes an impression.
+                                With the right advertising, you don&apos;t just get results but you multiply your profits. IM Solutions delivers just that. We are a team of experts creating unconventional ads that truly makes an impression. Our ads are short, simple and straight to the point targeting ideal customers for a faster outcome. From digital space to every nook and corner of the offline market, we cover it all. IM Solutions connects people and businesses across the digital and physical world, powering people-based marketing. Presentation matters! We help brands present themselves better and reach their customers with our advertising expertise. In simple, we amplifying your business and enhance your branding. Why wait when you can start now? Contact us for more details.
                             </p>
-                            <p>
-                                Our ads are short, simple and straight to the point targeting ideal customers for a faster outcome. From digital space to every nook and corner of the offline market, we cover it all. IM Solutions connects people and businesses across the digital and physical world, powering people-based marketing.
-                            </p>
-
                         </motion.div>
-
-                        <motion.button
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ duration: 0.3, delay: 0.3 }}
-                            className={styles.ctaButton}
-                        >
-                            Get Started Now
-                            <FaArrowRight />
-                        </motion.button>
-                    </div>
-
-                    {/* Right Content - 3D Animated Image */}
-                    <div className={styles.imageWrapper}>
-                        <TiltImage />
                     </div>
                 </div>
             </div>
@@ -111,7 +111,6 @@ function TiltImage() {
                 rotateY,
             }}
         >
-            {/* Adding a float animation layer on top of the tilt */}
             <motion.div
                 animate={{
                     y: [0, -15, 0],

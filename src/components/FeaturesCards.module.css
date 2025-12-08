@@ -1,0 +1,147 @@
+.featuresSection {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.smallTitle {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.mainTitle {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 800;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.card {
+    background: var(--color-bg-card);
+    border: 1px solid rgba(51, 0, 17, 0.3);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-accent-primary);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+}
+
+.iconWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    height: 80px;
+}
+
+.iconWrapper svg {
+    width: 64px;
+    height: 64px;
+}
+
+.iconWrapper svg circle,
+.iconWrapper svg path,
+.iconWrapper svg line,
+.iconWrapper svg rect {
+    stroke: var(--color-text-muted);
+}
+
+.card:hover .iconWrapper svg circle,
+.card:hover .iconWrapper svg path,
+.card:hover .iconWrapper svg line,
+.card:hover .iconWrapper svg rect {
+    stroke: var(--color-accent-primary);
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+}
+
+.cardDescription {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.dividerLine {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-accent-primary), transparent);
+    max-width: 150px;
+}
+
+.dividerText {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+    .cardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .featuresSection {
+        padding: var(--spacing-lg) 0;
+    }
+
+    .mainTitle {
+        margin-bottom: 3rem;
+    }
+
+    .cardsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .divider {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dividerLine {
+        max-width: 100px;
+    }
+}
+

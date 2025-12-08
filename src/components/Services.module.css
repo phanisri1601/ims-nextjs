@@ -11,6 +11,18 @@
     color: var(--color-text-secondary);
 }
 
+.sectionHeading {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin: 3rem 0 2rem 0;
+    background: linear-gradient(135deg, var(--color-text-primary), var(--color-accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .servicesGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
