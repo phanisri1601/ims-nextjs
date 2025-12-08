@@ -1107,9 +1107,17 @@ export default function ServiceDetailPage() {
   return (
     <main className={styles.serviceDetail}>
       <div className={styles.heroSection}>
+        <div className={styles.heroBackground}>
+          <img src="/blog_seo.png" alt="Service background" className={styles.backgroundImage} />
+        </div>
+        <div className={styles.heroOverlay}></div>
         <div className="container">
-          <h1 className={styles.title}>{service.title}</h1>
-          <p className={styles.description}>{service.description}</p>
+          <div className={styles.heroInner}>
+            <div className={styles.heroText}>
+              <h1 className={styles.title}>{service.title}</h1>
+              <p className={styles.description}>{service.description}</p>
+            </div>
+          </div>
         </div>
       </div>
 
