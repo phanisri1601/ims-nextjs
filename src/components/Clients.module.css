@@ -1,0 +1,96 @@
+.clients {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-primary);
+    overflow: hidden;
+    /* Hide overflow for marquee */
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+/* Marquee Container */
+.marquee {
+    position: relative;
+    width: 100%;
+    /* Changed from 100vw to fit within container/section */
+    max-width: 100%;
+    overflow: hidden;
+    /* mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); */
+    /* Fade edges commented out for visibility safety */
+}
+
+/* Scrolling Track */
+.track {
+    display: flex;
+    gap: 4rem;
+    /* Spacing between logos */
+    width: max-content;
+    animation: scroll 30s linear infinite;
+    padding: 2rem 0;
+    /* Space for hover scaling */
+}
+
+.track:hover {
+    animation-play-state: paused;
+    /* Optional: Pause on hover */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+        /* Move half the width (one full set) */
+    }
+}
+
+.clientCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Min width to ensure decent size */
+    min-width: 150px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+.clientCard:hover {
+    transform: scale(1.2);
+    /* Smooth Zoom as requested */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.clientLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    /* Fixed width for consistency */
+    height: 80px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.logoImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Optional: Grayscale until hover? */
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.clientCard:hover .logoImage {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+.clientCard:hover .clientLogo {
+    opacity: 1;
+}

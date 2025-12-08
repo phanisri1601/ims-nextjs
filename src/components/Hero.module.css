@@ -1,0 +1,84 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+    /* Background handled by Background3D component */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 0, 51, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+.heroTitle {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    /* animation handled by Framer Motion */
+}
+
+.heroDescription {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    font-size: var(--font-size-md);
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+}
+
+.ctaButton {
+    display: table;
+    /* Centers the link when margin auto is used in flex col, or just inline-block */
+    margin: 0 auto;
+    padding: 1rem 3rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 51, 0.3);
+}
+
+.ctaButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 0, 51, 0.5);
+    background: linear-gradient(135deg, #ff1f4b, #600a1c);
+}
+
+.animatedText {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* animation handled by Framer Motion */
+}
+
+/* Services Grid styles removed */
+
+@media (max-width: 768px) {
+    .heroTitle {
+        margin-bottom: 2.5rem;
+    }
+}

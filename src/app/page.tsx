@@ -1,0 +1,29 @@
+import Hero from "@/components/Hero";
+import VideoSection from "@/components/VideoSection";
+import AboutSection from "@/components/AboutSection";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import WantToKnowMore from "@/components/WantToKnowMore";
+import BlogsSection from "@/components/BlogsSection";
+import CareerSection from "@/components/CareerSection";
+
+import Clients from "@/components/Clients";
+import FAQ from "@/components/FAQ";
+import ContactForm from "@/components/ContactForm";
+
+export default function Home() {
+  return (
+    <main>
+      <Hero />
+      <VideoSection />
+      <AboutSection />
+      <WhyChooseUs />
+      <WantToKnowMore />
+      <BlogsSection />
+      <CareerSection />
+
+      <Clients />
+      <FAQ />
+      <ContactForm />
+    </main>
+  );
+}

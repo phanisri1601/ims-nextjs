@@ -1,0 +1,161 @@
+.section {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-primary);
+    overflow: hidden;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.eyebrow {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--color-text-primary);
+}
+
+/* Horizontal Scroll Layout */
+.grid {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0 2rem 0;
+    /* Padding for hover lift & shadow */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+.grid::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari/Opera */
+}
+
+.card {
+    min-width: 350px;
+    /* Fixed width to force scroll */
+    max-width: 350px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-surface-elevated);
+    transition: transform 0.3s ease;
+    scroll-snap-align: center;
+    /* Gentle snapping */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.imageWrapper {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card:hover .image {
+    transform: scale(1.05);
+}
+
+/* The Arrow Button Overlay */
+.arrowOverlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    /* Animation Initial State: Hidden/Small */
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Bouncy spring */
+    z-index: 5;
+}
+
+.card:hover .arrowOverlay {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.arrowIcon {
+    font-size: 1.5rem;
+    color: black;
+}
+
+/* Content Below Image */
+.content {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    background: var(--color-surface-elevated);
+}
+
+.cardTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary);
+}
+
+.cardDesc {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .arrowOverlay {
+        width: 48px;
+        height: 48px;
+        /* Visible on mobile? Or keep hover behavior? Keeping hover for now as requested */
+    }
+}

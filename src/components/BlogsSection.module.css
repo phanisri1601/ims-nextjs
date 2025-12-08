@@ -1,0 +1,137 @@
+.section {
+    padding: var(--spacing-xl) 0;
+    background: var(--color-bg-primary);
+    position: relative;
+    overflow: hidden;
+    min-height: 80vh;
+    /* Ensure enough scroll space */
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    perspective: 1000px;
+    /* Essential for 3D transforms */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.eyebrow {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--color-text-primary);
+}
+
+.gridWrapper {
+    height: 500px;
+    /* Fixed height for the pin/scroll area */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    /* No perspective here, container has it */
+}
+
+/* Card Styling - Image Only */
+.card {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    /* No hover effects that interfere with scroll transform */
+    transform-style: preserve-3d;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Overlay for potential title on hover if needed later, but keeping empty for now */
+/* Overlay Title */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 100%);
+    opacity: 1;
+    /* Always visible */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    /* Align text to bottom */
+    padding: 1.5rem;
+}
+
+.blogTitle {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Lift title slightly on hover */
+.card:hover .blogTitle {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+.footer {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.viewAllButton {
+    display: inline-block;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
+    background: transparent;
+    border: 2px solid var(--color-accent-primary);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.viewAllButton:hover {
+    background: var(--color-accent-primary);
+    box-shadow: 0 0 30px rgba(255, 0, 51, 0.4);
+    transform: translateY(-2px);
+}
