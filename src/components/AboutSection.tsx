@@ -123,7 +123,7 @@ function TiltImage() {
                 style={{ width: "100%", height: "100%" }}
             >
                 <img
-                    src="/image copy.png"
+                    src="/reshot-icon-digital-marketing-8SVERLYKMC.svg"
                     alt="IM Solutions Office"
                     className={styles.image}
                 />

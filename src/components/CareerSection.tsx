@@ -35,7 +35,7 @@ export default function CareerSection() {
                 </motion.p>
 
                 <motion.a
-                    href="/career"
+                    href="/careers"
                     className={styles.applyButton}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}

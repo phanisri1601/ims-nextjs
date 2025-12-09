@@ -9,37 +9,37 @@ const services = [
         title: "Web Design",
         description: "Crafting immersive digital experiences that captivate and convert.",
         image: "/wcu_branding.png", // Reuse high-quality asset
-        link: "/services/web-design"
+        link: "services/website-design-development"
     },
     {
         title: "SEO Optimization",
         description: "Driving organic growth with data-driven search strategies.",
         image: "/blog_seo.png", // Reuse high-quality asset
-        link: "/services/seo"
+        link: "services/seo"
     },
     {
         title: "Digital Marketing",
         description: "360° campaigns that amplify your brand's voice across all channels.",
         image: "/wcu_marketing.png", // Reuse high-quality asset
-        link: "/services/marketing"
+        link: "services/digital-marketing-service"
     },
     {
         title: "Brand Identity",
         description: "Building resilient brands with distinctive visual storytelling.",
         image: "/wcu_branding.png",
-        link: "/services/branding"
+        link: "services/branding"
     },
     {
         title: "Social Media",
         description: "Engaging communities with creative content and strategic outreach.",
         image: "/wcu_marketing.png",
-        link: "/services/social-media"
+        link: "/services/social-media-optimization"
     },
     {
         title: "Content Strategy",
         description: "Compelling narratives that resonate with your target audience.",
         image: "/blog_seo.png",
-        link: "/services/content"
+        link: "services/content"
     }
 ];
 
