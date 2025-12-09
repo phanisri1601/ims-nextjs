@@ -149,7 +149,6 @@ export default function ClientsPage() {
                 <div className={styles.logoWrap}>
                   <img src={clientImage} alt={`${client} logo`} />
                 </div>
-                <p className={styles.clientName}>{client}</p>
               </div>
             ))}
           </div>
