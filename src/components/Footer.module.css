@@ -242,6 +242,97 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .footerContainer {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 3rem 1rem 2rem;
+        margin-top: 2rem;
+    }
+
+    .footerContainer {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+    }
+
+    .columnTitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .contactForm input,
+    .contactForm textarea {
+        font-size: 16px;
+        padding: 0.7rem 0.9rem;
+    }
+
+    .submitBtn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 2rem 0.75rem 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .footerContainer {
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .columnTitle {
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .tagline,
+    .addressText,
+    .linkList a,
+    .contactItem a {
+        font-size: 0.85rem;
+    }
+
+    .contactItem {
+        gap: 0.5rem;
+    }
+
+    .socialLinks {
+        gap: 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    .socialLinks a {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+    }
+
+    .contactForm input,
+    .contactForm textarea {
+        font-size: 16px;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .submitBtn {
+        padding: 0.65rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
 @media (max-width: 640px) {
     .footerContainer {
         grid-template-columns: 1fr;

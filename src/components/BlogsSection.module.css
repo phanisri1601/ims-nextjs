@@ -53,6 +53,91 @@
     /* No perspective here, container has it */
 }
 
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .header {
+        margin-bottom: 3rem;
+    }
+
+    .title {
+        font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        min-height: auto;
+        padding: 2.5rem 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .header {
+        margin-bottom: 2.5rem;
+    }
+
+    .eyebrow {
+        font-size: 0.85rem;
+    }
+
+    .title {
+        font-size: clamp(1.3rem, 3vw, 2rem);
+        margin-bottom: 1rem;
+    }
+
+    .gridWrapper {
+        height: auto;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .card {
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 2rem 0;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .eyebrow {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .title {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    }
+
+    .card {
+        aspect-ratio: 4/3;
+        border-radius: 10px;
+    }
+}
+
 /* Card Styling - Image Only */
 .card {
     position: relative;

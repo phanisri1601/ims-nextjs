@@ -101,3 +101,86 @@
 .clientCard:hover .clientLogo {
     opacity: 1;
 }
+
+@media (max-width: 1024px) {
+    .clients {
+        padding: 2.5rem 0;
+    }
+
+    .track {
+        gap: 3rem;
+        padding: 1.5rem 0;
+    }
+
+    .clientCard {
+        min-width: 130px;
+    }
+
+    .clientLogo {
+        width: 130px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .clients {
+        padding: 2rem 0;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        max-width: 100%;
+    }
+
+    .track {
+        gap: 2rem;
+        padding: 1rem 0;
+    }
+
+    .clientCard {
+        min-width: 110px;
+    }
+
+    .clientCard:hover {
+        transform: scale(1.15);
+    }
+
+    .clientLogo {
+        width: 110px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .clients {
+        padding: 1.5rem 0;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .track {
+        gap: 1.5rem;
+        padding: 0.75rem 0;
+    }
+
+    .clientCard {
+        min-width: 90px;
+    }
+
+    .clientCard:hover {
+        transform: scale(1.1);
+    }
+
+    .clientLogo {
+        width: 90px;
+        height: 50px;
+    }
+
+    .logoImage {
+        filter: grayscale(80%);
+    }
+}

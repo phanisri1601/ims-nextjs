@@ -116,6 +116,25 @@ a:hover {
   padding: 0 var(--spacing-md);
 }
 
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+}
+
 /* Section */
 .section {
   padding: var(--spacing-xl) 0;

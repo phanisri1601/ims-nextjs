@@ -84,12 +84,68 @@
 }
 
 @media (max-width: 768px) {
+    .stats {
+        padding: 2.5rem 0;
+    }
+
     .statsGrid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .statCard {
+        padding: 1.75rem;
+        border-radius: 12px;
+    }
+
+    .statIcon {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
     }
 
     .statValue {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .statLabel {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats {
+        padding: 2rem 0;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin: -1.5rem auto 2rem;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    .statCard {
+        padding: 1.5rem;
+        border-radius: 10px;
+    }
+
+    .statIcon {
+        font-size: 2.2rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .statValue {
+        font-size: 2rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .statLabel {
+        font-size: 0.9rem;
+        letter-spacing: 0.03em;
     }
 }

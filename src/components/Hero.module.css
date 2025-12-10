@@ -77,8 +77,91 @@
 
 /* Services Grid styles removed */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .hero {
+        min-height: 80vh;
+        padding-top: 60px;
+    }
+
     .heroTitle {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        margin-bottom: 1.5rem;
+    }
+
+    .heroDescription {
+        font-size: 1.05rem;
         margin-bottom: 2.5rem;
+    }
+
+    .ctaButton {
+        padding: 0.95rem 2.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 70vh;
+        padding-top: 50px;
+    }
+
+    .hero::before {
+        width: 400px;
+        height: 400px;
+        top: -25%;
+        right: -10%;
+    }
+
+    .heroTitle {
+        font-size: clamp(1.6rem, 3vw, 2.5rem);
+        margin-bottom: 1.2rem;
+        letter-spacing: -0.01em;
+    }
+
+    .heroDescription {
+        font-size: 1rem;
+        max-width: 100%;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .ctaButton {
+        padding: 0.85rem 2rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 60vh;
+        padding-top: 40px;
+    }
+
+    .hero::before {
+        width: 300px;
+        height: 300px;
+        top: -15%;
+        right: -5%;
+    }
+
+    .heroContent {
+        padding: 0 1rem;
+    }
+
+    .heroTitle {
+        font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+        margin-bottom: 1rem;
+    }
+
+    .heroDescription {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        padding: 0;
+    }
+
+    .ctaButton {
+        padding: 0.75rem 1.75rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.05em;
     }
 }

@@ -61,6 +61,18 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const onlineServices = [
     'Advertising Agency In Bangalore',
@@ -137,19 +149,26 @@ export default function Header() {
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
-      <div className="container">
-        <div className={styles.headerContent}>
-          <Link href="/" className={styles.logo}>
-            <img
-              src="/weblogo.png"
-              alt="IM Solutions"
-              style={{ height: '50px', width: 'auto' }} // Inline style for immediate sizing control
-            />
-          </Link>
+      <div className={styles.headerContent}>
+        <Link href="/" className={styles.logo}>
+          <img
+            src="/weblogo.png"
+            alt="IM Solutions"
+            style={{ height: '50px', width: 'auto' }} // Inline style for immediate sizing control
+          />
+        </Link>
 
           <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-            <Link href="/" className={styles.navLink}>Home</Link>
-            <Link href="/about" className={styles.navLink}>About Us</Link>
+            <button
+              className={styles.closeMenu}
+              onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
+            >
+              <FaTimes />
+            </button>
+            
+            <Link href="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Home</Link>
+            <Link href="/about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>About Us</Link>
 
             <div
               className={styles.dropdown}
@@ -159,56 +178,119 @@ export default function Header() {
               <button 
                 className={styles.navLink}
                 onMouseEnter={() => setIsServicesOpen(true)}
+                onClick={() => {
+                  if (isMobile) {
+                    setIsMobileServicesOpen(!isMobileServicesOpen);
+                  }
+                }}
               >
-                Services <FaChevronDown className={`${styles.chevron} ${isServicesOpen ? styles.chevronRotated : ''}`} />
+                Services <FaChevronDown className={`${styles.chevron} ${isServicesOpen || isMobileServicesOpen ? styles.chevronRotated : ''}`} />
               </button>
-              {isServicesOpen && (
-                <div 
-                  className={styles.dropdownMenu}
-                  onMouseEnter={() => setIsServicesOpen(true)}
-                  onMouseLeave={() => setIsServicesOpen(false)}
-                >
-                  <div className={styles.dropdownSection}>
-                    <div className={styles.dropdownSectionTitle}>Online</div>
-                    <div className={styles.servicesList}>
-                      {onlineServices.map((service, index) => (
-                        <Link 
-                          key={index}
-                          href={getServiceUrl(service)}
-                          className={styles.dropdownItem}
-                          onClick={handleServiceClick}
-                          title={service}
-                        >
-                          {service}
-                        </Link>
-                      ))}
+              {isMobile ? (
+                isMobileServicesOpen && (
+                  <div 
+                    className={`${styles.dropdownMenu} ${styles.mobileDropdown}`}
+                  >
+                    <div className={styles.dropdownSection}>
+                      <div className={styles.dropdownSectionTitle}>Online</div>
+                      <div className={styles.servicesList}>
+                        {onlineServices.map((service, index) => (
+                          <Link 
+                            key={index}
+                            href={getServiceUrl(service)}
+                            className={styles.dropdownItem}
+                            onClick={() => {
+                              handleServiceClick();
+                              setIsMenuOpen(false);
+                              setIsMobileServicesOpen(false);
+                            }}
+                            title={service}
+                          >
+                            {service}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className={styles.dropdownSection}>
-                    <div className={styles.dropdownSectionTitle}>Offline</div>
-                    <div className={styles.servicesList}>
-                      {offlineServices.map((service, index) => (
-                        <Link 
-                          key={index}
-                          href={getServiceUrl(service)}
-                          className={styles.dropdownItem}
-                          onClick={handleServiceClick}
-                          title={service}
-                        >
-                          {service}
-                        </Link>
-                      ))}
+                    <div className={styles.dropdownSection}>
+                      <div className={styles.dropdownSectionTitle}>Offline</div>
+                      <div className={styles.servicesList}>
+                        {offlineServices.map((service, index) => (
+                          <Link 
+                            key={index}
+                            href={getServiceUrl(service)}
+                            className={styles.dropdownItem}
+                            onClick={() => {
+                              handleServiceClick();
+                              setIsMenuOpen(false);
+                              setIsMobileServicesOpen(false);
+                            }}
+                            title={service}
+                          >
+                            {service}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )
+              ) : (
+                isServicesOpen && (
+                  <div 
+                    className={`${styles.dropdownMenu}`}
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={() => setIsServicesOpen(false)}
+                  >
+                    <div className={styles.dropdownSection}>
+                      <div className={styles.dropdownSectionTitle}>Online</div>
+                      <div className={styles.servicesList}>
+                        {onlineServices.map((service, index) => (
+                          <Link 
+                            key={index}
+                            href={getServiceUrl(service)}
+                            className={styles.dropdownItem}
+                            onClick={() => {
+                              handleServiceClick();
+                              setIsMenuOpen(false);
+                              setIsMobileServicesOpen(false);
+                            }}
+                            title={service}
+                          >
+                            {service}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className={styles.dropdownSection}>
+                      <div className={styles.dropdownSectionTitle}>Offline</div>
+                      <div className={styles.servicesList}>
+                        {offlineServices.map((service, index) => (
+                          <Link 
+                            key={index}
+                            href={getServiceUrl(service)}
+                            className={styles.dropdownItem}
+                            onClick={() => {
+                              handleServiceClick();
+                              setIsMenuOpen(false);
+                              setIsMobileServicesOpen(false);
+                            }}
+                            title={service}
+                          >
+                            {service}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )
               )}
             </div>
 
-            <Link href="/clients" className={styles.navLink}>Our Clients</Link>
-            <Link href="/careers" className={styles.navLink}>Careers</Link>
-            <Link href="/blog" className={styles.navLink}>Blog</Link>
-            <Link href="/contact" className={styles.navLink}>Contact Us</Link>
+            <Link href="/clients" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Our Clients</Link>
+            <Link href="/careers" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Careers</Link>
+            <Link href="/blog" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Blog</Link>
+            <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Contact Us</Link>
           </nav>
 
           <button
@@ -219,7 +301,6 @@ export default function Header() {
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
-      </div>
     </header>
   );
 }

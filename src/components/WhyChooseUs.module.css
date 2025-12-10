@@ -132,10 +132,120 @@
 
 /* Hover effect handled in .imageWrapper block above */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .section {
+        padding: 2.5rem 0;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .header {
+        margin-bottom: 3rem;
+    }
+
+    .title {
+        font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    }
+
+    .track {
+        gap: 1.5rem;
+        padding-left: 0.75rem;
+    }
+
     .card {
-        min-width: 300px;
-        max-width: 300px;
-        padding: 2rem 1.5rem;
+        min-width: 320px;
+        max-width: 320px;
+        padding: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 2rem 0;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .header {
+        margin-bottom: 2.5rem;
+    }
+
+    .eyebrow {
+        font-size: 0.85rem;
+    }
+
+    .title {
+        font-size: clamp(1.3rem, 3vw, 2rem);
+    }
+
+    .track {
+        gap: 1.25rem;
+        padding-left: 0.5rem;
+    }
+
+    .card {
+        min-width: 280px;
+        max-width: 280px;
+        padding: 1.5rem 1.25rem;
+        border-radius: 16px;
+    }
+
+    .imageWrapper {
+        margin-bottom: 1.25rem;
+    }
+
+    .title {
+        font-size: 1.15rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .description {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 1.5rem 0;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    .header {
+        margin-bottom: 2rem;
+    }
+
+    .eyebrow {
+        font-size: 0.8rem;
+    }
+
+    .title {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    }
+
+    .carouselWrapper {
+        padding: 15px 0 40px 0;
+    }
+
+    .track {
+        gap: 1rem;
+        padding-left: 0;
+    }
+
+    .card {
+        min-width: 250px;
+        max-width: 250px;
+        padding: 1.25rem 1rem;
+        border-radius: 12px;
+    }
+
+    .imageWrapper {
+        margin-bottom: 1rem;
     }
 }

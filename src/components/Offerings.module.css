@@ -105,13 +105,126 @@
     opacity: 0.9;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .offerings {
+        padding: 2.5rem 0;
+    }
+
+    .subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 2.5rem;
+    }
+
     .offeringsGrid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 1.5rem;
     }
 
     .offeringCard {
-        height: 320px;
+        height: 330px;
+    }
+
+    .iconWrapper {
+        width: 80px;
+        height: 80px;
+        font-size: 2.2rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .offeringTitle {
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .offeringDescription {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .offerings {
+        padding: 2rem 1rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        margin-top: -1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .offeringsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    .offeringCard {
+        height: 300px;
+        border-radius: 12px;
+    }
+
+    .cardOverlay {
+        padding: 1.5rem;
+    }
+
+    .iconWrapper {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .offeringTitle {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .offeringDescription {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 480px) {
+    .offerings {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-top: -1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .offeringsGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .offeringCard {
+        height: 280px;
+        border-radius: 10px;
+    }
+
+    .cardOverlay {
+        padding: 1.25rem;
+    }
+
+    .iconWrapper {
+        width: 60px;
+        height: 60px;
+        font-size: 1.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .offeringTitle {
+        font-size: 0.95rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .offeringDescription {
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
 }

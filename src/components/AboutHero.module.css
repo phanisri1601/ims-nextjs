@@ -73,20 +73,53 @@
 
 @media (max-width: 768px) {
     .aboutHero {
-        height: 350px;
+        height: 300px;
+        margin-bottom: 0;
+    }
+
+    .title {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        margin-bottom: 1rem;
     }
 
     .breadcrumb {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        gap: 0.35rem;
     }
 }
 
 @media (max-width: 480px) {
     .aboutHero {
-        height: 300px;
+        height: 250px;
+        padding: 2rem 0;
+    }
+
+    .title {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        margin: 0 1rem 0.75rem 1rem;
     }
 
     .breadcrumb {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
+        gap: 0.25rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutHero {
+        height: 250px;
+        padding: 2rem 0;
+    }
+
+    .title {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        margin: 0 1rem 0.75rem 1rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.75rem;
+        gap: 0.25rem;
+        padding: 0 1rem;
     }
 }

@@ -3,16 +3,22 @@
     background: var(--color-bg-secondary);
     position: relative;
     overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .section {
     margin-bottom: 4rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .section:last-child {
@@ -24,10 +30,13 @@
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .textContent {
     color: var(--color-text-primary);
+    min-width: 0;
 }
 
 .title {
@@ -58,7 +67,8 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(255, 0, 51, 0.15);
-    max-width: 500px;
+    max-width: 100%;
+    width: 100%;
     aspect-ratio: 4/3;
 }
 
@@ -69,21 +79,6 @@
     display: block;
 }
 
-/* Mission: Text left, Image right (default order is correct) */
-
-/* Vision: Image left, Text right - reverse the order */
-.section:nth-child(2) .contentWrapper {
-    grid-template-columns: 1fr 1fr;
-}
-
-.section:nth-child(2) .imageWrapper {
-    order: 1;
-}
-
-.section:nth-child(2) .textContent {
-    order: 2;
-}
-
 @media (max-width: 968px) {
     .missionVisionSection {
         padding: var(--spacing-lg) 0;
@@ -91,23 +86,117 @@
 
     .section {
         margin-bottom: 3rem;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .contentWrapper {
         grid-template-columns: 1fr;
         gap: 2rem;
-    }
-
-    .section:nth-child(2) .imageWrapper {
-        order: -1;
-    }
-
-    .section:nth-child(2) .textContent {
-        order: 1;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .imageWrapper {
         max-width: 100%;
+        width: 100%;
     }
 }
 
+@media (max-width: 768px) {
+    .missionVisionSection {
+        padding: 2rem 1rem;
+        overflow-x: hidden;
+    }
+
+    .container {
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .section {
+        margin-bottom: 2.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contentWrapper {
+        gap: 1.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .title {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        margin-bottom: 1rem;
+        letter-spacing: 1.5px;
+    }
+
+    .description,
+    .additionalText {
+        font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .imageWrapper {
+        border-radius: 16px;
+        aspect-ratio: 4/3;
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .missionVisionSection {
+        padding: 1.5rem 0.75rem;
+        overflow-x: hidden;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .container {
+        padding: 0 0.5rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .section {
+        margin-bottom: 2rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contentWrapper {
+        gap: 1.25rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .textContent {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .title {
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        margin-bottom: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    .description,
+    .additionalText {
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+    }
+
+    .imageWrapper {
+        border-radius: 12px;
+        aspect-ratio: 4/3;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 8px 20px rgba(255, 0, 51, 0.1);
+        width: 100%;
+        max-width: 100%;
+    }
+}

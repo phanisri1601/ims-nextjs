@@ -152,3 +152,79 @@
         padding: 2rem;
     }
 }
+
+@media (max-width: 480px) {
+    .contact {
+        padding: 1.5rem 0;
+        overflow-x: hidden;
+    }
+
+    .subtitle {
+        margin: -1rem auto 1.5rem auto;
+        font-size: 0.9rem;
+    }
+
+    .contactContainer {
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .infoTitle {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .infoDescription {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .infoItems {
+        gap: 1.2rem;
+    }
+
+    .infoItem {
+        gap: 0.75rem;
+    }
+
+    .infoIcon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .infoItem h4 {
+        font-size: 0.9rem;
+    }
+
+    .infoItem p {
+        font-size: 0.8rem;
+    }
+
+    .form {
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+
+    .formGroup {
+        margin-bottom: 1rem;
+    }
+
+    .formGroup input,
+    .formGroup textarea {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+
+    .formGroup textarea {
+        min-height: 100px;
+    }
+
+    .submitBtn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
