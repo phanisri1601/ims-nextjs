@@ -102,36 +102,7 @@ export default function ClientsPage() {
         <div className={styles.heroGlow} aria-hidden />
       </section>
 
-      <section className={styles.intro}>
-        <div className="container">
-          <div className={styles.textBlock}>
-            <h2>We grow together with our clients</h2>
-            <p>
-              Adaptability is our company’s second name. Our experts stay abreast
-              with different cultures and business models and operate accordingly.
-              We carefully analyze objectives, create a client-inclusive approach,
-              and intensify reach in front of targeted audiences so you can
-              maximize return on investment.
-            </p>
-            <p className={styles.emphasis}>
-              Since for us, client’s success is our success, we are guided by the
-              triple mantras below.
-            </p>
-          </div>
 
-          <div className={styles.pillars}>
-            {pillars.map((pillar) => (
-              <div key={pillar.title} className={styles.pillarCard}>
-                <FaCheckCircle className={styles.pillarIcon} />
-                <div>
-                  <h3>{pillar.title}</h3>
-                  <p>{pillar.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className={styles.gridSection}>
         <div className="container">
