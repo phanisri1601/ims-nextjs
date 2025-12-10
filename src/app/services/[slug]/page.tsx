@@ -1194,6 +1194,26 @@ export default function ServiceDetailPage() {
         </div>
       </div>
 
+      {/* Creative Animated Showcase Section */}
+      <section className={styles.showcaseSection}>
+        <div className="container">
+          <div className={styles.showcaseHeader}>
+            <h2 className={styles.showcaseTitle}>Creative Showcase</h2>
+            <p className={styles.showcaseDesc}>Explore our creative work and service highlights.</p>
+          </div>
+          <div className={styles.showcaseGrid}>
+            {/* Example animated cards - replace with real images/content as needed */}
+            {["/wcu_marketing.png", "/wcu_branding.png", "/blog_seo.png"].map((img, idx) => (
+              <div key={idx} className={styles.showcaseCard}>
+                <img src={img} alt="Showcase" className={styles.showcaseImage} />
+                <div className={styles.showcaseCardOverlay}></div>
+                <div className={styles.showcaseCardText}>Creative Idea {idx + 1}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div className={styles.contentSection}>
         <div className="container">
           <div className={styles.longDescription} dangerouslySetInnerHTML={{ __html: service.longDescription }} />
