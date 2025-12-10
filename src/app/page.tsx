@@ -15,8 +15,8 @@ export default function Home() {
       <Hero />
       <VideoSection />
       <AboutSection />
-      <WhyChooseUs />
       <WantToKnowMore />
+      <WhyChooseUs />
       <BlogsSection />
       <CareerSection />
 

@@ -63,6 +63,7 @@ export default function Header() {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [closeDropdownTimer, setCloseDropdownTimer] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -172,8 +173,14 @@ export default function Header() {
 
             <div
               className={styles.dropdown}
-              onMouseEnter={() => setIsServicesOpen(true)}
-              onMouseLeave={() => setIsServicesOpen(false)}
+              onMouseEnter={() => {
+                setIsServicesOpen(true);
+                if (closeDropdownTimer) clearTimeout(closeDropdownTimer);
+              }}
+              onMouseLeave={() => {
+                const timer = setTimeout(() => setIsServicesOpen(false), 150);
+                setCloseDropdownTimer(timer);
+              }}
             >
               <button 
                 className={styles.navLink}
@@ -238,8 +245,14 @@ export default function Header() {
                 isServicesOpen && (
                   <div 
                     className={`${styles.dropdownMenu}`}
-                    onMouseEnter={() => setIsServicesOpen(true)}
-                    onMouseLeave={() => setIsServicesOpen(false)}
+                    onMouseEnter={() => {
+                      setIsServicesOpen(true);
+                      if (closeDropdownTimer) clearTimeout(closeDropdownTimer);
+                    }}
+                    onMouseLeave={() => {
+                      const timer = setTimeout(() => setIsServicesOpen(false), 150);
+                      setCloseDropdownTimer(timer);
+                    }}
                   >
                     <div className={styles.dropdownSection}>
                       <div className={styles.dropdownSectionTitle}>Online</div>
