@@ -48,7 +48,11 @@ export default function CareerSection() {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className={styles.text}
                 >
-                    Interested in joining our phenomenal family? As a rapidly expanding company, we are always on the lookout for young, energetic and creative blood to help us maintain our reputation as the most trendy web design and digital marketing agency.
+                    Interested in joining our phenomenal family? As a rapidly growing company, we are always on the lookout for young, energetic and creative people to help us maintain our reputation as the most trustworthy web design and digital marketing agency.
+
+If you want to showcase your creative side and have an eye for detail, then you are welcome to join us. We want to be awed by your passion for creativity and artistic expertise!
+
+
                 </motion.p>
 
                 <motion.p
@@ -57,7 +61,9 @@ export default function CareerSection() {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className={styles.text}
                 >
-                    If you want to explore your creative side and have an eye for detail, then you are welcome to join us. We want to be awed by your passion for creativity and artistic expertise!
+                    Currently, we have vacancies across different disciplines - Social media marketing, Search engine optimization, Web design and development, Content writing, Graphic and web designing, Digital marketing manager, HR executive, and many other profiles.
+
+Only full-time candidates are encouraged to apply. If you are interested, fill in the form below and we'll be in touch with you shortly.
                 </motion.p>
 
                 <motion.a
