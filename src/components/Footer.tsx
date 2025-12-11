@@ -77,10 +77,10 @@ export default function Footer() {
                 <div className={styles.footerColumn}>
                     <h4 className={styles.columnTitle}>Enquire Now</h4>
                     <form className={styles.contactForm} onSubmit={handleSubmit}>
-                        <input type="text" placeholder="Your Name" required />
-                        <input type="email" placeholder="Your Email" required />
-                        <input type="tel" placeholder="Phone Number" required />
-                        <textarea placeholder="Your Message" rows={3} required></textarea>
+                        <input type="text" placeholder="Name" required />
+                        <input type="email" placeholder="Email" required />
+                        <input type="tel" placeholder="+91 Phone Number" required />
+                        <textarea placeholder="Message" rows={3} required></textarea>
                         <button type="submit" className={styles.submitBtn}>Submit</button>
                     </form>
                 </div>

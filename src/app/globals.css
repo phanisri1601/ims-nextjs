@@ -144,7 +144,7 @@ a:hover {
   text-align: center;
   font-size: var(--font-size-2xl);
   margin-bottom: var(--spacing-lg);
-  background: linear-gradient(135deg, var(--color-text-primary), var(--color-accent-primary));
+  background: #ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
