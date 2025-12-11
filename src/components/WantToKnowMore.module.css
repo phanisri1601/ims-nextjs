@@ -181,6 +181,8 @@
     pointer-events: all;
     padding: 0;
     flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .arrowButton:hover {

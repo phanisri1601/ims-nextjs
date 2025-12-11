@@ -48,6 +48,29 @@ export default function WantToKnowMore() {
     const [activeIndex, setActiveIndex] = useState(0);
     const gridRef = useRef<HTMLDivElement>(null);
 
+    const handleRipple = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const card = e.currentTarget;
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.width = size + 'px';
+        ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+
+        card.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    };
+
     useEffect(() => {
         const grid = gridRef.current;
         if (!grid) return;

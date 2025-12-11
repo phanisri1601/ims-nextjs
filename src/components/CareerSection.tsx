@@ -1,9 +1,35 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import styles from "./CareerSection.module.css";
 
 export default function CareerSection() {
+    const buttonRef = useRef<HTMLAnchorElement>(null);
+
+    const handleRipple = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const button = buttonRef.current;
+        if (!button) return;
+
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.width = size + 'px';
+        ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+
+        button.appendChild(ripple);
+
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    };
+
     return (
         <section className={styles.section}>
             <div className={styles.container}>

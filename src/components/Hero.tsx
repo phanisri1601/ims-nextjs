@@ -1,6 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
+import { useRef } from 'react';
 import styles from './Hero.module.css';
 import Background3D from './Background3D';
 

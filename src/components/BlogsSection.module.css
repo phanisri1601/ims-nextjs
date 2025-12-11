@@ -4,7 +4,13 @@
     position: relative;
     overflow: hidden;
     min-height: 100vh;
-    /* Ensure enough scroll space */
+}
+
+@media (max-width: 768px) {
+    .section {
+        min-height: auto;
+        padding: 3rem 0;
+    }
 }
 
 .container {
@@ -54,13 +60,12 @@
 }
 
 @media (max-width: 1024px) {
-    .container {
-        padding: 0 1.5rem;
+    .section {
+        min-height: auto;
     }
 
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+    .container {
+        padding: 0 1.5rem;
     }
 
     .header {
@@ -70,29 +75,27 @@
     .title {
         font-size: clamp(1.6rem, 3.5vw, 2.5rem);
     }
-}
 
-@media (max-width: 1024px) {
     .gridWrapper {
-        height: 450px;
+        height: 400px;
     }
 
     .grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
 
     .card {
         aspect-ratio: 16/9;
+        border-radius: 16px;
+    }
+
+    .blogTitle {
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 768px) {
-    .section {
-        padding: 2.5rem 0;
-        min-height: auto;
-    }
-
     .container {
         padding: 0 1rem;
     }
@@ -112,21 +115,32 @@
 
     .gridWrapper {
         height: auto;
+        min-height: auto;
     }
 
     .grid {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
+        gap: 1.5rem;
     }
 
     .card {
         aspect-ratio: 16/9;
         border-radius: 12px;
-        min-height: 280px;
+        min-height: 250px;
     }
 
     .blogTitle {
         font-size: 1.1rem;
+        padding: 1.25rem;
+    }
+
+    .footer {
+        margin-top: 2rem;
+    }
+
+    .viewAllButton {
+        padding: 0.9rem 2.5rem;
+        font-size: 0.95rem;
     }
 }
 
@@ -140,16 +154,18 @@
     }
 
     .header {
-        margin-bottom: 2rem;
+        margin-bottom: 1.75rem;
     }
 
     .eyebrow {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         margin-bottom: 0.5rem;
+        letter-spacing: 0.15em;
     }
 
     .title {
-        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+        font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+        margin-bottom: 0.5rem;
     }
 
     .gridWrapper {
@@ -162,23 +178,29 @@
     }
 
     .card {
-        aspect-ratio: 16/10;
-        border-radius: 10px;
-        min-height: 250px;
+        aspect-ratio: 16/9;
+        border-radius: 8px;
+        min-height: 200px;
     }
 
-    .blogTitle {
-        font-size: 1rem;
+    .overlay {
         padding: 1rem;
     }
 
+    .blogTitle {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    }
+
     .footer {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
     }
 
     .viewAllButton {
-        padding: 0.75rem 2rem;
-        font-size: 0.9rem;
+        padding: 0.75rem 1.75rem;
+        font-size: 0.85rem;
+        border-width: 1.5px;
     }
 }
 
@@ -230,13 +252,6 @@
 /* Optional: Lift title slightly on hover */
 .card:hover .blogTitle {
     transform: translateY(-5px);
-}
-
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
 }
 
 .footer {

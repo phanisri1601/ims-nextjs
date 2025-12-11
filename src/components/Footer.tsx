@@ -18,7 +18,7 @@ export default function Footer() {
                 <div className={styles.footerColumn}>
                     <h4 className={styles.columnTitle}>Powered By</h4>
                     <div className={styles.companyInfo}>
-                        <div className={styles.logo}>IM Solutions</div>
+                        <img src="/weblogo.png" alt="IM Solutions Logo" className={styles.logoImage} />
                         <p className={styles.tagline}>Your Path Our Success</p>
                     </div>
                     <div className={styles.contact}>
@@ -48,15 +48,7 @@ export default function Footer() {
                             921, Laxmi Tower, 4th Floor, 5th Main Rd, Sector 7, HSR Layout, Bengaluru, Karnataka 560102
                         </p>
                     </div>
-                    <div className={styles.addressBlock}>
-                        <h5 className={styles.addressTitle}>Branch Office</h5>
-                        <p className={styles.addressText}>
-                            214, South West Block, Near Ram Mandir, Alwar, Rajasthan
-                        </p>
-                        <p className={styles.addressText}>
-                            219, Nilkanth Plaza, Near Kiran Chowk, Varachha Road, Surat, Gujarat 395010
-                        </p>
-                    </div>
+                    
                 </div>
 
                 {/* Quick Links Section */}

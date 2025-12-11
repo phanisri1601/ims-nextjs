@@ -20,6 +20,14 @@ export default function FAQ() {
         {
             question: 'Why should start-ups hire an advertising agency?',
             answer: 'Start-ups benefit immensely from hiring an advertising agency as it provides cost-effective access to professional marketing expertise without the overhead of building an in-house team. We help startups establish strong brand identity, reach their target market efficiently, and scale their marketing efforts as they grow.'
+        },
+        {
+            question: 'What services does IM Solutions offer?',
+            answer: 'IM Solutions offers a comprehensive range of services including digital marketing, social media management, content creation, SEO optimization, web design and development, graphic design, video production, brand strategy, lead generation, and 360° marketing solutions tailored to meet your business goals and budget.'
+        },
+        {
+            question: 'How do you measure the success of a marketing campaign?',
+            answer: 'We measure campaign success through data-driven metrics including ROI, conversion rates, customer acquisition cost, engagement metrics, traffic analytics, and lead generation numbers. We provide detailed reports and regular performance reviews to ensure transparency and continuous optimization of your marketing investments.'
         }
     ];
 
