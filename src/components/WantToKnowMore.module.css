@@ -205,14 +205,125 @@
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
+    .card {
+        min-width: 300px;
+        max-width: 300px;
+    }
+
     .grid {
-        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0.75rem 0 1.5rem 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        min-width: 280px;
+        max-width: 280px;
+    }
+
+    .grid {
+        gap: 1rem;
+        padding: 0.5rem 0 1.5rem 0;
+    }
+
+    .eyebrow {
+        font-size: 0.85rem;
+    }
+
+    .title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .cardTitle {
+        font-size: 1.1rem;
+    }
+
+    .cardDesc {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .card {
+        min-width: 260px;
+        max-width: 260px;
+    }
+
+    .grid {
+        gap: 0.75rem;
+        padding: 0.5rem 0 1rem 0;
     }
 
     .arrowOverlay {
-        width: 48px;
-        height: 48px;
-        /* Visible on mobile? Or keep hover behavior? Keeping hover for now as requested */
+        width: 45px;
+        height: 45px;
+    }
+
+    .arrowIcon {
+        font-size: 1.2rem;
+    }
+
+    .cardTitle {
+        font-size: 1rem;
+    }
+
+    .cardDesc {
+        font-size: 0.85rem;
+    }
+
+    .arrowButton {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        min-width: 240px;
+        max-width: 240px;
+    }
+
+    .grid {
+        gap: 0.5rem;
+        padding: 0.25rem 0 0.75rem 0;
+    }
+
+    .imageWrapper {
+        aspect-ratio: 16/10;
+    }
+
+    .content {
+        padding: 1rem;
+    }
+
+    .arrowOverlay {
+        width: 40px;
+        height: 40px;
+    }
+
+    .arrowIcon {
+        font-size: 1rem;
+    }
+
+    .cardTitle {
+        font-size: 0.9rem;
+    }
+
+    .cardDesc {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .arrowButton {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .arrowControls {
+        padding: 0 0.25rem;
     }
 }
