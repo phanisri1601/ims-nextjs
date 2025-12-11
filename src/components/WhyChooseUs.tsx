@@ -76,7 +76,7 @@ export default function WhyChooseUs() {
         <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <span className={styles.eyebrow}>LOREM LIPSOM</span>
+                   
                     <h2 className={styles.title}>Why choose us?</h2>
                 </div>
 
@@ -109,7 +109,7 @@ export default function WhyChooseUs() {
                     </motion.div>
                 </div>
 
-                {/* Optional Controls if User prefers clicking */}
+                {/* Arrow Controls */}
                 <div className={styles.controls}>
                     <button className={styles.controlButton} onClick={slideLeft} aria-label="Previous">
                         <FaChevronLeft />

@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from "./WantToKnowMore.module.css";
 
 const services = [
@@ -44,6 +45,50 @@ const services = [
 ];
 
 export default function WantToKnowMore() {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const gridRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const grid = gridRef.current;
+        if (!grid) return;
+
+        const handleScroll = () => {
+            const cardWidth = 350 + 32; // card width + gap
+            const scrollLeft = grid.scrollLeft;
+            const index = Math.round(scrollLeft / cardWidth);
+            setActiveIndex(Math.min(index, services.length - 1));
+        };
+
+        grid.addEventListener("scroll", handleScroll);
+        return () => grid.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const scrollToCard = (index: number) => {
+        if (gridRef.current) {
+            const cardWidth = 350 + 32;
+            gridRef.current.scrollTo({
+                left: index * cardWidth,
+                behavior: "smooth"
+            });
+            setActiveIndex(index);
+        }
+    };
+
+    const scrollLeft = () => {
+        if (gridRef.current) {
+            const cardWidth = 350 + 32;
+            const newIndex = Math.max(0, activeIndex - 1);
+            scrollToCard(newIndex);
+        }
+    };
+
+    const scrollRight = () => {
+        if (gridRef.current) {
+            const newIndex = Math.min(services.length - 1, activeIndex + 1);
+            scrollToCard(newIndex);
+        }
+    };
+
     return (
         <section className={styles.section}>
             <div className={styles.container}>
@@ -66,7 +111,7 @@ export default function WantToKnowMore() {
                     </motion.h2>
                 </div>
 
-                <div className={styles.grid}>
+                <div className={styles.grid} ref={gridRef}>
                     {services.map((service, index) => (
                         <motion.a
                             href={service.link}
@@ -90,6 +135,23 @@ export default function WantToKnowMore() {
                             </div>
                         </motion.a>
                     ))}
+                </div>
+
+                <div className={styles.arrowControls}>
+                    <button 
+                        className={styles.arrowButton} 
+                        onClick={scrollLeft}
+                        aria-label="Previous"
+                    >
+                        <FaChevronLeft />
+                    </button>
+                    <button 
+                        className={styles.arrowButton} 
+                        onClick={scrollRight}
+                        aria-label="Next"
+                    >
+                        <FaChevronRight />
+                    </button>
                 </div>
             </div>
         </section>

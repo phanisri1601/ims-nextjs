@@ -4,6 +4,7 @@
     /* Alternating dark background */
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
 }
 
 .container {
@@ -42,6 +43,7 @@
     cursor: grab;
     padding: 20px 0 60px 0;
     /* Space for hover shadows */
+    position: relative;
 }
 
 .carouselWrapper:active {
@@ -109,25 +111,41 @@
 
 /* Controls */
 .controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    z-index: 5;
+    padding: 0 1rem;
 }
 
 .controlButton {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
+    background: rgba(255, 0, 51, 0.15);
+    border: 2px solid var(--color-accent-primary);
+    color: var(--color-accent-primary);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    pointer-events: all;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.controlButton:hover {
+    background: var(--color-accent-primary);
+    color: white;
+    transform: scale(1.1);
 }
 
 /* Hover effect handled in .imageWrapper block above */
@@ -164,10 +182,21 @@
 @media (max-width: 768px) {
     .section {
         padding: 2rem 0;
+        min-height: auto;
     }
 
     .container {
         padding: 0 1rem;
+    }
+
+    .controlButton {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .controls {
+        padding: 0 0.5rem;
     }
 
     .header {
