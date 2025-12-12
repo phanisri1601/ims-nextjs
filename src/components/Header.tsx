@@ -153,7 +153,7 @@ export default function Header() {
       <div className={styles.headerContent}>
         <Link href="/" className={styles.logo}>
           <img
-            src="/weblogo.png"
+            src="/weblogo_notext.png"
             alt="IM Solutions"
             style={{ height: '50px', width: 'auto' }} // Inline style for immediate sizing control
           />
