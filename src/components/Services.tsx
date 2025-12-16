@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import ScrollReveal from './ScrollReveal';
+import GSAPScrollReveal from './GSAPScrollReveal';
+import TextReveal from './TextReveal';
 import styles from './Services.module.css';
+import animStyles from './ScrollAnimations.module.css';
 
 export default function Services() {
     const onlineServices = [
@@ -117,56 +119,56 @@ export default function Services() {
     };
 
     return (
-        <section className={styles.services} id="services">
+        <GSAPScrollReveal className={styles.services} id="services">
             <div className="container">
-                <ScrollReveal delay={0.2}>
-                    <h2 className="section-title">OUR ADVERTISING SERVICES</h2>
-                    <p className={styles.subtitle}>
+                <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                    <TextReveal as="h2" animateType="heading" className="section-title">
+                        OUR ADVERTISING SERVICES
+                    </TextReveal>
+                    <TextReveal as="p" animateType="paragraph" className={styles.subtitle}>
                         Comprehensive solutions for all your advertising and marketing needs
-                    </p>
-                </ScrollReveal>
+                    </TextReveal>
+                </div>
 
                 {/* Services Grid */}
                 <div className={styles.servicesWrapper}>
                     {/* Online Services Section */}
                     <div id="online-services" style={{ scrollMarginTop: '100px' }} className={styles.servicesSection}>
-                        <ScrollReveal delay={0.3}>
-                            <h3 className={styles.sectionHeading}>Online</h3>
-                        </ScrollReveal>
+                        <h3 className={styles.sectionHeading} data-animate="heading">
+                            <span className={animStyles.revealText}>Online</span>
+                        </h3>
                         <div className={styles.servicesColumn}>
                             {onlineServices.map((service, index) => (
-                                <ScrollReveal key={index} delay={0.1 + (index % 6) * 0.05}>
-                                    <Link 
-                                        href={getServiceUrl(service)}
-                                        className={styles.serviceLink}
-                                    >
-                                        {service}
-                                    </Link>
-                                </ScrollReveal>
+                                <Link 
+                                    key={index}
+                                    href={getServiceUrl(service)}
+                                    className={styles.serviceLink}
+                                >
+                                    {service}
+                                </Link>
                             ))}
                         </div>
                     </div>
 
                     {/* Offline Services Section */}
                     <div id="offline-services" style={{ scrollMarginTop: '100px' }} className={styles.servicesSection}>
-                        <ScrollReveal delay={0.4}>
-                            <h3 className={styles.sectionHeading}>Offline</h3>
-                        </ScrollReveal>
+                        <h3 className={styles.sectionHeading} data-animate="heading">
+                            <span className={animStyles.revealText}>Offline</span>
+                        </h3>
                         <div className={styles.servicesColumn}>
                             {offlineServices.map((service, index) => (
-                                <ScrollReveal key={index} delay={0.1 + (index % 6) * 0.05}>
-                                    <Link 
-                                        href={getServiceUrl(service)}
-                                        className={styles.serviceLink}
-                                    >
-                                        {service}
-                                    </Link>
-                                </ScrollReveal>
+                                <Link 
+                                    key={index}
+                                    href={getServiceUrl(service)}
+                                    className={styles.serviceLink}
+                                >
+                                    {service}
+                                </Link>
                             ))}
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </GSAPScrollReveal>
     );
 }
