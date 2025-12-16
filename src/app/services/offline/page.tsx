@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { FaArrowLeft } from 'react-icons/fa';
 import styles from './OfflineServices.module.css';
+import { useState, useRef } from 'react';
 
 const serviceUrlMap: { [key: string]: string } = {
   'Bus Branding': '/services/bus-branding',
@@ -71,6 +72,96 @@ const getServiceUrl = (service: string) => {
 };
 
 export default function OfflineServicesPage() {
+  // featured offline services (first 5)
+  const featured = [
+    {
+      title: 'Hoarding Services',
+      slug: 'hoarding-services',
+      img1: '/services/pro-feature-1-left.svg',
+      img2: '/services/pro-feature-1-right.svg',
+    },
+    {
+      title: 'Event Management',
+      slug: 'event-management',
+      img1: '/services/pro-feature-2-left.svg',
+      img2: '/services/pro-feature-2-right.svg',
+    },
+    {
+      title: 'BTL Advertising',
+      slug: 'btl-advertising',
+      img1: '/services/pro-feature-3-left.svg',
+      img2: '/services/pro-feature-3-right.svg',
+    },
+    {
+      title: 'Bus Branding',
+      slug: 'bus-branding',
+      img1: '/services/pro-feature-4-left.svg',
+      img2: '/services/pro-feature-4-right.svg',
+    },
+    {
+      title: 'Mall Advertising',
+      slug: 'mall-advertising',
+      img1: '/services/pro-feature-5-left.svg',
+      img2: '/services/pro-feature-5-right.svg',
+    },
+  ];
+
+  const thumbs = [
+    '/services/pro-thumb-1.svg',
+    '/services/pro-thumb-2.svg',
+    '/services/pro-thumb-3.svg',
+    '/services/pro-thumb-4.svg',
+    '/services/pro-thumb-5.svg',
+    '/services/pro-thumb-6.svg',
+  ];
+
+  // interactive hover state for featured images
+  const [active, setActive] = useState<number | null>(null);
+  const featuredRef = useRef<HTMLDivElement | null>(null);
+  const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const [imageTopLeft, setImageTopLeft] = useState<number | null>(null);
+  const [imageTopRight, setImageTopRight] = useState<number | null>(null);
+  const [imageLeft, setImageLeft] = useState<number | null>(null);
+  const [imageRight, setImageRight] = useState<number | null>(null);
+
+  const handleEnter = (i: number) => {
+    setActive(i);
+    if (featuredRef.current && itemRefs.current[i]) {
+      const containerRect = featuredRef.current.getBoundingClientRect();
+      const itemRect = itemRefs.current[i]!.getBoundingClientRect();
+      const centerY = itemRect.top - containerRect.top + itemRect.height / 2;
+
+      const imgW = 190;
+      const imgH = 190;
+      const inset = 24;
+
+      let leftPos = inset;
+      let rightPos = containerRect.width - imgW - inset;
+
+      const offsetY = 36;
+      let leftTop = centerY - offsetY;
+      let rightTop = centerY + offsetY;
+
+      const minTop = imgH / 2 + 8;
+      const maxTop = containerRect.height - imgH / 2 - 8;
+      leftTop = Math.min(Math.max(leftTop, minTop), maxTop);
+      rightTop = Math.min(Math.max(rightTop, minTop), maxTop);
+
+      setImageTopLeft(leftTop);
+      setImageTopRight(rightTop);
+      setImageLeft(leftPos);
+      setImageRight(rightPos);
+    }
+  };
+
+  const handleLeave = () => {
+    setActive(null);
+    setImageTopLeft(null);
+    setImageTopRight(null);
+    setImageLeft(null);
+    setImageRight(null);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -83,6 +174,37 @@ export default function OfflineServicesPage() {
         </p>
       </div>
 
+      {/* Featured vertical list (left/right images) */}
+      <section className={styles.featured} ref={featuredRef}>
+        <div className={styles.leftImage} style={{ top: imageTopLeft !== null ? `${imageTopLeft}px` : undefined, left: imageLeft !== null ? `${imageLeft}px` : undefined }}>
+          {active !== null && (
+            <img src={featured[active].img1} alt={featured[active].title} className={`${styles.image} ${active !== null ? styles.show : ''}`} />
+          )}
+        </div>
+
+        <ul className={styles.featuredList}>
+          {featured.map((s, i) => (
+            <li
+              key={s.slug}
+              ref={(el) => { itemRefs.current[i] = el; }}
+              className={`${styles.featuredItem} ${active === i ? styles.featuredActive : ''}`}
+              onMouseEnter={() => handleEnter(i)}
+              onMouseLeave={handleLeave}
+            >
+              <Link href={`/services/${s.slug}`} className={styles.featuredLink}>
+                {s.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className={styles.rightImage} style={{ top: imageTopRight !== null ? `${imageTopRight}px` : undefined, left: imageRight !== null ? `${imageRight}px` : undefined }}>
+          {active !== null && (
+            <img src={featured[active].img2} alt={featured[active].title} className={`${styles.image} ${active !== null ? styles.show : ''}`} />
+          )}
+        </div>
+      </section>
+
       <div className={styles.servicesGrid}>
         {offlineServices.map((service, index) => (
           <Link
@@ -90,10 +212,13 @@ export default function OfflineServicesPage() {
             href={getServiceUrl(service)}
             className={styles.serviceCard}
             title={service}
+            style={{ animationDelay: `${index * 60}ms` }}
           >
-            <div className={styles.serviceCardIcon}>🎯</div>
+            <div className={styles.serviceThumbWrap}>
+              <img src={thumbs[index % thumbs.length]} alt={`${service} thumbnail`} className={styles.serviceThumb} />
+            </div>
             <h3 className={styles.serviceCardTitle}>{service}</h3>
-            <p className={styles.serviceCardDescription}>Learn more</p>
+            <p className={styles.serviceCardDescription}>Explore this service</p>
           </Link>
         ))}
       </div>

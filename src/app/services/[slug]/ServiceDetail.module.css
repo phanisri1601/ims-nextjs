@@ -6,12 +6,13 @@
 
 .heroSection {
   position: relative;
-  min-height: 500px;
+  /* slightly reduced to avoid excessive empty space */
+  min-height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .heroBackground {
@@ -70,7 +71,8 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  /* center the content horizontally by default to avoid large empty left/right spacing */
+  justify-content: center;
 }
 
 .heroText {
@@ -119,16 +121,95 @@
   opacity: 0;
 }
 
+/* Hero actions & decorations */
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+.ctaSecondary {
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 0.8rem 1.15rem;
+  border-radius: 40px;
+  font-weight: 600;
+  transition: transform 260ms ease, background 260ms ease;
+}
+.ctaSecondary:hover { transform: translateY(-2px); background: rgba(255,255,255,0.03); }
+
+.heroDecor {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  justify-self: end;
+  margin-left: 3rem;
+}
+.heroDecorImage {
+  width: 180px;
+  opacity: 0.95;
+  transform: translateY(6px);
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+}
+.heroDecorImage:hover { transform: translateY(0) scale(1.02); }
+
+/* subtle float */
+@keyframes floatY { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+.heroDecorImage { animation: floatY 6s ease-in-out infinite; }
+.heroBadge {
+  background: linear-gradient(135deg, rgba(255,0,51,0.14), rgba(255,255,255,0.03));
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 10px 30px rgba(255,0,51,0.06);
+  transform: translateY(10px);
+  opacity: 0;
+  animation: badgeIn 800ms cubic-bezier(0.2,1,0.3,1) 0.5s forwards;
+}
+@keyframes badgeIn {
+  0% { transform: translateY(12px) scale(0.98); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+.badgeNumber {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-accent-primary);
+}
+.badgeLabel {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}
+
 .contentSection {
   padding: 2rem 0;
 }
 
 .longDescription {
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.7;
   color: var(--color-text-secondary);
-  margin-bottom: 3rem;
-  max-width: 800px;
+  margin-bottom: 2rem;
+  /* allow a wider layout but make use of multi-column on larger screens to reduce page length */
+  max-width: 1100px;
+}
+
+/* Two-column flow for long descriptive text on larger viewports */
+@media (min-width: 1024px) {
+  .longDescription {
+    column-count: 2;
+    column-gap: 2.4rem;
+  }
+  /* prevent headings and lists from breaking awkwardly between columns */
+  .longDescription h2, .longDescription h3, .longDescription h4, .longDescription p, .longDescription ul {
+    break-inside: avoid-column;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .longDescription ul {
+    /* shorter columns for big bullet lists */
+    margin-left: 0.9rem;
+  }
 }
 
 /* Staggered entry animations for injected HTML content */
@@ -288,13 +369,142 @@
 /* Showcase Section */
 
 .showcaseSection {
-  margin: 4rem 0 3rem 0;
-  padding: 2.5rem 0 2rem 0;
+  margin: 2.5rem 0 2rem 0;
+  /* reduce vertical padding so the section doesn't become a giant empty block */
+  padding: 1.5rem 0 1rem 0;
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(255,0,51,0.08), rgba(0,0,0,0.12));
   box-shadow: 0 8px 32px rgba(255,0,51,0.08);
   overflow: hidden;
   animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Build Your Brand section: creative collage */
+.buildBrandSection {
+  margin: 2.5rem 0;
+  padding: 1.5rem 0;
+}
+
+.buildBrandSection .showcaseTitle {
+  color: var(--color-accent-primary);
+  margin-bottom: 0.6rem;
+}
+
+.collage {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 260px;
+  margin-left: auto;
+}
+
+.collageImage {
+  position: absolute;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  transition: transform 420ms cubic-bezier(0.22,1,0.36,1), opacity 300ms ease;
+  will-change: transform, opacity;
+}
+
+.collageMain {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  transform-origin: center;
+  transform: translateY(0) scale(1);
+}
+
+.collageTop {
+  width: 46%;
+  top: -10px;
+  right: -18px;
+  transform: rotate(-6deg) scale(0.95);
+}
+
+.collageBottom {
+  width: 42%;
+  bottom: -12px;
+  left: -18px;
+  transform: rotate(6deg) scale(0.95);
+}
+
+.collageImage:hover { transform: translateY(-6px) scale(1.02); }
+
+/* entrance animation for collage images when section is revealed */
+@keyframes imgIn {
+  0% { transform: translateY(18px) scale(0.98); opacity: 0; filter: blur(6px); }
+  60% { transform: translateY(-6px) scale(1.02); opacity: 1; filter: blur(0); }
+  100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+}
+.revealOnScroll.is-visible .collageImage {
+  animation: imgIn 780ms cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.revealOnScroll.is-visible .collageImage.collageMain { animation-delay: 0.06s; }
+.revealOnScroll.is-visible .collageImage.collageTop { animation-delay: 0.12s; }
+.revealOnScroll.is-visible .collageImage.collageBottom { animation-delay: 0.18s; }
+
+@media (max-width: 1024px) {
+  .collage { max-width: 360px; height: 220px; }
+  .collageTop { right: -12px; }
+  .collageBottom { left: -12px; }
+}
+
+/* Item icon and hover behavior */
+.buildBrandSection .list li {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.6rem 0;
+  font-weight: 700;
+  transition: color 220ms ease;
+}
+.buildBrandSection .list li:hover { color: var(--color-accent-primary); }
+
+.itemIcon {
+  width: 36px;
+  height: 36px;
+  display: inline-block;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(255,0,51,0.16), rgba(255,255,255,0.03));
+  box-shadow: 0 6px 18px rgba(255,0,51,0.08);
+  position: relative;
+}
+.itemIcon::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: 6px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.14), rgba(0,0,0,0.08));
+}
+
+/* Decorative sparks */
+.spark, .spark2 {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff3b6a, #ff8aa2);
+  box-shadow: 0 8px 22px rgba(255,59,106,0.28);
+  opacity: 0.95;
+  transform-origin: center;
+  animation: sparkFloat 3.4s ease-in-out infinite;
+}
+.spark2 { width: 10px; height: 10px; animation-duration: 4.2s; opacity: 0.85; }
+@keyframes sparkFloat { 0% { transform: translateY(0) scale(1); opacity: 0.95 } 50% { transform: translateY(-10px) scale(1.12); opacity: 1 } 100% { transform: translateY(0) scale(1); opacity: 0.95 } }
+
+/* Slight emphasis on collage when hovered */
+.collageImage { transition: transform 420ms cubic-bezier(0.22,1,0.36,1), filter 320ms ease; }
+.buildBrandSection .list li:hover ~ .collage .collageImage { transform: translateY(-6px) scale(1.01); filter: brightness(1.04); }
+
+@media (max-width: 768px) {
+  .buildBrandSection .revealChild { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  .collage { display: none; }
+}
+@media (max-width: 768px) {
+  .buildBrandSection .revealChild { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  .collage { display: none; }
 }
 
 .showcaseHeader {
@@ -322,6 +532,29 @@
   gap: 2rem;
   justify-items: center;
 }
+
+/* animate cards on reveal */
+.revealChild .showcaseCard { opacity: 0; transform: translateY(12px); }
+.revealOnScroll.is-visible .revealChild .showcaseCard { animation: fadeInUp 700ms cubic-bezier(0.22,1,0.36,1) forwards; }
+.revealOnScroll.is-visible .revealChild .showcaseCard:nth-child(1) { animation-delay: 0.06s; }
+.revealOnScroll.is-visible .revealChild .showcaseCard:nth-child(2) { animation-delay: 0.12s; }
+.revealOnScroll.is-visible .revealChild .showcaseCard:nth-child(3) { animation-delay: 0.18s; }
+
+/* subtle image scale and entrance for showcase images */
+.revealOnScroll.is-visible .revealChild .showcaseCard .showcaseImage {
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+  animation: imgIn 700ms cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.revealOnScroll.is-visible .revealChild .showcaseCard:nth-child(1) .showcaseImage { animation-delay: 0.08s; }
+.revealOnScroll.is-visible .revealChild .showcaseCard:nth-child(2) .showcaseImage { animation-delay: 0.14s; }
+.revealOnScroll.is-visible .revealChild .showcaseCard:nth-child(3) .showcaseImage { animation-delay: 0.20s; }
+
+/* global helper for observer: allow non-module 'is-visible' class to trigger reveal */
+:global(.is-visible) .revealChild { animation: fadeInUp 700ms cubic-bezier(0.22,1,0.36,1) forwards; }
+:global(.is-visible) .revealChild:nth-child(1) { animation-delay: 0.06s; }
+:global(.is-visible) .revealChild:nth-child(2) { animation-delay: 0.12s; }
+:global(.is-visible) .revealChild:nth-child(3) { animation-delay: 0.18s; }
 
 .showcaseCard {
   position: relative;
@@ -674,6 +907,9 @@
     max-width: 100%;
   }
 
+  /* Hide decoration on smaller widths */
+  .heroDecor { display: none; }
+
   .title {
     font-size: clamp(1.3rem, 3vw, 1.8rem);
     margin-bottom: 0.6rem;
@@ -881,3 +1117,110 @@
     font-size: 0.9rem;
   }
 }
+
+/* New interactive helpers */
+/* Staggered reveal helper - add .isRevealed on parent to trigger */
+.stagger {
+  overflow: hidden;
+}
+.staggerItem {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.stagger.isRevealed .staggerItem {
+  animation: fadeInUp 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.isRevealed { /* marker class for JS toggles (no styles) */ }
+.stagger.isRevealed .staggerItem:nth-child(1) { animation-delay: 0.06s; }
+.stagger.isRevealed .staggerItem:nth-child(2) { animation-delay: 0.12s; }
+.stagger.isRevealed .staggerItem:nth-child(3) { animation-delay: 0.18s; }
+.stagger.isRevealed .staggerItem:nth-child(4) { animation-delay: 0.24s; }
+.stagger.isRevealed .staggerItem:nth-child(5) { animation-delay: 0.30s; }
+
+/* Feature list with hover images (left/right) */
+.featureHighlight {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+  margin: 3rem 0;
+}
+.featureList {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.featureItem {
+  padding: 0.75rem 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  position: relative;
+}
+.featureItem:hover {
+  color: var(--color-accent-primary);
+}
+.hoverImageWrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  pointer-events: none;
+}
+.hoverImage {
+  position: absolute;
+  width: 48%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+  transform: translateY(10px) scale(0.98);
+  opacity: 0;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), opacity 260ms ease;
+}
+.hoverImage.left {
+  left: 0;
+}
+.hoverImage.right {
+  right: 0;
+}
+.hoverImage.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* exported helpers for CSS modules */
+.left { left: 0; }
+.right { right: 0; }
+.visible { opacity: 1; transform: translateY(0) scale(1); }
+.visible { /* helper */ }
+
+/* Masked reveal for sections */
+.revealOnScroll { overflow: hidden; }
+.revealChild { transform: translateY(18px); opacity: 0; }
+.revealOnScroll.is-visible .revealChild {
+  animation: fadeInUp 640ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.revealOnScroll.is-visible .revealChild:nth-child(1) { animation-delay: 0.06s; }
+.revealOnScroll.is-visible .revealChild:nth-child(2) { animation-delay: 0.12s; }
+.revealOnScroll.is-visible .revealChild:nth-child(3) { animation-delay: 0.18s; }
+
+/* FAQ Accordion */
+.faqList { margin: 2rem 0; padding: 0; list-style: none; }
+.faqItem { border-radius: 10px; overflow: hidden; background: var(--color-bg-secondary); margin-bottom: 0.75rem; border: 1px solid var(--color-border); }
+.faqQuestion { padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 700; }
+.faqAnswer { padding: 0 1.25rem; max-height: 0; overflow: hidden; transition: max-height 360ms cubic-bezier(0.22, 1, 0.36, 1), padding 360ms ease; }
+.faqItem.open .faqAnswer { max-height: 480px; padding: 1rem 1.25rem; }
+
+/* CTA button pulse */
+@keyframes pulseShadow {
+  0% { box-shadow: 0 8px 20px rgba(255,0,51,0.22); transform: translateY(0); }
+  50% { box-shadow: 0 16px 32px rgba(255,0,51,0.24); transform: translateY(-2px); }
+  100% { box-shadow: 0 8px 20px rgba(255,0,51,0.22); transform: translateY(0); }
+}
+.ctaButton.pulse { animation: pulseShadow 2.3s ease-in-out infinite; }
+.pulse { animation: pulseShadow 2.3s ease-in-out infinite; }
+
+/* Utility small tweaks */
+.smallMuted { color: var(--color-text-secondary); font-size: 0.95rem; }

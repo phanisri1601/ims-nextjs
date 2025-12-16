@@ -3,6 +3,7 @@
 import { notFound } from 'next/navigation';
 import styles from './ServiceDetail.module.css';
 import { useParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 const serviceData: {
   [key: string]: {
@@ -12,6 +13,11 @@ const serviceData: {
     features: string[];
     benefits: string[];
     category: 'online' | 'offline';
+    heroImage?: string;
+    heroDecor?: string;
+    collageMain?: string;
+    collageTop?: string;
+    collageBottom?: string;
   };
 } = {
   'advertising-agency-bangalore': {
@@ -1177,35 +1183,177 @@ export default function ServiceDetailPage() {
     notFound();
   }
 
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const bgRef = useRef<HTMLImageElement | null>(null);
+  const [heroRevealed, setHeroRevealed] = useState(false);
+
+  // parallax for hero background
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (!bgRef.current || !heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      const winH = window.innerHeight || document.documentElement.clientHeight;
+      // how far hero is from center (-1 to 1)
+      const progress = (rect.top + rect.height / 2 - winH / 2) / (winH / 2);
+      const translate = Math.max(-30, Math.min(30, -progress * 20));
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        if (bgRef.current) bgRef.current.style.transform = `translateY(${translate}px) scale(1.02)`;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Feature hover index
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const featureImages: string[] = [
+    '/services/pro-feature-1-left.svg',
+    '/services/pro-feature-1-right.svg',
+    '/services/pro-feature-2-left.svg',
+    '/services/pro-feature-2-right.svg',
+    '/services/pro-feature-3-left.svg',
+    '/services/pro-feature-3-right.svg'
+  ];
+
+  // Brand collage hover (for Build Your Brand section)
+  const [brandHover, setBrandHover] = useState<number | null>(null);
+
+  // Predefined transform presets for each list item
+  const mainTransforms = [
+    'translate(-8px,-6px) rotate(-2deg) scale(1.02)',
+    'translate(6px,-8px) rotate(2deg) scale(1.03)',
+    'translate(-6px,8px) rotate(-1deg) scale(1.01)',
+    'translate(8px,6px) rotate(3deg) scale(1.04)'
+  ];
+  const topTransforms = [
+    'translate(12px,-14px) rotate(-8deg) scale(1.06)',
+    'translate(-8px,-8px) rotate(6deg) scale(1.04)',
+    'translate(10px,6px) rotate(-4deg) scale(1.03)',
+    'translate(-12px,8px) rotate(8deg) scale(1.06)'
+  ];
+  const bottomTransforms = [
+    'translate(-10px,12px) rotate(6deg) scale(1.05)',
+    'translate(8px,10px) rotate(-6deg) scale(1.04)',
+    'translate(-6px,-10px) rotate(4deg) scale(1.03)',
+    'translate(12px,-6px) rotate(-8deg) scale(1.06)'
+  ];
+
+  const mainStyle = brandHover !== null ? { transform: mainTransforms[brandHover % mainTransforms.length] } : undefined;
+  const topStyle = brandHover !== null ? { transform: topTransforms[brandHover % topTransforms.length] } : undefined;
+  const bottomStyle = brandHover !== null ? { transform: bottomTransforms[brandHover % bottomTransforms.length] } : undefined;
+
+  // Stats
+  const statsRef = useRef<HTMLElement | null>(null);
+  const [counts, setCounts] = useState<number[]>([0, 0, 0]);
+  const statsTarget = [128, 8120, 4];
+
+  // Reveal on scroll helper
+  useEffect(() => {
+    // Hero stagger reveal on mount
+    const t = setTimeout(() => setHeroRevealed(true), 240);
+
+    // RevealOnScroll observer
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.15 });
+
+    // Use data attribute so we can reliably select elements even with CSS modules
+    const els = document.querySelectorAll('[data-reveal="true"]');
+    els.forEach(el => io.observe(el));
+
+    return () => {
+      clearTimeout(t);
+      io.disconnect();
+    };
+  }, []);
+
+  // Stats count up
+  useEffect(() => {
+    if (!statsRef.current) return;
+    let observer: IntersectionObserver | null = null;
+    const el = statsRef.current;
+
+    const startCounting = () => {
+      const start = performance.now();
+      const duration = 1000;
+      const update = (now: number) => {
+        const progress = Math.min(1, (now - start) / duration);
+        setCounts(statsTarget.map((target) => Math.round(target * progress)));
+        if (progress < 1) requestAnimationFrame(update);
+        else setCounts(statsTarget);
+      };
+      requestAnimationFrame(update);
+    };
+
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) startCounting();
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(el);
+
+    return () => observer && observer.disconnect();
+  }, []);
+
+  // FAQ state
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const faqs = [
+    { q: 'How long until we see results?', a: 'Depending on the channel, initial impact can be seen within a few weeks; measurable outcomes typically within 60-90 days.' },
+    { q: 'Do you handle creative and media buying?', a: 'Yes — we do end-to-end campaign management including creative, media planning, buying, and optimization.' },
+    { q: 'Can you work with our internal team?', a: 'Absolutely. We work as an extension of your team and integrate with internal stakeholders.' }
+  ];
+
   return (
     <main className={styles.serviceDetail}>
       <div className={styles.heroSection}>
         <div className={styles.heroBackground}>
-          <img src="/blog_seo.png" alt="Service background" className={styles.backgroundImage} />
+          <img ref={bgRef} src="/services/advertising-agency-1.svg" alt="Service background" className={styles.backgroundImage} />
         </div>
         <div className={styles.heroOverlay}></div>
         <div className="container">
-          <div className={styles.heroInner}>
-            <div className={styles.heroText}>
-              <h1 className={styles.title}>{service.title}</h1>
-              <p className={styles.description}>{service.description}</p>
+          <div ref={heroRef} className={`${styles.heroInner} ${styles.stagger} ${heroRevealed ? styles.isRevealed : ''}`}>
+            <div className={`${styles.heroText} ${styles.staggerItem}`}>
+              <h1 className={`${styles.title} ${styles.staggerItem}`}>{service.title}</h1>
+              <p className={`${styles.description} ${styles.staggerItem}`}>{service.description}</p>
+              <div className={styles.heroActions}>
+                <button className={`${styles.ctaButton} ${styles.pulse}`}>Get a Free Audit</button>
+                <button className={styles.ctaSecondary}>View Packages</button>
+              </div>
+            </div>
+
+            <div className={styles.heroDecor} aria-hidden>
+              <div className={styles.heroBadge}>
+                <div className={styles.badgeNumber}>120+</div>
+                <div className={styles.badgeLabel}>Campaigns Delivered</div>
+              </div>
+
+              <img src="/services/advertising-agency-2.svg" alt="Decor" className={styles.heroDecorImage} />
             </div>
           </div>
         </div>
       </div>
 
       {/* Creative Animated Showcase Section */}
-      <section className={styles.showcaseSection}>
+      <section data-reveal="true" className={`${styles.showcaseSection} ${styles.revealOnScroll}`}>
         <div className="container">
-          <div className={styles.showcaseHeader}>
+          <div className={`${styles.showcaseHeader} revealChild`}>
             <h2 className={styles.showcaseTitle}>Creative Showcase</h2>
             <p className={styles.showcaseDesc}>Explore our creative work and service highlights.</p>
           </div>
-          <div className={styles.showcaseGrid}>
+          <div className={`${styles.showcaseGrid} revealChild`}>
             {/* Example animated cards - replace with real images/content as needed */}
-            {["/wcu_marketing.png", "/wcu_branding.png", "/blog_seo.png"].map((img, idx) => (
+            {['/services/pro-thumb-1.svg', '/services/digital-marketing-1.svg', '/services/advertising-agency-2.svg'].map((img, idx) => (
               <div key={idx} className={styles.showcaseCard}>
-                <img src={img} alt="Showcase" className={styles.showcaseImage} />
+                <img src={img} alt={`Showcase ${idx+1}`} className={styles.showcaseImage} />
                 <div className={styles.showcaseCardOverlay}></div>
                 <div className={styles.showcaseCardText}>Creative Idea {idx + 1}</div>
               </div>
@@ -1217,6 +1365,37 @@ export default function ServiceDetailPage() {
       <div className={styles.contentSection}>
         <div className="container">
           <div className={styles.longDescription} dangerouslySetInnerHTML={{ __html: service.longDescription }} />
+
+          {/* New creative section: Build Your Brand */}
+          <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true">
+            <div className="container">
+              <div className="revealChild" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'center'}}>
+                <div>
+                  <h2 className={styles.showcaseTitle}>Our Advertising Agency Helps You Build Your Brand</h2>
+                  <p className="smallMuted">We combine strategic thinking, creativity and media precision to craft campaigns that build visibility, preference and sales. Below are some ways we help brands grow.</p>
+                  <ul className={styles.list}>
+                    <li onMouseEnter={() => setBrandHover(0)} onMouseLeave={() => setBrandHover(null)}><span className={styles.itemIcon}></span>Brand Strategy & Positioning</li>
+                    <li onMouseEnter={() => setBrandHover(1)} onMouseLeave={() => setBrandHover(null)}><span className={styles.itemIcon}></span>Creative Campaign Development</li>
+                    <li onMouseEnter={() => setBrandHover(2)} onMouseLeave={() => setBrandHover(null)}><span className={styles.itemIcon}></span>Multi-channel Media Planning</li>
+                    <li onMouseEnter={() => setBrandHover(3)} onMouseLeave={() => setBrandHover(null)}><span className={styles.itemIcon}></span>Data-driven Optimization</li>
+                  </ul>
+                  <div style={{marginTop: '1rem'}}>
+                    <button className={`${styles.ctaButton} ${styles.pulse}`}>Request Case Studies</button>
+                    <button className={styles.ctaSecondary} style={{marginLeft: '0.75rem'}}>Speak to an Expert</button>
+                  </div>
+                </div>
+
+                <div className={styles.collage} aria-hidden>
+                  <img src="/services/advertising-agency-1.svg" alt="Ad hero" className={`${styles.collageImage} ${styles.collageMain}`} style={mainStyle} />
+                  <img src="/services/pro-thumb-1.svg" alt="Campaign" className={`${styles.collageImage} ${styles.collageTop}`} style={topStyle} />
+                  <img src="/services/pro-thumb-2.svg" alt="Creative" className={`${styles.collageImage} ${styles.collageBottom}`} style={bottomStyle} />
+
+                  <div className={styles.spark} style={{left: '18%', top: '12%'}}></div>
+                  <div className={styles.spark2} style={{right: '12%', bottom: '14%'}}></div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <div className={styles.gridContainer}>
             <div className={styles.featureBox}>
@@ -1238,10 +1417,95 @@ export default function ServiceDetailPage() {
             </div>
           </div>
 
+          {/* Interactive features list with hover images */}
+          <section data-reveal="true" className={`${styles.revealOnScroll} ${styles.featureHighlight}`}>
+            <div className="container">
+              <div className={styles.revealChild}>
+                <div className={styles.featureHighlight}>
+                  <ul className={styles.featureList}>
+                    {service.features.map((feature, index) => (
+                      <li
+                        key={index}
+                        className={styles.featureItem}
+                        onMouseEnter={() => setHoverIndex(index)}
+                        onMouseLeave={() => setHoverIndex(null)}
+                      >
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className={styles.hoverImageWrap}>
+                    <img
+                      src={featureImages[(hoverIndex ?? 0) % featureImages.length]}
+                      alt="Left hover"
+                      className={`${styles.hoverImage} ${styles.left} ${hoverIndex !== null ? styles.visible : ''}`}
+                    />
+                    <img
+                      src={featureImages[(hoverIndex ?? 1) % featureImages.length]}
+                      alt="Right hover"
+                      className={`${styles.hoverImage} ${styles.right} ${hoverIndex !== null ? styles.visible : ''}`}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Stats Section */}
+          <section ref={statsRef} data-reveal="true" className={`${styles.revealOnScroll} ${styles.statsSection}`}>
+            <div className="container">
+              <div className={styles.revealChild} style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem'}}>
+                <div className={styles.stat}>
+                  <div className={styles.statNumber}>{counts[0]}</div>
+                  <div className={styles.statLabel}>Campaigns Delivered</div>
+                </div>
+
+                <div className={styles.stat}>
+                  <div className={styles.statNumber}>{counts[1]}</div>
+                  <div className={styles.statLabel}>Leads Generated</div>
+                </div>
+
+                <div className={styles.stat}>
+                  <div className={styles.statNumber}>{counts[2]}x</div>
+                  <div className={styles.statLabel}>Avg. ROI</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section data-reveal="true" className={styles.revealOnScroll}>
+            <div className="container">
+              <div className={styles.revealChild}>
+                <h3 className={styles.showcaseTitle}>Frequently Asked Questions</h3>
+                <ul className={styles.faqList}>
+                  {faqs.map((f, i) => (
+                    <li key={i} className={`${styles.faqItem} ${openFaq === i ? 'open' : ''}`}>
+                      <div
+                        className={styles.faqQuestion}
+                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpenFaq(openFaq === i ? null : i)}
+                      >
+                        <span>{f.q}</span>
+                        <span>{openFaq === i ? '−' : '+'}</span>
+                      </div>
+                      <div className={styles.faqAnswer}>
+                        <p className="smallMuted">{f.a}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+
           <div className={styles.ctaSection}>
             <h3 className={styles.ctaTitle}>Ready to Get Started?</h3>
             <p className={styles.ctaText}>Let's discuss how our {service.title.toLowerCase()} can benefit your business.</p>
-            <button className={styles.ctaButton}>Contact Us Today</button>
+            <button className={`${styles.ctaButton} ${styles.pulse}`}>Contact Us Today</button>
           </div>
         </div>
       </div>
