@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { FaArrowLeft } from 'react-icons/fa';
 import styles from './OfflineServices.module.css';
 import { useState, useRef } from 'react';
 
@@ -135,8 +134,8 @@ export default function OfflineServicesPage() {
       const imgH = 190;
       const inset = 24;
 
-      let leftPos = inset;
-      let rightPos = containerRect.width - imgW - inset;
+      const leftPos = inset;
+      const rightPos = containerRect.width - imgW - inset;
 
       const offsetY = 36;
       let leftTop = centerY - offsetY;
@@ -165,9 +164,6 @@ export default function OfflineServicesPage() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <Link href="/" className={styles.backButton}>
-          <FaArrowLeft /> Back to Home
-        </Link>
         <h1 className={styles.title}>Offline Services</h1>
         <p className={styles.subtitle}>
           Explore our comprehensive offline advertising and experiential marketing solutions

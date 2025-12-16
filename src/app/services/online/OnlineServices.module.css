@@ -5,9 +5,38 @@
 }
 
 .header {
-    max-width: 1200px;
-    margin: 0 auto 4rem;
+    max-width: 100%;
+    margin: 0 0 4rem 0;
+    padding: 80px 20px;
     text-align: center;
+    background-image: url('/wcu_marketing.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    position: relative;
+    animation: backgroundFadeIn 0.8s ease-out;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+@keyframes backgroundFadeIn {
+    from {
+        opacity: 0;
+        background-color: rgba(59, 130, 246, 0.5);
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .backButton {
@@ -28,20 +57,20 @@
 
 .title {
     font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
+    font-weight: 600;
+    color: #ffffff;
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    position: relative;
+    z-index: 2;
 }
 
 .subtitle {
     font-size: 1.1rem;
-    color: var(--color-text-secondary);
+    color: #ffffff;
     max-width: 600px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .featured {
