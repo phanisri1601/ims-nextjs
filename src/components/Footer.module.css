@@ -243,16 +243,26 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
+    .footer {
+        padding: 3rem 1.5rem 2rem;
+    }
+
     .footerContainer {
         grid-template-columns: 1fr 1fr;
         gap: 2.5rem;
+        margin-bottom: 2.5rem;
+        padding: 0;
     }
-}
 
-@media (max-width: 1024px) {
-    .footerContainer {
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
+    .columnTitle {
+        font-size: 1.1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .contactForm input,
+    .contactForm textarea {
+        font-size: 0.9rem;
+        padding: 0.65rem 0.9rem;
     }
 }
 

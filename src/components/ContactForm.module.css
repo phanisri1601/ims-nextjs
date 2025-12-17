@@ -142,81 +142,212 @@
     cursor: not-allowed;
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1024px) {
     .contactContainer {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
     }
 
     .form {
         padding: 2rem;
     }
+
+    .infoTitle {
+        font-size: 1.75rem;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 968px) {
+    .contactContainer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .form {
+        padding: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
     .contact {
-        padding: 1.5rem 0;
+        padding: 2rem 0;
         overflow-x: hidden;
     }
 
     .subtitle {
-        margin: -1rem auto 1.5rem auto;
-        font-size: 0.9rem;
+        margin: -1.5rem auto 2rem auto;
+        font-size: 1rem;
     }
 
     .contactContainer {
-        gap: 1.5rem;
-        margin-top: 1.5rem;
+        gap: 2rem;
+        margin-top: 2rem;
         max-width: 100%;
         width: 100%;
         box-sizing: border-box;
     }
 
     .infoTitle {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .infoDescription {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .infoItems {
+        gap: 1.5rem;
+    }
+
+    .infoItem {
+        gap: 1rem;
+    }
+
+    .infoIcon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+
+    .infoItem h4 {
+        font-size: 0.95rem;
+    }
+
+    .infoItem p {
+        font-size: 0.85rem;
+    }
+
+    .form {
+        padding: 1.5rem;
+        box-sizing: border-box;
+    }
+
+    .formGroup {
+        margin-bottom: 1.25rem;
+    }
+
+    .formGroup input,
+    .formGroup textarea {
+        padding: 0.85rem 1rem;
+        font-size: 1rem;
+    }
+
+    .formGroup textarea {
+        min-height: 120px;
+    }
+
+    .submitBtn {
+        padding: 0.85rem 1.75rem;
+        font-size: 0.95rem;
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 640px) {
+    .contact {
+        padding: 1.5rem 0;
+    }
+
+    .contactContainer {
+        gap: 1.5rem;
+    }
+
+    .infoTitle {
         font-size: 1.3rem;
-        margin-bottom: 0.8rem;
+    }
+
+    .form {
+        padding: 1.25rem;
+    }
+
+    .submitBtn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact {
+        padding: 1.25rem 0;
+        overflow-x: hidden;
+    }
+
+    .subtitle {
+        margin: -1rem auto 1.25rem auto;
+        font-size: 0.9rem;
+    }
+
+    .contactContainer {
+        gap: 1rem;
+        margin-top: 1rem;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 0.75rem;
+    }
+
+    .contactInfo {
+        animation: none;
+    }
+
+    .infoTitle {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+        background: none;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        color: var(--color-text-primary);
     }
 
     .infoDescription {
         font-size: 0.85rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.5;
     }
 
     .infoItems {
-        gap: 1.2rem;
+        gap: 1rem;
     }
 
     .infoItem {
         gap: 0.75rem;
+        align-items: flex-start;
     }
 
     .infoIcon {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+        flex-shrink: 0;
     }
 
     .infoItem h4 {
         font-size: 0.9rem;
+        margin-bottom: 0.2rem;
     }
 
     .infoItem p {
         font-size: 0.8rem;
+        margin: 0;
     }
 
     .form {
         padding: 1rem;
         box-sizing: border-box;
+        animation: none;
+        border-radius: 12px;
     }
 
     .formGroup {
-        margin-bottom: 1rem;
+        margin-bottom: 0.9rem;
     }
 
     .formGroup input,
     .formGroup textarea {
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
+        padding: 0.75rem 0.9rem;
+        font-size: 16px;
+        border-radius: 8px;
     }
 
     .formGroup textarea {
@@ -224,7 +355,15 @@
     }
 
     .submitBtn {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.85rem;
+        min-height: 44px;
+        width: 100%;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .submitBtn:hover:not(:disabled) {
+        transform: translateY(-2px);
     }
 }

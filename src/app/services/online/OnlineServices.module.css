@@ -367,6 +367,37 @@
         font-size: 1rem;
     }
 }
+
+@media (max-width: 640px) {
+    .container {
+        padding: 90px 12px 35px;
+    }
+
+    .title {
+        font-size: 1.7rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .servicesGrid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.2rem;
+    }
+
+    .serviceCard {
+        padding: 1.4rem 1.2rem;
+    }
+
+    .serviceCardIcon {
+        font-size: 2.2rem;
+    }
+
+    .serviceCardTitle {
+        font-size: 0.98rem;
+    }
+}
 /* carousel removed — consistent grid layout now used */
 @media (max-width: 1024px) {
     .carouselContainer {

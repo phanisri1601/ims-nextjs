@@ -326,17 +326,24 @@ textarea {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: var(--font-size-sm);
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --font-size-3xl: 2.5rem;
     --font-size-2xl: 2rem;
     --font-size-xl: 1.5rem;
-    --spacing-lg: 3rem;
-    --spacing-xl: 4rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 2.5rem;
   }
 
   .container {
-    padding: 0 var(--spacing-sm);
+    padding: 0 1rem;
   }
 
   .grid-2,
@@ -344,12 +351,151 @@ textarea {
   .grid-4 {
     grid-template-columns: 1fr;
   }
+
+  h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+  }
+
+  .section {
+    padding: 2.5rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    min-height: 44px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 2rem 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.8rem 1.25rem;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
   :root {
-    --font-size-3xl: 2rem;
-    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.8rem;
+    --font-size-2xl: 1.4rem;
+    --font-size-xl: 1.1rem;
+    --font-size-lg: 1.1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 2rem;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .section {
+    padding: 1.5rem 0;
+  }
+
+  .section-title {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+    min-height: 44px;
+  }
+
+  .card {
+    padding: 1.25rem 1rem;
+    border-radius: 10px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+    padding: 0.7rem 0.9rem;
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+
+  .mb-sm {
+    margin-bottom: 0.5rem;
+  }
+
+  .mb-md {
+    margin-bottom: 1rem;
+  }
+
+  .mb-lg {
+    margin-bottom: 1.5rem;
+  }
+
+  .mt-sm {
+    margin-top: 0.5rem;
+  }
+
+  .mt-md {
+    margin-top: 1rem;
+  }
+
+  .mt-lg {
+    margin-top: 1.5rem;
   }
 }
 

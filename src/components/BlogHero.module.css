@@ -74,8 +74,9 @@
     }
 
     .title {
-        font-size: 2.8rem;
+        font-size: clamp(2.2rem, 4vw, 2.8rem);
         letter-spacing: 1.5px;
+        margin: 0 0 1rem 0;
     }
 
     .breadcrumb {
@@ -85,14 +86,19 @@
 
 @media (max-width: 768px) {
     .blogHero {
-        height: 300px;
+        height: 320px;
         margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .content {
+        padding: 0;
     }
 
     .title {
-        font-size: 2rem;
+        font-size: clamp(1.6rem, 3vw, 2rem);
         letter-spacing: 1px;
-        margin-bottom: 0.9rem;
+        margin: 0 0 0.8rem 0;
     }
 
     .breadcrumb {
@@ -101,47 +107,46 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
     .blogHero {
-        height: 240px;
-        margin-bottom: 1.5rem;
-        padding: 1rem 0;
-    }
-
-    .content {
-        padding: 0 1rem;
+        height: 280px;
+        margin-bottom: 1.75rem;
+        padding: 0 0.75rem;
     }
 
     .title {
-        font-size: 1.4rem;
-        letter-spacing: 0.5px;
+        font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+        letter-spacing: 0.8px;
         margin: 0 0 0.6rem 0;
     }
 
     .breadcrumb {
-        font-size: 0.7rem;
-        gap: 0.2rem;
+        font-size: 0.8rem;
+        gap: 0.25rem;
     }
 }
 
-    .breadcrumb {
-        font-size: 0.95rem;
-    }
-
-
 @media (max-width: 480px) {
     .blogHero {
-        height: 250px;
+        height: 220px;
+        margin-bottom: 1.5rem;
+        padding: 0.75rem 0;
+    }
+
+    .content {
+        padding: 0 0.75rem;
     }
 
     .title {
-        font-size: 1.8rem;
+        font-size: clamp(1.1rem, 2.3vw, 1.4rem);
         letter-spacing: 0.5px;
+        margin: 0 0 0.4rem 0;
     }
 
     .breadcrumb {
-        font-size: 0.85rem;
-        flex-direction: column;
-        gap: 0.25rem;
+        font-size: 0.7rem;
+        gap: 0.15rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }
