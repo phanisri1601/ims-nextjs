@@ -16,7 +16,7 @@ interface GSAPScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function GSAPScrollReveal({
     children,
     className = '',
-    triggerStart = 'top 70%',
+    triggerStart = 'top 85%',
     duration = 0.8,
     staggerDelay = 0.12,
     ...props
@@ -40,6 +40,11 @@ export default function GSAPScrollReveal({
             },
         });
 
+        // Refresh ScrollTrigger to ensure correct positions
+        setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 100);
+
         let delay = 0;
 
         headings.forEach((heading) => {
@@ -50,7 +55,7 @@ export default function GSAPScrollReveal({
                         text,
                         {
                             y: 100,
-                            opacity: 0,
+                            autoAlpha: 0,
                             duration: duration,
                             ease: 'expo.out',
                         },
@@ -63,7 +68,7 @@ export default function GSAPScrollReveal({
                     heading,
                     {
                         y: 100,
-                        opacity: 0,
+                        autoAlpha: 0,
                         duration: duration,
                         ease: 'expo.out',
                     },
@@ -81,7 +86,7 @@ export default function GSAPScrollReveal({
                         text,
                         {
                             y: 100,
-                            opacity: 0,
+                            autoAlpha: 0,
                             duration: duration,
                             ease: 'expo.out',
                         },
@@ -94,7 +99,7 @@ export default function GSAPScrollReveal({
                     paragraph,
                     {
                         y: 100,
-                        opacity: 0,
+                        autoAlpha: 0,
                         duration: duration,
                         ease: 'expo.out',
                     },
@@ -124,7 +129,7 @@ export default function GSAPScrollReveal({
                 {
                     scale: 1.08,
                     y: 30,
-                    opacity: 0,
+                    autoAlpha: 0,
                     duration: duration,
                     ease: 'expo.out',
                 },
@@ -134,7 +139,6 @@ export default function GSAPScrollReveal({
 
         return () => {
             tl.kill();
-            ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
         };
     }, [triggerStart, duration, staggerDelay]);
 
