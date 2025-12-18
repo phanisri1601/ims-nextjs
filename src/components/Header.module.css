@@ -26,6 +26,7 @@
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .logo {
@@ -106,9 +107,8 @@
 }
 
 .dropdownMenu {
-    position: absolute;
-    top: 100%;
-    margin-top: 10px;
+    position: fixed;
+    top: 72px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--color-bg-card);

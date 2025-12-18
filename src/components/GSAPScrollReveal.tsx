@@ -148,12 +148,12 @@ export default function GSAPScrollReveal({
 
         return () => {
             tl.kill();
-<<<<<<< Updated upstream
-=======
+
+
             if (scrollTrigger) {
                 scrollTrigger.kill();
             }
->>>>>>> Stashed changes
+
         };
     }, [triggerStart, duration, staggerDelay]);
 
