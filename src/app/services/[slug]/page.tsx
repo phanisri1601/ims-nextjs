@@ -142,21 +142,33 @@ const serviceData: {
     category: 'online'
   },
   'seo': {
-    title: 'Search Engine Optimization',
-    description: 'Improve your search engine rankings and increase organic traffic.',
-    longDescription: 'Our SEO services are designed to improve your website\'s visibility in search engine results. We use proven techniques and best practices to increase organic traffic and enhance your online presence.',
+    title: 'Best SEO Service in Bangalore',
+    description: 'IM Solutions is positioned as one of the Leading SEO Company in Bangalore, offering practical and transparent SEO strategies that fit your market and search intent.',
+    longDescription: `
+      <h2>Best SEO Company in Bangalore — IM Solutions</h2>
+      <p>Search engines have changed how people discover businesses. If your brand isn’t visible on Google, potential customers will land on a competitor instead.</p>
+      <h3>Why settle for average when you can aim for the top?</h3>
+      <p>IM Solutions is positioned as one of the Leading SEO Company in Bangalore, offering practical and transparent SEO strategies that fit your market and search intent. Our team stays aligned with the latest updates, supported by insights like those covered in our guide on modern SEO and AI-powered search.</p>
+      <h3>10+ Years of SEO Expertise Backed by Real Growth</h3>
+      <p>For more than 10 years, IM Solutions has worked with brands across different industries as a trusted SEO agency in Bangalore. We study your ideal customers, how they search, and what influences their decisions. From there, we build a clear plan that positions your business at the right moment in their search path.</p>
+      <p>Search visibility only works when users enjoy the experience on your site. That’s why we combine SEO with smart Search Engine Marketing to improve conversions and lead quality. Every project begins with a detailed audit—covering keywords, content structure, metadata, page performance, URL flows, schema setup, and other key on-site elements.</p>
+      <h3>Staying Ahead in a Constantly Changing Search Landscape</h3>
+      <p>Search behaviour changes often, and Google adjusts its systems just as quickly. IM Solutions keeps your SEO campaign ahead by adapting your plan to match current patterns. Our Digital Marketing Services evolve continuously, keeping your website aligned with what Google expects today—not last year.</p>
+      <h3>Ethical SEO That Actually Works</h3>
+      <p>Some agencies cut corners. We don’t. IM Solutions relies only on safe, ethical SEO practices that protect your brand and support long-term results. Most businesses notice early improvements in search visibility within the first month.</p>
+    `,
     features: [
-      'Keyword Research',
-      'On-Page Optimization',
-      'Off-Page Optimization',
-      'Technical SEO',
-      'Link Building',
-      'SEO Audits'
+      'Keywords Research',
+      'Competitive Analysis',
+      'Rank Tracking',
+      'Traffic Reporting',
+      'Detailed Analysis',
+      'Onsite Optimisation'
     ],
     benefits: [
-      'Higher Search Rankings',
-      'Increased Organic Traffic',
-      'Better User Experience',
+      'Better Rankings',
+      'Consistent Organic Traffic',
+      'Higher Conversions',
       'Long-Term Results',
       'Cost-Effective Marketing',
       'Competitive Advantage'
@@ -164,16 +176,23 @@ const serviceData: {
     category: 'online'
   },
   'sem': {
-    title: 'Search Engine Marketing',
-    description: 'Strategic paid search advertising to reach your target audience.',
-    longDescription: 'Our SEM services help you reach potential customers through targeted paid search campaigns. We optimize every aspect of your campaigns to maximize ROI and drive qualified traffic to your website.',
+    title: 'Search Engine Marketing (SEM) Agency',
+    description: 'Your marketing strategy can lose its effectiveness without the right focus and direction. This is where Search Engine Marketing (SEM) becomes essential.',
+    longDescription: `
+      <h2>Search Engine Marketing (SEM) Agency Company In Bangalore</h2>
+      <p>Your marketing strategy can lose its effectiveness without the right focus and direction. This is where Search Engine Marketing (SEM) becomes essential. It helps businesses generate targeted traffic, eliminating irrelevant clicks and improving conversion rates. As the number of online shoppers continues to grow, most users begin their journey with a search engine. If your brand isn’t visible there, you're missing out on a powerful opportunity to scale your reach and growth.</p>
+      <h3>Don’t miss out anymore!</h3>
+      <p>With IM Solutions, a professional and result-driven SEM Company in Bangalore, your business can gain unmatched online visibility and remain relevant in today’s competitive market. As a trusted Search Engine Marketing Company in Bangalore, IM Solutions offers comprehensive SEM services that give your business the advantage it needs. Our tailor-made SEM strategies are designed to maximize business leverage at minimal cost and risk.</p>
+      <p>Our Search Engine Marketing Agency in Bangalore understands that SEO alone might not be enough to drive traffic quickly. That’s why our SEM services combine strategic SEO techniques with effective paid advertising campaigns to ensure fast and measurable results. Whether it’s Google Ads, display marketing, or remarketing strategies, we deliver consistent traffic and lead generation for your business.</p>
+      <p>At IM Solutions, our goal is to drive meaningful traffic to your website using precise SEM techniques that increase your sales and elevate your brand presence. Unlike a one-size-fits-all approach, we develop a custom SEM roadmap based on your unique business goals, constraints, and target audience.</p>
+    `,
     features: [
-      'PPC Campaign Management',
-      'Keyword Selection & Bidding',
-      'Ad Copy Optimization',
-      'Landing Page Optimization',
-      'Conversion Tracking',
-      'Budget Management'
+      'Search Engine Optimisation (SEO)',
+      'Pay Per Click (PPC) Advertising',
+      'Content Marketing',
+      'CRO Services',
+      'Google Analytics Consulting',
+      'Geographical SEO Target'
     ],
     benefits: [
       'Immediate Results',
@@ -186,16 +205,22 @@ const serviceData: {
     category: 'online'
   },
   'online-reputation-management': {
-    title: 'Online Reputation Management',
-    description: 'Protect and enhance your brand image across digital platforms.',
-    longDescription: 'We help you manage and improve your online reputation across all digital channels. Our proactive approach ensures your brand maintains a positive image and credibility online.',
+    title: 'Online Reputation Management (ORM) Services',
+    description: 'Build your brand image and proactively create a connection with your customers with our ORM services.',
+    longDescription: `
+      <h2>Online Reputation Management Company Bangalore</h2>
+      <p>Are you looking ORM Agency in Bangalore to build your brand image and proactively create a connection with your customers? Whether you are a business house, individual, or any professional looking to expand your new popularity or counter negativity online, you have landed at the right place. Put your faith in IM Solutions ORM company Bangalore to create an impactful online reputation for you.</p>
+      <p>IM Solutions is a leading Online Reputation Management Company Bangalore serving businesses of all sizes—big, midsize, small, and start-ups with a complete range of online public relations, brand management, and digital marketing solutions. We offer the best reputation repair solution and brand management services available in the market. Our goal is to showcase all the good things your brand has to offer, adding value to the lives of people.</p>
+      <p>The Internet can be misused to trash your brand image and create a negative thread, like a garbage bin where anybody can post negative comments about you. Such negative comments are not only a nuisance but also can act like a garbage bin where anybody can post negative comments about you. In a crisis like this, IM Solutions comes to the rescue of your brand, business, and ultimately, fights back against all the false rumours on the web about your brand.</p>
+      <p>IM Solutions, a leading Online Reputation Management Services Bangalore, specializes in Online Reputation Management (ORM) by effectively combating negativity such as bad reviews, hate blogs, unpleasant testimonials, and scam allegations that could harm your brand’s credibility.</p>
+    `,
     features: [
-      'Brand Monitoring',
       'Review Management',
-      'Content Creation',
-      'Crisis Management',
-      'Social Listening',
-      'Reputation Analysis'
+      'Monitor Online Criticism',
+      'Personal Reputation',
+      'Brand Protection',
+      'Push Down Negativity',
+      'Repair Reputation'
     ],
     benefits: [
       'Enhanced Brand Trust',
@@ -208,16 +233,21 @@ const serviceData: {
     category: 'online'
   },
   'website-design-development': {
-    title: 'Website Designing and Development',
-    description: 'Create stunning, functional websites that drive conversions.',
-    longDescription: 'Our web design and development team creates responsive, user-friendly websites that not only look great but also perform exceptionally well in driving business results.',
+    title: 'Website Design and Development Company',
+    description: 'We design the right & interactive website for you that meets your requirements as well as your target audience.',
+    longDescription: `
+      <h2>Best Website Design Company in Bangalore</h2>
+      <p>How many Customers do you have on your website? The first impression of your website can make a huge difference on your potential customers! A website is not just a digital presence. It is a channel that ‘talks’ to your visitors. That is why it takes just a second for visitors to judge if a website is professional and trustworthy. Don’t gamble on your brand’s website. It can cost you your customers! It can impact the conversion rate and prevent bouncing off from your website.</p>
+      <p>As a leading web designing service Company, IM Solutions specialises in developing a website that is intuitive and functional to your visitors need. IM Solutions is no. 1 website located in Bangalore which not only builds unique marketable designs but also provides ultimate website development services and support. We design responsive websites for our clients that not only look aesthetically pleasant but also help you with better conversion rates and ultimately giving you a much higher return on your investment in getting a web presence for your business.</p>
+      <p>Our websites are designed to enable surpassing the geographical limitations and attract customers from around the world. Thus, setting you site apart from the digital crowd for years to come. We have worked with hundreds of clients. Be it starting a new site, redesigning an existing site, adding new features to your present site, or improving the ranking of your site in search results, we are the first preference for most businesses.</p>
+    `,
     features: [
-      'Responsive Design',
-      'User Experience Optimization',
-      'E-Commerce Integration',
-      'CMS Integration',
-      'Performance Optimization',
-      'Security Implementation'
+      'Creative Graphics',
+      'Mobile Ready Web Design',
+      'Hosting And Support',
+      'Conversion Focus Design',
+      'Multi-Sector Websites',
+      'Solid Content'
     ],
     benefits: [
       'Professional Online Presence',
@@ -230,16 +260,21 @@ const serviceData: {
     category: 'online'
   },
   'social-media-optimization': {
-    title: 'Social Media Optimization',
-    description: 'Maximize your social media presence and engagement.',
-    longDescription: 'We optimize your social media profiles and content strategy to increase visibility, engagement, and follower growth across all major platforms.',
+    title: 'Social Media Optimization Agency',
+    description: 'Social media optimization is Search engine optimization (SEO) combined with Social Media. Walla! You get a Marketing Ginny.',
+    longDescription: `
+      <h2>Social Media Optimization Company</h2>
+      <p>Social media optimization is Search engine optimization (SEO) combined with Social Media. Walla! You get a Marketing Ginny. Seeing is believing. Social media optimization makes people see your brand. As a Social Media Optimization Agency, we have the experience, insight, and knowledge to make your next social media campaign a winner. IM Solutions has orchestrated a few of the most viral marketing campaigns on the Internet. Data is the new oil, and we have the data.</p>
+      <p>Specialising in Social Media Optimization Services, IM Solutions attempts to build your business’s stature and increase your branding. Presenting your business’s best brand value, we help design it in such a way that it becomes a buzzfeed on the social media platforms. Our social media optimization tools let you know when people start including your brand in the chatter. We provide an affordable Social Media Optimization Company in Bangalore for business enhancement that further enhances your visibility on the internet.</p>
+      <p>Our Social Media Optimization Services in Bangalore include reports of the progress on social media monitoring from time to time to track the progress of your social media performance. The only thing that you have to do is to tell us about your requirements, and then it is our task to spread your platform widely on these social media sites.</p>
+    `,
     features: [
-      'Profile Optimization',
-      'Content Strategy',
-      'Community Management',
-      'Analytics & Reporting',
-      'Trend Analysis',
-      'Engagement Optimization'
+      'Offsite SMO',
+      'Onsite SMO',
+      'Content And Profile',
+      'Brand Awareness',
+      'Communication',
+      'Authentic And Publicized'
     ],
     benefits: [
       'Increased Followers',
@@ -252,16 +287,21 @@ const serviceData: {
     category: 'online'
   },
   'social-media-marketing': {
-    title: 'Social Media Marketing',
-    description: 'Comprehensive social media marketing strategies for brand growth.',
-    longDescription: 'Our social media marketing services help you reach and engage your target audience through strategic content and campaigns across Facebook, Instagram, LinkedIn, Twitter, and more.',
+    title: 'Social Media Marketing Agency',
+    description: 'Social media marketing is about connecting, interacting, and growing alongside your customers.',
+    longDescription: `
+      <h2>Social Media Marketing Agency in Bangalore</h2>
+      <p>Over 90% of brands today market themselves on Facebook, and more than 6 million business-related images are uploaded online daily. Gone are the days when social media was purely for entertainment. It has evolved into a powerful business tool to showcase products, engage meaningfully with clients, increase sales, and establish a brand’s authority in its niche.</p>
+      <p>In today’s digital age, platforms like Facebook, YouTube, Instagram, and others have transformed how people think, shop, and make decisions. Social media has completely reshaped the marketing landscape. If you're a business owner, investing in a Social Media Marketing Company in Bangalore can be the game-changer for your brand. Social media marketing is about connecting, interacting, and growing alongside your customers. If your business isn’t active and engaging on these platforms, you're missing out on a major opportunity for brand awareness and customer retention.</p>
+      <p>At IM Solutions, a leading Social Media Management Company in Bangalore, we offer services that help brands understand what people are saying about their products and services online. We help you determine how and when to engage with your audience, manage conversations, and design strategies tailored to each social platform. As a full-service Social Media Agency in Bangalore, we understand that social media is at the heart of your online presence.</p>
+    `,
     features: [
+      'Market Targeting',
       'Content Creation',
-      'Campaign Management',
-      'Paid Social Advertising',
-      'Influencer Partnerships',
-      'Community Management',
-      'Performance Analytics'
+      'Social Media Profile',
+      'Analytic Monitoring',
+      'Popular Social Media',
+      'Graphics Creation'
     ],
     benefits: [
       'Brand Visibility',
@@ -274,16 +314,21 @@ const serviceData: {
     category: 'online'
   },
   'software-design-development': {
-    title: 'Software Design & Development',
-    description: 'Custom software solutions tailored to your business needs.',
-    longDescription: 'We develop robust, scalable software solutions that help you streamline operations, improve efficiency, and achieve your business objectives.',
+    title: 'Software Development Company',
+    description: 'IM Solutions is the best software development company providing premier custom software development services to clients from different sectors.',
+    longDescription: `
+      <h2>Software Development Company Bangalore</h2>
+      <p>We live in an era of fast phase technology and technology has a lot of influence on the businesses and how they operate. For a successful business, online platforms and mobile apps have become a necessity since they provide a pathway for your clients to contact you and shop for your items and administrations. To create a flawless-running software product is an essential element of every business operations and the software transforms it into an organized development structure. But the foundation of the journey will depend on whether you’ll find the right team to do it.</p>
+      <p>IM Solutions is the best software development company providing premier custom software development services to clients from different sectors. Software design and development is paramount to a successful business. We understand how important this process is. IM Solutions always remain frontier in catering to different types of software development to address the intricate needs of the high-tech era.</p>
+      <p>As every business is different, so are its software requirements. IM Solution’s Software Development permits the businesses to create customized solutions to meet the specific needs of their organization. Although, Software development involves several tasks and includes some upfront costs, a standout amongst the most widely recognized purpose behind developing software is to meet the specific needs or demands of the client.</p>
+    `,
     features: [
-      'Custom Development',
-      'Web Applications',
-      'Mobile Apps',
-      'API Integration',
-      'Cloud Solutions',
-      'Maintenance & Support'
+      'Software Solution',
+      'Custom Software',
+      'Maintenance And Support',
+      'Software Development',
+      'Software Consulting',
+      'Software Integration'
     ],
     benefits: [
       'Tailored Solutions',
@@ -319,8 +364,13 @@ const serviceData: {
   },
   'ai-advertising-agency': {
     title: 'AI Advertising Agency',
-    description: 'Leverage artificial intelligence for smarter advertising strategies.',
-    longDescription: 'Our AI-powered advertising platform uses machine learning and data analytics to optimize your campaigns and deliver superior results.',
+    description: 'IM Solutions is a premier AI advertising agency transforming digital marketing through intelligent automation and data-driven strategies.',
+    longDescription: `
+      <h2>AI Advertising Agency in Bangalore</h2>
+      <p>IM Solutions, based in Bangalore, is a premier AI advertising agency transforming digital marketing through intelligent automation and data-driven strategies. Leveraging artificial intelligence, the agency creates highly targeted, personalized campaigns that maximize engagement and return on investment for clients across industries.</p>
+      <p>By harnessing machine learning, predictive analytics, and programmatic advertising, IM Solutions automates media buying, optimizes campaigns in real time, and delivers creative content tailored to audience behavior. This approach not only saves time but also ensures marketing budgets are spent efficiently.</p>
+      <p>Serving startups and enterprises alike, IM Solutions combines Bangalore’s tech expertise with local market knowledge to help businesses scale rapidly and stay competitive in today’s dynamic digital landscape. With IM Solutions, brands gain smarter advertising solutions that adapt and evolve with changing consumer trends.</p>
+    `,
     features: [
       'AI Campaign Optimization',
       'Predictive Analytics',
@@ -340,16 +390,21 @@ const serviceData: {
     category: 'online'
   },
   'creative-designing': {
-    title: 'Creative Designing',
-    description: 'Professional creative design services for all your marketing needs.',
-    longDescription: 'Our creative design team produces stunning visual content that captures attention and communicates your brand message effectively.',
+    title: 'Creative Designing Services',
+    description: 'Creativity is an ocean with limitless possibilities. It goes beyond mere artistic paintings. When creativity enters the professional world, it takes the form of graphic art.',
+    longDescription: `
+      <h2>Creative Ad Design Agencies In Bangalore</h2>
+      <p>Creativity is an ocean with limitless possibilities. It goes beyond mere artistic paintings. When creativity enters the professional world, it takes the form of graphic art. Creative arts and design enhance businesses widely by giving a more aesthetically pleasant presentation and better brand value.</p>
+      <p>At IM Solutions, we believe that Art is one of the aspects that add limitless imagination! We use the powerful tool of art to enhance the performance of your business. With the touch of creativity, we use it to grab the attention of the customers and even passive users that enhance the image of our brand which will result in better revenues and better business! IM Solutions encourages businesses to go beyond free online designs or templates. We want businesses irrespective of their size an industry to stay unique and stay beautiful. With IM Solutions professional creative design, we refuel your creative design needs and take it to the next level.</p>
+      <p>Being in the advertising industry for long, IM Solutions has mastered the balance of art and science needed to offer exceptional artwork services to clients from different industries. Our creative design services include multiple sub-services such as Illustration, UI/UX Design and Image editing and much more. Every creative design we make are made to lure the audience’s attention and drawing in potential customers through visual communication.</p>
+    `,
     features: [
-      'Logo Design',
-      'Branding Materials',
-      'Marketing Collaterals',
-      'Packaging Design',
-      'Illustration',
-      'Animation'
+      'Brochure Design',
+      'Branding Identity',
+      'Business Card Design',
+      'App Design',
+      'Print Design',
+      'Banner Design'
     ],
     benefits: [
       'Strong Brand Identity',
@@ -359,19 +414,23 @@ const serviceData: {
       'Consistent Branding',
       'Creative Excellence'
     ],
-    category: 'offline'
+    category: 'online'
   },
   'api-integration': {
-    title: 'API Integration',
-    description: 'Seamless API integration for enhanced functionality.',
-    longDescription: 'We provide expert API integration services to connect your systems with third-party applications and services.',
+    title: 'API Integration Services',
+    description: 'IM Solutions specializes in integrating custom API applications for your business websites or web applications for enhanced performance.',
+    longDescription: `
+      <h2>API Integration Service in Bangalore</h2>
+      <p>By 2020, there will be more than 85 billion devices connected to the Internet of Things. In the evolving business scenario, cloud services, mobile apps, analytical tools and other embedded devices including wearables have become imperative. However, if these systems work disparately, it is only going to be futile and complex exercise. For them to interact with each other coherently there has to be a communication gateway. As a leading API integration company, IM Solutions build such communication gateways through Application Programming Interfaces (APIs) and manage them across their lifecycle.</p>
+      <p>All kinds of enterprises has to link disparate applications and databases to optimize the value of existing system. Any kind of enterprise applications that amalgamate useful APIs provides enhanced functionality than those that work in isolation. IM Solutions leverage the rich API economy for integrations and also secures communication and accelerates outreach across digital channels. We specialise in building custom API integration that perfectly matches your enterprise system requirements. We enable clients in aligning business processes and achieve better connectivity through standard and custom APIs linking to third-party applications and websites</p>
+    `,
     features: [
-      'API Development',
-      'Third-Party Integration',
-      'Data Synchronization',
-      'Custom Solutions',
-      'Security Implementation',
-      'Ongoing Support'
+      'Accelerating Businesses with API',
+      'Connecting Enterprise Applications',
+      'Secure Ecosystem',
+      'Custom API Integration',
+      'API Implementation Services',
+      'API Consultancy'
     ],
     benefits: [
       'Enhanced Functionality',
@@ -381,7 +440,7 @@ const serviceData: {
       'Cost Reduction',
       'Seamless Operation'
     ],
-    category: 'offline'
+    category: 'online'
   },
   'ecommerce-solutions': {
     title: 'Ecommerce Solutions',
