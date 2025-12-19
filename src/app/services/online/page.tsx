@@ -4,12 +4,9 @@ import Link from 'next/link';
 import styles from './OnlineServices.module.css';
 import { useState, useRef } from 'react';
 
+
+
 const onlineServices = [
-  {
-    title: 'Advertising Agency In Bangalore',
-    slug: 'advertising-agency-bangalore',
-    image: '/services/thumbnails/advertising-agency.jpg'
-  },
   {
     title: 'Digital Marketing Service',
     slug: 'digital-marketing-service',
@@ -53,7 +50,7 @@ const onlineServices = [
   {
     title: 'Geolocation Analytical SMS',
     slug: 'geolocation-sms',
-    image: '/services/thumbnails/geolocation-sms.jpg'
+    image: '/services/thumbnails/sms.jpg'
   },
   {
     title: 'AI Advertising Agency',
@@ -63,7 +60,7 @@ const onlineServices = [
   {
     title: 'Creative Designing',
     slug: 'creative-designing',
-    image: '/services/thumbnails/creative-design.jpg'
+    image: '/services/thumbnails/creative-designing.jpg'
   },
   {
     title: 'API Integration',
@@ -88,7 +85,7 @@ const onlineServices = [
   {
     title: 'Real Estate Online Marketing Service',
     slug: 'real-estate-marketing',
-    image: '/services/thumbnails/real-estate.jpg'
+    image: '/services/thumbnails/real-estate-marketing.jpg'
   },
   {
     title: 'Display Advertisement',
@@ -104,34 +101,31 @@ const onlineServices = [
     title: 'Classified Portal Management',
     slug: 'classified-portal',
     image: '/services/thumbnails/classified-portal.jpg'
-  },
-  {
-    title: 'Press Releases Services',
-    slug: 'press-releases',
-    image: '/services/thumbnails/press-releases.jpg'
-  },
+  }
 ];
 
 
 
 export default function OnlineServicesPage() {
-  // featured: first 5 services with images
+
+
+  // featured: top 5 priority services
   const featured = [
     {
-      title: 'Advertising Agency In Bangalore',
-      slug: 'advertising-agency-bangalore',
+      title: 'Digital Marketing Service',
+      slug: 'digital-marketing-service',
       img1: '/services/pro-feature-1-left.svg',
       img2: '/services/pro-feature-1-right.svg',
     },
     {
-      title: 'Digital Marketing Service',
-      slug: 'digital-marketing-service',
+      title: 'Search Engine Optimization',
+      slug: 'seo',
       img1: '/services/pro-feature-2-left.svg',
       img2: '/services/pro-feature-2-right.svg',
     },
     {
-      title: 'Search Engine Optimization',
-      slug: 'seo',
+      title: 'Search Engine Marketing',
+      slug: 'sem',
       img1: '/services/pro-feature-3-left.svg',
       img2: '/services/pro-feature-3-right.svg',
     },
@@ -147,7 +141,6 @@ export default function OnlineServicesPage() {
       img1: '/services/pro-feature-5-left.svg',
       img2: '/services/pro-feature-5-right.svg',
     },
-
   ];
 
 
