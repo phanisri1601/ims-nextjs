@@ -1214,17 +1214,6 @@ export default function ServiceDetailPage() {
     };
   }, []);
 
-  // Feature hover index
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
-  const featureImages: string[] = [
-    '/services/pro-feature-1-left.svg',
-    '/services/pro-feature-1-right.svg',
-    '/services/pro-feature-2-left.svg',
-    '/services/pro-feature-2-right.svg',
-    '/services/pro-feature-3-left.svg',
-    '/services/pro-feature-3-right.svg'
-  ];
-
   // Brand collage hover (for Build Your Brand section)
   const [brandHover, setBrandHover] = useState<number | null>(null);
 
@@ -1420,41 +1409,6 @@ export default function ServiceDetailPage() {
               </ul>
             </div>
           </div>
-
-          {/* Interactive features list with hover images */}
-          <section data-reveal="true" className={`${styles.revealOnScroll} ${styles.featureHighlight}`}>
-            <div className="container">
-              <div className={styles.revealChild}>
-                <div className={styles.featureHighlight}>
-                  <ul className={styles.featureList}>
-                    {service.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className={styles.featureItem}
-                        onMouseEnter={() => setHoverIndex(index)}
-                        onMouseLeave={() => setHoverIndex(null)}
-                      >
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className={styles.hoverImageWrap}>
-                    <img
-                      src={featureImages[(hoverIndex ?? 0) % featureImages.length]}
-                      alt="Left hover"
-                      className={`${styles.hoverImage} ${styles.left} ${hoverIndex !== null ? styles.visible : ''}`}
-                    />
-                    <img
-                      src={featureImages[(hoverIndex ?? 1) % featureImages.length]}
-                      alt="Right hover"
-                      className={`${styles.hoverImage} ${styles.right} ${hoverIndex !== null ? styles.visible : ''}`}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
 
           {/* Stats Section */}
           <section ref={statsRef} data-reveal="true" className={`${styles.revealOnScroll} ${styles.statsSection}`}>
