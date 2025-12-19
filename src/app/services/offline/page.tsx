@@ -32,7 +32,6 @@ const serviceUrlMap: { [key: string]: string } = {
   'Retail Advertising': '/services/retail-advertising',
   'Real Estate Videography': '/services/real-estate-videography',
   'Signage': '/services/signage',
-  'Washroom Advertising': '/services/washroom-advertising',
 };
 
 const offlineServices = [
@@ -63,7 +62,6 @@ const offlineServices = [
   'Retail Advertising',
   'Real Estate Videography',
   'Signage',
-  'Washroom Advertising',
 ];
 
 const getServiceUrl = (service: string) => {

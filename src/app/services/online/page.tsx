@@ -70,7 +70,7 @@ const onlineServices = [
   {
     title: 'Ecommerce Solutions',
     slug: 'ecommerce-solutions',
-    image: '/services/thumbnails/ecommerce.jpg'
+    image: '/services/thumbnails/ecommerce-solutions.jpg'
   },
   {
     title: 'Email Marketing',
@@ -79,18 +79,18 @@ const onlineServices = [
   },
   {
     title: 'Mobile Application Development',
-    slug: 'mobile-app-development',
-    image: '/services/thumbnails/mobile-app.jpg'
+    slug: 'mobile-application-development',
+    image: '/services/thumbnails/mobile-app-development.jpg'
   },
   {
     title: 'Real Estate Online Marketing Service',
-    slug: 'real-estate-marketing',
+    slug: 'real-estate-online-marketing',
     image: '/services/thumbnails/real-estate-marketing.jpg'
   },
   {
     title: 'Display Advertisement',
     slug: 'display-advertisement',
-    image: '/services/thumbnails/display-ads.jpg'
+    image: '/services/thumbnails/display-advertisement.jpg'
   },
   {
     title: 'Blog Articles',
@@ -99,8 +99,13 @@ const onlineServices = [
   },
   {
     title: 'Classified Portal Management',
-    slug: 'classified-portal',
+    slug: 'classified-portal-management',
     image: '/services/thumbnails/classified-portal.jpg'
+  },
+  {
+    title: 'Press Releases Services',
+    slug: 'press-releases-services',
+    image: '/services/thumbnails/press-releases.jpg'
   }
 ];
 
