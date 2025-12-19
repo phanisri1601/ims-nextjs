@@ -37,6 +37,7 @@ export default function GSAPScrollReveal({
                 trigger: section,
                 start: triggerStart,
                 once: true,
+                invalidateOnRefresh: true,
             },
         });
 
@@ -58,6 +59,7 @@ export default function GSAPScrollReveal({
                             autoAlpha: 0,
                             duration: duration,
                             ease: 'expo.out',
+                            immediateRender: false,
                         },
                         delay
                     );
@@ -71,6 +73,7 @@ export default function GSAPScrollReveal({
                         autoAlpha: 0,
                         duration: duration,
                         ease: 'expo.out',
+                        immediateRender: false,
                     },
                     delay
                 );
@@ -89,6 +92,7 @@ export default function GSAPScrollReveal({
                             autoAlpha: 0,
                             duration: duration,
                             ease: 'expo.out',
+                            immediateRender: false,
                         },
                         delay
                     );
@@ -102,6 +106,7 @@ export default function GSAPScrollReveal({
                         autoAlpha: 0,
                         duration: duration,
                         ease: 'expo.out',
+                        immediateRender: false,
                     },
                     delay
                 );
@@ -117,6 +122,7 @@ export default function GSAPScrollReveal({
                     opacity: 0,
                     duration: duration,
                     ease: 'expo.out',
+                    immediateRender: false,
                 },
                 delay
             );
@@ -132,13 +138,22 @@ export default function GSAPScrollReveal({
                     autoAlpha: 0,
                     duration: duration,
                     ease: 'expo.out',
+                    immediateRender: false,
                 },
                 0
             );
         });
 
+        const scrollTrigger = tl.scrollTrigger;
+
         return () => {
             tl.kill();
+
+
+            if (scrollTrigger) {
+                scrollTrigger.kill();
+            }
+
         };
     }, [triggerStart, duration, staggerDelay]);
 
