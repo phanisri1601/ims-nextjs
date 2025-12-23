@@ -2,7 +2,30 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+// Lightweight inline icons to avoid client-side chunk loading issues
+function BarsIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z" />
+    </svg>
+  );
+}
+
+function TimesIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M18.3 5.71L12 12.01 5.71 5.71 4.29 7.12 10.59 13.41 4.29 19.71 5.71 21.12 12 14.82 18.29 21.12 19.71 19.71 13.41 13.41 19.71 7.12z" />
+    </svg>
+  );
+}
+
+function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6z" />
+    </svg>
+  );
+}
 import styles from './Header.module.css';
 
 const serviceUrlMap: { [key: string]: string } = {
@@ -165,7 +188,7 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
               aria-label="Close menu"
             >
-              <FaTimes />
+              <TimesIcon />
             </button>
             
             <Link href="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Home</Link>
@@ -191,7 +214,7 @@ export default function Header() {
                   }
                 }}
               >
-                Services <FaChevronDown className={`${styles.chevron} ${isServicesOpen || isMobileServicesOpen ? styles.chevronRotated : ''}`} />
+                Services <ChevronDownIcon className={`${styles.chevron} ${isServicesOpen || isMobileServicesOpen ? styles.chevronRotated : ''}`} />
               </button>
               {isMobile ? (
                 isMobileServicesOpen && (
@@ -263,7 +286,7 @@ export default function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
+            {isMenuOpen ? <TimesIcon /> : <BarsIcon />}
           </button>
         </div>
     </header>
