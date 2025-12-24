@@ -1443,7 +1443,40 @@ export default function ServiceDetailPage() {
             </div>
           </section>
 
-          <section className={styles.summarySection} data-reveal="true">
+          {/* Additional Brand Content */}
+          <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true" style={{marginTop: '2rem', marginBottom: '0', paddingBottom: '0'}}>
+            <div className="container">
+              <div className="revealChild" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center'}}>
+                <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                   <img 
+                     src="/services/advertising-agency-1.svg" 
+                     alt="Advertising Agency" 
+                     className={styles.collageImage}
+                     style={{
+                       position: 'relative', 
+                       width: '100%', 
+                       maxWidth: '500px', 
+                       height: 'auto', 
+                       borderRadius: '20px', 
+                       boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                     }} 
+                   />
+                </div>
+                <div>
+                   <div style={{color: 'var(--color-text-secondary)', lineHeight: '1.7', fontSize: '1.05rem'}}>
+                    <p style={{marginBottom: '1rem'}}>
+                      With the right advertising, you don't just get results but you multiply your profits. IM Solutions delivers just that. We are a team of experts creating unconventional ads that truly makes an impression. Our ads are short, simple and straight to the point targeting ideal customers for a faster outcome. From digital space to every nook and corner of the offline market, we cover it all.
+                    </p>
+                    <p>
+                      IM Solutions connects people and businesses across the digital and physical world, powering people-based marketing. Presentation matters! We help brands present themselves better and reach their customers with our advertising expertise. In simple, we amplifying your business and enhance your branding. Why wait when you can start now? Contact us for more details..
+                    </p>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className={styles.summarySection} data-reveal="true" style={{marginTop: '0', paddingTop: '1rem'}}>
             <div className="container">
               {summaryBlocks.map((block, idx) => (
                 <div key={idx} className={`${styles.summaryBlock} ${idx % 2 === 1 ? styles.reverse : ''}`}>
