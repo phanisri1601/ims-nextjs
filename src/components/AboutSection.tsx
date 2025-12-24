@@ -38,8 +38,6 @@ export default function AboutSection() {
                     </div>
                 </div>
             </div>
-
-            <div className={styles.serviceName}>Digital Marketing</div>
         </GSAPScrollReveal>
     );
 }
@@ -97,14 +95,12 @@ function TiltImage() {
                 }}
                 style={{ width: "100%", height: "100%" }}
             >
-                <div
-                    className={styles.imageBackground}
-                    role="img"
-                    aria-label="IM Solutions banner"
+                <img
+                    src="/reshot-icon-digital-marketing-8SVERLYKMC.svg"
+                    alt="IM Solutions Office"
+                    className={styles.image}
                 />
             </motion.div>
         </motion.div>
     );
 }
-
-// Service name is rendered as an overlay in the banner (left bottom)
