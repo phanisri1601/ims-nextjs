@@ -6,13 +6,22 @@
 
 .heroSection {
   position: relative;
-  /* slightly reduced to avoid excessive empty space */
-  min-height: 420px;
+  /* slightly taller to give the hero more presence */
+  min-height: 520px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   margin-bottom: 2rem;
+}
+
+/* Responsive adjustments for hero height */
+@media (max-width: 1024px) {
+  .heroSection { min-height: 460px; }
+}
+
+@media (max-width: 768px) {
+  .heroSection { min-height: 420px; }
 }
 
 .heroBackground {
@@ -73,6 +82,41 @@
   align-items: center;
   /* center the content horizontally by default to avoid large empty left/right spacing */
   justify-content: center;
+}
+
+/* Service title label positioned at left-bottom (minimal hero) */
+.serviceLabel {
+  position: absolute;
+  left: clamp(1rem, 4vw, 3rem);
+  bottom: clamp(1rem, 3.5vw, 2.25rem);
+  z-index: 4;
+  color: #fff;
+  font-weight: 800;
+  font-size: clamp(1rem, 2.6vw, 2.1rem);
+  background: rgba(0,0,0,0.45);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+@media (max-width: 768px) {
+  .serviceLabel {
+    left: 0.9rem;
+    bottom: 0.9rem;
+    font-size: 1rem;
+    padding: 0.5rem 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .serviceLabel {
+    left: 0.75rem;
+    bottom: 0.75rem;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.7rem;
+  }
 }
 
 .heroText {
@@ -273,6 +317,121 @@
   gap: 2rem;
   margin-bottom: 3rem;
 }
+
+/* Summary section: alternating content and image blocks */
+.summarySection {
+  margin: 2.25rem 0 2rem 0;
+  padding: 1rem 0;
+}
+
+.summaryBlock {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.summaryBlock.reverse {
+  flex-direction: row-reverse;
+}
+
+.summaryContent {
+  flex: 1 1 55%;
+}
+
+.summaryTitle {
+  font-size: 1.25rem;
+  color: var(--color-accent-primary);
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+
+.summaryText {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.summaryImageWrap {
+  flex: 1 1 40%;
+  max-width: 480px;
+}
+
+.summaryImage {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .summaryBlock { gap: 1rem; }
+  .summaryImage { height: 220px; }
+}
+
+@media (max-width: 768px) {
+  .summaryBlock { flex-direction: column; }
+  .summaryBlock.reverse { flex-direction: column; }
+  .summaryImage { height: 200px; width: 100%; }
+  .summaryImageWrap { max-width: none; }
+}
+
+/* Animations: use the .is-visible class added by the reveal observer */
+.summaryBlock {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.summaryContent,
+.summaryImage {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 520ms cubic-bezier(0.22,1,0.36,1), transform 520ms cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Reverse blocks animate from the opposite side */
+.summaryBlock.reverse .summaryContent,
+.summaryBlock.reverse .summaryImage {
+  transform: translateX(28px);
+}
+
+/* When the section becomes visible, animate blocks and inner content with a stagger */
+.summarySection.is-visible .summaryBlock {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 520ms cubic-bezier(0.22,1,0.36,1), opacity 520ms ease;
+}
+
+.summarySection.is-visible .summaryBlock:nth-child(1) .summaryContent { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
+.summarySection.is-visible .summaryBlock:nth-child(1) .summaryImage { opacity: 1; transform: translateX(0); transition-delay: 0.16s; }
+
+.summarySection.is-visible .summaryBlock:nth-child(2) .summaryContent { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
+.summarySection.is-visible .summaryBlock:nth-child(2) .summaryImage { opacity: 1; transform: translateX(0); transition-delay: 0.16s; }
+
+/* Image subtle float and hover scale */
+@keyframes floatSmall { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+
+.summaryImage {
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
+
+.summaryImageWrap:hover .summaryImage,
+.summaryImage:hover {
+  transform: scale(1.03) translateY(-6px);
+  transition: transform 380ms cubic-bezier(0.22,1,0.36,1);
+}
+
+/* apply a very subtle floating animation after reveal */
+.summarySection.is-visible .summaryImage {
+  animation: floatSmall 6s ease-in-out infinite 1s;
+}
+
+/* Title reveals slightly delayed */
+.summaryTitle { opacity: 0; transform: translateY(8px); transition: opacity 520ms ease, transform 520ms cubic-bezier(0.22,1,0.36,1); }
+.summarySection.is-visible .summaryTitle { opacity: 1; transform: translateY(0); transition-delay: 0.04s; }
 
 .featureBox,
 .benefitBox {

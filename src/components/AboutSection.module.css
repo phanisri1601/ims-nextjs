@@ -1,8 +1,38 @@
 .aboutSection {
-    padding: var(--spacing-xl) 0;
+    padding: calc(var(--spacing-xl) + 1rem) 0; /* slightly taller */
+    min-height: 520px; /* increased height */
     background: var(--color-bg-primary);
     position: relative;
     overflow: hidden;
+}
+
+/* Background image for the banner (single image used for the whole section) */
+.aboutSection::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(12,6,6,0.55), rgba(12,6,6,0.55)), url('/services/digital-marketing-1.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Service name shown at the left bottom corner of the banner */
+.serviceName {
+    position: absolute;
+    left: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 3vw, 2rem);
+    z-index: 3; /* above content */
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1rem;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
 }
 
 .container {
@@ -11,6 +41,16 @@
     padding: 0 var(--spacing-md);
     position: relative;
     z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .aboutSection { min-height: 420px; padding: calc(var(--spacing-lg) + 0.5rem) 0; }
+    .serviceName { left: 1rem; bottom: 1rem; font-size: 0.95rem; padding: 0.5rem 0.85rem; }
+}
+
+@media (max-width: 480px) {
+    .aboutSection { min-height: 360px; padding: 1.25rem 0; }
+    .serviceName { left: 0.75rem; bottom: 0.75rem; font-size: 0.9rem; padding: 0.45rem 0.75rem; }
 }
 
 .contentWrapper {
@@ -96,6 +136,19 @@
     object-fit: cover;
     border-radius: 24px;
     display: block;
+}
+
+.imageBackground {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    /* Use a subtle gradient instead of a second image so the banner image is the only image used */
+    background-image: linear-gradient(135deg, rgba(255,40,70,0.02), rgba(0,0,0,0.04));
+    box-shadow: inset 0 2px 12px rgba(0,0,0,0.08);
 }
 
 /* Floating Elements for extra depth */
