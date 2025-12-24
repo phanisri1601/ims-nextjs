@@ -1246,15 +1246,6 @@ export default function ServiceDetailPage() {
     notFound();
   }
 
-  // Short summary block(s) to render as alternating content/image sections
-  const summaryBlocks = [
-    {
-      title: 'Short Summary',
-      content: `IM Solutions is a full-service digital marketing and advertising company delivering innovative, ROI-driven solutions worldwide. With over a decade of experience, we help businesses increase traffic, generate quality leads, and boost sales through integrated digital strategies including SEO, Google Ads, PPC, display, video, mobile, and search advertising. Based in Bangalore, we focus on customized campaigns, data-driven strategies, and customer-first values to ensure maximum growth, strong brand presence, and measurable results for every client.`,
-      image: service.heroImage ?? service.collageMain ?? '/services/digital-marketing-1.svg'
-    }
-  ];
-
   const heroRef = useRef<HTMLDivElement | null>(null);
   const bgRef = useRef<HTMLImageElement | null>(null);
   const [heroRevealed, setHeroRevealed] = useState(false);
@@ -1382,8 +1373,23 @@ export default function ServiceDetailPage() {
         <div className={styles.heroOverlay}></div>
         <div className="container">
           <div ref={heroRef} className={`${styles.heroInner} ${styles.stagger} ${heroRevealed ? styles.isRevealed : ''}`}>
-            {/* Minimal hero for service detail: only show service title at left-bottom */}
-            <div className={styles.serviceLabel}>{service.title}</div>
+            <div className={`${styles.heroText} ${styles.staggerItem}`}>
+              <h1 className={`${styles.title} ${styles.staggerItem}`}>{service.title}</h1>
+              <p className={`${styles.description} ${styles.staggerItem}`}>{service.description}</p>
+              <div className={styles.heroActions}>
+                <button className={`${styles.ctaButton} ${styles.pulse}`}>Get a Free Audit</button>
+                <button className={styles.ctaSecondary}>View Packages</button>
+              </div>
+            </div>
+
+            <div className={styles.heroDecor} aria-hidden>
+              <div className={styles.heroBadge}>
+                <div className={styles.badgeNumber}>120+</div>
+                <div className={styles.badgeLabel}>Campaigns Delivered</div>
+              </div>
+
+              <img src="/services/advertising-agency-2.svg" alt="Decor" className={styles.heroDecorImage} />
+            </div>
           </div>
         </div>
       </div>
@@ -1443,22 +1449,25 @@ export default function ServiceDetailPage() {
             </div>
           </section>
 
-          <section className={styles.summarySection} data-reveal="true">
-            <div className="container">
-              {summaryBlocks.map((block, idx) => (
-                <div key={idx} className={`${styles.summaryBlock} ${idx % 2 === 1 ? styles.reverse : ''}`}>
-                  <div className={styles.summaryContent}>
-                    <h3 className={styles.summaryTitle}>{block.title}</h3>
-                    <p className={styles.summaryText}>{block.content}</p>
-                  </div>
-
-                  <div className={styles.summaryImageWrap} aria-hidden>
-                    <img src={block.image} alt={block.title} className={styles.summaryImage} />
-                  </div>
-                </div>
-              ))}
+          <div className={styles.gridContainer}>
+            <div className={styles.featureBox}>
+              <h2 className={styles.boxTitle}>Key Features</h2>
+              <ul className={styles.list}>
+                {service.features.map((feature, index) => (
+                  <li key={index}>{feature}</li>
+                ))}
+              </ul>
             </div>
-          </section>
+
+            <div className={styles.benefitBox}>
+              <h2 className={styles.boxTitle}>Benefits</h2>
+              <ul className={styles.list}>
+                {service.benefits.map((benefit, index) => (
+                  <li key={index}>{benefit}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
 
           {/* Stats Section */}
           <section ref={statsRef} data-reveal="true" className={`${styles.revealOnScroll} ${styles.statsSection}`}>
