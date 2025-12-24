@@ -53,10 +53,10 @@
 }
 
 .accordionItem {
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
-    background: #0f0f0f;
+    background: #f5f5f5;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -68,8 +68,8 @@
 .accordionHeader {
     width: 100%;
     text-align: left;
-    background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
-    color: #ffffff;
+    background: linear-gradient(135deg, #e8e8e8, #f5f5f5);
+    color: var(--color-text-primary);
     padding: 1rem 1.25rem;
     font-weight: 700;
     font-size: 1rem;
@@ -86,7 +86,7 @@
 
 .accordionBody {
     padding: 1.25rem;
-    background: #131313;
+    background: #f8f8f8;
     color: var(--color-text-secondary);
     font-size: 0.95rem;
     line-height: 1.7;
@@ -98,11 +98,11 @@
 
 .formCard {
     width: 100%;
-    background: #0f0a0a;
+    background: #fafafa;
     border-radius: 14px;
     padding: 2rem;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid #e0e0e0;
 }
 
 .formTitle {

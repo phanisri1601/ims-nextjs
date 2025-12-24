@@ -28,7 +28,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.2);
     z-index: 2;
 }
 
@@ -45,7 +45,7 @@
     margin: 0 0 1.5rem 0;
     letter-spacing: -0.02em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--color-text-primary);
 }
 
 .breadcrumb {
@@ -54,11 +54,11 @@
     justify-content: center;
     gap: 0.5rem;
     font-size: 1rem;
-    color: #ffffff;
+    color: var(--color-text-primary);
 }
 
 .breadcrumb a {
-    color: #ffffff;
+    color: var(--color-text-primary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -68,7 +68,7 @@
 }
 
 .breadcrumb span {
-    color: #ffffff;
+    color: var(--color-text-primary);
 }
 
 @media (max-width: 1024px) {

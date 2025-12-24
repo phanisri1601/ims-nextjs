@@ -61,7 +61,7 @@
 .card {
     min-width: 350px;
     max-width: 350px;
-    background: #0f0505;
+    background: var(--color-bg-card);
     /* Deep dark red/black */
     border: 1px solid rgba(51, 0, 17, 0.3);
     border-radius: 24px;

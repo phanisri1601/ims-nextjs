@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import styles from './OnlineServices.module.css';
 import { useState, useRef } from 'react';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 
 
@@ -203,6 +204,51 @@ export default function OnlineServicesPage() {
     setImageRight(null);
   };
 
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: 'What is digital marketing and how can it help my business?',
+      answer: 'Digital marketing encompasses all online marketing activities including SEO, social media marketing, content marketing, and paid advertising. It helps your business reach targeted audiences, increase brand awareness, drive website traffic, and generate qualified leads with measurable ROI.'
+    },
+    {
+      question: 'How long does it take to see results from digital marketing?',
+      answer: 'Results vary by strategy. Paid campaigns (PPC, SEM) can show immediate results within days. Organic strategies (SEO, content marketing) typically take 3-6 months to show significant results. We focus on long-term sustainable growth while delivering early wins through strategic planning.'
+    },
+    {
+      question: 'Which digital marketing channels should I focus on?',
+      answer: 'The best channels depend on your target audience and business goals. Social media works great for brand awareness, SEO for organic traffic, SEM for immediate conversions, and email marketing for customer retention. We analyze your audience and recommend an optimal mix of channels for maximum impact.'
+    },
+    {
+      question: 'What is the difference between SEO and SEM?',
+      answer: 'SEO (Search Engine Optimization) focuses on organic search results through content optimization and technical improvements. SEM (Search Engine Marketing) includes paid search advertising. Both are valuable—SEO provides long-term results while SEM offers immediate visibility. A combination strategy often works best.'
+    },
+    {
+      question: 'How do you measure the success of digital marketing campaigns?',
+      answer: 'We track KPIs including website traffic, conversion rates, cost-per-acquisition, ROI, engagement metrics, leads generated, and sales revenue. Custom dashboards provide real-time performance data so you can see exactly how your investment is performing and make informed decisions.'
+    },
+    {
+      question: 'Why is social media marketing important?',
+      answer: 'Social media reaches billions of users where they spend significant time. It builds brand community, improves customer engagement, drives website traffic, and provides valuable customer insights. Consistent social presence strengthens brand authority and creates loyal customer relationships.'
+    },
+    {
+      question: 'What services do you offer for website design and development?',
+      answer: 'We provide website design, responsive development, e-commerce solutions, API integration, performance optimization, and ongoing maintenance. Our websites are SEO-friendly, mobile-optimized, and designed to convert visitors into customers while providing excellent user experiences.'
+    },
+    {
+      question: 'How important is content marketing?',
+      answer: 'Content marketing is crucial for establishing authority, improving SEO rankings, and providing value to your audience. Quality content attracts organic traffic, builds trust, educates prospects, and supports other marketing channels. We create strategic content that aligns with your business goals and audience needs.'
+    },
+    {
+      question: 'Can I integrate digital marketing with offline advertising?',
+      answer: 'Absolutely! Integrated marketing campaigns combining online and offline tactics create powerful synergies. QR codes, unique coupon codes, and retargeting campaigns bridge online-offline gaps. We create cohesive campaigns where each channel amplifies the others for maximum impact and ROI.'
+    }
+  ];
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -261,6 +307,33 @@ export default function OnlineServicesPage() {
           </Link>
         ))}
       </div>
+
+      <section className={styles.faqSection}>
+        <div className={styles.faqContent}>
+          <h2 className={styles.faqTitle}>ONLINE SERVICES FAQ&apos;S</h2>
+          <div className={styles.faqContainer}>
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`${styles.faqItem} ${openFaqIndex === index ? styles.open : ''}`}
+              >
+                <button
+                  className={styles.faqQuestion}
+                  onClick={() => toggleFaq(index)}
+                >
+                  <span>{faq.question}</span>
+                  <span className={styles.faqIcon}>
+                    {openFaqIndex === index ? <FaMinus /> : <FaPlus />}
+                  </span>
+                </button>
+                <div className={styles.faqAnswer}>
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

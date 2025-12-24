@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import styles from './OfflineServices.module.css';
 import { useState, useRef } from 'react';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 const serviceUrlMap: { [key: string]: string } = {
   'Bus Branding': '/services/bus-branding',
@@ -121,6 +122,52 @@ export default function OfflineServicesPage() {
   const [imageLeft, setImageLeft] = useState<number | null>(null);
   const [imageRight, setImageRight] = useState<number | null>(null);
 
+  // FAQ state
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: 'What is outdoor advertising and how does it benefit my business?',
+      answer: 'Outdoor advertising refers to promotional activities conducted outside traditional indoor spaces. It includes hoarding, bus branding, mall activations, and more. It benefits your business by increasing brand visibility, reaching a wider audience, creating memorable brand impressions, and driving foot traffic to your location.'
+    },
+    {
+      question: 'Which offline advertising service would work best for my brand?',
+      answer: 'The best offline service depends on your target audience and business goals. Bus branding reaches commuters, hoarding targets specific locations, mall activations engage shoppers, and RWA activation connects with residential communities. Our team can analyze your goals and recommend the optimal service for maximum ROI.'
+    },
+    {
+      question: 'How do you measure the success of offline advertising campaigns?',
+      answer: 'We measure offline campaign success through foot traffic analysis, brand recall surveys, sales uplift tracking, customer feedback, and engagement metrics. We provide detailed reports on campaign performance, audience reach, and conversion metrics to ensure transparency and demonstrate the value of your investment.'
+    },
+    {
+      question: 'What is the timeline for launching an offline advertising campaign?',
+      answer: 'Timeline varies based on the service type. Simple campaigns like paper insertions or magazine ads can launch within 2-4 weeks. Complex projects like hoarding or bus branding typically take 4-8 weeks for design, approvals, and execution. We provide a customized timeline during the planning phase.'
+    },
+    {
+      question: 'Can I combine multiple offline services for better results?',
+      answer: 'Absolutely! Combining multiple offline services creates a comprehensive advertising strategy. For example, pairing hoarding with mall activations and bus branding creates multiple touchpoints with your target audience, increasing brand recall and overall campaign effectiveness.'
+    },
+    {
+      question: 'What areas does IM Solutions cover for outdoor advertising?',
+      answer: 'IM Solutions operates across Bangalore and nearby areas, covering major commercial hubs, residential communities, transit points, and shopping destinations. We have established relationships with key outdoor advertising locations and can secure premium placements for maximum visibility and impact.'
+    },
+    {
+      question: 'How much does offline advertising cost?',
+      answer: 'Offline advertising costs vary based on the service type, duration, location premium, and campaign scale. Hoarding rates differ from bus branding or mall activations. We offer flexible packages to fit different budgets and can provide a detailed quote after understanding your specific requirements.'
+    },
+    {
+      question: 'Do you provide design services for offline advertising campaigns?',
+      answer: 'Yes! IM Solutions provides complete design services including conceptualization, creative design, artwork development, and production-ready files. Our team ensures your offline advertisements are visually compelling, on-brand, and optimized for maximum impact and audience engagement.'
+    },
+    {
+      question: 'What is the ROI I can expect from offline advertising?',
+      answer: 'ROI varies based on campaign type, placement quality, and audience targeting. Well-executed campaigns typically show 200-400% ROI through increased brand awareness, foot traffic, and sales conversions. We work with you to set realistic KPIs and continuously optimize for better returns on your advertising investment.'
+    }
+  ];
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
   const handleEnter = (i: number) => {
     setActive(i);
     if (featuredRef.current && itemRefs.current[i]) {
@@ -216,6 +263,33 @@ export default function OfflineServicesPage() {
           </Link>
         ))}
       </div>
+
+      <section className={styles.faqSection}>
+        <div className={styles.faqContent}>
+          <h2 className={styles.faqTitle}>OFFLINE SERVICES FAQ&apos;S</h2>
+          <div className={styles.faqContainer}>
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className={`${styles.faqItem} ${openFaqIndex === index ? styles.open : ''}`}
+              >
+                <button
+                  className={styles.faqQuestion}
+                  onClick={() => toggleFaq(index)}
+                >
+                  <span>{faq.question}</span>
+                  <span className={styles.faqIcon}>
+                    {openFaqIndex === index ? <FaMinus /> : <FaPlus />}
+                  </span>
+                </button>
+                <div className={styles.faqAnswer}>
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

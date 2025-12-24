@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import styles from './ServiceDetail.module.css';
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 
 const serviceData: {
@@ -1365,12 +1366,44 @@ export default function ServiceDetailPage() {
     return () => observer && observer.disconnect();
   }, []);
 
-  // FAQ state
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const faqs = [
-    { q: 'How long until we see results?', a: 'Depending on the channel, initial impact can be seen within a few weeks; measurable outcomes typically within 60-90 days.' },
-    { q: 'Do you handle creative and media buying?', a: 'Yes — we do end-to-end campaign management including creative, media planning, buying, and optimization.' },
-    { q: 'Can you work with our internal team?', a: 'Absolutely. We work as an extension of your team and integrate with internal stakeholders.' }
+    { 
+      q: 'How long until we see results?', 
+      a: 'Depending on the channel, initial impact can be seen within a few weeks; measurable outcomes typically within 60-90 days.'
+    },
+    { 
+      q: 'Do you handle creative and media buying?', 
+      a: 'Yes — we do end-to-end campaign management including creative, media planning, buying, and optimization.'
+    },
+    { 
+      q: 'Can you work with our internal team?', 
+      a: 'Absolutely. We work as an extension of your team and integrate with internal stakeholders.'
+    },
+    {
+      q: 'What makes your agency different from competitors?',
+      a: 'We combine data-driven strategy with creative excellence. Our team brings hands-on expertise across online and offline channels, transparent reporting, and a focus on measurable ROI. We treat your business goals as our own.'
+    },
+    {
+      q: 'How do you determine the right marketing channels for my business?',
+      a: 'We start with in-depth discovery: understanding your target audience, competitor landscape, budget, and goals. We then recommend a channel mix tailored to your specific needs, with flexibility to pivot based on performance data.'
+    },
+    {
+      q: 'What kind of results can I expect?',
+      a: 'Results vary by industry and service type. However, our clients typically see 20-40% improvement in lead generation, 2-3x ROI on ad spend, and significant improvements in brand visibility within 3-6 months.'
+    },
+    {
+      q: 'Do you offer flexible contracts or trial periods?',
+      a: 'Yes. We work with businesses of all sizes and offer flexible engagement models. Many clients start with a pilot campaign to test our approach before committing to longer-term partnerships.'
+    },
+    {
+      q: 'How do you keep campaigns optimized and relevant?',
+      a: 'We continuously monitor performance metrics, A/B test creative and targeting, and provide weekly or monthly optimization reports. Your dedicated account manager reviews performance with you regularly.'
+    },
+    {
+      q: 'What if I have a tight budget?',
+      a: 'We work with businesses at all budget levels. We help you prioritize high-impact activities and channels that deliver the best ROI for your specific constraints. Starting lean and scaling up is always an option.'
+    }
   ];
 
   return (
@@ -1520,25 +1553,24 @@ export default function ServiceDetailPage() {
             <div className="container">
               <div className={styles.revealChild}>
                 <h3 className={styles.showcaseTitle}>Frequently Asked Questions</h3>
-                <ul className={styles.faqList}>
+                <div className={styles.faqList}>
                   {faqs.map((f, i) => (
-                    <li key={i} className={`${styles.faqItem} ${openFaq === i ? 'open' : ''}`}>
-                      <div
+                    <div key={i} className={`${styles.faqItem} ${openFaq === i ? styles.open : ''}`}>
+                      <button
                         className={styles.faqQuestion}
                         onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpenFaq(openFaq === i ? null : i)}
                       >
                         <span>{f.q}</span>
-                        <span>{openFaq === i ? '−' : '+'}</span>
-                      </div>
+                        <span className={styles.faqIcon}>
+                          {openFaq === i ? <FaMinus /> : <FaPlus />}
+                        </span>
+                      </button>
                       <div className={styles.faqAnswer}>
-                        <p className="smallMuted">{f.a}</p>
+                        <p>{f.a}</p>
                       </div>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </section>
