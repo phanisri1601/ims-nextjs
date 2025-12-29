@@ -1310,10 +1310,43 @@ export default function ServiceDetailPage() {
   const topStyle = brandHover !== null ? { transform: topTransforms[brandHover % topTransforms.length] } : undefined;
   const bottomStyle = brandHover !== null ? { transform: bottomTransforms[brandHover % bottomTransforms.length] } : undefined;
 
-  // Stats
-  const statsRef = useRef<HTMLElement | null>(null);
-  const [counts, setCounts] = useState<number[]>([0, 0, 0]);
-  const statsTarget = [128, 8120, 4];
+  // Core Services Slider
+  const coreServicesRef = useRef<HTMLDivElement>(null);
+  const [coreServicesActiveIndex, setCoreServicesActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const grid = coreServicesRef.current;
+    if (!grid) return;
+
+    const handleScroll = () => {
+      const cardWidth = 350 + 24; // card width + gap
+      const scrollLeft = grid.scrollLeft;
+      const index = Math.round(scrollLeft / cardWidth);
+      setCoreServicesActiveIndex(Math.min(index, 5));
+    };
+
+    grid.addEventListener("scroll", handleScroll);
+    return () => grid.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollCoreServicesCard = (index: number) => {
+    if (coreServicesRef.current) {
+      const cardWidth = 350 + 24;
+      coreServicesRef.current.scrollTo({
+        left: index * cardWidth,
+        behavior: "smooth"
+      });
+      setCoreServicesActiveIndex(index);
+    }
+  };
+
+  const scrollCoreServicesLeft = () => {
+    scrollCoreServicesCard(Math.max(0, coreServicesActiveIndex - 1));
+  };
+
+  const scrollCoreServicesRight = () => {
+    scrollCoreServicesCard(Math.min(5, coreServicesActiveIndex + 1));
+  };
 
   // Reveal on scroll helper
   useEffect(() => {
@@ -1335,35 +1368,6 @@ export default function ServiceDetailPage() {
       clearTimeout(t);
       io.disconnect();
     };
-  }, []);
-
-  // Stats count up
-  useEffect(() => {
-    if (!statsRef.current) return;
-    let observer: IntersectionObserver | null = null;
-    const el = statsRef.current;
-
-    const startCounting = () => {
-      const start = performance.now();
-      const duration = 1000;
-      const update = (now: number) => {
-        const progress = Math.min(1, (now - start) / duration);
-        setCounts(statsTarget.map((target) => Math.round(target * progress)));
-        if (progress < 1) requestAnimationFrame(update);
-        else setCounts(statsTarget);
-      };
-      requestAnimationFrame(update);
-    };
-
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) startCounting();
-      });
-    }, { threshold: 0.3 });
-
-    observer.observe(el);
-
-    return () => observer && observer.disconnect();
   }, []);
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -1509,6 +1513,119 @@ export default function ServiceDetailPage() {
             </div>
           </section>
 
+          {/* Core Services Section */}
+          <section className={`${styles.coreServicesSection} revealOnScroll`} data-reveal="true">
+            <div className="container">
+              <div className={styles.revealChild}>
+                <h2 className={styles.showcaseTitle} style={{marginBottom: '3rem', textAlign: 'center'}}>Our Core Services</h2>
+                <div className={styles.coreServicesGrid} ref={coreServicesRef}>
+                  <div className={styles.coreServiceCard}>
+                    <div className={styles.serviceIconWrapper}>
+                      <img src="/services/pro-feature-1-left.svg" alt="Strategic Planning" className={styles.serviceIcon} />
+                    </div>
+                    <h3 className={styles.serviceCardTitle}>Strategic Planning</h3>
+                    <p className={styles.serviceCardDesc}>We develop comprehensive marketing strategies tailored to your business goals, analyzing market trends and competitor landscape to position your brand for success.</p>
+                  </div>
+
+                  <div className={styles.coreServiceCard}>
+                    <div className={styles.serviceIconWrapper}>
+                      <img src="/services/pro-feature-2-left.svg" alt="Creative Design" className={styles.serviceIcon} />
+                    </div>
+                    <h3 className={styles.serviceCardTitle}>Creative Design</h3>
+                    <p className={styles.serviceCardDesc}>Our creative team crafts visually stunning campaigns that capture attention and communicate your brand message effectively across all mediums.</p>
+                  </div>
+
+                  <div className={styles.coreServiceCard}>
+                    <div className={styles.serviceIconWrapper}>
+                      <img src="/services/pro-feature-3-left.svg" alt="Digital Excellence" className={styles.serviceIcon} />
+                    </div>
+                    <h3 className={styles.serviceCardTitle}>Digital Excellence</h3>
+                    <p className={styles.serviceCardDesc}>From SEO to social media, we deliver integrated digital solutions that drive traffic, engagement, and conversions for your business online.</p>
+                  </div>
+
+                  <div className={styles.coreServiceCard}>
+                    <div className={styles.serviceIconWrapper}>
+                      <img src="/services/pro-feature-4-left.svg" alt="Offline Impact" className={styles.serviceIcon} />
+                    </div>
+                    <h3 className={styles.serviceCardTitle}>Offline Impact</h3>
+                    <p className={styles.serviceCardDesc}>We create powerful offline campaigns including hoarding, bus branding, and experiential activations that build brand presence in the physical world.</p>
+                  </div>
+
+                  <div className={styles.coreServiceCard}>
+                    <div className={styles.serviceIconWrapper}>
+                      <img src="/services/pro-feature-5-left.svg" alt="Data-Driven Results" className={styles.serviceIcon} />
+                    </div>
+                    <h3 className={styles.serviceCardTitle}>Data-Driven Results</h3>
+                    <p className={styles.serviceCardDesc}>Every campaign is backed by analytics and insights. We track performance metrics and optimize continuously to deliver measurable ROI for your investment.</p>
+                  </div>
+
+                  <div className={styles.coreServiceCard}>
+                    <div className={styles.serviceIconWrapper}>
+                      <img src="/services/pro-thumb-6.svg" alt="Industry Expertise" className={styles.serviceIcon} />
+                    </div>
+                    <h3 className={styles.serviceCardTitle}>Industry Expertise</h3>
+                    <p className={styles.serviceCardDesc}>With experience across multiple industries, our team brings specialized knowledge to tackle unique challenges and opportunities in your market.</p>
+                  </div>
+                </div>
+
+                <div className={styles.arrowControls} style={{marginTop: '2rem'}}>
+                  <button 
+                    className={styles.arrowButton} 
+                    onClick={scrollCoreServicesLeft}
+                    aria-label="Previous service"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                  </button>
+                  <button 
+                    className={styles.arrowButton} 
+                    onClick={scrollCoreServicesRight}
+                    aria-label="Next service"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Why Choose Us Section */}
+          <section className={`${styles.whyChooseUsSection} revealOnScroll`} data-reveal="true">
+            <div className="container">
+              <div className={styles.revealChild}>
+                <div className={styles.whyChooseUsContent}>
+                  <div className={styles.whyChooseUsText}>
+                    <h2 className={styles.showcaseTitle}>WHY US?</h2>
+                    <div className={styles.whyChooseUsBody}>
+                      <p>Want to increase your online visibility and generate more leads for your business? IM Solutions is among the best and leading Marketing Companies in Bangalore excelling in providing top notch digital marketing services. As a leading Digital Marketing Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.</p>
+                      
+                      <p>IM Solutions not only creates digital content but also ensure they deliver an impact on your clients. Our Digital Marketing Campaigns are designed to generate leads and bring new customers across all digital platforms. We have a long history of delivering successful business outcomes for clients from diverse industry verticals. We owe this success to our motto of "Digital Excellence".</p>
+                      
+                      <p>We have become one of the best in the Online Reputation Management industry over the years because we work to ensure resulted-oriented digital marketing solutions and develop online reputation for your brand. We understand each brand is unique and their requirements are also different. That is why, we provide customizable solutions for your business. We negate the negative with online swords. We start by identifying the problem source, monitoring reviews, analyzing feedback and then building a reputation.</p>
+                      
+                      <h3 className={styles.whyChooseUsSubtitle}>IM Solutions offers the following advantages over other reputation management companies:</h3>
+                      
+                      <ul className={styles.whyChooseUsList}>
+                        <li>Proactive online reputation management solutions</li>
+                        <li>In-house outsourcing solution by experts</li>
+                        <li>Receive notifications Trusted Alerts and Reports</li>
+                        <li>Customisable scalable solutions</li>
+                        <li>Strengthening and building reputation</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className={styles.whyChooseUsImage}>
+                    <img src={service.heroImage ?? '/services/digital-marketing-1.svg'} alt="Why Choose IM Solutions" className={styles.whyChooseUsImg} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <section className={styles.summarySection} data-reveal="true" style={{marginTop: '0', paddingTop: '1rem'}}>
             <div className="container">
               {summaryBlocks.map((block, idx) => (
@@ -1523,28 +1640,6 @@ export default function ServiceDetailPage() {
                   </div>
                 </div>
               ))}
-            </div>
-          </section>
-
-          {/* Stats Section */}
-          <section ref={statsRef} data-reveal="true" className={`${styles.revealOnScroll} ${styles.statsSection}`}>
-            <div className="container">
-              <div className={styles.revealChild} style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem'}}>
-                <div className={styles.stat}>
-                  <div className={styles.statNumber}>{counts[0]}</div>
-                  <div className={styles.statLabel}>Campaigns Delivered</div>
-                </div>
-
-                <div className={styles.stat}>
-                  <div className={styles.statNumber}>{counts[1]}</div>
-                  <div className={styles.statLabel}>Leads Generated</div>
-                </div>
-
-                <div className={styles.stat}>
-                  <div className={styles.statNumber}>{counts[2]}x</div>
-                  <div className={styles.statLabel}>Avg. ROI</div>
-                </div>
-              </div>
             </div>
           </section>
 

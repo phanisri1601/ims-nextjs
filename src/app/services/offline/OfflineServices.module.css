@@ -25,7 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0);
     z-index: 1;
 }
 
@@ -359,6 +359,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    align-items: start;
+    grid-auto-flow: dense;
 }
 
 .faqItem {
