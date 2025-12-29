@@ -1,10 +1,11 @@
 'use client';
 
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
+import Link from 'next/link';
 import styles from './ServiceDetail.module.css';
-import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FiArrowRight } from 'react-icons/fi';
 
 
 const serviceData: {
@@ -1319,10 +1320,10 @@ export default function ServiceDetailPage() {
     if (!grid) return;
 
     const handleScroll = () => {
-      const cardWidth = 350 + 24; // card width + gap
+      const cardWidth = 380 + 32; // card width (380) + gap (2rem = 32px)
       const scrollLeft = grid.scrollLeft;
       const index = Math.round(scrollLeft / cardWidth);
-      setCoreServicesActiveIndex(Math.min(index, 5));
+      setCoreServicesActiveIndex(Math.min(index, totalServices - 1));
     };
 
     grid.addEventListener("scroll", handleScroll);
@@ -1331,7 +1332,7 @@ export default function ServiceDetailPage() {
 
   const scrollCoreServicesCard = (index: number) => {
     if (coreServicesRef.current) {
-      const cardWidth = 350 + 24;
+      const cardWidth = 380 + 32;
       coreServicesRef.current.scrollTo({
         left: index * cardWidth,
         behavior: "smooth"
@@ -1345,7 +1346,7 @@ export default function ServiceDetailPage() {
   };
 
   const scrollCoreServicesRight = () => {
-    scrollCoreServicesCard(Math.min(5, coreServicesActiveIndex + 1));
+    scrollCoreServicesCard(Math.min(totalServices - 1, coreServicesActiveIndex + 1));
   };
 
   // Reveal on scroll helper
@@ -1371,6 +1372,19 @@ export default function ServiceDetailPage() {
   }, []);
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Related Services Logic
+  const allServices = Object.entries(serviceData).map(([s, d]) => ({
+    slug: s,
+    title: d.title,
+    category: d.category,
+    image: d.heroImage || d.collageMain || '/services/pro-thumb-1.svg'
+  }));
+
+  const relatedServices = allServices.filter(s => s.category === service.category && s.slug !== slug);
+  // Duplicate for infinite effect - ensure enough items for smooth loop
+  const displayRelated = [...relatedServices, ...relatedServices];
+
   const faqs = [
     { 
       q: 'How long until we see results?', 
@@ -1409,6 +1423,42 @@ export default function ServiceDetailPage() {
       a: 'We work with businesses at all budget levels. We help you prioritize high-impact activities and channels that deliver the best ROI for your specific constraints. Starting lean and scaling up is always an option.'
     }
   ];
+
+  const coreServices = [
+    {
+      title: 'Strategic Planning',
+      desc: 'We develop comprehensive marketing strategies tailored to your business goals, analyzing market trends and competitor landscape to position your brand for success.',
+      icon: '/services/pro-feature-1-left.svg'
+    },
+    {
+      title: 'Creative Design',
+      desc: 'Our creative team crafts visually stunning campaigns that capture attention and communicate your brand message effectively across all mediums.',
+      icon: '/services/pro-feature-2-left.svg'
+    },
+    {
+      title: 'Digital Excellence',
+      desc: 'From SEO to social media, we deliver integrated digital solutions that drive traffic, engagement, and conversions for your business online.',
+      icon: '/services/pro-feature-3-left.svg'
+    },
+    {
+      title: 'Offline Impact',
+      desc: 'We create powerful offline campaigns including hoarding, bus branding, and experiential activations that build brand presence in the physical world.',
+      icon: '/services/pro-feature-4-left.svg'
+    },
+    {
+      title: 'Data-Driven Results',
+      desc: 'Every campaign is backed by analytics and insights. We track performance metrics and optimize continuously to deliver measurable ROI for your investment.',
+      icon: '/services/pro-feature-5-left.svg'
+    },
+    {
+      title: 'Industry Expertise',
+      desc: 'With experience across multiple industries, our team brings specialized knowledge to tackle unique challenges and opportunities in your market.',
+      icon: '/services/pro-thumb-6.svg'
+    }
+  ];
+
+  const totalServices = coreServices.length;
+  const progressPercentage = ((coreServicesActiveIndex + 1) / totalServices) * 100;
 
   return (
     <main className={styles.serviceDetail}>
@@ -1518,64 +1568,38 @@ export default function ServiceDetailPage() {
             <div className="container">
               <div className={styles.revealChild}>
                 <h2 className={styles.showcaseTitle} style={{marginBottom: '3rem', textAlign: 'center'}}>Our Core Services</h2>
+                
                 <div className={styles.coreServicesGrid} ref={coreServicesRef}>
-                  <div className={styles.coreServiceCard}>
-                    <div className={styles.serviceIconWrapper}>
-                      <img src="/services/pro-feature-1-left.svg" alt="Strategic Planning" className={styles.serviceIcon} />
+                  {coreServices.map((service, index) => (
+                    <div 
+                      key={index} 
+                      className={`${styles.coreServiceCard} ${coreServicesActiveIndex === index ? styles.active : ''}`}
+                    >
+                      <div className={styles.serviceIconWrapper}>
+                        <img src={service.icon} alt={service.title} className={styles.serviceIcon} />
+                      </div>
+                      <h3 className={styles.serviceCardTitle}>{service.title}</h3>
+                      <p className={styles.serviceCardDesc}>{service.desc}</p>
                     </div>
-                    <h3 className={styles.serviceCardTitle}>Strategic Planning</h3>
-                    <p className={styles.serviceCardDesc}>We develop comprehensive marketing strategies tailored to your business goals, analyzing market trends and competitor landscape to position your brand for success.</p>
-                  </div>
-
-                  <div className={styles.coreServiceCard}>
-                    <div className={styles.serviceIconWrapper}>
-                      <img src="/services/pro-feature-2-left.svg" alt="Creative Design" className={styles.serviceIcon} />
-                    </div>
-                    <h3 className={styles.serviceCardTitle}>Creative Design</h3>
-                    <p className={styles.serviceCardDesc}>Our creative team crafts visually stunning campaigns that capture attention and communicate your brand message effectively across all mediums.</p>
-                  </div>
-
-                  <div className={styles.coreServiceCard}>
-                    <div className={styles.serviceIconWrapper}>
-                      <img src="/services/pro-feature-3-left.svg" alt="Digital Excellence" className={styles.serviceIcon} />
-                    </div>
-                    <h3 className={styles.serviceCardTitle}>Digital Excellence</h3>
-                    <p className={styles.serviceCardDesc}>From SEO to social media, we deliver integrated digital solutions that drive traffic, engagement, and conversions for your business online.</p>
-                  </div>
-
-                  <div className={styles.coreServiceCard}>
-                    <div className={styles.serviceIconWrapper}>
-                      <img src="/services/pro-feature-4-left.svg" alt="Offline Impact" className={styles.serviceIcon} />
-                    </div>
-                    <h3 className={styles.serviceCardTitle}>Offline Impact</h3>
-                    <p className={styles.serviceCardDesc}>We create powerful offline campaigns including hoarding, bus branding, and experiential activations that build brand presence in the physical world.</p>
-                  </div>
-
-                  <div className={styles.coreServiceCard}>
-                    <div className={styles.serviceIconWrapper}>
-                      <img src="/services/pro-feature-5-left.svg" alt="Data-Driven Results" className={styles.serviceIcon} />
-                    </div>
-                    <h3 className={styles.serviceCardTitle}>Data-Driven Results</h3>
-                    <p className={styles.serviceCardDesc}>Every campaign is backed by analytics and insights. We track performance metrics and optimize continuously to deliver measurable ROI for your investment.</p>
-                  </div>
-
-                  <div className={styles.coreServiceCard}>
-                    <div className={styles.serviceIconWrapper}>
-                      <img src="/services/pro-thumb-6.svg" alt="Industry Expertise" className={styles.serviceIcon} />
-                    </div>
-                    <h3 className={styles.serviceCardTitle}>Industry Expertise</h3>
-                    <p className={styles.serviceCardDesc}>With experience across multiple industries, our team brings specialized knowledge to tackle unique challenges and opportunities in your market.</p>
-                  </div>
+                  ))}
                 </div>
 
-                <div className={styles.arrowControls} style={{marginTop: '2rem'}}>
+                <div className={styles.progressBarContainer}>
+                  <div 
+                    className={styles.progressBar} 
+                    style={{ width: `${progressPercentage}%` }}
+                  ></div>
+                </div>
+
+                <div className={styles.arrowControls}>
                   <button 
                     className={styles.arrowButton} 
                     onClick={scrollCoreServicesLeft}
                     aria-label="Previous service"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="15 18 9 12 15 6"></polyline>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="19" y1="12" x2="5" y2="12"></line>
+                      <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
                   </button>
                   <button 
@@ -1583,8 +1607,9 @@ export default function ServiceDetailPage() {
                     onClick={scrollCoreServicesRight}
                     aria-label="Next service"
                   >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="9 18 15 12 9 6"></polyline>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                   </button>
                 </div>
@@ -1596,17 +1621,29 @@ export default function ServiceDetailPage() {
           <section className={`${styles.whyChooseUsSection} revealOnScroll`} data-reveal="true">
             <div className="container">
               <div className={styles.revealChild}>
+                {/* Row 1: Intro and Impact */}
                 <div className={styles.whyChooseUsContent}>
                   <div className={styles.whyChooseUsText}>
                     <h2 className={styles.showcaseTitle}>WHY US?</h2>
                     <div className={styles.whyChooseUsBody}>
-                      <p>Want to increase your online visibility and generate more leads for your business? IM Solutions is among the best and leading Marketing Companies in Bangalore excelling in providing top notch digital marketing services. As a leading Digital Marketing Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.</p>
+                      <p>Want to increase your online visibility and generate more leads for your business? IM Solutions is among the best and leading Marketing Companies in Bangalore excelling in providing top notch digital marketing services. As a leading Digital Marketing Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.</p>
                       
-                      <p>IM Solutions not only creates digital content but also ensure they deliver an impact on your clients. Our Digital Marketing Campaigns are designed to generate leads and bring new customers across all digital platforms. We have a long history of delivering successful business outcomes for clients from diverse industry verticals. We owe this success to our motto of "Digital Excellence".</p>
                       
-                      <p>We have become one of the best in the Online Reputation Management industry over the years because we work to ensure resulted-oriented digital marketing solutions and develop online reputation for your brand. We understand each brand is unique and their requirements are also different. That is why, we provide customizable solutions for your business. We negate the negative with online swords. We start by identifying the problem source, monitoring reviews, analyzing feedback and then building a reputation.</p>
+                    </div>
+                  </div>
+
+                  <div className={styles.whyChooseUsImage}>
+                    <img src={service.heroImage ?? '/services/digital-marketing-1.svg'} alt="Why Choose IM Solutions" className={styles.whyChooseUsImg} />
+                  </div>
+                </div>
+
+                {/* Row 2: Reputation and Advantages (Reversed) */}
+                <div className={`${styles.whyChooseUsContent} ${styles.reverseRow}`}>
+                  <div className={styles.whyChooseUsText}>
+                    <div className={styles.whyChooseUsBody}>
                       
-                      <h3 className={styles.whyChooseUsSubtitle}>IM Solutions offers the following advantages over other reputation management companies:</h3>
+                      
+                      <h3 className={styles.whyChooseUsSubtitle}>IM Solutions offers the following advantages:</h3>
                       
                       <ul className={styles.whyChooseUsList}>
                         <li>Proactive online reputation management solutions</li>
@@ -1619,14 +1656,47 @@ export default function ServiceDetailPage() {
                   </div>
 
                   <div className={styles.whyChooseUsImage}>
-                    <img src={service.heroImage ?? '/services/digital-marketing-1.svg'} alt="Why Choose IM Solutions" className={styles.whyChooseUsImg} />
+                    <img src={service.collageTop ?? '/services/advertising-agency-1.svg'} alt="Our Advantages" className={styles.whyChooseUsImg} />
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          <section className={styles.summarySection} data-reveal="true" style={{marginTop: '0', paddingTop: '1rem'}}>
+          {/* Related Services Section */}
+          <section className={`${styles.relatedServicesSection} revealOnScroll`} data-reveal="true">
+            <div className="container">
+              <div className={styles.revealChild}>
+                <h2 className={styles.relatedServicesTitle}>Related Services</h2>
+              </div>
+            </div>
+            <div className={styles.marqueeContainer}>
+              <div className={styles.marqueeContent}>
+                {displayRelated.map((item, idx) => (
+                  <Link 
+                    key={idx} 
+                    href={`/services/${item.slug}`} 
+                    className={styles.relatedServiceCard}
+                  >
+                    <div 
+                      className={styles.relatedServiceImageWrapper}
+                      style={{ animationDelay: `${idx * 0.2}s` }}
+                    >
+                      <img src={item.image} alt={item.title} className={styles.relatedServiceImage} />
+                      <div className={styles.relatedServiceArrow}>
+                        <FiArrowRight />
+                      </div>
+                    </div>
+                    <div className={styles.relatedServiceInfo}>
+                      <h3 className={styles.relatedServiceName}>{item.title}</h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className={styles.summarySection} data-reveal="true">
             <div className="container">
               {summaryBlocks.map((block, idx) => (
                 <div key={idx} className={`${styles.summaryBlock} ${idx % 2 === 1 ? styles.reverse : ''}`}>
