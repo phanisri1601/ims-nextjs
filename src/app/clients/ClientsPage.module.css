@@ -7,16 +7,17 @@
 .hero {
   position: relative;
   padding: calc(var(--spacing-xl) * 3) 0 var(--spacing-xl);
-  background: radial-gradient(circle at 20% 20%, rgba(255, 0, 51, 0.15), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(255, 0, 51, 0.12), transparent 30%),
-    linear-gradient(135deg, #0b0508 0%, #090909 100%);
+  background: radial-gradient(circle at 20% 20%, rgba(255, 0, 51, 0.05), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(255, 0, 51, 0.04), transparent 30%),
+    var(--color-bg-primary);
   overflow: hidden;
+  color: var(--color-text-primary);
 }
 
 .heroGlow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 60% 40%, rgba(255, 0, 51, 0.08), transparent 45%);
+  background: radial-gradient(circle at 60% 40%, rgba(255, 0, 51, 0.03), transparent 45%);
   pointer-events: none;
 }
 
@@ -63,8 +64,8 @@
 .meta span {
   padding: 0.65rem 1rem;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 0, 51, 0.2);
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 0, 51, 0.1);
   color: var(--color-text-secondary);
   font-weight: 600;
 }

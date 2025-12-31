@@ -25,7 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
@@ -58,7 +58,7 @@
 .title {
     font-size: 3rem;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: #ffffff;
     margin-bottom: 1rem;
     position: relative;
     z-index: 2;
@@ -66,7 +66,7 @@
 
 .subtitle {
     font-size: 1.1rem;
-    color: var(--color-text-primary);
+    color: #ffffff;
     max-width: 600px;
     margin: 0 auto;
     position: relative;
@@ -161,7 +161,8 @@
 }
 
 .show {
-  /* marker class toggled from JSX to animate images */
+    opacity: 1;
+    will-change: transform, opacity;
 }
 
 .featuredList {
@@ -237,6 +238,28 @@
     opacity: 0; /* animated in */
     transform: translateY(8px) scale(0.995);
     animation: fadeUp 420ms ease-out forwards;
+}
+
+.serviceCard.noMotion {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+}
+
+.serviceCard.noMotion::before {
+    transition: none;
+}
+
+.serviceCard.noMotion .serviceThumb,
+.serviceCard.noMotion .serviceCardTitle,
+.serviceCard.noMotion .serviceCardDescription {
+    transition: none;
+}
+
+.serviceCard.noMotion .serviceCardDescription {
+    opacity: 1;
+    transform: none;
 }
 
 @keyframes fadeUp {
@@ -345,6 +368,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    align-items: start;
 }
 
 .faqItem {
@@ -426,6 +450,15 @@
     }
 }
 
+/* Adjust spacing between FAQs and related services */
+.faqs {
+    margin-bottom: 0;
+}
+
+.relatedServices {
+    margin-top: 0;
+}
+
 @media (max-width: 980px) {
     .featured {
         grid-template-columns: 1fr;
@@ -438,6 +471,7 @@
     }
 
     .featuredList {
+        grid-column: 1 / -1;
         padding: 0;
     }
 }
@@ -506,9 +540,20 @@
     }
 }
 
+@media (max-width: 768px) {
+    .serviceCard:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+}
+
 @media (max-width: 640px) {
     .container {
         padding: 90px 12px 35px;
+    }
+
+    .header {
+        padding: 60px 12px;
+        background-attachment: scroll;
     }
 
     .title {
@@ -520,12 +565,12 @@
     }
 
     .servicesGrid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: 1fr;
         gap: 1.2rem;
     }
 
     .serviceCard {
-        padding: 1.4rem 1.2rem;
+        padding: 1.25rem;
     }
 
     .serviceCardIcon {
@@ -745,5 +790,64 @@
     .faqAnswer p {
         font-size: 0.9rem;
         line-height: 1.6;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .leftImage, .rightImage {
+        display: none;
+    }
+
+    .serviceCard {
+        transform: none;
+    }
+
+    .serviceCard:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .serviceCardDescription {
+        opacity: 1;
+        transform: none;
+    }
+
+    .serviceCard:hover .serviceCardDescription {
+        opacity: 1;
+        transform: none;
+    }
+
+    .serviceCard:hover .serviceThumb {
+        transform: none;
+        filter: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .leftImage, .rightImage {
+        transition: none;
+    }
+
+    .leftImage .image.show,
+    .rightImage .image.show {
+        animation: none;
+    }
+
+    .serviceCard {
+        animation: none;
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .serviceThumb,
+    .serviceCardTitle,
+    .serviceCardDescription {
+        transition: none;
+    }
+
+    .serviceCardDescription {
+        opacity: 1;
+        transform: none;
     }
 }

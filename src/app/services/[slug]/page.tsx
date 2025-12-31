@@ -1502,7 +1502,7 @@ export default function ServiceDetailPage() {
           {/* New creative section: Build Your Brand */}
           <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true">
             <div className="container">
-              <div className="revealChild" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'center'}}>
+              <div className={`${styles.revealChild} ${styles.grid2}`}>
                 <div>
                   <h2 className={styles.showcaseTitle}>Our Advertising Agency Helps You Build Your Brand</h2>
                   <p className="smallMuted">We combine strategic thinking, creativity and media precision to craft campaigns that build visibility, preference and sales. Below are some ways we help brands grow.</p>

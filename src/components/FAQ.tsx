@@ -47,17 +47,22 @@ export default function FAQ() {
                         <ScrollReveal key={index} delay={0.3 + index * 0.15}>
                             <div
                                 className={`${styles.faqItem} ${openIndex === index ? styles.open : ''}`}
+                                aria-expanded={openIndex === index}
                             >
                                 <button
                                     className={styles.faqQuestion}
                                     onClick={() => toggleFAQ(index)}
+                                    aria-controls={`faq-answer-${index}`}
                                 >
                                     <span>{faq.question}</span>
                                     <span className={styles.icon}>
                                         {openIndex === index ? <FaMinus /> : <FaPlus />}
                                     </span>
                                 </button>
-                                <div className={styles.faqAnswer}>
+                                <div
+                                    id={`faq-answer-${index}`}
+                                    className={styles.faqAnswer}
+                                >
                                     <p>{faq.answer}</p>
                                 </div>
                             </div>

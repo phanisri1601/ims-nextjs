@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import styles from './OnlineServices.module.css';
-import { useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
 
@@ -158,6 +158,27 @@ export default function OnlineServicesPage() {
   const [imageTopRight, setImageTopRight] = useState<number | null>(null);
   const [imageLeft, setImageLeft] = useState<number | null>(null);
   const [imageRight, setImageRight] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mobileQuery = window.matchMedia('(max-width: 640px)');
+    const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const syncMobile = () => setIsMobile(mobileQuery.matches);
+    const syncReduceMotion = () => setReduceMotion(reduceMotionQuery.matches);
+
+    syncMobile();
+    syncReduceMotion();
+
+    mobileQuery.addEventListener('change', syncMobile);
+    reduceMotionQuery.addEventListener('change', syncReduceMotion);
+
+    return () => {
+      mobileQuery.removeEventListener('change', syncMobile);
+      reduceMotionQuery.removeEventListener('change', syncReduceMotion);
+    };
+  }, []);
 
   const handleEnter = (i: number) => {
     setActive(i);
@@ -295,9 +316,9 @@ export default function OnlineServicesPage() {
           <Link
             key={service.slug}
             href={`/services/${service.slug}`}
-            className={styles.serviceCard}
+            className={`${styles.serviceCard} ${reduceMotion ? styles.noMotion : ''}`}
             title={service.title}
-            style={{ animationDelay: `${index * 60}ms` }}
+            style={{ animationDelay: reduceMotion ? '0ms' : `${index * (isMobile ? 30 : 60)}ms` }}
           >
             <div className={styles.serviceThumbWrap}>
               <img src={service.image} alt={`${service.title} thumbnail`} className={styles.serviceThumb} />

@@ -281,6 +281,7 @@ export default function Header() {
             <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Contact Us</Link>
           </nav>
 
+          {/* Add hamburger menu button */}
           <button
             className={styles.menuToggle}
             onClick={() => setIsMenuOpen(!isMenuOpen)}

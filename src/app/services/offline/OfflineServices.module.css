@@ -25,7 +25,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1;
 }
 
@@ -58,7 +58,7 @@
 .title {
     font-size: 3rem;
     font-weight: 600;
-    color: var(--color-text-primary);
+    color: white;
     margin-bottom: 1rem;
     position: relative;
     z-index: 2;
@@ -66,7 +66,7 @@
 
 .subtitle {
     font-size: 1.1rem;
-    color: var(--color-text-primary);
+    color: white;
     max-width: 600px;
     margin: 0 auto;
     position: relative;
@@ -154,8 +154,6 @@
   100% { transform: translateX(0) scale(1); opacity: 1; }
 }
 
-.show { }
-
 .featuredItem {
     font-size: clamp(1.4rem, 4.4vw, 2.2rem);
     font-weight: 700;
@@ -213,6 +211,28 @@
     opacity: 0;
     transform: translateY(8px) scale(0.995);
     animation: fadeUp 420ms ease-out forwards;
+}
+
+.serviceCard.noMotion {
+    animation: none;
+    transition: none;
+    opacity: 1;
+    transform: none;
+}
+
+.serviceCard.noMotion::before {
+    transition: none;
+}
+
+.serviceCard.noMotion .serviceThumb,
+.serviceCard.noMotion .serviceCardTitle,
+.serviceCard.noMotion .serviceCardDescription {
+    transition: none;
+}
+
+.serviceCard.noMotion .serviceCardDescription {
+    opacity: 1;
+    transform: none;
 }
 
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -442,6 +462,31 @@
     }
 }
 
+/* Adjust spacing between FAQs and related services */
+.faqs {
+    margin-bottom: 0;
+}
+
+.relatedServices {
+    margin-top: 0;
+}
+
+@media (max-width: 980px) {
+    .featured {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 1rem;
+    }
+
+    .leftImage, .rightImage {
+        display: none;
+    }
+
+    .featuredList {
+        grid-column: 1 / -1;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 100px 15px 40px;
@@ -506,9 +551,19 @@
     }
 }
 
+@media (max-width: 768px) {
+    .serviceCard:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+}
+
 @media (max-width: 640px) {
     .container {
         padding: 90px 12px 35px;
+    }
+
+    .header {
+        background-attachment: scroll;
     }
 
     .title {
@@ -520,12 +575,12 @@
     }
 
     .servicesGrid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        grid-template-columns: 1fr;
         gap: 1.2rem;
     }
 
     .serviceCard {
-        padding: 1.4rem 1.2rem;
+        padding: 1.25rem;
     }
 
     .serviceCardIcon {
@@ -568,7 +623,18 @@
 
 @media (max-width: 480px) {
     .container {
-        padding: 80px 10px 30px;
+        padding: 80px 10px 40px;
+    }
+
+    .header {
+        padding: 60px 10px;
+        text-align: center;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .header::before {
+        background: rgba(0, 0, 0, 0.5);
     }
 
     .title {
@@ -581,7 +647,6 @@
     }
 
     .servicesGrid {
-        grid-template-columns: 1fr;
         gap: 1rem;
     }
 
@@ -633,5 +698,64 @@
     .faqAnswer p {
         font-size: 0.9rem;
         line-height: 1.6;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .leftImage, .rightImage {
+        display: none;
+    }
+
+    .serviceCard {
+        transform: none;
+    }
+
+    .serviceCard:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .serviceCardDescription {
+        opacity: 1;
+        transform: none;
+    }
+
+    .serviceCard:hover .serviceCardDescription {
+        opacity: 1;
+        transform: none;
+    }
+
+    .serviceCard:hover .serviceThumb {
+        transform: none;
+        filter: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .leftImage, .rightImage {
+        transition: none;
+    }
+
+    .leftImage .image.show,
+    .rightImage .image.show {
+        animation: none;
+    }
+
+    .serviceCard {
+        animation: none;
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .serviceThumb,
+    .serviceCardTitle,
+    .serviceCardDescription {
+        transition: none;
+    }
+
+    .serviceCardDescription {
+        opacity: 1;
+        transform: none;
     }
 }

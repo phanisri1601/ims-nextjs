@@ -67,14 +67,11 @@
 }
 
 .faqAnswer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.4s ease;
+    display: none;
 }
 
 .faqItem.open .faqAnswer {
-    max-height: 500px;
-    padding: 0 2rem 1.5rem;
+    display: block;
 }
 
 .faqAnswer p {
