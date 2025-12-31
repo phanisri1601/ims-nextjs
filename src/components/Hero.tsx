@@ -1,14 +1,13 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useReducedMotion, Variants } from 'framer-motion';
 import { FiSearch } from 'react-icons/fi';
+import { TypeAnimation } from 'react-type-animation';
 import styles from './Hero.module.css';
 import Background3D from './Background3D';
 
 export default function Hero() {
-    const searchPhrase = "Search for creative marketing solutions...";
-    const characters = Array.from(searchPhrase);
+    const reduceMotion = useReducedMotion();
 
     const expandVariants: Variants = {
         hidden: { 
@@ -27,23 +26,6 @@ export default function Hero() {
                 opacity: { duration: 0.4, delay: 0.3 }
             }
         },
-    };
-
-    const charContainerVariants: Variants = {
-        visible: {
-            transition: {
-                staggerChildren: 0.04,
-                delayChildren: 1.3
-            }
-        }
-    };
-
-    const charVariants: Variants = {
-        hidden: { opacity: 0 },
-        visible: { 
-            opacity: 1,
-            transition: { duration: 0.05 }
-        }
     };
 
     const containerVariants: Variants = {
@@ -95,19 +77,30 @@ export default function Hero() {
                         animate="visible"
                     >
                         <FiSearch className={styles.searchIcon} />
-                        <motion.div 
-                            className={styles.searchText}
-                            variants={charContainerVariants}
-                            initial="hidden"
-                            animate="visible"
-                        >
-                            {characters.map((char, i) => (
-                                <motion.span key={i} variants={charVariants}>
-                                    {char === " " ? "\u00A0" : char}
-                                </motion.span>
-                            ))}
+                        <div className={styles.searchText}>
+                            {reduceMotion ? (
+                                <span>Search for creative marketing solutions...</span>
+                            ) : (
+                                <TypeAnimation
+                                    sequence={[
+                                        'Search for creative marketing solutions...',
+                                        1200,
+                                        'Search for digital marketing services...',
+                                        1200,
+                                        'Search for branding & design services...',
+                                        1200,
+                                        'Search for offline advertising services...',
+                                        1200,
+                                    ]}
+                                    speed={55}
+                                    deletionSpeed={40}
+                                    repeat={Infinity}
+                                    wrapper="span"
+                                    cursor={false}
+                                />
+                            )}
                             <span className={styles.cursor} />
-                        </motion.div>
+                        </div>
                     </motion.div>
                 </div>
 
