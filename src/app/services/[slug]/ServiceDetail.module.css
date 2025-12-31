@@ -328,14 +328,14 @@
 /* Summary section: alternating content and image blocks */
 .summarySection {
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 .summaryBlock {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .summaryBlock:last-child {
@@ -409,17 +409,17 @@
 }
 
 /* When the section becomes visible, animate blocks and inner content with a stagger */
-.summarySection.is-visible .summaryBlock {
+.summarySection:global(.is-visible) .summaryBlock {
   opacity: 1;
   transform: translateY(0);
   transition: transform 520ms cubic-bezier(0.22,1,0.36,1), opacity 520ms ease;
 }
 
-.summarySection.is-visible .summaryBlock:nth-child(1) .summaryContent { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
-.summarySection.is-visible .summaryBlock:nth-child(1) .summaryImage { opacity: 1; transform: translateX(0); transition-delay: 0.16s; }
+.summarySection:global(.is-visible) .summaryBlock:nth-child(1) .summaryContent { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
+.summarySection:global(.is-visible) .summaryBlock:nth-child(1) .summaryImage { opacity: 1; transform: translateX(0); transition-delay: 0.16s; }
 
-.summarySection.is-visible .summaryBlock:nth-child(2) .summaryContent { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
-.summarySection.is-visible .summaryBlock:nth-child(2) .summaryImage { opacity: 1; transform: translateX(0); transition-delay: 0.16s; }
+.summarySection:global(.is-visible) .summaryBlock:nth-child(2) .summaryContent { opacity: 1; transform: translateX(0); transition-delay: 0.08s; }
+.summarySection:global(.is-visible) .summaryBlock:nth-child(2) .summaryImage { opacity: 1; transform: translateX(0); transition-delay: 0.16s; }
 
 /* Image subtle float and hover scale */
 @keyframes floatSmall { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
@@ -429,20 +429,19 @@
   transform-origin: center center;
 }
 
-.summaryImageWrap:hover .summaryImage,
 .summaryImage:hover {
   transform: scale(1.03) translateY(-6px);
   transition: transform 380ms cubic-bezier(0.22,1,0.36,1);
 }
 
 /* apply a very subtle floating animation after reveal */
-.summarySection.is-visible .summaryImage {
+.summarySection:global(.is-visible) .summaryImage {
   animation: floatSmall 6s ease-in-out infinite 1s;
 }
 
 /* Title reveals slightly delayed */
 .summaryTitle { opacity: 0; transform: translateY(8px); transition: opacity 520ms ease, transform 520ms cubic-bezier(0.22,1,0.36,1); }
-.summarySection.is-visible .summaryTitle { opacity: 1; transform: translateY(0); transition-delay: 0.04s; }
+.summarySection:global(.is-visible) .summaryTitle { opacity: 1; transform: translateY(0); transition-delay: 0.04s; }
 
 .featureBox,
 .benefitBox {
@@ -3667,7 +3666,7 @@
   }
 
   .relatedServicesSection {
-    padding: 1.5rem 0 0 0;
+    padding: 1.1rem 0 0 0;
   }
 
   .relatedServicesTitle {
@@ -3675,6 +3674,6 @@
   }
 
   .faqList {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
   }
 }

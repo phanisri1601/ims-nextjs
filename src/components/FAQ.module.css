@@ -72,6 +72,8 @@
 
 .faqItem.open .faqAnswer {
     display: block;
+    max-height: 600px;
+    padding: 0 2rem 1.5rem;
 }
 
 .faqAnswer p {

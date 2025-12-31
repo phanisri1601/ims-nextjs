@@ -3,6 +3,7 @@ import { Varela_Round } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const varelaRound = Varela_Round({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={varelaRound.variable}>
       <body className={varelaRound.className}>
+        <ScrollToTop />
         <Header />
         {children}
         <Footer />
