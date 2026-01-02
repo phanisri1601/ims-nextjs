@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion, useAnimation, useMotionValue, useVelocity, useTransform, useSpring } from "framer-motion";
+import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import styles from "./WhyChooseUs.module.css";
 
@@ -44,14 +44,6 @@ export default function WhyChooseUs() {
     const controls = useAnimation();
     const x = useMotionValue(0);
 
-    // Smooth Animation Physics
-    const xVelocity = useVelocity(x);
-    // Skew effect based on speed: faster drag = more skew
-    const skew = useTransform(xVelocity, [-1000, 1000], [0, 0]); // DISABLED SKEW for slightly more "professional" smooth feel, user said "like very good". 
-    // Actually, let's keep it subtle:
-    const skewEffect = useTransform(xVelocity, [-800, 800], [5, -5]);
-    const smoothSkew = useSpring(skewEffect, { stiffness: 400, damping: 30 });
-
     useEffect(() => {
         if (carouselRef.current) {
             setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
@@ -62,14 +54,14 @@ export default function WhyChooseUs() {
         const currentX = x.get();
         let newX = currentX + 350; // Card width approx
         if (newX > 0) newX = 0;
-        controls.start({ x: newX, transition: { type: "spring", stiffness: 300, damping: 30 } });
+        controls.start({ x: newX, transition: { type: "spring", stiffness: 200, damping: 25, mass: 0.5 } });
     };
 
     const slideRight = () => {
         const currentX = x.get();
         let newX = currentX - 350;
         if (newX < -width) newX = -width;
-        controls.start({ x: newX, transition: { type: "spring", stiffness: 300, damping: 30 } });
+        controls.start({ x: newX, transition: { type: "spring", stiffness: 200, damping: 25, mass: 0.5 } });
     };
 
     return (
@@ -88,16 +80,16 @@ export default function WhyChooseUs() {
                         dragConstraints={{ right: 0, left: -width }}
                         whileTap={{ cursor: "grabbing" }}
                         animate={controls}
-                        style={{ x, skewX: smoothSkew }}
-                        dragTransition={{ power: 0.3, timeConstant: 300 }}
-                        dragElastic={0.1}
+                        style={{ x }}
+                        dragTransition={{ power: 0.2, timeConstant: 200 }}
+                        dragElastic={0.05}
                     >
                         {reasons.map((reason, index) => (
                             <motion.div
                                 key={index}
                                 className={styles.card}
-                                whileHover={{ scale: 1.05, y: -10 }}
-                                transition={{ type: "spring", stiffness: 300 }}
+                                whileHover={{ y: -10 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                             >
                                 <div className={styles.imageWrapper}>
                                     <img src={reason.image} alt={reason.title} className={styles.cardImage} />
