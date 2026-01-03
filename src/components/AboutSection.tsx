@@ -86,15 +86,7 @@ function TiltImage() {
                 rotateY,
             }}
         >
-            <motion.div
-                animate={{
-                    y: [0, -15, 0],
-                }}
-                transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                }}
+            <div
                 style={{ width: "100%", height: "100%" }}
             >
                 <div
@@ -102,7 +94,7 @@ function TiltImage() {
                     role="img"
                     aria-label="IM Solutions banner"
                 />
-            </motion.div>
+            </div>
         </motion.div>
     );
 }
