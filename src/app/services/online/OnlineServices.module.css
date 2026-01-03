@@ -43,7 +43,7 @@
 .header {
     max-width: 100%;
     margin: 0 0 4rem 0;
-    padding: 80px 20px;
+    padding: 140px 20px;
     text-align: center;
     background-image: url('/wcu_marketing.png');
     background-size: cover;
@@ -634,7 +634,7 @@
     }
 
     .header {
-        padding: 60px 12px;
+        padding: 100px 12px;
         background-attachment: scroll;
     }
 

@@ -7,7 +7,7 @@
 .heroSection {
   position: relative;
   /* slightly taller to give the hero more presence */
-  min-height: 520px;
+  min-height: 650px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,12 +17,12 @@
 
 /* Responsive adjustments for hero height */
 @media (max-width: 1024px) {
-  .heroSection { min-height: 460px; }
+  .heroSection { min-height: 580px; }
 }
 
 @media (max-width: 768px) {
   .heroSection {
-    min-height: 360px;
+    min-height: 480px;
     margin-bottom: 1rem;
   }
 }
@@ -115,7 +115,7 @@
 
 @media (max-width: 480px) {
   .heroSection {
-    min-height: 380px;
+    min-height: 420px;
   }
 
   .serviceLabel {
