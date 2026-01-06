@@ -1,13 +1,12 @@
 .page {
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  --header-offset: 96px;
 }
 
 /* Hero Section */
 .hero {
   position: relative;
-  padding: calc(4rem + var(--header-offset)) var(--spacing-md) 4rem;
+  padding: 4rem var(--spacing-md);
   overflow: hidden;
 }
 
@@ -299,7 +298,7 @@
 /* Tablet Responsive */
 @media (max-width: 1024px) {
   .hero {
-    padding: calc(3rem + var(--header-offset)) var(--spacing-md) 3rem;
+    padding: 3rem var(--spacing-md);
   }
 
   .heroContent h1 {
@@ -346,7 +345,7 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .hero {
-    padding: calc(2.5rem + var(--header-offset)) var(--spacing-md) 2.5rem;
+    padding: 2.5rem var(--spacing-md);
   }
 
   .heroContent h1 {
@@ -422,7 +421,7 @@
 /* Small Mobile Responsive */
 @media (max-width: 480px) {
   .hero {
-    padding: calc(2rem + var(--header-offset)) 1rem 2rem;
+    padding: 2rem 1rem;
   }
 
   .heroContent h1 {

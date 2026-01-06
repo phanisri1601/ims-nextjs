@@ -1248,7 +1248,14 @@ export default function ServiceDetailPage() {
     notFound();
   }
 
-
+  // Short summary block(s) to render as alternating content/image sections
+  const summaryBlocks = [
+    {
+      title: 'Short Summary',
+      content: `IM Solutions is a full-service digital marketing and advertising company delivering innovative, ROI-driven solutions worldwide. With over a decade of experience, we help businesses increase traffic, generate quality leads, and boost sales through integrated digital strategies including SEO, Google Ads, PPC, display, video, mobile, and search advertising. Based in Bangalore, we focus on customized campaigns, data-driven strategies, and customer-first values to ensure maximum growth, strong brand presence, and measurable results for every client.`,
+      image: service.heroImage ?? service.collageMain ?? '/services/digital-marketing-1.svg'
+    }
+  ];
 
   const heroRef = useRef<HTMLDivElement | null>(null);
   const bgRef = useRef<HTMLImageElement | null>(null);
@@ -1689,7 +1696,22 @@ export default function ServiceDetailPage() {
             </div>
           </section>
 
+          <section className={styles.summarySection} data-reveal="true">
+            <div className="container">
+              {summaryBlocks.map((block, idx) => (
+                <div key={idx} className={`${styles.summaryBlock} ${idx % 2 === 1 ? styles.reverse : ''}`}>
+                  <div className={styles.summaryContent}>
+                    <h3 className={styles.summaryTitle}>{block.title}</h3>
+                    <p className={styles.summaryText}>{block.content}</p>
+                  </div>
 
+                  <div className={styles.summaryImageWrap} aria-hidden>
+                    <img src={block.image} alt={block.title} className={styles.summaryImage} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
 
           {/* FAQ Section */}
           <section data-reveal="true" className={styles.revealOnScroll}>

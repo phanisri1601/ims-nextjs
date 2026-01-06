@@ -54,7 +54,7 @@
     display: flex;
     gap: 2rem;
     padding-left: 1rem;
-    will-change: transform;
+    /* Initial offset */
 }
 
 /* Card Styling */
@@ -74,7 +74,6 @@
     align-items: center;
     /* Prevent text selection during drag */
     user-select: none;
-    will-change: transform;
 }
 
 .imageWrapper {

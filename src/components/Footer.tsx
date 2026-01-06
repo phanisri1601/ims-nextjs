@@ -57,7 +57,9 @@ export default function Footer() {
                     <ul className={styles.linkList}>
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/about">About</Link></li>
-                        <li><Link href="/services">Services</Link></li>
+                        <li><span className={styles.linkLabel}>Services</span></li>
+                        <li className={styles.subLinkItem}><Link href="/services/online">Online Services</Link></li>
+                        <li className={styles.subLinkItem}><Link href="/services/offline">Offline Services</Link></li>
                         <li><Link href="/blog">Blog</Link></li>
                         <li><Link href="/careers">Career</Link></li>
                         <li><Link href="/contact">Contact</Link></li>

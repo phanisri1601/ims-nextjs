@@ -1,6 +1,8 @@
 .faq {
     padding: var(--spacing-xl) 0;
     background: var(--color-bg-secondary);
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
 }
 
 .faqContainer {
@@ -73,7 +75,7 @@
 .faqItem.open .faqAnswer {
     display: block;
     max-height: 600px;
-    padding: 0 2rem 1.5rem;
+    padding: 0 2.5rem 1.5rem;
 }
 
 .faqAnswer p {
@@ -105,7 +107,7 @@
 
     .faqItem.open .faqAnswer {
         max-height: 600px;
-        padding: 0 1.75rem 1.25rem;
+        padding: 0 2rem 1.25rem;
     }
 }
 
@@ -137,7 +139,7 @@
     }
 
     .faqItem.open .faqAnswer {
-        padding: 0 1.5rem 1.25rem;
+        padding: 0 1.75rem 1.25rem;
         max-height: 600px;
     }
 
@@ -173,7 +175,7 @@
     }
 
     .faqItem.open .faqAnswer {
-        padding: 0 1.25rem 1rem;
+        padding: 0 1.5rem 1rem;
     }
 
     .faqAnswer p {

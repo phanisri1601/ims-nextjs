@@ -48,6 +48,8 @@
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
   --shadow-glow: 0 0 20px rgba(255, 0, 51, 0.15);
+
+  --header-height: 96px;
 }
 
 * {
@@ -68,6 +70,10 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+main {
+  padding-top: var(--header-height);
 }
 
 /* Typography */
@@ -108,7 +114,7 @@ a {
 }
 
 a:hover {
-  color: white;
+  color: var(--color-accent-secondary);
 }
 
 /* Container */
@@ -131,9 +137,21 @@ a:hover {
   }
 }
 
+@media (max-width: 768px) {
+  :root {
+    --header-height: 84px;
+  }
+}
+
 @media (max-width: 480px) {
   .container {
     padding: 0 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-height: 76px;
   }
 }
 

@@ -143,6 +143,16 @@
     margin: 0;
 }
 
+.linkLabel {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    display: inline-block;
+}
+
+.subLinkItem {
+    padding-left: 1rem;
+}
+
 .linkList a {
     color: var(--color-text-muted);
     text-decoration: none;

@@ -2,48 +2,12 @@
     min-height: 100vh;
     padding: 120px 20px 60px;
     background: linear-gradient(135deg, var(--color-bg-primary) 0%, rgba(255, 102, 0, 0.05) 100%);
-    position: relative;
-    overflow: hidden;
-}
-
-.container::before,
-.container::after {
-    content: '';
-    position: absolute;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0.55;
-    pointer-events: none;
-    z-index: 0;
-    animation: floatBlob 12s ease-in-out infinite;
-}
-
-.container::before {
-    top: -220px;
-    left: -220px;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 0, 51, 0.32), transparent 60%);
-}
-
-.container::after {
-    bottom: -240px;
-    right: -240px;
-    background: radial-gradient(circle at 70% 70%, rgba(255, 102, 0, 0.28), transparent 62%);
-    animation-duration: 14s;
-    animation-direction: reverse;
-}
-
-@keyframes floatBlob {
-    0% { transform: translate3d(0, 0, 0) scale(1); }
-    50% { transform: translate3d(18px, 22px, 0) scale(1.06); }
-    100% { transform: translate3d(0, 0, 0) scale(1); }
 }
 
 .header {
     max-width: 100%;
     margin: 0 0 4rem 0;
-    padding: 140px 20px;
+    padding: 80px 20px;
     text-align: center;
     background-image: url('/wcu_marketing.png');
     background-size: cover;
@@ -52,7 +16,6 @@
     background-repeat: no-repeat;
     position: relative;
     animation: backgroundFadeIn 0.8s ease-out;
-    overflow: hidden;
 }
 
 .header::before {
@@ -64,24 +27,6 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
-}
-
-.header::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 20% 10%, rgba(255, 102, 0, 0.22), transparent 55%),
-        radial-gradient(circle at 80% 90%, rgba(255, 0, 51, 0.18), transparent 60%);
-    opacity: 0.9;
-    z-index: 1;
-    mix-blend-mode: screen;
-    animation: headerGlowDrift 10s ease-in-out infinite;
-}
-
-@keyframes headerGlowDrift {
-    0% { transform: translate3d(0, 0, 0) scale(1); }
-    50% { transform: translate3d(-10px, 8px, 0) scale(1.02); }
-    100% { transform: translate3d(0, 0, 0) scale(1); }
 }
 
 @keyframes backgroundFadeIn {
@@ -274,8 +219,6 @@
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1;
 }
 
 .serviceCard {
@@ -285,14 +228,13 @@
     padding: 1.25rem;
     text-decoration: none;
     color: inherit;
-    transition: transform 520ms cubic-bezier(.2,.9,.2,1), box-shadow 520ms cubic-bezier(.2,.9,.2,1), border-color 260ms ease;
+    transition: transform 360ms cubic-bezier(.2,.9,.2,1), box-shadow 360ms cubic-bezier(.2,.9,.2,1), border-color 260ms ease;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     text-align: left;
     position: relative;
     overflow: hidden;
-    will-change: transform, box-shadow;
     opacity: 0; /* animated in */
     transform: translateY(8px) scale(0.995);
     animation: fadeUp 420ms ease-out forwards;
@@ -333,38 +275,14 @@
     transition: opacity 0.4s ease;
 }
 
-.serviceCard::after {
-    content: '';
-    position: absolute;
-    top: -40%;
-    left: -60%;
-    width: 60%;
-    height: 180%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
-    transform: rotate(18deg) translateX(-40%);
-    opacity: 0;
-    pointer-events: none;
-}
-
 .serviceCard:hover {
     border-color: var(--color-accent-primary);
     box-shadow: 0 20px 40px rgba(255, 102, 0, 0.2), 0 0 20px rgba(255, 102, 0, 0.1);
-    transform: translateY(-12px) scale(1.02) perspective(900px) rotateX(2deg) rotateY(-2deg);
+    transform: translateY(-12px) scale(1.02);
 }
 
 .serviceCard:hover::before {
     opacity: 1;
-}
-
-.serviceCard:hover::after {
-    opacity: 1;
-    animation: cardShimmer 900ms ease-out;
-}
-
-@keyframes cardShimmer {
-    0% { transform: rotate(18deg) translateX(-70%); opacity: 0; }
-    20% { opacity: 0.9; }
-    100% { transform: rotate(18deg) translateX(170%); opacity: 0; }
 }
 
 .serviceThumbWrap {
@@ -634,7 +552,7 @@
     }
 
     .header {
-        padding: 100px 12px;
+        padding: 60px 12px;
         background-attachment: scroll;
     }
 
@@ -903,10 +821,6 @@
         transform: none;
         filter: none;
     }
-
-    .serviceCard::after {
-        display: none;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -935,15 +849,5 @@
     .serviceCardDescription {
         opacity: 1;
         transform: none;
-    }
-
-    .container::before,
-    .container::after,
-    .header::after {
-        animation: none;
-    }
-
-    .serviceCard::after {
-        display: none;
     }
 }

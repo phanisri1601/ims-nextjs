@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Varela_Round } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -26,6 +27,39 @@ export default function RootLayout({
   return (
     <html lang="en" className={varelaRound.variable}>
       <body className={varelaRound.className}>
+        <Script
+          src="https://aichatbot-b8883.el.r.appspot.com/static/chatbot-widget.js"
+          strategy="afterInteractive"
+        />
+        <Script id="chatbot-widget-config" strategy="afterInteractive">
+          {`(function () {
+  if (typeof window === 'undefined') return;
+
+  var config = {
+    apiUrl: 'https://aichatbot-b8883.el.r.appspot.com',
+    username: 'IMS',
+    botId: '7e33b9c8-3252-4f35-99f5-40bf0ccbfb36'
+  };
+
+  var attempts = 0;
+  var maxAttempts = 50;
+
+  function tryInit() {
+    var widget = window.ChatbotWidget;
+    if (widget && typeof widget.updateConfig === 'function') {
+      widget.updateConfig(config);
+      return;
+    }
+
+    attempts += 1;
+    if (attempts < maxAttempts) {
+      setTimeout(tryInit, 100);
+    }
+  }
+
+  tryInit();
+})();`}
+        </Script>
         <Suspense fallback={null}>
           <ScrollToTop />
         </Suspense>
