@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
-import { MdMail, MdPhone } from 'react-icons/md';
+import { FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { MdMail, MdPhone, MdLocationOn } from 'react-icons/md';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -30,25 +31,16 @@ export default function Footer() {
                             <MdPhone className={styles.icon} />
                             <a href="tel:+918880564488">+91 888 056 4488</a>
                         </div>
+                        <div className={styles.contactItem}>
+                            <MdLocationOn className={styles.icon} />
+                            <p>921, Laxmi Tower, 4th Floor, 5th Main Rd, Sector 7, HSR Layout, Bengaluru, Karnataka 560102</p>
+                        </div>
                     </div>
                     <div className={styles.socialLinks}>
-                        <span>Follow Us :</span>
                         <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-                        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-                        <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+                        <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
+                        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                     </div>
-                </div>
-
-                {/* Address Section */}
-                <div className={styles.footerColumn}>
-                    <h4 className={styles.columnTitle}>Address</h4>
-                    <div className={styles.addressBlock}>
-                        <h5 className={styles.addressTitle}>Corporate Office</h5>
-                        <p className={styles.addressText}>
-                            921, Laxmi Tower, 4th Floor, 5th Main Rd, Sector 7, HSR Layout, Bengaluru, Karnataka 560102
-                        </p>
-                    </div>
-                    
                 </div>
 
                 {/* Quick Links Section */}
