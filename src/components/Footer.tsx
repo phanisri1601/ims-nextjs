@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 import { MdMail, MdPhone } from 'react-icons/md';
 import styles from './Footer.module.css';
 
@@ -21,6 +22,14 @@ export default function Footer() {
                         <img src="/weblogo.png" alt="IM Solutions Logo" className={styles.logoImage} />
                         <p className={styles.tagline}>Your Path Our Success</p>
                     </div>
+
+                    <div className={styles.addressBlock}>
+                        <h5 className={styles.addressTitle}>Corporate Office</h5>
+                        <p className={styles.addressText}>
+                            921, Laxmi Tower, 4th Floor, 5th Main Rd, Sector 7, HSR Layout, Bengaluru, Karnataka 560102
+                        </p>
+                    </div>
+
                     <div className={styles.contact}>
                         <div className={styles.contactItem}>
                             <MdMail className={styles.icon} />
@@ -34,21 +43,10 @@ export default function Footer() {
                     <div className={styles.socialLinks}>
                         <span>Follow Us :</span>
                         <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-                        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+                        <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
+                        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                         <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
                     </div>
-                </div>
-
-                {/* Address Section */}
-                <div className={styles.footerColumn}>
-                    <h4 className={styles.columnTitle}>Address</h4>
-                    <div className={styles.addressBlock}>
-                        <h5 className={styles.addressTitle}>Corporate Office</h5>
-                        <p className={styles.addressText}>
-                            921, Laxmi Tower, 4th Floor, 5th Main Rd, Sector 7, HSR Layout, Bengaluru, Karnataka 560102
-                        </p>
-                    </div>
-                    
                 </div>
 
                 {/* Quick Links Section */}
@@ -57,9 +55,13 @@ export default function Footer() {
                     <ul className={styles.linkList}>
                         <li><Link href="/">Home</Link></li>
                         <li><Link href="/about">About</Link></li>
-                        <li><span className={styles.linkLabel}>Services</span></li>
-                        <li className={styles.subLinkItem}><Link href="/services/online">Online Services</Link></li>
-                        <li className={styles.subLinkItem}><Link href="/services/offline">Offline Services</Link></li>
+                        <li className={styles.servicesGroup}>
+                            <span className={styles.linkLabel} tabIndex={0}>Services</span>
+                            <ul className={styles.servicesSubLinks}>
+                                <li className={styles.subLinkItem}><Link href="/services/online">Online Services</Link></li>
+                                <li className={styles.subLinkItem}><Link href="/services/offline">Offline Services</Link></li>
+                            </ul>
+                        </li>
                         <li><Link href="/blog">Blog</Link></li>
                         <li><Link href="/careers">Career</Link></li>
                         <li><Link href="/contact">Contact</Link></li>
@@ -73,7 +75,16 @@ export default function Footer() {
                     <form className={styles.contactForm} onSubmit={handleSubmit}>
                         <input type="text" placeholder="Name" required />
                         <input type="email" placeholder="Email" required />
-                        <input type="tel" placeholder="+91 Phone Number" required />
+                        <div className={styles.phoneRow}>
+                            <select className={styles.countryCodeSelect} defaultValue={"+91"} aria-label="Country code">
+                                <option value={"+91"}>IN +91</option>
+                                <option value={"+1"}>US +1</option>
+                                <option value={"+44"}>UK +44</option>
+                                <option value={"+971"}>UAE +971</option>
+                                <option value={"+61"}>AU +61</option>
+                            </select>
+                            <input className={styles.phoneInput} type="tel" placeholder="Phone Number" required />
+                        </div>
                         <textarea placeholder="Message" rows={3} required></textarea>
                         <button type="submit" className={styles.submitBtn}>Submit</button>
                     </form>
@@ -82,7 +93,7 @@ export default function Footer() {
 
             {/* Footer Bottom */}
             <div className={styles.footerBottom}>
-                <p>&copy; Copyright {new Date().getFullYear()} IM Solutions</p>
+                <p>&copy; Copyright 2013 - {new Date().getFullYear()} IM Solutions</p>
                 <div className={styles.bottomLinks}>
                     <Link href="/privacy">Privacy policy</Link>
                     <Link href="/terms">Terms and conditions</Link>

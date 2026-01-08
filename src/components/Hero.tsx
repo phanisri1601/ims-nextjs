@@ -79,17 +79,17 @@ export default function Hero() {
                         <FiSearch className={styles.searchIcon} />
                         <div className={styles.searchText}>
                             {reduceMotion ? (
-                                <span>Search for creative marketing solutions...</span>
+                                <span>Creative marketing solutions...</span>
                             ) : (
                                 <TypeAnimation
                                     sequence={[
-                                        'Search for creative marketing solutions...',
+                                        'Creative marketing solutions...',
                                         1200,
-                                        'Search for digital marketing services...',
+                                        'Digital marketing services...',
                                         1200,
-                                        'Search for branding & design services...',
+                                        'Branding & design services...',
                                         1200,
-                                        'Search for offline advertising services...',
+                                        'Offline advertising services...',
                                         1200,
                                     ]}
                                     speed={55}
