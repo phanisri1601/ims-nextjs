@@ -18,9 +18,9 @@ const VideoSection = () => {
     // Momentum Physics (Spring Smoothing)
     // damping: higher = less oscillation, stiffness: lower = looser spring
     const smoothProgress = useSpring(scrollYProgress, {
-        damping: 20,
-        stiffness: 100,
-        mass: 0.5
+        damping: 26,
+        stiffness: 240,
+        mass: 0.35
     });
 
     // Animation Mappings - IMMERSIVE FULL SCREEN EFFECT
@@ -31,18 +31,18 @@ const VideoSection = () => {
     // or use scale with a specific container setup. 
     // Let's use Scale for smooth GPU perf, relying on the container being 100vw base.
     // Start: 0.6 (Small Box) -> End: 1.0 (Full Screen 100vw)
-    const containerScale = useTransform(smoothProgress, [0, 1], [0.6, 1]);
+    const containerScale = useTransform(smoothProgress, [0, 0.6], [0.45, 1]);
 
     // 2. Border Radius:
     // Starts Rounded (40px) -> Becomes Sharp/Full Screen (0px)
-    const containerRadius = useTransform(smoothProgress, [0, 0.8], ["40px", "0px"]);
+    const containerRadius = useTransform(smoothProgress, [0, 0.5], ["40px", "0px"]);
 
     // 3. Opacity: Fades in
     const containerOpacity = useTransform(smoothProgress, [0, 0.1], [0.8, 1]);
 
     // 4. Parallax Video: 
     // As container grows, video moves slightly to create depth window
-    const videoY = useTransform(smoothProgress, [0, 1], ["-15%", "0%"]); // Ends centered
+    const videoY = useTransform(smoothProgress, [0, 0.8], ["-15%", "0%"]); // Ends centered
 
     // Autoplay Logic
     useEffect(() => {
