@@ -95,6 +95,8 @@
     line-height: 1.8;
     color: var(--color-text-secondary);
     margin-bottom: 0;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 .description p {
@@ -256,6 +258,8 @@
     .description {
         font-size: clamp(0.8rem, 1vw, 0.9rem);
         line-height: 1.6;
+        text-align: left;
+        text-justify: auto;
     }
 
     .description p {

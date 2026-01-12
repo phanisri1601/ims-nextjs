@@ -129,6 +129,11 @@
     position: relative;
     z-index: 2;
     background: var(--color-surface-elevated);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
 
 .cardTitle {
@@ -136,12 +141,16 @@
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: var(--color-text-primary);
+    text-align: center !important;
+    width: 100%;
 }
 
 .cardDesc {
     font-size: 1rem;
     color: var(--color-text-secondary);
     line-height: 1.6;
+    text-align: center !important;
+    width: 100%;
 }
 
 @media (max-width: 1024px) {
