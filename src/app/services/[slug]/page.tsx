@@ -21,6 +21,7 @@ const serviceData: {
     collageMain?: string;
     collageTop?: string;
     collageBottom?: string;
+    faqs?: { q: string; a: string }[];
   };
 } = {
 
@@ -622,23 +623,54 @@ const serviceData: {
   },
   'bus-branding': {
     title: 'Bus Branding',
-    description: 'High-impact bus advertising solutions.',
-    longDescription: 'Reach thousands of commuters with our comprehensive bus branding and advertising solutions.',
+    description: 'IM Solutions is a reputed Bus Branding Agency offering services in Bangalore, Karnataka. We do interior/exterior branding on BMTC, KSRTC, Volvo buses.',
+    longDescription: `
+      <h2>Bus Branding</h2>
+      <h3>Bus advertisement</h3>
+      <p>The good thing about bus advertisement is that it offers various options for you to choose from like Parisaravahini buses that are usually very cost effective option and there are AC buses such as VayuVajra buses, offering premium bus advertisement option. Bus branding in Bangalore is right option for businesses which are focusing on a specific region or location to achieve the right visibility.</p>
+      <p>Bus advertisement brings with it innovative, color, and large designs which draw attention of commuters and the best thing is that it is a type of advertisement that no one can switch off. Moreover, it provides brands complete exclusivity in advertising space they are targeting and delivers the right results.</p>
+    `,
     features: [
-      'Interior & Exterior Wraps',
-      'Strategic Placement',
-      'Design Services',
-      'Installation Support',
-      'Wide Coverage',
-      'Long Visibility'
+      'Non AC Buses',
+      'AC Buses',
+      'KSRTC',
+      'Full Bus Interior',
+      'Full Bus Exterior',
+      'Full Bus'
     ],
     benefits: [
-      'High Visibility',
-      'Daily Impressions',
-      'Local Targeting',
-      'Cost-Effective',
-      'Brand Recall',
-      'Continuous Exposure'
+      'Target the right commuters across localities',
+      'Inform about offers and discounts using large ad space',
+      'Deliver your branding message to the masses at low cost',
+      'High exposure (people cannot switch it off)',
+      'Round-the-clock visibility as buses commute daily',
+      'Reach a large audience base across the city'
+    ],
+    faqs: [
+      {
+        q: 'Why bus branding is so popular?',
+        a: 'There are various reasons behind popularity of bus branding. First of all, people cannot turn it off, as happens with TV or radio ads, giving your ads greater exposure. Secondly, buses commute on daily basis, which ensure round-the-clock visibility of your ads. Lastly, buses reach every part of the city, helping you reach a large audience base.'
+      },
+      {
+        q: 'What are the dimension details for interior branding on AC Buses?',
+        a: 'The following are the dimension details: Driver Seat Back – 20 W x 30 H Inches; Passenger Seat Back – 11 W x 8 H Inches.'
+      },
+      {
+        q: 'What is the duration for bus advertisement?',
+        a: 'Campaign duration can be 1 month/ 2 months/ 3 months, depending upon your requirement and budget.'
+      },
+      {
+        q: 'What are the different media options?',
+        a: 'Media options include Full Bus Interior/ Full Bus Exterior/ Full Bus.'
+      },
+      {
+        q: 'How can I know that my bus ad has been executed?',
+        a: 'We will be sharing the execution pictures within two working days after the campaign goes live.'
+      },
+      {
+        q: 'What are the marketing goals that bus advertisement can help us achieve?',
+        a: 'Bus branding can help you accomplish different marketing goals such as promotion of seasonal specials, announcement of new products, and also for general branding.'
+      }
     ],
     category: 'offline'
   },
@@ -1382,10 +1414,11 @@ export default function ServiceDetailPage() {
   }));
 
   const relatedServices = allServices.filter(s => s.category === service.category && s.slug !== slug);
-  // Duplicate for infinite effect - ensure enough items for smooth loop
-  const displayRelated = [...relatedServices, ...relatedServices];
+  // Keep a short, focused list for Related Services — show up to 4 items
+  const limitedRelated = relatedServices.slice(0, 4);
+  const displayRelated = limitedRelated;
 
-  const faqs = [
+  const defaultFaqs = [
     { 
       q: 'How long until we see results?', 
       a: 'Depending on the channel, initial impact can be seen within a few weeks; measurable outcomes typically within 60-90 days.'
@@ -1423,6 +1456,8 @@ export default function ServiceDetailPage() {
       a: 'We work with businesses at all budget levels. We help you prioritize high-impact activities and channels that deliver the best ROI for your specific constraints. Starting lean and scaling up is always an option.'
     }
   ];
+
+  const displayFaqs = (service.faqs ?? defaultFaqs).slice(0, 7);
 
   const coreServices = [
     {
@@ -1680,7 +1715,6 @@ export default function ServiceDetailPage() {
                   >
                     <div 
                       className={styles.relatedServiceImageWrapper}
-                      style={{ animationDelay: `${idx * 0.2}s` }}
                     >
                       <img src={item.image} alt={item.title} className={styles.relatedServiceImage} />
                       <div className={styles.relatedServiceArrow}>
@@ -1719,7 +1753,7 @@ export default function ServiceDetailPage() {
               <div className={styles.revealChild}>
                 <h3 className={styles.showcaseTitle}>Frequently Asked Questions</h3>
                 <div className={styles.faqList}>
-                  {faqs.map((f, i) => (
+                  {displayFaqs.map((f, i) => (
                     <div key={i} className={`${styles.faqItem} ${openFaq === i ? styles.open : ''}`}>
                       <button
                         className={styles.faqQuestion}

@@ -26,59 +26,8 @@ function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+import { serviceUrlMap } from '../data/services';
 import styles from './Header.module.css';
-
-const serviceUrlMap: { [key: string]: string } = {
-  'Advertising Agency In Bangalore': '/services/advertising-agency-bangalore',
-  'Digital Marketing Service': '/services/digital-marketing-service',
-  'Search Engine Optimization': '/services/seo',
-  'Search Engine Marketing': '/services/sem',
-  'Online Reputation Management': '/services/online-reputation-management',
-  'Website Designing and Development': '/services/website-design-development',
-  'Social Media Optimization': '/services/social-media-optimization',
-  'Social Media Marketing': '/services/social-media-marketing',
-  'Software Design & Development': '/services/software-design-development',
-  'Geolocation Analytical SMS': '/services/geolocation-sms',
-  'AI Advertising Agency': '/services/ai-advertising-agency',
-  'Creative Designing': '/services/creative-designing',
-  'API Integration': '/services/api-integration',
-  'Ecommerce Solutions': '/services/ecommerce-solutions',
-  'Email Marketing': '/services/email-marketing',
-  'Mobile Application Development': '/services/mobile-app-development',
-  'Real Estate Online Marketing Service': '/services/real-estate-marketing',
-  'Display Advertisement': '/services/display-advertisement',
-  'Blog Articles': '/services/blog-articles',
-  'Classified Portal Management': '/services/classified-portal',
-  'Press Releases Services': '/services/press-releases',
-  'Bus Branding': '/services/bus-branding',
-  'RWA Activation': '/services/rwa-activation',
-  'BTL Advertising': '/services/btl-advertising',
-  'Advertising Activities In Malls & Multiplex': '/services/mall-advertising',
-  'Advertisements In Tech Parks': '/services/tech-park-ads',
-  'Advertising in Airports': '/services/airport-advertising',
-  'Paper Insertion': '/services/paper-insertion',
-  'Advertisements In Cafes Gyms & Super Markets': '/services/cafe-gym-ads',
-  'Advertisement in ATMs': '/services/atm-ads',
-  'Auto Rickshaw Advertising': '/services/auto-rickshaw-ads',
-  'Advertisement in Magazines': '/services/magazine-ads',
-  'Advertising in Public & Private Parking Lots': '/services/parking-ads',
-  'Branding Re-Branding': '/services/branding-rebranding',
-  'Corporate Gifts': '/services/corporate-gifts',
-  'Corporate Training Services': '/services/corporate-training',
-  'Event Management': '/services/event-management',
-  'FM Campaigns': '/services/fm-campaigns',
-  'Fabrications': '/services/fabrications',
-  'Hoarding Services': '/services/hoarding-services',
-  'Marketing Collaterals': '/services/marketing-collaterals',
-  'Marketing Services for Start-ups': '/services/startup-marketing',
-  'Photographic Services': '/services/photographic-services',
-  'PR Services': '/services/pr-services',
-  'Printing Services': '/services/printing-services',
-  'Retail Advertising': '/services/retail-advertising',
-  'Real Estate Videography': '/services/real-estate-videography',
-  'Signage': '/services/signage',
-  'Washroom Advertising': '/services/washroom-advertising',
-};
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -183,14 +132,6 @@ export default function Header() {
         </Link>
 
           <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-            <button
-              className={styles.closeMenu}
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <TimesIcon />
-            </button>
-            
             <Link href="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link href="/about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>About Us</Link>
 

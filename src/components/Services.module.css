@@ -4,7 +4,7 @@
 }
 
 .subtitle {
-    text-align: center;
+    text-align: left;
     max-width: 700px;
     margin: -2rem auto 3rem;
     font-size: 1.1rem;
@@ -37,6 +37,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem 2rem;
+    justify-items: start;
+    align-content: start;
 }
 
 .serviceLink {
@@ -47,6 +49,8 @@
     transition: all 0.3s ease;
     font-size: 0.95rem;
     line-height: 1.5;
+    text-align: left;
+    justify-self: start;
     will-change: transform, color;
 }
 
