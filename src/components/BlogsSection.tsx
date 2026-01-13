@@ -66,7 +66,8 @@ export default function BlogsSection() {
                                     <motion.div
                                         key={c.key}
                                         className={styles.card}
-                                        initial={{ opacity: 0, y: 14 }}
+                                        initial={{ opacity: 1, y: 0 }}
+                                        animate={{ opacity: 1, y: 0 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, amount: 0.25 }}
                                         transition={{ duration: 0.45, ease: "easeOut" }}
@@ -85,6 +86,7 @@ export default function BlogsSection() {
                                         key={c.key}
                                         className={styles.card}
                                         style={{ x: xLeft, scale: scaleSide }}
+                                        animate={{ opacity: 1 }}
                                     >
                                         <img src={c.post.image} alt={c.post.title} className={styles.image} />
                                         <div className={styles.overlay}>
@@ -100,6 +102,7 @@ export default function BlogsSection() {
                                         key={c.key}
                                         className={styles.card}
                                         style={{ x: xRight, scale: scaleSide }}
+                                        animate={{ opacity: 1 }}
                                     >
                                         <img src={c.post.image} alt={c.post.title} className={styles.image} />
                                         <div className={styles.overlay}>
@@ -114,6 +117,7 @@ export default function BlogsSection() {
                                     key={c.key}
                                     className={styles.card}
                                     style={{ z: zCenter, scale: scaleCenter, zIndex: 10 }}
+                                    animate={{ opacity: 1 }}
                                 >
                                     <img src={c.post.image} alt={c.post.title} className={styles.image} />
                                     <div className={styles.overlay}>

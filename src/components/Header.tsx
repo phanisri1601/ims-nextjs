@@ -141,6 +141,157 @@ export default function Header() {
       .replace(/\s+/g, ' ')
       .trim();
 
+  const isQuestionIntent = (rawTranscript: string) => {
+    const t = normalize(rawTranscript);
+    return (
+      t.startsWith('what is') ||
+      t.startsWith('who is') ||
+      t.startsWith('where is') ||
+      t.startsWith('when') ||
+      t.startsWith('why') ||
+      t.startsWith('how') ||
+      t.startsWith('explain') ||
+      t.startsWith('tell me') ||
+      t.startsWith('describe') ||
+      t.includes('what is') ||
+      t.includes('explain')
+    );
+  };
+
+  const isExplicitNavigationRequest = (rawTranscript: string) => {
+    const t = normalize(rawTranscript);
+    return (
+      t.includes('go to') ||
+      t.includes('open') ||
+      t.includes('navigate') ||
+      t.includes('take me') ||
+      t.includes('show me')
+    );
+  };
+
+  const speak = (text: string) => {
+    if (typeof window === 'undefined') return;
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+
+    try {
+      synth.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.rate = 1;
+      synth.speak(utter);
+    } catch {
+      // ignore
+    }
+  };
+
+  const speakAsync = (text: string, timeoutMs = 4000) => {
+    return new Promise<void>((resolve) => {
+      if (typeof window === 'undefined') return resolve();
+      const synth = window.speechSynthesis;
+      if (!synth) {
+        setVoiceError('Your browser does not support voice playback (Speech Synthesis).');
+        return resolve();
+      }
+
+      const ensureVoices = () => {
+        return new Promise<SpeechSynthesisVoice[]>((res) => {
+          const voices = synth.getVoices();
+          if (voices && voices.length) return res(voices);
+
+          const onVoices = () => {
+            try {
+              synth.removeEventListener('voiceschanged', onVoices);
+            } catch {
+              // ignore
+            }
+            res(synth.getVoices() || []);
+          };
+
+          try {
+            synth.addEventListener('voiceschanged', onVoices);
+          } catch {
+            // ignore
+          }
+
+          // Fallback: resolve even if voiceschanged never fires
+          window.setTimeout(() => {
+            try {
+              synth.removeEventListener('voiceschanged', onVoices);
+            } catch {
+              // ignore
+            }
+            res(synth.getVoices() || []);
+          }, 800);
+        });
+      };
+
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        resolve();
+      };
+
+      // Give longer answers more time
+      const dynamicTimeout = Math.max(timeoutMs, Math.min(12000, 1200 + text.length * 35));
+      const t = window.setTimeout(finish, dynamicTimeout);
+
+      (async () => {
+        try {
+          const voices = await ensureVoices();
+          const preferred =
+            voices.find(v => v.lang?.toLowerCase().startsWith('en') && v.name?.toLowerCase().includes('google')) ||
+            voices.find(v => v.lang?.toLowerCase().startsWith('en')) ||
+            null;
+
+          synth.cancel();
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = 'en-US';
+          utter.rate = 1;
+          utter.pitch = 1;
+          utter.volume = 1;
+          if (preferred) utter.voice = preferred;
+
+          utter.onend = () => {
+            window.clearTimeout(t);
+            finish();
+          };
+          utter.onerror = () => {
+            window.clearTimeout(t);
+            finish();
+          };
+
+          synth.speak(utter);
+        } catch {
+          window.clearTimeout(t);
+          finish();
+        }
+      })();
+    });
+  };
+
+  const askAssistant = async (query: string) => {
+    const res = await fetch('/api/voice-assistant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+    });
+
+    const data = (await res.json().catch(() => ({}))) as any;
+    if (!res.ok) {
+      const base = typeof data?.error === 'string' ? data.error : 'Assistant failed. Please try again.';
+      const details = typeof data?.details === 'string' ? data.details : '';
+      const msg = details ? `${base} ${details}` : base;
+      throw new Error(msg);
+    }
+
+    return {
+      answer: typeof data?.answer === 'string' ? data.answer : '',
+      suggestedPath: typeof data?.suggestedPath === 'string' ? data.suggestedPath : null,
+    };
+  };
+
   const keywordRoutes = useMemo(() => {
     return [
       { keys: ['home', 'homepage'], url: '/' },
@@ -221,17 +372,47 @@ export default function Header() {
 
     rec.onresult = (event: any) => {
       const transcript = event?.results?.[0]?.[0]?.transcript || '';
-      const route = findBestRoute(transcript);
       stopListening();
 
-      if (route) {
-        setIsMenuOpen(false);
-        setIsServicesOpen(false);
-        setIsMobileServicesOpen(false);
-        router.push(route);
-      } else {
-        setVoiceError('Could not match your request. Try saying “Services”, “Blog”, or a service name.');
-      }
+      const run = async () => {
+        // Question intent: answer using knowledge base + Gemini and speak it
+        if (isQuestionIntent(transcript)) {
+          try {
+            const { answer, suggestedPath } = await askAssistant(transcript);
+            const finalAnswer = answer || "I don't have that information yet.";
+            setVoiceError(finalAnswer);
+
+            // Speak first, then redirect (redirecting immediately often cancels speech)
+            await speakAsync(finalAnswer, 5000);
+
+            // Only redirect if user explicitly asked to navigate
+            if (suggestedPath && isExplicitNavigationRequest(transcript)) {
+              setIsMenuOpen(false);
+              setIsServicesOpen(false);
+              setIsMobileServicesOpen(false);
+              router.push(suggestedPath);
+            }
+          } catch (e: any) {
+            const msg = typeof e?.message === 'string' ? e.message : 'Assistant failed. Please try again.';
+            setVoiceError(msg);
+            await speakAsync(msg, 4000);
+          }
+          return;
+        }
+
+        // Otherwise: normal navigation
+        const route = findBestRoute(transcript);
+        if (route) {
+          setIsMenuOpen(false);
+          setIsServicesOpen(false);
+          setIsMobileServicesOpen(false);
+          router.push(route);
+        } else {
+          setVoiceError('Could not match your request. Try saying “Services”, “Blog”, or a service name.');
+        }
+      };
+
+      void run();
     };
 
     rec.onerror = () => {
