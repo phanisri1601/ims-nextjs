@@ -1395,6 +1395,7 @@
   border: none;
   width: 100%;
   text-align: left;
+  font-family: inherit;
   transition: color 0.3s ease;
   color: var(--color-text-primary);
 }
@@ -1426,6 +1427,7 @@
   padding: 0 2rem 1.5rem; 
 }
 .faqAnswer p {
+  font-family: inherit;
   color: var(--color-text-secondary);
   line-height: 1.8;
   margin: 0;
@@ -3527,6 +3529,7 @@
   border: none;
   width: 100%;
   text-align: left;
+  font-family: inherit;
   transition: color 0.3s ease;
   color: var(--color-text-primary);
 }
@@ -3558,6 +3561,7 @@
   padding: 0 2rem 1.5rem; 
 }
 .faqAnswer p {
+  font-family: inherit;
   color: var(--color-text-secondary);
   line-height: 1.8;
   margin: 0;

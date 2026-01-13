@@ -289,7 +289,7 @@ export default function OfflineServicesPage() {
         <div className={styles.faqContent}>
           <h2 className={styles.faqTitle}>OFFLINE SERVICES FAQ&apos;S</h2>
           <div className={styles.faqContainer}>
-            {faqs.map((faq, index) => (
+            {faqs.slice(0, 7).map((faq, index) => (
               <div
                 key={index}
                 className={`${styles.faqItem} ${openFaqIndex === index ? styles.open : ''}`}

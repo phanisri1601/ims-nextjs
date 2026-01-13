@@ -366,7 +366,7 @@
 
 .faqContainer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     align-items: start;
 }
@@ -397,6 +397,7 @@
     padding: 1.5rem 2rem;
     background: none;
     border: none;
+    font-family: inherit;
     color: var(--color-text-primary);
     font-size: 1.1rem;
     font-weight: 600;
@@ -436,6 +437,7 @@
 }
 
 .faqAnswer p {
+    font-family: inherit;
     color: var(--color-text-secondary);
     line-height: 1.8;
     margin: 0;
