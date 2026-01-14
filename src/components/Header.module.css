@@ -274,51 +274,203 @@
     gap: 1rem;
 }
 
-.micButton {
+/* Voice Assistant UI */
+.micWrap {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 999px;
-    background: rgba(255, 0, 51, 0.08);
-    border: 1px solid rgba(255, 0, 51, 0.2);
-    color: var(--color-accent-primary);
+}
+
+.micButton {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    overflow: visible;
 }
 
 .micButton:hover {
-    transform: translateY(-1px);
-    background: rgba(255, 0, 51, 0.12);
-    border-color: rgba(255, 0, 51, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.micButton:active {
+    transform: translateY(0);
 }
 
 .micListening {
-    background: rgba(255, 0, 51, 0.18);
-    border-color: rgba(255, 0, 51, 0.5);
-    animation: micPulse 1.1s ease-in-out infinite;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    animation: micPulse 2s ease-in-out infinite;
+}
+
+.micIcon {
+    position: relative;
+    z-index: 3;
+    color: white;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.micListening .micIcon {
+    transform: scale(1.1);
+}
+
+.micRings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid rgba(245, 87, 108, 0.6);
+    animation: ringExpand 2s ease-out infinite;
+}
+
+.ring:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.ring:nth-child(3) {
+    animation-delay: 0.8s;
 }
 
 @keyframes micPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-    100% { transform: scale(1); }
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(245, 87, 108, 0.5);
+    }
 }
 
-.voiceToast {
-    position: fixed;
-    top: calc(var(--header-height) + 12px);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1100;
-    background: rgba(0, 0, 0, 0.78);
+@keyframes ringExpand {
+    0% {
+        width: 56px;
+        height: 56px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+    }
+}
+
+.micResponse {
+    position: absolute;
+    top: calc(100% + 20px);
+    right: 0;
+    min-width: 280px;
+    max-width: min(85vw, 400px);
+    z-index: 1200;
+    animation: slideUpFade 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.responseBubble {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(30, 30, 30, 0.9) 100%);
     color: #fff;
-    padding: 0.6rem 0.9rem;
-    border-radius: 10px;
+    padding: 16px 20px;
+    border-radius: 20px;
     font-size: 0.9rem;
-    max-width: min(92vw, 560px);
-    text-align: center;
+    line-height: 1.4;
+    text-align: left;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.responseBubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .micButton {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .micIcon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .ring {
+        width: 48px;
+        height: 48px;
+    }
+    
+    @keyframes ringExpand {
+        0% {
+            width: 48px;
+            height: 48px;
+            opacity: 0.8;
+        }
+        100% {
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+    }
+    
+    .micResponse {
+        min-width: 240px;
+        max-width: min(90vw, 320px);
+        right: -10px;
+    }
+    
+    .responseBubble {
+        padding: 12px 14px;
+        font-size: 0.8rem;
+    }
 }
 
 .menuToggle {

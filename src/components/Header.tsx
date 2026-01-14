@@ -145,6 +145,8 @@ export default function Header() {
     const t = normalize(rawTranscript);
     return (
       t.startsWith('what is') ||
+      t.startsWith('whats') ||
+      t.startsWith("what's") ||
       t.startsWith('who is') ||
       t.startsWith('where is') ||
       t.startsWith('when') ||
@@ -154,6 +156,8 @@ export default function Header() {
       t.startsWith('tell me') ||
       t.startsWith('describe') ||
       t.includes('what is') ||
+      t.includes('whats') ||
+      t.includes("what's") ||
       t.includes('explain')
     );
   };
@@ -296,7 +300,7 @@ export default function Header() {
     return [
       { keys: ['home', 'homepage'], url: '/' },
       { keys: ['about', 'about us', 'company'], url: '/about' },
-      { keys: ['services', 'service'], url: '/services' },
+      { keys: ['services', 'service'], url: '/services/online' },
       { keys: ['online services', 'digital services', 'digital marketing services'], url: '/services/online' },
       { keys: ['offline services', 'btl', 'outdoor', 'offline marketing'], url: '/services/offline' },
       { keys: ['clients', 'our clients'], url: '/clients' },
@@ -382,8 +386,10 @@ export default function Header() {
             const finalAnswer = answer || "I don't have that information yet.";
             setVoiceError(finalAnswer);
 
-            // Speak first, then redirect (redirecting immediately often cancels speech)
+            // Speak first, then pause briefly, then redirect
             await speakAsync(finalAnswer, 5000);
+            // Brief pause after speaking
+            await new Promise(r => setTimeout(r, 800));
 
             // Only redirect if user explicitly asked to navigate
             if (suggestedPath && isExplicitNavigationRequest(transcript)) {
@@ -403,12 +409,28 @@ export default function Header() {
         // Otherwise: normal navigation
         const route = findBestRoute(transcript);
         if (route) {
+          const msg = 'Opening your requested page.';
+          setVoiceError(msg);
+          await speakAsync(msg, 2500);
           setIsMenuOpen(false);
           setIsServicesOpen(false);
           setIsMobileServicesOpen(false);
           router.push(route);
         } else {
-          setVoiceError('Could not match your request. Try saying “Services”, “Blog”, or a service name.');
+          // Fallback: if no route match, try assistant anyway so it behaves conversationally
+          try {
+            const { answer } = await askAssistant(transcript);
+            const finalAnswer = answer || 'Could not match your request. Try saying “Services”, “Blog”, or a service name.';
+            setVoiceError(finalAnswer);
+            await speakAsync(finalAnswer, 5000);
+          } catch (e: any) {
+            const msg =
+              typeof e?.message === 'string'
+                ? e.message
+                : 'Could not match your request. Try saying “Services”, “Blog”, or a service name.';
+            setVoiceError(msg);
+            await speakAsync(msg, 4000);
+          }
         }
       };
 
@@ -549,14 +571,33 @@ export default function Header() {
           </nav>
 
           <div className={styles.headerActions}>
-            <button
-              type="button"
-              className={`${styles.micButton} ${isListening ? styles.micListening : ''}`}
-              onClick={() => (isListening ? stopListening() : startListening())}
-              aria-label={isListening ? 'Stop voice search' : 'Start voice search'}
-            >
-              <MicIcon />
-            </button>
+            <div className={styles.micWrap}>
+              <button
+                type="button"
+                className={`${styles.micButton} ${isListening ? styles.micListening : ''}`}
+                onClick={() => (isListening ? stopListening() : startListening())}
+                aria-label={isListening ? 'Stop voice search' : 'Start voice search'}
+              >
+                <div className={styles.micIcon}>
+                  <MicIcon />
+                </div>
+                {isListening && (
+                  <div className={styles.micRings}>
+                    <div className={styles.ring}></div>
+                    <div className={styles.ring}></div>
+                    <div className={styles.ring}></div>
+                  </div>
+                )}
+              </button>
+
+              {voiceError && (
+                <div className={styles.micResponse}>
+                  <div className={styles.responseBubble}>
+                    {voiceError}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Add hamburger menu button */}
             <button
@@ -568,12 +609,6 @@ export default function Header() {
             </button>
           </div>
         </div>
-
-        {voiceError ? (
-          <div className={styles.voiceToast} role="status" aria-live="polite">
-            {voiceError}
-          </div>
-        ) : null}
     </header>
   );
 }
