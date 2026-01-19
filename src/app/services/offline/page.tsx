@@ -4,6 +4,7 @@ import Link from 'next/link';
 import styles from './OfflineServices.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const serviceUrlMap: { [key: string]: string } = {
   'Bus Branding': '/services/bus-branding',
@@ -287,26 +288,24 @@ export default function OfflineServicesPage() {
 
       <section className={styles.faqSection}>
         <div className={styles.faqContent}>
-          <h2 className={styles.faqTitle}>OFFLINE SERVICES FAQ&apos;S</h2>
+          <ScrollReveal delay={0.2}>
+            <h2 className={styles.faqTitle}>OFFLINE SERVICES FAQ&apos;S</h2>
+          </ScrollReveal>
           <div className={styles.faqContainer}>
             {faqs.slice(0, 7).map((faq, index) => (
-              <div
-                key={index}
-                className={`${styles.faqItem} ${openFaqIndex === index ? styles.open : ''}`}
-              >
-                <button
-                  className={styles.faqQuestion}
-                  onClick={() => toggleFaq(index)}
-                >
-                  <span>{faq.question}</span>
-                  <span className={styles.faqIcon}>
-                    {openFaqIndex === index ? <FaMinus /> : <FaPlus />}
-                  </span>
-                </button>
-                <div className={styles.faqAnswer}>
-                  <p>{faq.answer}</p>
+              <ScrollReveal key={index} delay={0.3 + index * 0.15}>
+                <div className={`${styles.faqItem} ${openFaqIndex === index ? styles.open : ''}`}>
+                  <button className={styles.faqQuestion} onClick={() => toggleFaq(index)}>
+                    <span>{faq.question}</span>
+                    <span className={styles.faqIcon}>
+                      {openFaqIndex === index ? <FaMinus /> : <FaPlus />}
+                    </span>
+                  </button>
+                  <div className={styles.faqAnswer}>
+                    <p>{faq.answer}</p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

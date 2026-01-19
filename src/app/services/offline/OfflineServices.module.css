@@ -180,6 +180,10 @@
     line-height: 1.06;
 }
 
+.featuredLink:hover {
+    color: inherit;
+}
+
 .featuredItem:hover, .featuredActive {
     color: var(--color-accent-primary);
     transform: scale(1.02);
@@ -308,6 +312,7 @@
 .serviceCard:hover {
     border-color: var(--color-accent-primary);
     box-shadow: 0 20px 40px rgba(255, 102, 0, 0.2), 0 0 20px rgba(255, 102, 0, 0.1);
+    color: inherit;
     transform: translateY(-12px) scale(1.02);
 }
 

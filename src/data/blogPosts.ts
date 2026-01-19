@@ -355,14 +355,14 @@ export const blogPosts: BlogPost[] = [
     title: "Video Shoots That Spark Cravings: The Recipe for Restaurant Marketing Success!",
     excerpt:
       "In the digital-first world, food is no longer just about taste; it's about visual storytelling that ignites cravings. Learn the secrets of successful restaurant marketing.",
-    image: "/image copy.png",
+    image: "/wcu_marketing.png",
     date: "June 2025",
     author: "IM Solutions",
     slug: "restaurant-marketing",
     readingTime: "5 min read",
     tags: ["Video", "Restaurants", "Social"],
     animatedImages: [
-      { src: "/image copy.png", alt: "Restaurant video" },
+      { src: "/wcu_marketing.png", alt: "Restaurant video" },
       { src: "/wcu_growth.png", alt: "Growth" },
       { src: "/wcu_marketing.png", alt: "Marketing" },
     ],

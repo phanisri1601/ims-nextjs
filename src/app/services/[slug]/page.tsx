@@ -1,9 +1,12 @@
 'use client';
 
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
+import Link from 'next/link';
 import styles from './ServiceDetail.module.css';
-import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FiArrowRight } from 'react-icons/fi';
+import ScrollReveal from '@/components/ScrollReveal';
 
 
 const serviceData: {
@@ -19,6 +22,7 @@ const serviceData: {
     collageMain?: string;
     collageTop?: string;
     collageBottom?: string;
+    faqs?: { q: string; a: string }[];
   };
 } = {
 
@@ -620,23 +624,54 @@ const serviceData: {
   },
   'bus-branding': {
     title: 'Bus Branding',
-    description: 'High-impact bus advertising solutions.',
-    longDescription: 'Reach thousands of commuters with our comprehensive bus branding and advertising solutions.',
+    description: 'IM Solutions is a reputed Bus Branding Agency offering services in Bangalore, Karnataka. We do interior/exterior branding on BMTC, KSRTC, Volvo buses.',
+    longDescription: `
+      <h2>Bus Branding</h2>
+      <h3>Bus advertisement</h3>
+      <p>The good thing about bus advertisement is that it offers various options for you to choose from like Parisaravahini buses that are usually very cost effective option and there are AC buses such as VayuVajra buses, offering premium bus advertisement option. Bus branding in Bangalore is right option for businesses which are focusing on a specific region or location to achieve the right visibility.</p>
+      <p>Bus advertisement brings with it innovative, color, and large designs which draw attention of commuters and the best thing is that it is a type of advertisement that no one can switch off. Moreover, it provides brands complete exclusivity in advertising space they are targeting and delivers the right results.</p>
+    `,
     features: [
-      'Interior & Exterior Wraps',
-      'Strategic Placement',
-      'Design Services',
-      'Installation Support',
-      'Wide Coverage',
-      'Long Visibility'
+      'Non AC Buses',
+      'AC Buses',
+      'KSRTC',
+      'Full Bus Interior',
+      'Full Bus Exterior',
+      'Full Bus'
     ],
     benefits: [
-      'High Visibility',
-      'Daily Impressions',
-      'Local Targeting',
-      'Cost-Effective',
-      'Brand Recall',
-      'Continuous Exposure'
+      'Target the right commuters across localities',
+      'Inform about offers and discounts using large ad space',
+      'Deliver your branding message to the masses at low cost',
+      'High exposure (people cannot switch it off)',
+      'Round-the-clock visibility as buses commute daily',
+      'Reach a large audience base across the city'
+    ],
+    faqs: [
+      {
+        q: 'Why bus branding is so popular?',
+        a: 'There are various reasons behind popularity of bus branding. First of all, people cannot turn it off, as happens with TV or radio ads, giving your ads greater exposure. Secondly, buses commute on daily basis, which ensure round-the-clock visibility of your ads. Lastly, buses reach every part of the city, helping you reach a large audience base.'
+      },
+      {
+        q: 'What are the dimension details for interior branding on AC Buses?',
+        a: 'The following are the dimension details: Driver Seat Back – 20 W x 30 H Inches; Passenger Seat Back – 11 W x 8 H Inches.'
+      },
+      {
+        q: 'What is the duration for bus advertisement?',
+        a: 'Campaign duration can be 1 month/ 2 months/ 3 months, depending upon your requirement and budget.'
+      },
+      {
+        q: 'What are the different media options?',
+        a: 'Media options include Full Bus Interior/ Full Bus Exterior/ Full Bus.'
+      },
+      {
+        q: 'How can I know that my bus ad has been executed?',
+        a: 'We will be sharing the execution pictures within two working days after the campaign goes live.'
+      },
+      {
+        q: 'What are the marketing goals that bus advertisement can help us achieve?',
+        a: 'Bus branding can help you accomplish different marketing goals such as promotion of seasonal specials, announcement of new products, and also for general branding.'
+      }
     ],
     category: 'offline'
   },
@@ -1246,15 +1281,6 @@ export default function ServiceDetailPage() {
     notFound();
   }
 
-  // Short summary block(s) to render as alternating content/image sections
-  const summaryBlocks = [
-    {
-      title: 'Short Summary',
-      content: `IM Solutions is a full-service digital marketing and advertising company delivering innovative, ROI-driven solutions worldwide. With over a decade of experience, we help businesses increase traffic, generate quality leads, and boost sales through integrated digital strategies including SEO, Google Ads, PPC, display, video, mobile, and search advertising. Based in Bangalore, we focus on customized campaigns, data-driven strategies, and customer-first values to ensure maximum growth, strong brand presence, and measurable results for every client.`,
-      image: service.heroImage ?? service.collageMain ?? '/services/digital-marketing-1.svg'
-    }
-  ];
-
   const heroRef = useRef<HTMLDivElement | null>(null);
   const bgRef = useRef<HTMLImageElement | null>(null);
   const [heroRevealed, setHeroRevealed] = useState(false);
@@ -1309,10 +1335,43 @@ export default function ServiceDetailPage() {
   const topStyle = brandHover !== null ? { transform: topTransforms[brandHover % topTransforms.length] } : undefined;
   const bottomStyle = brandHover !== null ? { transform: bottomTransforms[brandHover % bottomTransforms.length] } : undefined;
 
-  // Stats
-  const statsRef = useRef<HTMLElement | null>(null);
-  const [counts, setCounts] = useState<number[]>([0, 0, 0]);
-  const statsTarget = [128, 8120, 4];
+  // Core Services Slider
+  const coreServicesRef = useRef<HTMLDivElement>(null);
+  const [coreServicesActiveIndex, setCoreServicesActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const grid = coreServicesRef.current;
+    if (!grid) return;
+
+    const handleScroll = () => {
+      const cardWidth = 380 + 32; // card width (380) + gap (2rem = 32px)
+      const scrollLeft = grid.scrollLeft;
+      const index = Math.round(scrollLeft / cardWidth);
+      setCoreServicesActiveIndex(Math.min(index, totalServices - 1));
+    };
+
+    grid.addEventListener("scroll", handleScroll);
+    return () => grid.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollCoreServicesCard = (index: number) => {
+    if (coreServicesRef.current) {
+      const cardWidth = 380 + 32;
+      coreServicesRef.current.scrollTo({
+        left: index * cardWidth,
+        behavior: "smooth"
+      });
+      setCoreServicesActiveIndex(index);
+    }
+  };
+
+  const scrollCoreServicesLeft = () => {
+    scrollCoreServicesCard(Math.max(0, coreServicesActiveIndex - 1));
+  };
+
+  const scrollCoreServicesRight = () => {
+    scrollCoreServicesCard(Math.min(totalServices - 1, coreServicesActiveIndex + 1));
+  };
 
   // Reveal on scroll helper
   useEffect(() => {
@@ -1336,42 +1395,97 @@ export default function ServiceDetailPage() {
     };
   }, []);
 
-  // Stats count up
-  useEffect(() => {
-    if (!statsRef.current) return;
-    let observer: IntersectionObserver | null = null;
-    const el = statsRef.current;
-
-    const startCounting = () => {
-      const start = performance.now();
-      const duration = 1000;
-      const update = (now: number) => {
-        const progress = Math.min(1, (now - start) / duration);
-        setCounts(statsTarget.map((target) => Math.round(target * progress)));
-        if (progress < 1) requestAnimationFrame(update);
-        else setCounts(statsTarget);
-      };
-      requestAnimationFrame(update);
-    };
-
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) startCounting();
-      });
-    }, { threshold: 0.3 });
-
-    observer.observe(el);
-
-    return () => observer && observer.disconnect();
-  }, []);
-
-  // FAQ state
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const faqs = [
-    { q: 'How long until we see results?', a: 'Depending on the channel, initial impact can be seen within a few weeks; measurable outcomes typically within 60-90 days.' },
-    { q: 'Do you handle creative and media buying?', a: 'Yes — we do end-to-end campaign management including creative, media planning, buying, and optimization.' },
-    { q: 'Can you work with our internal team?', a: 'Absolutely. We work as an extension of your team and integrate with internal stakeholders.' }
+
+  // Related Services Logic
+  const allServices = Object.entries(serviceData).map(([s, d]) => ({
+    slug: s,
+    title: d.title,
+    category: d.category,
+    image: d.heroImage || d.collageMain || '/services/pro-thumb-1.svg'
+  }));
+
+  const relatedServices = allServices.filter(s => s.category === service.category && s.slug !== slug);
+  // Keep a short, focused list for Related Services — show up to 4 items
+  const limitedRelated = relatedServices.slice(0, 4);
+  const displayRelated = limitedRelated;
+
+  const defaultFaqs = [
+    { 
+      q: 'How long until we see results?', 
+      a: 'Depending on the channel, initial impact can be seen within a few weeks; measurable outcomes typically within 60-90 days.'
+    },
+    { 
+      q: 'Do you handle creative and media buying?', 
+      a: 'Yes — we do end-to-end campaign management including creative, media planning, buying, and optimization.'
+    },
+    { 
+      q: 'Can you work with our internal team?', 
+      a: 'Absolutely. We work as an extension of your team and integrate with internal stakeholders.'
+    },
+    {
+      q: 'What makes your agency different from competitors?',
+      a: 'We combine data-driven strategy with creative excellence. Our team brings hands-on expertise across online and offline channels, transparent reporting, and a focus on measurable ROI. We treat your business goals as our own.'
+    },
+    {
+      q: 'How do you determine the right marketing channels for my business?',
+      a: 'We start with in-depth discovery: understanding your target audience, competitor landscape, budget, and goals. We then recommend a channel mix tailored to your specific needs, with flexibility to pivot based on performance data.'
+    },
+    {
+      q: 'What kind of results can I expect?',
+      a: 'Results vary by industry and service type. However, our clients typically see 20-40% improvement in lead generation, 2-3x ROI on ad spend, and significant improvements in brand visibility within 3-6 months.'
+    },
+    {
+      q: 'Do you offer flexible contracts or trial periods?',
+      a: 'Yes. We work with businesses of all sizes and offer flexible engagement models. Many clients start with a pilot campaign to test our approach before committing to longer-term partnerships.'
+    },
+    {
+      q: 'How do you keep campaigns optimized and relevant?',
+      a: 'We continuously monitor performance metrics, A/B test creative and targeting, and provide weekly or monthly optimization reports. Your dedicated account manager reviews performance with you regularly.'
+    },
+    {
+      q: 'What if I have a tight budget?',
+      a: 'We work with businesses at all budget levels. We help you prioritize high-impact activities and channels that deliver the best ROI for your specific constraints. Starting lean and scaling up is always an option.'
+    }
   ];
+
+  const displayFaqs = (service.faqs ?? defaultFaqs).slice(0, 7);
+
+  const coreServices = [
+    {
+      title: 'Strategic Planning',
+      desc: 'We develop comprehensive marketing strategies tailored to your business goals, analyzing market trends and competitor landscape to position your brand for success.',
+      icon: '/services/pro-feature-1-left.svg'
+    },
+    {
+      title: 'Creative Design',
+      desc: 'Our creative team crafts visually stunning campaigns that capture attention and communicate your brand message effectively across all mediums.',
+      icon: '/services/pro-feature-2-left.svg'
+    },
+    {
+      title: 'Digital Excellence',
+      desc: 'From SEO to social media, we deliver integrated digital solutions that drive traffic, engagement, and conversions for your business online.',
+      icon: '/services/pro-feature-3-left.svg'
+    },
+    {
+      title: 'Offline Impact',
+      desc: 'We create powerful offline campaigns including hoarding, bus branding, and experiential activations that build brand presence in the physical world.',
+      icon: '/services/pro-feature-4-left.svg'
+    },
+    {
+      title: 'Data-Driven Results',
+      desc: 'Every campaign is backed by analytics and insights. We track performance metrics and optimize continuously to deliver measurable ROI for your investment.',
+      icon: '/services/pro-feature-5-left.svg'
+    },
+    {
+      title: 'Industry Expertise',
+      desc: 'With experience across multiple industries, our team brings specialized knowledge to tackle unique challenges and opportunities in your market.',
+      icon: '/services/pro-thumb-6.svg'
+    }
+  ];
+
+  const totalServices = coreServices.length;
+  const progressPercentage = ((coreServicesActiveIndex + 1) / totalServices) * 100;
 
   return (
     <main className={styles.serviceDetail}>
@@ -1415,7 +1529,7 @@ export default function ServiceDetailPage() {
           {/* New creative section: Build Your Brand */}
           <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true">
             <div className="container">
-              <div className="revealChild" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'center'}}>
+              <div className={`${styles.revealChild} ${styles.grid2}`}>
                 <div>
                   <h2 className={styles.showcaseTitle}>Our Advertising Agency Helps You Build Your Brand</h2>
                   <p className="smallMuted">We combine strategic thinking, creativity and media precision to craft campaigns that build visibility, preference and sales. Below are some ways we help brands grow.</p>
@@ -1443,41 +1557,167 @@ export default function ServiceDetailPage() {
             </div>
           </section>
 
-          <section className={styles.summarySection} data-reveal="true">
+          {/* Additional Brand Content */}
+          <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true" style={{marginTop: '2rem', marginBottom: '0', paddingBottom: '0'}}>
             <div className="container">
-              {summaryBlocks.map((block, idx) => (
-                <div key={idx} className={`${styles.summaryBlock} ${idx % 2 === 1 ? styles.reverse : ''}`}>
-                  <div className={styles.summaryContent}>
-                    <h3 className={styles.summaryTitle}>{block.title}</h3>
-                    <p className={styles.summaryText}>{block.content}</p>
-                  </div>
-
-                  <div className={styles.summaryImageWrap} aria-hidden>
-                    <img src={block.image} alt={block.title} className={styles.summaryImage} />
-                  </div>
+              <div className="revealChild" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center'}}>
+                <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                   <img 
+                     src="/services/advertising-agency-1.svg" 
+                     alt="Advertising Agency" 
+                     className={styles.collageImage}
+                     style={{
+                       position: 'relative', 
+                       width: '100%', 
+                       maxWidth: '500px', 
+                       height: 'auto', 
+                       borderRadius: '20px', 
+                       boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                     }} 
+                   />
                 </div>
-              ))}
+                <div>
+                   <div style={{color: 'var(--color-text-secondary)', lineHeight: '1.7', fontSize: '1.05rem'}}>
+                    <p style={{marginBottom: '1rem'}}>
+                      With the right advertising, you don't just get results but you multiply your profits. IM Solutions delivers just that. We are a team of experts creating unconventional ads that truly makes an impression. Our ads are short, simple and straight to the point targeting ideal customers for a faster outcome. From digital space to every nook and corner of the offline market, we cover it all.
+                    </p>
+                    <p>
+                      IM Solutions connects people and businesses across the digital and physical world, powering people-based marketing. Presentation matters! We help brands present themselves better and reach their customers with our advertising expertise. In simple, we amplifying your business and enhance your branding. Why wait when you can start now? Contact us for more details..
+                    </p>
+                   </div>
+                </div>
+              </div>
             </div>
           </section>
 
-          {/* Stats Section */}
-          <section ref={statsRef} data-reveal="true" className={`${styles.revealOnScroll} ${styles.statsSection}`}>
+          {/* Core Services Section */}
+          <section className={`${styles.coreServicesSection} revealOnScroll`} data-reveal="true">
             <div className="container">
-              <div className={styles.revealChild} style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem'}}>
-                <div className={styles.stat}>
-                  <div className={styles.statNumber}>{counts[0]}</div>
-                  <div className={styles.statLabel}>Campaigns Delivered</div>
+              <div className={styles.revealChild}>
+                <h2 className={styles.showcaseTitle} style={{marginBottom: '3rem', textAlign: 'center'}}>Our Core Services</h2>
+                
+                <div className={styles.coreServicesGrid} ref={coreServicesRef}>
+                  {coreServices.map((service, index) => (
+                    <div 
+                      key={index} 
+                      className={`${styles.coreServiceCard} ${coreServicesActiveIndex === index ? styles.active : ''}`}
+                    >
+                      <div className={styles.serviceIconWrapper}>
+                        <img src={service.icon} alt={service.title} className={styles.serviceIcon} />
+                      </div>
+                      <h3 className={styles.serviceCardTitle}>{service.title}</h3>
+                      <p className={styles.serviceCardDesc}>{service.desc}</p>
+                    </div>
+                  ))}
                 </div>
 
-                <div className={styles.stat}>
-                  <div className={styles.statNumber}>{counts[1]}</div>
-                  <div className={styles.statLabel}>Leads Generated</div>
+                <div className={styles.progressBarContainer}>
+                  <div 
+                    className={styles.progressBar} 
+                    style={{ width: `${progressPercentage}%` }}
+                  ></div>
                 </div>
 
-                <div className={styles.stat}>
-                  <div className={styles.statNumber}>{counts[2]}x</div>
-                  <div className={styles.statLabel}>Avg. ROI</div>
+                <div className={styles.arrowControls}>
+                  <button 
+                    className={styles.arrowButton} 
+                    onClick={scrollCoreServicesLeft}
+                    aria-label="Previous service"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="19" y1="12" x2="5" y2="12"></line>
+                      <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                  </button>
+                  <button 
+                    className={styles.arrowButton} 
+                    onClick={scrollCoreServicesRight}
+                    aria-label="Next service"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </button>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Why Choose Us Section */}
+          <section className={`${styles.whyChooseUsSection} revealOnScroll`} data-reveal="true">
+            <div className="container">
+              <div className={styles.revealChild}>
+                {/* Row 1: Intro and Impact */}
+                <div className={styles.whyChooseUsContent}>
+                  <div className={styles.whyChooseUsText}>
+                    <h2 className={styles.showcaseTitle}>WHY US?</h2>
+                    <div className={styles.whyChooseUsBody}>
+                      <p>Want to increase your online visibility and generate more leads for your business? IM Solutions is among the best and leading Marketing Companies in Bangalore excelling in providing top notch digital marketing services. As a leading Digital Marketing Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.</p>
+                      
+                      
+                    </div>
+                  </div>
+
+                  <div className={styles.whyChooseUsImage}>
+                    <img src={service.heroImage ?? '/services/digital-marketing-1.svg'} alt="Why Choose IM Solutions" className={styles.whyChooseUsImg} />
+                  </div>
+                </div>
+
+                {/* Row 2: Reputation and Advantages (Reversed) */}
+                <div className={`${styles.whyChooseUsContent} ${styles.reverseRow}`}>
+                  <div className={styles.whyChooseUsText}>
+                    <div className={styles.whyChooseUsBody}>
+                      
+                      
+                      <h3 className={styles.whyChooseUsSubtitle}>IM Solutions offers the following advantages:</h3>
+                      
+                      <ul className={styles.whyChooseUsList}>
+                        <li>Proactive online reputation management solutions</li>
+                        <li>In-house outsourcing solution by experts</li>
+                        <li>Receive notifications Trusted Alerts and Reports</li>
+                        <li>Customisable scalable solutions</li>
+                        <li>Strengthening and building reputation</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className={styles.whyChooseUsImage}>
+                    <img src={service.collageTop ?? '/services/advertising-agency-1.svg'} alt="Our Advantages" className={styles.whyChooseUsImg} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Related Services Section */}
+          <section className={`${styles.relatedServicesSection} revealOnScroll`} data-reveal="true">
+            <div className="container">
+              <div className={styles.revealChild}>
+                <h2 className={styles.relatedServicesTitle}>Related Services</h2>
+              </div>
+            </div>
+            <div className={styles.marqueeContainer}>
+              <div className={styles.marqueeContent}>
+                {displayRelated.map((item, idx) => (
+                  <Link 
+                    key={idx} 
+                    href={`/services/${item.slug}`} 
+                    className={styles.relatedServiceCard}
+                  >
+                    <div 
+                      className={styles.relatedServiceImageWrapper}
+                    >
+                      <img src={item.image} alt={item.title} className={styles.relatedServiceImage} />
+                      <div className={styles.relatedServiceArrow}>
+                        <FiArrowRight />
+                      </div>
+                    </div>
+                    <div className={styles.relatedServiceInfo}>
+                      <h3 className={styles.relatedServiceName}>{item.title}</h3>
+                    </div>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
@@ -1486,26 +1726,29 @@ export default function ServiceDetailPage() {
           <section data-reveal="true" className={styles.revealOnScroll}>
             <div className="container">
               <div className={styles.revealChild}>
-                <h3 className={styles.showcaseTitle}>Frequently Asked Questions</h3>
-                <ul className={styles.faqList}>
-                  {faqs.map((f, i) => (
-                    <li key={i} className={`${styles.faqItem} ${openFaq === i ? 'open' : ''}`}>
-                      <div
-                        className={styles.faqQuestion}
-                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpenFaq(openFaq === i ? null : i)}
-                      >
-                        <span>{f.q}</span>
-                        <span>{openFaq === i ? '−' : '+'}</span>
+                <ScrollReveal delay={0.2}>
+                  <h3 className={styles.showcaseTitle}>Frequently Asked Questions</h3>
+                </ScrollReveal>
+                <div className={styles.faqList}>
+                  {displayFaqs.map((f, i) => (
+                    <ScrollReveal key={i} delay={0.3 + i * 0.15}>
+                      <div className={`${styles.faqItem} ${openFaq === i ? styles.open : ''}`}>
+                        <button
+                          className={styles.faqQuestion}
+                          onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                        >
+                          <span>{f.q}</span>
+                          <span className={styles.faqIcon}>
+                            {openFaq === i ? <FaMinus /> : <FaPlus />}
+                          </span>
+                        </button>
+                        <div className={styles.faqAnswer}>
+                          <p>{f.a}</p>
+                        </div>
                       </div>
-                      <div className={styles.faqAnswer}>
-                        <p className="smallMuted">{f.a}</p>
-                      </div>
-                    </li>
+                    </ScrollReveal>
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </section>
