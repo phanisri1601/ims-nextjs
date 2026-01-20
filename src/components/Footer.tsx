@@ -42,10 +42,10 @@ export default function Footer() {
                     </div>
                     <div className={styles.socialLinks}>
                         <span>Follow Us :</span>
-                        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-                        <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
                         <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                         <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+                        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+                        <a href="#" aria-label="X" target="_blank" rel="noopener noreferrer"><FaXTwitter /></a>
                     </div>
                 </div>
 
