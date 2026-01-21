@@ -1,14 +1,25 @@
-'use client';
+ 'use client';
 
-import { useState } from 'react';
+ import { useId, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from './ScrollReveal';
 import styles from './FAQ.module.css';
 
-export default function FAQ() {
-    const [openIndex, setOpenIndex] = useState<number | null>(0);
+type FAQItem = {
+    question: string;
+    answer: string;
+};
 
-    const faqs = [
+type FAQProps = {
+    title?: string;
+    items?: FAQItem[];
+};
+
+export default function FAQ({ title = "ADVERTISING FAQ's", items }: FAQProps) {
+    const [openIndex, setOpenIndex] = useState<number | null>(0);
+    const idPrefix = useId();
+
+    const faqs: FAQItem[] = items ?? [
         {
             question: 'Which is the best advertising agency in Bangalore?',
             answer: 'IM Solutions is recognized as one of the best advertising agencies in Bangalore, offering comprehensive 360° marketing solutions, creative design services, and proven lead generation strategies. With 7+ years of experience and 300+ satisfied clients, we deliver exceptional results for brands across all industries.'
@@ -39,7 +50,7 @@ export default function FAQ() {
         <section className={styles.faq}>
             <div className="container">
                 <ScrollReveal delay={0.2}>
-                    <h2 className="section-title">ADVERTISING FAQ&apos;s</h2>
+                    <h2 className="section-title">{title}</h2>
                 </ScrollReveal>
 
                 <div className={styles.faqContainer}>
@@ -52,7 +63,7 @@ export default function FAQ() {
                                 <button
                                     className={styles.faqQuestion}
                                     onClick={() => toggleFAQ(index)}
-                                    aria-controls={`faq-answer-${index}`}
+                                    aria-controls={`${idPrefix}-faq-answer-${index}`}
                                 >
                                     <span>{faq.question}</span>
                                     <span className={styles.icon}>
@@ -60,7 +71,7 @@ export default function FAQ() {
                                     </span>
                                 </button>
                                 <div
-                                    id={`faq-answer-${index}`}
+                                    id={`${idPrefix}-faq-answer-${index}`}
                                     className={styles.faqAnswer}
                                 >
                                     <p>{faq.answer}</p>

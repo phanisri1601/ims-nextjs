@@ -14,6 +14,7 @@
   text-align: center;
   position: relative;
   z-index: 1;
+  animation: blogFadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .kicker {
@@ -24,12 +25,20 @@
   text-transform: uppercase;
   color: var(--color-accent-primary);
   margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: blogFadeUp 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 80ms;
 }
 
 .heroContent h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 1.5rem;
   color: var(--color-text-primary);
+  opacity: 0;
+  transform: translateY(12px);
+  animation: blogFadeUp 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 160ms;
 }
 
 .lead {
@@ -38,6 +47,10 @@
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: blogFadeUp 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 240ms;
 }
 
 .heroGlow {
@@ -51,6 +64,7 @@
   transform: translateY(-50%);
   pointer-events: none;
   z-index: 0;
+  animation: blogGlowPulse 4.2s ease-in-out infinite;
 }
 
 /* Grid Section */
@@ -84,7 +98,21 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  opacity: 0;
+  transform: translateY(14px) scale(0.99);
+  animation: blogFadeUp 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+.blogCard:nth-child(1) { animation-delay: 80ms; }
+.blogCard:nth-child(2) { animation-delay: 140ms; }
+.blogCard:nth-child(3) { animation-delay: 200ms; }
+.blogCard:nth-child(4) { animation-delay: 260ms; }
+.blogCard:nth-child(5) { animation-delay: 320ms; }
+.blogCard:nth-child(6) { animation-delay: 380ms; }
+.blogCard:nth-child(7) { animation-delay: 440ms; }
+.blogCard:nth-child(8) { animation-delay: 500ms; }
+.blogCard:nth-child(9) { animation-delay: 560ms; }
+.blogCard:nth-child(10) { animation-delay: 620ms; }
 
 .blogCard:hover {
   border-color: var(--color-accent-primary);
@@ -96,6 +124,7 @@
   width: 100%;
   height: 200px;
   overflow: hidden;
+  position: relative;
 }
 
 .cardImage img {
@@ -179,6 +208,10 @@
   top: calc(var(--header-height) + 16px);
   overflow: visible;
   max-height: none;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: blogFadeUp 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 220ms;
 }
 
 .sidebarCard:hover {
@@ -233,6 +266,7 @@
   overflow: hidden;
   border-radius: 6px;
   flex-shrink: 0;
+  position: relative;
 }
 
 .recentPostThumb img {
@@ -293,6 +327,10 @@
   text-transform: uppercase;
   margin: 0;
   font-size: 0.85rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: blogFadeUp 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 100ms;
 }
 
 .intro {
@@ -305,6 +343,10 @@
   gap: 0.5rem;
   justify-content: center;
   margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: blogFadeUp 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 260ms;
 }
 
 .tag {
@@ -317,7 +359,16 @@
   color: var(--color-text-secondary);
   font-size: 0.85rem;
   font-weight: 600;
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+  animation: blogTagIn 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+.tag:nth-child(1) { animation-delay: 320ms; }
+.tag:nth-child(2) { animation-delay: 380ms; }
+.tag:nth-child(3) { animation-delay: 440ms; }
+.tag:nth-child(4) { animation-delay: 500ms; }
+.tag:nth-child(5) { animation-delay: 560ms; }
 
 .articleCover {
   width: 100%;
@@ -326,6 +377,11 @@
   overflow: hidden;
   border: 1px solid var(--color-border);
   margin-bottom: 1.25rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(12px) scale(0.99);
+  animation: blogCoverIn 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 180ms;
 }
 
 .articleCover img {
@@ -333,10 +389,20 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.05);
+  animation: blogCoverZoom 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 220ms;
 }
 
 .contentSection {
   margin-top: 1.5rem;
+}
+
+.contentSection h2 {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: blogFadeUp 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 120ms;
 }
 
 .takeawaysSection {
@@ -433,6 +499,10 @@
   margin: 0 0 1rem;
   font-size: 1.35rem;
   color: var(--color-text-primary);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: blogFadeUp 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 100ms;
 }
 
 .relatedGrid {
@@ -483,10 +553,10 @@
   transform: scale(1.06);
 }
 
-@keyframes blogFloatIn {
+@keyframes blogFadeUp {
   from {
     opacity: 0;
-    transform: translateY(10px) scale(0.98);
+    transform: translateY(14px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -494,19 +564,66 @@
   }
 }
 
-@keyframes blogFloat {
-  0% {
-    transform: translateY(0);
+@keyframes blogTagIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
   }
-  50% {
-    transform: translateY(-6px);
-  }
-  100% {
-    transform: translateY(0);
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
+@keyframes blogCoverIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes blogCoverZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes blogGlowPulse {
+  0% { transform: translateY(-50%) scale(1); opacity: 0.85; }
+  50% { transform: translateY(-50%) scale(1.07); opacity: 1; }
+  100% { transform: translateY(-50%) scale(1); opacity: 0.85; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .heroContent,
+  .kicker,
+  .heroContent h1,
+  .lead,
+  .breadcrumb,
+  .blogCard,
+  .sidebarCard,
+  .tags,
+  .tag,
+  .articleCover,
+  .articleCover img,
+  .contentSection h2,
+  .relatedTitle {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .heroGlow {
+    animation: none;
+  }
+
   .animatedGalleryItem {
     animation: none;
   }

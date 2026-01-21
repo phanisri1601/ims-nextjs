@@ -26,12 +26,12 @@ const VideoSection = () => {
     // Animation Mappings - IMMERSIVE FULL SCREEN EFFECT
 
     // 1. Container Width/Scale: 
-    // Starts small (60% width) -> Grows to Full Width (100%)
+    // Starts smaller (40% width) -> Grows to Full Width (100%)
     // Using simple scale X/Y might distort, so we animate width percentage if possible, 
     // or use scale with a specific container setup. 
-    // Let's use Scale for smooth GPU perf, relying on the container being 100vw base.
-    // Start: 0.6 (Small Box) -> End: 1.0 (Full Screen 100vw)
-    const containerScale = useTransform(smoothProgress, [0, 0.6], [0.45, 1]);
+    // Let's use Scale for smooth GPU perf, relying on container being 100vw base.
+    // Start: 0.4 (Smaller Box) -> End: 1.0 (Full Screen 100vw)
+    const containerScale = useTransform(smoothProgress, [0, 0.6], [0.4, 1]);
 
     // 2. Border Radius:
     // Starts Rounded (40px) -> Becomes Sharp/Full Screen (0px)

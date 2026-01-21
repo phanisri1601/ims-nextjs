@@ -1,76 +1,25 @@
 import styles from "./ClientsPage.module.css";
-import { FaCheckCircle } from "react-icons/fa";
+import fs from "fs";
+import path from "path";
 
-const clientImage = "/client.png";
+const clientFiles = fs
+  .readdirSync(path.join(process.cwd(), "public", "clients"))
+  .filter((file) => /\.(png|jpe?g|webp|svg)$/i.test(file))
+  .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
 
-const pillars = [
-  {
-    title: "Strategy",
-    description:
-      "Through proper strategies we define how set goals can be accomplished.",
-  },
-  {
-    title: "Creativity",
-    description:
-      "We utilize our creativity to help your business stand apart.",
-  },
-  {
-    title: "Technology",
-    description:
-      "We make use of the latest technology to design and scale your website.",
-  },
-];
+const clients = clientFiles.map((file) => {
+  const base = file.replace(/\.[^/.]+$/, "");
+  const name = base
+    .replace(/\(\s*\d+\s*\)/g, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
-const clients = [
-  "Adithya Constructions",
-  "Aditya Developers",
-  "Alive All",
-  "Arya",
-  "ASN Shelters",
-  "Asset Builders",
-  "AssetsGuru",
-  "Axis",
-  "Brigade",
-  "BSR Builders",
-  "Buildwell Projects",
-  "Cafe Coffee Day",
-  "CaratLane",
-  "Celebrity Prime",
-  "Chartered",
-  "Coevolve Estates",
-  "Date The Ramp",
-  "Dhammanagi Developers",
-  "Dr. G. Om Prakasham",
-  "DTDS World",
-  "Durga Builders",
-  "Evershine Smelting",
-  "Gajanana Sumuk",
-  "GAP Education",
-  "G-Corp",
-  "GK Shelters",
-  "GM Infinite",
-  "GM Rejoyz",
-  "HomeLane",
-  "MG Builders",
-  "NBR Homes",
-  "Pavani Group",
-  "Pionier Developers",
-  "Pratham Constructions",
-  "Precis Interiors",
-  "Preeti Developers",
-  "Prestige Group",
-  "Qbico Co-Work",
-  "QuestMath International",
-  "Rainbow Children’s Hospital",
-  "Raja Rajeshwari BuildCon",
-  "Redbridge Academy",
-  "RichBite Catering",
-  "RMZ Homes",
-  "Sai Associates",
-  "Salarpuria Sattva",
-  "Sankalp Constructions",
-  "SAS Infra",
-];
+  return {
+    src: `/clients/${file}`,
+    name,
+  };
+});
 
 export const metadata = {
   title: "Our Clients | IM Solutions",
@@ -102,8 +51,6 @@ export default function ClientsPage() {
         <div className={styles.heroGlow} aria-hidden />
       </section>
 
-
-
       <section className={styles.gridSection}>
         <div className="container">
           <div className={styles.sectionHead}>
@@ -116,9 +63,9 @@ export default function ClientsPage() {
 
           <div className={styles.clientGrid}>
             {clients.map((client) => (
-              <div key={client} className={styles.clientCard}>
+              <div key={client.src} className={styles.clientCard}>
                 <div className={styles.logoWrap}>
-                  <img src={clientImage} alt={`${client} logo`} />
+                  <img src={client.src} alt={`${client.name} logo`} />
                 </div>
               </div>
             ))}

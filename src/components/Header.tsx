@@ -1,12 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 // Lightweight inline icons to avoid client-side chunk loading issues
 function BarsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden focusable="false" {...props}>
       <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z" />
+    </svg>
+  );
+}
+
+function MicIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z" />
     </svg>
   );
 }
@@ -26,67 +35,21 @@ function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+import { serviceUrlMap } from '../data/services';
 import styles from './Header.module.css';
 
-const serviceUrlMap: { [key: string]: string } = {
-  'Advertising Agency In Bangalore': '/services/advertising-agency-bangalore',
-  'Digital Marketing Service': '/services/digital-marketing-service',
-  'Search Engine Optimization': '/services/seo',
-  'Search Engine Marketing': '/services/sem',
-  'Online Reputation Management': '/services/online-reputation-management',
-  'Website Designing and Development': '/services/website-design-development',
-  'Social Media Optimization': '/services/social-media-optimization',
-  'Social Media Marketing': '/services/social-media-marketing',
-  'Software Design & Development': '/services/software-design-development',
-  'Geolocation Analytical SMS': '/services/geolocation-sms',
-  'AI Advertising Agency': '/services/ai-advertising-agency',
-  'Creative Designing': '/services/creative-designing',
-  'API Integration': '/services/api-integration',
-  'Ecommerce Solutions': '/services/ecommerce-solutions',
-  'Email Marketing': '/services/email-marketing',
-  'Mobile Application Development': '/services/mobile-app-development',
-  'Real Estate Online Marketing Service': '/services/real-estate-marketing',
-  'Display Advertisement': '/services/display-advertisement',
-  'Blog Articles': '/services/blog-articles',
-  'Classified Portal Management': '/services/classified-portal',
-  'Press Releases Services': '/services/press-releases',
-  'Bus Branding': '/services/bus-branding',
-  'RWA Activation': '/services/rwa-activation',
-  'BTL Advertising': '/services/btl-advertising',
-  'Advertising Activities In Malls & Multiplex': '/services/mall-advertising',
-  'Advertisements In Tech Parks': '/services/tech-park-ads',
-  'Advertising in Airports': '/services/airport-advertising',
-  'Paper Insertion': '/services/paper-insertion',
-  'Advertisements In Cafes Gyms & Super Markets': '/services/cafe-gym-ads',
-  'Advertisement in ATMs': '/services/atm-ads',
-  'Auto Rickshaw Advertising': '/services/auto-rickshaw-ads',
-  'Advertisement in Magazines': '/services/magazine-ads',
-  'Advertising in Public & Private Parking Lots': '/services/parking-ads',
-  'Branding Re-Branding': '/services/branding-rebranding',
-  'Corporate Gifts': '/services/corporate-gifts',
-  'Corporate Training Services': '/services/corporate-training',
-  'Event Management': '/services/event-management',
-  'FM Campaigns': '/services/fm-campaigns',
-  'Fabrications': '/services/fabrications',
-  'Hoarding Services': '/services/hoarding-services',
-  'Marketing Collaterals': '/services/marketing-collaterals',
-  'Marketing Services for Start-ups': '/services/startup-marketing',
-  'Photographic Services': '/services/photographic-services',
-  'PR Services': '/services/pr-services',
-  'Printing Services': '/services/printing-services',
-  'Retail Advertising': '/services/retail-advertising',
-  'Real Estate Videography': '/services/real-estate-videography',
-  'Signage': '/services/signage',
-  'Washroom Advertising': '/services/washroom-advertising',
-};
-
 export default function Header() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [closeDropdownTimer, setCloseDropdownTimer] = useState<NodeJS.Timeout | null>(null);
+
+  const recognitionRef = useRef<any>(null);
+  const [isListening, setIsListening] = useState(false);
+  const [voiceError, setVoiceError] = useState<string | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -171,6 +134,340 @@ export default function Header() {
     return serviceUrlMap[service] || '/services';
   };
 
+  const normalize = (text: string) =>
+    text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+  const isQuestionIntent = (rawTranscript: string) => {
+    const t = normalize(rawTranscript);
+    return (
+      t.startsWith('what is') ||
+      t.startsWith('whats') ||
+      t.startsWith("what's") ||
+      t.startsWith('who is') ||
+      t.startsWith('where is') ||
+      t.startsWith('when') ||
+      t.startsWith('why') ||
+      t.startsWith('how') ||
+      t.startsWith('explain') ||
+      t.startsWith('tell me') ||
+      t.startsWith('describe') ||
+      t.includes('what is') ||
+      t.includes('whats') ||
+      t.includes("what's") ||
+      t.includes('explain')
+    );
+  };
+
+  const isExplicitNavigationRequest = (rawTranscript: string) => {
+    const t = normalize(rawTranscript);
+    return (
+      t.includes('go to') ||
+      t.includes('open') ||
+      t.includes('navigate') ||
+      t.includes('take me') ||
+      t.includes('show me')
+    );
+  };
+
+  const speak = (text: string) => {
+    if (typeof window === 'undefined') return;
+    const synth = window.speechSynthesis;
+    if (!synth) return;
+
+    try {
+      synth.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-US';
+      utter.rate = 1;
+      synth.speak(utter);
+    } catch {
+      // ignore
+    }
+  };
+
+  const speakAsync = (text: string, timeoutMs = 4000) => {
+    return new Promise<void>((resolve) => {
+      if (typeof window === 'undefined') return resolve();
+      const synth = window.speechSynthesis;
+      if (!synth) {
+        setVoiceError('Your browser does not support voice playback (Speech Synthesis).');
+        return resolve();
+      }
+
+      const ensureVoices = () => {
+        return new Promise<SpeechSynthesisVoice[]>((res) => {
+          const voices = synth.getVoices();
+          if (voices && voices.length) return res(voices);
+
+          const onVoices = () => {
+            try {
+              synth.removeEventListener('voiceschanged', onVoices);
+            } catch {
+              // ignore
+            }
+            res(synth.getVoices() || []);
+          };
+
+          try {
+            synth.addEventListener('voiceschanged', onVoices);
+          } catch {
+            // ignore
+          }
+
+          // Fallback: resolve even if voiceschanged never fires
+          window.setTimeout(() => {
+            try {
+              synth.removeEventListener('voiceschanged', onVoices);
+            } catch {
+              // ignore
+            }
+            res(synth.getVoices() || []);
+          }, 800);
+        });
+      };
+
+      let done = false;
+      const finish = () => {
+        if (done) return;
+        done = true;
+        resolve();
+      };
+
+      // Give longer answers more time
+      const dynamicTimeout = Math.max(timeoutMs, Math.min(12000, 1200 + text.length * 35));
+      const t = window.setTimeout(finish, dynamicTimeout);
+
+      (async () => {
+        try {
+          const voices = await ensureVoices();
+          const preferred =
+            voices.find(v => v.lang?.toLowerCase().startsWith('en') && v.name?.toLowerCase().includes('google')) ||
+            voices.find(v => v.lang?.toLowerCase().startsWith('en')) ||
+            null;
+
+          synth.cancel();
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = 'en-US';
+          utter.rate = 1;
+          utter.pitch = 1;
+          utter.volume = 1;
+          if (preferred) utter.voice = preferred;
+
+          utter.onend = () => {
+            window.clearTimeout(t);
+            finish();
+          };
+          utter.onerror = () => {
+            window.clearTimeout(t);
+            finish();
+          };
+
+          synth.speak(utter);
+        } catch {
+          window.clearTimeout(t);
+          finish();
+        }
+      })();
+    });
+  };
+
+  const askAssistant = async (query: string) => {
+    const res = await fetch('/api/voice-assistant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query }),
+    });
+
+    const data = (await res.json().catch(() => ({}))) as any;
+    if (!res.ok) {
+      const base = typeof data?.error === 'string' ? data.error : 'Assistant failed. Please try again.';
+      const details = typeof data?.details === 'string' ? data.details : '';
+      const msg = details ? `${base} ${details}` : base;
+      throw new Error(msg);
+    }
+
+    return {
+      answer: typeof data?.answer === 'string' ? data.answer : '',
+      suggestedPath: typeof data?.suggestedPath === 'string' ? data.suggestedPath : null,
+    };
+  };
+
+  const keywordRoutes = useMemo(() => {
+    return [
+      { keys: ['home', 'homepage'], url: '/' },
+      { keys: ['about', 'about us', 'company'], url: '/about' },
+      { keys: ['services', 'service'], url: '/services/online' },
+      { keys: ['online services', 'digital services', 'digital marketing services'], url: '/services/online' },
+      { keys: ['offline services', 'btl', 'outdoor', 'offline marketing'], url: '/services/offline' },
+      { keys: ['clients', 'our clients'], url: '/clients' },
+      { keys: ['careers', 'career', 'jobs', 'job'], url: '/careers' },
+      { keys: ['blog', 'blogs', 'articles'], url: '/blog' },
+      { keys: ['contact', 'contact us', 'call', 'email'], url: '/contact' },
+    ];
+  }, []);
+
+  const serviceMatchers = useMemo(() => {
+    return Object.entries(serviceUrlMap)
+      .map(([serviceName, url]) => ({
+        name: serviceName,
+        norm: normalize(serviceName),
+        url,
+      }))
+      .filter(e => e.norm)
+      // Prefer more specific (longer) service names first
+      .sort((a, b) => b.norm.length - a.norm.length);
+  }, []);
+
+  const findBestRoute = (rawTranscript: string) => {
+    const t = normalize(rawTranscript);
+
+    // If user speaks a URL-like path, navigate directly
+    if (rawTranscript.includes('/') && rawTranscript.trim().startsWith('/')) {
+      return rawTranscript.trim();
+    }
+
+    // 1) Prefer service URL matches first (more specific than generic page keywords)
+    for (const svc of serviceMatchers) {
+      if (t.includes(svc.norm)) return svc.url;
+    }
+
+    // 2) Then fall back to general pages
+    for (const entry of keywordRoutes) {
+      if (entry.keys.some(k => t.includes(normalize(k)))) return entry.url;
+    }
+
+    if (t.includes('seo')) return serviceUrlMap['Search Engine Optimization'] || '/services/seo';
+    if (t.includes('sem') || t.includes('ppc')) return serviceUrlMap['Search Engine Marketing'] || '/services/sem';
+
+    return null;
+  };
+
+  const stopListening = () => {
+    const rec = recognitionRef.current;
+    if (rec) {
+      try {
+        rec.stop();
+      } catch {
+        // ignore
+      }
+    }
+    setIsListening(false);
+  };
+
+  const startListening = () => {
+    setVoiceError(null);
+
+    if (typeof window === 'undefined') return;
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setVoiceError('Voice search is not supported in this browser.');
+      return;
+    }
+
+    const rec = new SpeechRecognition();
+    recognitionRef.current = rec;
+    rec.lang = 'en-US';
+    rec.interimResults = false;
+    rec.maxAlternatives = 1;
+
+    rec.onresult = (event: any) => {
+      const transcript = event?.results?.[0]?.[0]?.transcript || '';
+      stopListening();
+
+      const run = async () => {
+        // Question intent: answer using knowledge base + Gemini and speak it
+        if (isQuestionIntent(transcript)) {
+          try {
+            const { answer, suggestedPath } = await askAssistant(transcript);
+            const finalAnswer = answer || "I don't have that information yet.";
+            setVoiceError(finalAnswer);
+
+            // Speak first, then pause briefly, then redirect
+            await speakAsync(finalAnswer, 5000);
+            // Brief pause after speaking
+            await new Promise(r => setTimeout(r, 800));
+
+            // Only redirect if user explicitly asked to navigate
+            if (suggestedPath && isExplicitNavigationRequest(transcript)) {
+              setIsMenuOpen(false);
+              setIsServicesOpen(false);
+              setIsMobileServicesOpen(false);
+              router.push(suggestedPath);
+            }
+          } catch (e: any) {
+            const msg = typeof e?.message === 'string' ? e.message : 'Assistant failed. Please try again.';
+            setVoiceError(msg);
+            await speakAsync(msg, 4000);
+          }
+          return;
+        }
+
+        // Otherwise: normal navigation
+        const route = findBestRoute(transcript);
+        if (route) {
+          const msg = 'Opening your requested page.';
+          setVoiceError(msg);
+          await speakAsync(msg, 2500);
+          setIsMenuOpen(false);
+          setIsServicesOpen(false);
+          setIsMobileServicesOpen(false);
+          router.push(route);
+        } else {
+          // Fallback: if no route match, try assistant anyway so it behaves conversationally
+          try {
+            const { answer } = await askAssistant(transcript);
+            const finalAnswer = answer || 'Could not match your request. Try saying “Services”, “Blog”, or a service name.';
+            setVoiceError(finalAnswer);
+            await speakAsync(finalAnswer, 5000);
+          } catch (e: any) {
+            const msg =
+              typeof e?.message === 'string'
+                ? e.message
+                : 'Could not match your request. Try saying “Services”, “Blog”, or a service name.';
+            setVoiceError(msg);
+            await speakAsync(msg, 4000);
+          }
+        }
+      };
+
+      void run();
+    };
+
+    rec.onerror = () => {
+      stopListening();
+      setVoiceError('Voice search failed. Please try again.');
+    };
+
+    rec.onend = () => {
+      setIsListening(false);
+    };
+
+    try {
+      setIsListening(true);
+      rec.start();
+    } catch {
+      setIsListening(false);
+      setVoiceError('Unable to start voice search.');
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      const rec = recognitionRef.current;
+      if (rec) {
+        try {
+          rec.abort();
+        } catch {
+          // ignore
+        }
+      }
+    };
+  }, []);
+
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContent}>
@@ -183,14 +480,6 @@ export default function Header() {
         </Link>
 
           <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-            <button
-              className={styles.closeMenu}
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
-            >
-              <TimesIcon />
-            </button>
-            
             <Link href="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Home</Link>
             <Link href="/about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>About Us</Link>
 
@@ -281,14 +570,44 @@ export default function Header() {
             <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Contact Us</Link>
           </nav>
 
-          {/* Add hamburger menu button */}
-          <button
-            className={styles.menuToggle}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <TimesIcon /> : <BarsIcon />}
-          </button>
+          <div className={styles.headerActions}>
+            <div className={styles.micWrap}>
+              <button
+                type="button"
+                className={`${styles.micButton} ${isListening ? styles.micListening : ''}`}
+                onClick={() => (isListening ? stopListening() : startListening())}
+                aria-label={isListening ? 'Stop voice search' : 'Start voice search'}
+              >
+                <div className={styles.micIcon}>
+                  <MicIcon />
+                </div>
+                {isListening && (
+                  <div className={styles.micRings}>
+                    <div className={styles.ring}></div>
+                    <div className={styles.ring}></div>
+                    <div className={styles.ring}></div>
+                  </div>
+                )}
+              </button>
+
+              {voiceError && (
+                <div className={styles.micResponse}>
+                  <div className={styles.responseBubble}>
+                    {voiceError}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Add hamburger menu button */}
+            <button
+              className={styles.menuToggle}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <TimesIcon /> : <BarsIcon />}
+            </button>
+          </div>
         </div>
     </header>
   );

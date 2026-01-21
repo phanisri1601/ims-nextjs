@@ -1,5 +1,6 @@
 import styles from "./BlogPage.module.css";
 import { blogPosts } from "../../data/blogPosts";
+import Image from "next/image";
 
 export const metadata = {
   title: "Blog | IM Solutions",
@@ -33,7 +34,13 @@ export default function BlogPage() {
                 {blogPosts.map((post) => (
                   <article key={post.id} className={styles.blogCard}>
                     <div className={styles.cardImage}>
-                      <img src={post.image} alt={post.title} />
+                      <Image
+                        src={post.image || "/blog_seo.png"}
+                        alt={post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        style={{ objectFit: "cover" }}
+                      />
                     </div>
                     <div className={styles.cardContent}>
                       <div className={styles.cardMeta}>
@@ -58,7 +65,13 @@ export default function BlogPage() {
                   {blogPosts.slice(0, 5).map((post) => (
                     <a key={post.id} href={`/blog/${post.slug}`} className={styles.recentPostItem}>
                       <div className={styles.recentPostThumb}>
-                        <img src={post.image} alt={post.title} />
+                        <Image
+                          src={post.image || "/blog_seo.png"}
+                          alt={post.title}
+                          fill
+                          sizes="80px"
+                          style={{ objectFit: "cover" }}
+                        />
                       </div>
                       <h4>{post.title}</h4>
                     </a>

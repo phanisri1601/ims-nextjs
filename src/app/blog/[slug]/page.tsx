@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import FAQ from "@/components/FAQ";
 import { blogPosts, type BlogContentBlock, type BlogPost } from "../../../data/blogPosts";
 import styles from "../BlogPage.module.css";
 
@@ -88,26 +90,6 @@ export default async function PostPage({ params }: Props) {
               <Link href="/blog">Blog</Link> <span aria-hidden>→</span> {post.title}
             </p>
             <h1>{post.title}</h1>
-            <p className={styles.cardMeta}>
-              <span className={styles.date}>{post.date}</span>
-              <span className={styles.separator}>·</span>
-              <span className={styles.author}>Posted by {post.author}</span>
-              {post.readingTime ? (
-                <>
-                  <span className={styles.separator}>·</span>
-                  <span className={styles.author}>{post.readingTime}</span>
-                </>
-              ) : null}
-            </p>
-            {post.tags?.length ? (
-              <div className={styles.tags}>
-                {post.tags.map((tag) => (
-                  <span key={tag} className={styles.tag}>
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            ) : null}
           </div>
         </div>
       </section>
@@ -116,7 +98,13 @@ export default async function PostPage({ params }: Props) {
         <div className="container">
           <article className={styles.article}>
             <div className={styles.articleCover}>
-              <img src={post.image} alt={post.title} />
+              <Image
+                src={post.image || "/blog_seo.png"}
+                alt={post.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 900px"
+                style={{ objectFit: "cover" }}
+              />
             </div>
 
             <p className={styles.cardExcerpt}>{post.excerpt}</p>
@@ -131,7 +119,13 @@ export default async function PostPage({ params }: Props) {
                       className={styles.animatedGalleryItem}
                       style={{ animationDelay: `${idx * 0.12}s` }}
                     >
-                      <img src={img.src} alt={img.alt} loading="lazy" />
+                      <Image
+                        src={img.src || "/blog_seo.png"}
+                        alt={img.alt}
+                        width={600}
+                        height={360}
+                        style={{ width: "100%", height: "180px", objectFit: "cover", display: "block" }}
+                      />
                     </div>
                   ))}
                 </div>
@@ -159,19 +153,10 @@ export default async function PostPage({ params }: Props) {
               : null}
 
             {post.faqs?.length ? (
-              <section className={styles.faqSection}>
-                <h2>FAQ</h2>
-                <div className={styles.faqList}>
-                  {post.faqs.map((f, idx) => (
-                    <details key={idx} className={styles.faqItem}>
-                      <summary className={styles.faqQuestion}>{f.q}</summary>
-                      <div className={styles.faqAnswer}>
-                        <p>{f.a}</p>
-                      </div>
-                    </details>
-                  ))}
-                </div>
-              </section>
+              <FAQ
+                title="FAQ"
+                items={post.faqs.map((f) => ({ question: f.q, answer: f.a }))}
+              />
             ) : null}
 
             <p className={styles.backLink}>
@@ -186,7 +171,13 @@ export default async function PostPage({ params }: Props) {
                 {relatedPosts.map((rp) => (
                   <article key={rp.slug} className={styles.blogCard}>
                     <div className={styles.cardImage}>
-                      <img src={rp.image} alt={rp.title} />
+                      <Image
+                        src={rp.image || "/blog_seo.png"}
+                        alt={rp.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        style={{ objectFit: "cover" }}
+                      />
                     </div>
                     <div className={styles.cardContent}>
                       <div className={styles.cardMeta}>

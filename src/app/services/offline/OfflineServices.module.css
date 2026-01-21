@@ -180,6 +180,10 @@
     line-height: 1.06;
 }
 
+.featuredLink:hover {
+    color: inherit;
+}
+
 .featuredItem:hover, .featuredActive {
     color: var(--color-accent-primary);
     transform: scale(1.02);
@@ -308,6 +312,7 @@
 .serviceCard:hover {
     border-color: var(--color-accent-primary);
     box-shadow: 0 20px 40px rgba(255, 102, 0, 0.2), 0 0 20px rgba(255, 102, 0, 0.1);
+    color: inherit;
     transform: translateY(-12px) scale(1.02);
 }
 
@@ -377,7 +382,7 @@
 
 .faqContainer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     align-items: start;
     grid-auto-flow: dense;
@@ -409,6 +414,7 @@
     padding: 1.5rem 2rem;
     background: none;
     border: none;
+    font-family: inherit;
     color: var(--color-text-primary);
     font-size: 1.1rem;
     font-weight: 600;
@@ -448,6 +454,7 @@
 }
 
 .faqAnswer p {
+    font-family: inherit;
     color: var(--color-text-secondary);
     line-height: 1.8;
     margin: 0;

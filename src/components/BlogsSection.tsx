@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "./BlogsSection.module.css";
 
@@ -11,23 +11,44 @@ const blogPosts = [
 ];
 
 export default function BlogsSection() {
-    const containerRef = useRef<HTMLDivElement>(null);
+    const [isDesktop, setIsDesktop] = useState(false);
+    const containerRef = useRef<HTMLElement | null>(null);
+
+    useEffect(() => {
+        const update = () => setIsDesktop(window.innerWidth >= 769);
+        update();
+        window.addEventListener("resize", update);
+        return () => window.removeEventListener("resize", update);
+    }, []);
+
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        offset: ["start end", "end start"]
+        offset: ["start end", "end start"],
     });
 
-    // 3D Scroll Transformations
-    // Left Card: Moves Left & Scales slightly
     const xLeft = useTransform(scrollYProgress, [0.2, 0.8], [0, -160]);
-    const scaleSide = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [1, 1.15, 1]);
-
-    // Right Card: Moves Right & Scales slightly
     const xRight = useTransform(scrollYProgress, [0.2, 0.8], [0, 160]);
+    const scaleSide = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [1, 1.15, 1]);
+    const zCenter = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0, 150, 0]);
+    const scaleCenter = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [1, 1.6, 1]);
 
-    // Center Card: Pop Out significantly (Z-axis + Scale)
-    const zCenter = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0, 150, 0]); // Peaks in middle of view
-    const scaleCenter = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [1, 1.6, 1]); // Dramatic zoom
+    const cards = useMemo(
+        () => [
+            {
+                key: "left",
+                post: blogPosts[0],
+            },
+            {
+                key: "center",
+                post: blogPosts[1],
+            },
+            {
+                key: "right",
+                post: blogPosts[2],
+            },
+        ],
+        []
+    );
 
     return (
         <section className={styles.section} ref={containerRef}>
@@ -39,54 +60,90 @@ export default function BlogsSection() {
 
                 <div className={styles.gridWrapper}>
                     <div className={styles.grid}>
-                        {/* Left Card */}
-                        <motion.div
-                            className={styles.card}
-                            style={{ x: xLeft, scale: scaleSide }}
-                        >
-                            <img src={blogPosts[0].image} alt={blogPosts[0].title} className={styles.image} />
-                            <div className={styles.overlay}>
-                                <h3 className={styles.blogTitle}>{blogPosts[0].title}</h3>
-                            </div>
-                        </motion.div>
+                        {cards.map((c) => {
+                            if (!isDesktop) {
+                                return (
+                                    <motion.div
+                                        key={c.key}
+                                        className={styles.card}
+                                        initial={{ opacity: 1, y: 0 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, amount: 0.25 }}
+                                        transition={{ duration: 0.45, ease: "easeOut" }}
+                                    >
+                                        <img src={c.post.image} alt={c.post.title} className={styles.image} />
+                                        <div className={styles.overlay}>
+                                            <h3 className={styles.blogTitle}>{c.post.title}</h3>
+                                        </div>
+                                    </motion.div>
+                                );
+                            }
 
-                        {/* Center Card */}
-                        <motion.div
-                            className={styles.card}
-                            style={{
-                                z: zCenter,
-                                scale: scaleCenter,
-                                zIndex: 10
-                            }}
-                        >
-                            <img src={blogPosts[1].image} alt={blogPosts[1].title} className={styles.image} />
-                            <div className={styles.overlay}>
-                                <h3 className={styles.blogTitle}>{blogPosts[1].title}</h3>
-                            </div>
-                        </motion.div>
+                            if (c.key === "left") {
+                                return (
+                                    <motion.div
+                                        key={c.key}
+                                        className={styles.card}
+                                        style={{ x: xLeft, scale: scaleSide }}
+                                        animate={{ opacity: 1 }}
+                                    >
+                                        <img src={c.post.image} alt={c.post.title} className={styles.image} />
+                                        <div className={styles.overlay}>
+                                            <h3 className={styles.blogTitle}>{c.post.title}</h3>
+                                        </div>
+                                    </motion.div>
+                                );
+                            }
 
-                        {/* Right Card */}
-                        <motion.div
-                            className={styles.card}
-                            style={{ x: xRight, scale: scaleSide }}
-                        >
-                            <img src={blogPosts[2].image} alt={blogPosts[2].title} className={styles.image} />
-                            <div className={styles.overlay}>
-                                <h3 className={styles.blogTitle}>{blogPosts[2].title}</h3>
-                            </div>
-                        </motion.div>
+                            if (c.key === "right") {
+                                return (
+                                    <motion.div
+                                        key={c.key}
+                                        className={styles.card}
+                                        style={{ x: xRight, scale: scaleSide }}
+                                        animate={{ opacity: 1 }}
+                                    >
+                                        <img src={c.post.image} alt={c.post.title} className={styles.image} />
+                                        <div className={styles.overlay}>
+                                            <h3 className={styles.blogTitle}>{c.post.title}</h3>
+                                        </div>
+                                    </motion.div>
+                                );
+                            }
+
+                            return (
+                                <motion.div
+                                    key={c.key}
+                                    className={styles.card}
+                                    style={{ z: zCenter, scale: scaleCenter, zIndex: 10 }}
+                                    animate={{ opacity: 1 }}
+                                >
+                                    <img src={c.post.image} alt={c.post.title} className={styles.image} />
+                                    <div className={styles.overlay}>
+                                        <h3 className={styles.blogTitle}>{c.post.title}</h3>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
 
                 <div className={styles.footer}>
-                    <motion.a
-                        href="/blog"
-                        className={styles.viewAllButton}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        View All Blogs
-                    </motion.a>
+                    {isDesktop ? (
+                        <motion.a
+                            href="/blog"
+                            className={styles.viewAllButton}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            View All Blogs
+                        </motion.a>
+                    ) : (
+                        <a href="/blog" className={styles.viewAllButton}>
+                            View All Blogs
+                        </a>
+                    )}
                 </div>
             </div>
         </section>

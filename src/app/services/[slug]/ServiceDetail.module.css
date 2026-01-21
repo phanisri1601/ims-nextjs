@@ -42,7 +42,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  animation: zoomIn 1.2s ease-out forwards;
+  animation: zoomIn 0.6s ease-out forwards;
   filter: brightness(0.6) contrast(1.1);
 }
 
@@ -391,14 +391,14 @@
 
 /* Animations: use the .is-visible class added by the reveal observer */
 .summaryBlock {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
 }
 
 .summaryContent,
 .summaryImage {
-  opacity: 0;
-  transform: translateX(-28px);
+  opacity: 1;
+  transform: none;
   transition: opacity 520ms cubic-bezier(0.22,1,0.36,1), transform 520ms cubic-bezier(0.22,1,0.36,1);
 }
 
@@ -1364,7 +1364,7 @@
   margin: 1.25rem 0; 
   padding: 0; 
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.25rem;
   align-items: start;
   grid-auto-flow: dense;
@@ -1395,6 +1395,7 @@
   border: none;
   width: 100%;
   text-align: left;
+  font-family: inherit;
   transition: color 0.3s ease;
   color: var(--color-text-primary);
 }
@@ -1426,6 +1427,7 @@
   padding: 0 2rem 1.5rem; 
 }
 .faqAnswer p {
+  font-family: inherit;
   color: var(--color-text-secondary);
   line-height: 1.8;
   margin: 0;
@@ -1503,7 +1505,7 @@
 
 /* Core Services Section */
 .coreServicesSection {
-  padding: 6rem 0;
+  padding: 3rem 0 2rem;
   background: var(--color-bg-primary);
 }
 
@@ -1512,8 +1514,8 @@
   gap: 2rem;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 3rem 1rem;
-  margin-bottom: 2rem;
+  padding: 2rem 1rem 1.25rem;
+  margin-bottom: 1rem;
 
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Hide scrollbar for Firefox */
@@ -1729,7 +1731,7 @@
 
 /* Why Choose Us Section */
 .whyChooseUsSection {
-  padding: 6rem 0 3rem;
+  padding: 2.5rem 0 2rem;
   background: var(--color-bg-primary);
   position: relative;
   overflow: hidden;
@@ -1756,7 +1758,7 @@
   align-items: center;
   position: relative;
   z-index: 1;
-  margin-bottom: 4rem;
+  margin-bottom: 1.5rem;
 }
 
 .whyChooseUsContent.reverseRow {
@@ -1999,7 +2001,7 @@
 
 /* Related Services Section */
 .relatedServicesSection {
-  padding: 1.75rem 0 0 0;
+  padding: 1rem 0 0 0;
   background: transparent;
   overflow: hidden;
   position: relative;
@@ -2029,28 +2031,18 @@
 }
 
 .marqueeContainer {
-  display: flex;
-  overflow: hidden;
-  user-select: none;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  justify-items: center;
+  align-items: stretch;
   padding: 0.75rem 0;
 }
 
-.marqueeContainer:hover .marqueeContent {
-  animation-play-state: paused;
-}
 
 .marqueeContent {
-  flex-shrink: 0;
-  display: flex;
-  width: max-content;
-  gap: 3rem;
-  animation: scroll 40s linear infinite;
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  display: contents;
+  gap: 0;
 }
 
 .relatedServiceCard {
@@ -2077,13 +2069,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: floatSquare 5s ease-in-out infinite;
 }
 
-@keyframes floatSquare {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
 
 /* Stagger floating animation for each card if needed, but since it's a marquee, uniform is fine */
 
@@ -2120,7 +2107,6 @@
 }
 
 .relatedServiceCard:hover .relatedServiceImageWrapper {
-  animation-play-state: paused;
   border-color: var(--color-accent-primary);
   transform: scale(1.05);
   box-shadow: 0 15px 35px rgba(255, 0, 51, 0.2);
@@ -2545,22 +2531,13 @@
   padding: 0.75rem 0;
 }
 
-.marqueeContainer:hover .marqueeContent {
-  animation-play-state: paused;
-}
-
 .marqueeContent {
   flex-shrink: 0;
   display: flex;
   width: max-content;
   gap: 3rem;
-  animation: scroll 40s linear infinite;
 }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
 
 .relatedServiceCard {
   flex: 0 0 250px;
@@ -2586,13 +2563,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: floatSquare 5s ease-in-out infinite;
 }
 
-@keyframes floatSquare {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
 
 /* Stagger floating animation for each card if needed, but since it's a marquee, uniform is fine */
 
@@ -2629,7 +2601,6 @@
 }
 
 .relatedServiceCard:hover .relatedServiceImageWrapper {
-  animation-play-state: paused;
   border-color: var(--color-accent-primary);
   transform: scale(1.05);
   box-shadow: 0 15px 35px rgba(255, 0, 51, 0.2);
@@ -3527,7 +3498,7 @@
   margin: 2rem 0; 
   padding: 0; 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   align-items: start;
   grid-auto-flow: dense;
@@ -3558,6 +3529,7 @@
   border: none;
   width: 100%;
   text-align: left;
+  font-family: inherit;
   transition: color 0.3s ease;
   color: var(--color-text-primary);
 }
@@ -3589,6 +3561,7 @@
   padding: 0 2rem 1.5rem; 
 }
 .faqAnswer p {
+  font-family: inherit;
   color: var(--color-text-secondary);
   line-height: 1.8;
   margin: 0;

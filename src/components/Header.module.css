@@ -4,19 +4,18 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.55);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    backdrop-filter: blur(14px) saturate(160%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     padding: 0;
 }
 
 .header.scrolled {
-    background: rgba(255, 255, 255, 0.8);
-    border-bottom-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    border-bottom-color: transparent;
+    box-shadow: none;
 }
 
 .headerContent {
@@ -269,6 +268,211 @@
     transform: translateX(6px);
 }
 
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Voice Assistant UI */
+.micWrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.micButton {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    overflow: visible;
+}
+
+.micButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.micButton:active {
+    transform: translateY(0);
+}
+
+.micListening {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    animation: micPulse 2s ease-in-out infinite;
+}
+
+.micIcon {
+    position: relative;
+    z-index: 3;
+    color: white;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.micListening .micIcon {
+    transform: scale(1.1);
+}
+
+.micRings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid rgba(245, 87, 108, 0.6);
+    animation: ringExpand 2s ease-out infinite;
+}
+
+.ring:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.ring:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+@keyframes micPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(245, 87, 108, 0.5);
+    }
+}
+
+@keyframes ringExpand {
+    0% {
+        width: 56px;
+        height: 56px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 120px;
+        height: 120px;
+        opacity: 0;
+    }
+}
+
+.micResponse {
+    position: absolute;
+    top: calc(100% + 20px);
+    right: 0;
+    min-width: 280px;
+    max-width: min(85vw, 400px);
+    z-index: 1200;
+    animation: slideUpFade 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.responseBubble {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(30, 30, 30, 0.9) 100%);
+    color: #fff;
+    padding: 16px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: left;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.responseBubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .micButton {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .micIcon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .ring {
+        width: 48px;
+        height: 48px;
+    }
+    
+    @keyframes ringExpand {
+        0% {
+            width: 48px;
+            height: 48px;
+            opacity: 0.8;
+        }
+        100% {
+            width: 100px;
+            height: 100px;
+            opacity: 0;
+        }
+    }
+    
+    .micResponse {
+        min-width: 240px;
+        max-width: min(90vw, 320px);
+        right: -10px;
+    }
+    
+    .responseBubble {
+        padding: 12px 14px;
+        font-size: 0.8rem;
+    }
+}
+
 .menuToggle {
     display: none;
     background: none;
@@ -304,12 +508,7 @@
 
 @media (max-width: 968px) {
     .headerContent {
-        padding: 0.6rem 0.5rem;
-    }
-
-    .menuToggle {
-        margin-left: auto;
-        flex-shrink: 0;
+        padding: 0.75rem 0;
     }
 
     .logo {
@@ -370,6 +569,23 @@
 
     .menuToggle {
         display: block;
+    }
+
+    .headerActions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0 13rem;
+    }
+
+    .micWrap {
+        order: 1;
+    }
+
+    .menuToggle {
+        order: 2;
     }
 
     .closeMenu {
@@ -438,7 +654,7 @@
     }
 
     .headerContent {
-        padding: 0.5rem 0.5rem;
+        padding: 0.5rem 0.75rem;
         gap: 1rem;
     }
 
@@ -458,8 +674,7 @@
     }
 
     .nav {
-        width: 100%;
-        box-sizing: border-box;
+        width: 100vw;
         padding: 3.5rem 0.75rem 2rem;
         gap: 0.6rem;
         right: -100%;
@@ -478,6 +693,11 @@
         font-size: 1rem;
         padding: 0.25rem;
         flex-shrink: 0;
+    }
+
+    .micButton {
+        width: 36px;
+        height: 36px;
     }
 
     .mobileDropdown {
@@ -573,4 +793,38 @@
     .chevron {
         font-size: 0.75rem;
     }
+}
+
+/* Ensure hamburger menu is visible in mobile view */
+.menuToggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menuToggle {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .navOpen {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
 }
