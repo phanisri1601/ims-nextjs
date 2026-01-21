@@ -1,15 +1,24 @@
-"use client";
+import fs from 'fs';
+import path from 'path';
 
 import ScrollReveal from './ScrollReveal';
 import styles from './Clients.module.css';
 
-// Mock Client Logos (Using image as requested)
-const clients = Array(12).fill("/client1.png");
+function getClientLogoPaths() {
+    const clientsDir = path.join(process.cwd(), 'public', 'clients');
+    if (!fs.existsSync(clientsDir)) return [];
 
-// Duplicate list for infinite scroll
-const marqueeClients = [...clients, ...clients];
+    const allowedExt = new Set(['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif']);
+    return fs
+        .readdirSync(clientsDir)
+        .filter((file) => allowedExt.has(path.extname(file).toLowerCase()))
+        .map((file) => `/clients/${file}`);
+}
 
 export default function Clients() {
+    const clients = getClientLogoPaths();
+    const marqueeClients = [...clients, ...clients];
+
     return (
         <section className={styles.clients}>
             <div className="container">
@@ -21,11 +30,10 @@ export default function Clients() {
                 </ScrollReveal>
             </div>
 
-            {/* Infinite Marquee Container */}
             <div className={styles.marquee}>
                 <div className={styles.track}>
                     {marqueeClients.map((client, index) => (
-                        <div key={index} className={styles.clientCard}>
+                        <div key={`${client}-${index}`} className={styles.clientCard}>
                             <div className={styles.clientLogo}>
                                 <img
                                     src={client}

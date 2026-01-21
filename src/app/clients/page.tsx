@@ -51,8 +51,6 @@ export default function ClientsPage() {
         <div className={styles.heroGlow} aria-hidden />
       </section>
 
-
-
       <section className={styles.gridSection}>
         <div className="container">
           <div className={styles.sectionHead}>
