@@ -12,25 +12,57 @@ type Job = {
 
 const jobs: Job[] = [
     {
-        title: "Jobs 1",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien velit, aliquet eget commodo nec, auctor a sapien. Nam eu neque vulputate diam rhoncus faucibus. Curabitur quis varius libero. Lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien velit, aliquet eget commodo nec, auctor a sapien. Nam eu neque vulputate diam rhoncus faucibus. Curabitur quis varius libero. Lorem.",
+        title: "Vice President – Corporate Sales",
+        description: "Lead corporate sales initiatives and drive business growth."
     },
     {
-        title: "Lorem ipsum dolor sit amet",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien.",
+        title: "Visual Content Creator",
+        description: "Create engaging visual content for digital marketing campaigns."
     },
     {
-        title: "Lorem ipsum dolor sit amet",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien.",
+        title: "SR Graphic Designer",
+        description: "Create visual graphics and design materials for marketing campaigns."
     },
     {
-        title: "Lorem ipsum dolor sit amet",
-        description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sapien.",
+        title: "Campaign Manager",
+        description: "Plan and execute marketing campaigns across various channels."
     },
+    {
+        title: "Marketing Operations Executive",
+        description: "Oversee marketing operations and optimize campaign performance."
+    },
+    {
+        title: "Content Writer",
+        description: "Create compelling content for marketing and communication."
+    },
+    {
+        title: "Business Development Associate",
+        description: "Support business development and partnership initiatives."
+    },
+    {
+        title: "SEO Analyst",
+        description: "Analyze SEO performance and recommend optimization strategies."
+    },
+    {
+        title: "SEO Executive",
+        description: "Optimize website content and improve search engine rankings."
+    },
+    {
+        title: "Junior Graphic Designer",
+        description: "Assist in creating visual assets and design materials."
+    },
+    {
+        title: "Web Developer",
+        description: "Develop and maintain websites and web applications."
+    },
+    {
+        title: "Business Development Manager",
+        description: "Lead business development strategies and partnership opportunities."
+    },
+    {
+        title: "Associate Campaign Manager",
+        description: "Support campaign planning and execution activities."
+    }
 ];
 
 export default function CareerContent() {
@@ -53,7 +85,6 @@ export default function CareerContent() {
                         <ScrollReveal delay={0.3}>
                             <h3 className={styles.sectionTitle}>CURRENT OPENINGS</h3>
                         </ScrollReveal>
-
                         <div className={styles.accordion}>
                             {jobs.map((job, index) => {
                                 const isOpen = openIndex === index;
@@ -83,40 +114,36 @@ export default function CareerContent() {
                             })}
                         </div>
                     </div>
-
-                    <div className={styles.right}>
-                        <ScrollReveal delay={0.4}>
-                            <div className={styles.formCard}>
-                                <h3 className={styles.formTitle}>APPLY NOW</h3>
-                                <form className={styles.form}>
-                                    <div className={styles.inputRow}>
-                                        <input type="text" placeholder="NAME*" required />
-                                        <input type="email" placeholder="EMAIL*" required />
-                                    </div>
-                                    <div className={styles.inputRow}>
-                                        <input type="text" placeholder="Bengaluru" />
-                                        <input type="tel" placeholder="PHONE*" required />
-                                    </div>
-                                    <div className={styles.inputRow}>
-                                        <input type="text" placeholder="APPLY FOR*" required />
-                                        <input type="text" placeholder="EXPERIENCE*" />
-                                    </div>
-                                    <div className={styles.fullRow}>
-                                        <input type="file" />
-                                    </div>
-                                    <div className={styles.fullRow}>
-                                        <textarea placeholder="MESSAGE*" rows={4}></textarea>
-                                    </div>
-                                    <div className={styles.actions}>
-                                        <button type="submit">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </ScrollReveal>
-                    </div>
+                    <ScrollReveal delay={0.4}>
+                        <div className={styles.formCard}>
+                            <h3 className={styles.formTitle}>APPLY NOW</h3>
+                            <form className={styles.form}>
+                                <div className={styles.inputRow}>
+                                    <input type="text" placeholder="NAME*" required />
+                                    <input type="email" placeholder="EMAIL*" required />
+                                </div>
+                                <div className={styles.inputRow}>
+                                    <input type="text" placeholder="Bengaluru" />
+                                    <input type="tel" placeholder="PHONE*" required />
+                                </div>
+                                <div className={styles.inputRow}>
+                                    <input type="text" placeholder="APPLY FOR*" required />
+                                    <input type="text" placeholder="EXPERIENCE*" required />
+                                </div>
+                                <div className={styles.fullRow}>
+                                    <input type="file" />
+                                </div>
+                                <div className={styles.fullRow}>
+                                    <textarea placeholder="MESSAGE*" rows={4}></textarea>
+                                </div>
+                                <div className={styles.actions}>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </ScrollReveal>
                 </div>
             </div>
         </section>
     );
 }
-
