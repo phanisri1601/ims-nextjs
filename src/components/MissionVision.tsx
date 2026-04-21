@@ -5,14 +5,14 @@ import ScrollReveal from "./ScrollReveal";
 import styles from "./MissionVision.module.css";
 
 const missionContent = {
-    title: "MISSON",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et earum enim, deleniti fuga magnam soluta eveniet omnis dicta pariatur odio nisi accusantium neque molestiae ullam! Dicta corrupti nulla voluptates commodi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas illo facere eos perferendis! Fuga possimus laboriosam placeat consectetur quidem illo commodi deserunt, totam iste dolor est dolore vero maiores iure!"
+    title: "Our Mission",
+    description: "Our mission is to create impactful advertising that inspires audiences and delivers measurable results for brands. We strive to develop strategic, performance-driven marketing solutions that go beyond visibility and generate real business growth. By combining creativity with data-led precision, we aim to build strong, lasting partnerships with our clients and help them excel in competitive markets. Through innovation, collaboration, and accountability, we work to leave a meaningful and lasting impact in the advertising world."
 };
 
 const visionContent = {
-    title: "VISION",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et earum enim, deleniti fuga magnam soluta eveniet omnis dicta pariatur odio nisi accusantium neque molestiae ullam! Dicta corrupti nulla voluptates commodi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas illo facere eos perferendis! Fuga possimus laboriosam placeat consectetur quidem illo commodi deserunt, totam iste dolor est dolore vero maiores iure!",
-    additionalText: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et earum enim, deleniti fuga magnam soluta eveniet omnis dicta pariatur odio nisi accusantium neque molestiae ullam! Dicta corrupti nulla voluptates commodi?"
+    title: "Our Vision",
+    description: "To become the growth engine behind ambitious brands across industries and borders. We envision a future where marketing is not guesswork, but a structured system built on intelligence and creativity. By uniting strategy, data, and bold execution, we aim to help businesses scale with clarity and confidence. Our goal is not just visibility - but sustainable market leadership",
+    additionalText: ""
 };
 
 export default function MissionVision() {

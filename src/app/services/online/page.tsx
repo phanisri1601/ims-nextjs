@@ -5,6 +5,7 @@ import styles from './OnlineServices.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
+import StackingCardsSection from '@/components/StackingCardsSection';
 
 
 
@@ -12,102 +13,102 @@ const onlineServices = [
   {
     title: 'Digital Marketing Service',
     slug: 'digital-marketing-service',
-    image: '/services/thumbnails/digital-marketing.jpg'
+    image: '/services/pro-thumb-1.svg'
   },
   {
     title: 'Search Engine Optimization',
     slug: 'seo',
-    image: '/services/thumbnails/seo.jpg'
+    image: '/services/pro-thumb-2.svg'
   },
   {
     title: 'Search Engine Marketing',
     slug: 'sem',
-    image: '/services/thumbnails/sem.jpg'
+    image: '/services/pro-thumb-3.svg'
   },
   {
     title: 'Online Reputation Management',
     slug: 'online-reputation-management',
-    image: '/services/thumbnails/reputation-management.jpg'
+    image: '/services/pro-thumb-4.svg'
   },
   {
     title: 'Website Designing and Development',
     slug: 'website-design-development',
-    image: '/services/thumbnails/web-design.jpg'
+    image: '/services/pro-thumb-5.svg'
   },
   {
     title: 'Social Media Optimization',
     slug: 'social-media-optimization',
-    image: '/services/thumbnails/social-media-optimization.jpg'
+    image: '/services/pro-thumb-6.svg'
   },
   {
     title: 'Social Media Marketing',
     slug: 'social-media-marketing',
-    image: '/services/thumbnails/social-media-marketing.jpg'
+    image: '/services/pro-thumb-1.svg'
   },
   {
     title: 'Software Design & Development',
     slug: 'software-design-development',
-    image: '/services/thumbnails/software-development.jpg'
+    image: '/services/pro-thumb-2.svg'
   },
   {
     title: 'Geolocation Analytical SMS',
     slug: 'geolocation-sms',
-    image: '/services/thumbnails/sms.jpg'
+    image: '/services/pro-thumb-3.svg'
   },
   {
     title: 'AI Advertising Agency',
     slug: 'ai-advertising-agency',
-    image: '/services/thumbnails/ai-advertising.jpg'
+    image: '/services/pro-thumb-4.svg'
   },
   {
     title: 'Creative Designing',
     slug: 'creative-designing',
-    image: '/services/thumbnails/creative-designing.jpg'
+    image: '/services/pro-thumb-5.svg'
   },
   {
     title: 'API Integration',
     slug: 'api-integration',
-    image: '/services/thumbnails/api-integration.jpg'
+    image: '/services/pro-thumb-6.svg'
   },
   {
     title: 'Ecommerce Solutions',
     slug: 'ecommerce-solutions',
-    image: '/services/thumbnails/ecommerce-solutions.jpg'
+    image: '/services/pro-thumb-1.svg'
   },
   {
     title: 'Email Marketing',
     slug: 'email-marketing',
-    image: '/services/thumbnails/email-marketing.jpg'
+    image: '/services/pro-thumb-2.svg'
   },
   {
     title: 'Mobile Application Development',
     slug: 'mobile-application-development',
-    image: '/services/thumbnails/mobile-app-development.jpg'
+    image: '/services/pro-thumb-3.svg'
   },
   {
     title: 'Real Estate Online Marketing Service',
     slug: 'real-estate-online-marketing',
-    image: '/services/thumbnails/real-estate-marketing.jpg'
+    image: '/services/pro-thumb-4.svg'
   },
   {
     title: 'Display Advertisement',
     slug: 'display-advertisement',
-    image: '/services/thumbnails/display-advertisement.jpg'
+    image: '/services/pro-thumb-5.svg'
   },
   {
     title: 'Blog Articles',
     slug: 'blog-articles',
-    image: '/services/thumbnails/blog-articles.jpg'
+    image: '/services/pro-thumb-6.svg'
   },
   {
     title: 'Classified Portal Management',
     slug: 'classified-portal-management',
-    image: '/services/thumbnails/classified-portal.jpg'
+    image: '/services/pro-thumb-1.svg'
   },
   {
     title: 'Press Releases Services',
     slug: 'press-releases-services',
-    image: '/services/thumbnails/press-releases.jpg'
+    image: '/services/pro-thumb-2.svg'
   }
 ];
 
@@ -189,16 +190,16 @@ export default function OnlineServicesPage() {
       const centerY = itemRect.top - containerRect.top + itemRect.height / 2;
 
       // compute left/right positions so images sit near the left/right edges
-      const imgW = 190; // matches CSS image width
-      const imgH = 190;
-      const inset = 24; // how far from the container edge the image should sit
+      const imgW = 280; // matches CSS image width
+      const imgH = 280;
+      const inset = 32; // how far from the container edge the image should sit
 
       // pin images near the edges
       let leftPos = inset;
       let rightPos = containerRect.width - imgW - inset;
 
       // vertical offset: left slightly above, right slightly below
-      const offsetY = 36;
+      const offsetY = 50;
       let leftTop = centerY - offsetY;
       let rightTop = centerY + offsetY;
 
@@ -280,36 +281,7 @@ export default function OnlineServicesPage() {
         </p>
       </div>
 
-      {/* Featured vertical list */}
-      <section className={styles.featured} ref={featuredRef}>
-        <div className={styles.leftImage} style={{ top: imageTopLeft !== null ? `${imageTopLeft}px` : undefined, left: imageLeft !== null ? `${imageLeft}px` : undefined }}>
-          {active !== null && (
-            <img src={featured[active].img1} alt={featured[active].title} className={`${styles.image} ${active !== null ? styles.show : ''}`} />
-          )}
-        </div>
-
-        <ul className={styles.featuredList}>
-          {featured.map((s, i) => (
-            <li
-              key={s.slug}
-              ref={(el) => { itemRefs.current[i] = el; }}
-              className={`${styles.featuredItem} ${active === i ? styles.featuredActive : ''}`}
-              onMouseEnter={() => handleEnter(i)}
-              onMouseLeave={handleLeave}
-            >
-              <Link href={`/services/${s.slug}`} className={styles.featuredLink}>
-                {s.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className={styles.rightImage} style={{ top: imageTopRight !== null ? `${imageTopRight}px` : undefined, left: imageRight !== null ? `${imageRight}px` : undefined }}>
-          {active !== null && (
-            <img src={featured[active].img2} alt={featured[active].title} className={`${styles.image} ${active !== null ? styles.show : ''}`} />
-          )}
-        </div>
-      </section>
+      <StackingCardsSection />
 
       {/* Services Grid similar to offline */}
       <div className={styles.servicesGrid}>

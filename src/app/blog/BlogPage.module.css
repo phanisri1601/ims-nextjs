@@ -88,6 +88,38 @@
   gap: var(--spacing-md);
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.25rem;
+  margin-top: 3rem;
+}
+
+.pageNumber {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgba(11, 11, 15, 0.55);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  transition: border-color 220ms ease, color 220ms ease, background-color 220ms ease;
+}
+
+.pageNumber:hover {
+  color: #0b0b0f;
+}
+
+.pageNumberActive {
+  color: var(--color-accent-primary);
+  border-color: rgba(20, 184, 166, 0.7);
+  background: rgba(20, 184, 166, 0.06);
+}
+
 /* Blog Card */
 .blogCard {
   background: var(--color-bg-secondary);
@@ -176,6 +208,68 @@
   line-height: 1.6;
   margin-bottom: 1.5rem;
   flex: 1;
+}
+
+.externalContent {
+  margin-top: 1.5rem;
+}
+
+.externalContent :where(h1, h2, h3) {
+  color: var(--color-text-primary);
+  line-height: 1.25;
+}
+
+.externalContent :where(h1) {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 1.5rem 0 0.75rem;
+}
+
+.externalContent :where(h2) {
+  font-size: 1.35rem;
+  margin: 1.75rem 0 0.75rem;
+}
+
+.externalContent :where(h3) {
+  font-size: 1.15rem;
+  margin: 1.5rem 0 0.6rem;
+}
+
+.externalContent :where(p) {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0 0 1rem;
+  font-size: 0.95rem;
+}
+
+.externalContent :where(ul, ol) {
+  padding-left: 1.2rem;
+  margin: 0 0 1rem;
+  color: var(--color-text-secondary);
+}
+
+.externalContent :where(li) {
+  margin-bottom: 0.35rem;
+}
+
+.externalContent :where(img) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.externalContent :where(a) {
+  color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
+.externalContent :where(blockquote) {
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--color-accent-primary);
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  color: var(--color-text-primary);
 }
 
 .readMore {
@@ -713,6 +807,17 @@
 
   .blogGrid {
     grid-template-columns: 1fr;
+  }
+
+  .pagination {
+    gap: 1.25rem;
+    margin-top: 2.25rem;
+  }
+
+  .pageNumber {
+    width: 52px;
+    height: 52px;
+    font-size: 1.6rem;
   }
 
   .sidebarTitle {

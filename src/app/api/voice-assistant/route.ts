@@ -1,12 +1,13 @@
-export const runtime = 'nodejs';
+export const runtime = "nodejs";
 
 type VoiceAssistantRequest = {
   query?: string;
 };
 
 /* =========================
-   FULL KNOWLEDGE BASE (UNCHANGED)
+   KNOWLEDGE BASE (SITE DATA)
 ========================= */
+
 const knowledgeBase = {
   company_info: {
     name: "IM Solutions",
@@ -16,20 +17,14 @@ const knowledgeBase = {
     team_size: "50+",
     offices: ["Bengaluru", "Alwar"],
   },
-  journey: {
-    "2013": "Founded with a team of 6 experts",
-    "2014": "Expanded into BTL activities",
-    "2015": "Reached 70+ team members",
-    "2016": "Achieved 10,000+ happy customers",
-    "2017": "Expanded operations and automated processes",
-    "2018": "Formed strategic tie-ups",
-    "2019": "Continued growth and innovation",
+  blogs: {
+    headings: [
+      "Modern SEO strategies for AI-powered search",
+      "How AI Is Transforming Website Design",
+      "Top SEO Trends for 2025",
+      "What is RWA Activation and why your business needs it?",
+    ],
   },
-  core_principles: [
-    "Strategy: We define clear paths to accomplish set goals",
-    "Creativity: We help businesses stand apart through innovative solutions",
-    "Technology: We utilize the latest technology to design and implement solutions",
-  ],
   services: {
     online_services: [
       "Digital Marketing Services",
@@ -94,30 +89,6 @@ const knowledgeBase = {
     "Digital Marketing Manager",
     "HR Executive",
   ],
-  vision:
-    "To be the best advertising company in the world by providing innovative and pertinent advertising solutions that help businesses reach their highest potential.",
-  mission: [
-    "Create stunning ads to inspire and impact viewers",
-    "Develop effective marketing strategies for measurable results",
-    "Provide the best advertising solutions for brands",
-    "Build collaborations and client network for business excellence",
-    "Make a lasting impression in the advertising world",
-  ],
-  values: [
-    "Client-centric approach",
-    "High quality standards",
-    "Flexibility and reliability",
-    "Customizable solutions",
-    "Competitive edge with latest trends",
-  ],
-  blogs: {
-    headings: [
-      "Modern SEO strategies for AI-powered search",
-      "How AI Is Transforming Website Design",
-      "Top SEO Trends for 2025",
-      "What is RWA Activation and why your business needs it?",
-    ],
-  },
   contact: {
     corporate_office: {
       address:
@@ -141,7 +112,7 @@ function isSafeSuggestedPath(path: unknown): path is string {
   );
 }
 
-/** 🔑 CRITICAL FIX: Safe JSON extraction */
+/** Safe JSON extraction */
 function extractJson(text: string) {
   const match = text.match(/\{[\s\S]*\}/);
   if (!match) return null;
@@ -152,14 +123,162 @@ function extractJson(text: string) {
   }
 }
 
+function normalize(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isBlogIntent(t: string) {
+  return (
+    t.includes("blog") ||
+    t.includes("blogs") ||
+    t.includes("article") ||
+    t.includes("articles") ||
+    t.includes("posts") ||
+    t.includes("insights")
+  );
+}
+
+function isServicesIntent(t: string) {
+  return (
+    t.includes("service") ||
+    t.includes("services") ||
+    t.includes("offer") ||
+    t.includes("provide")
+  );
+}
+
+function isOnlineIntent(t: string) {
+  return t.includes("online") || t.includes("digital") || t.includes("seo") || t.includes("sem");
+}
+
+function isOfflineIntent(t: string) {
+  return (
+    t.includes("offline") ||
+    t.includes("outdoor") ||
+    t.includes("btl") ||
+    t.includes("hoarding")
+  );
+}
+
+function isPricingIntent(t: string) {
+  return (
+    t.includes("price") ||
+    t.includes("pricing") ||
+    t.includes("cost") ||
+    t.includes("charges") ||
+    t.includes("charge") ||
+    t.includes("fee") ||
+    t.includes("fees") ||
+    t.includes("budget") ||
+    t.includes("how much")
+  );
+}
+
+function pricingContactReply() {
+  return {
+    answer:
+      "For accurate pricing and budget details, please contact our team directly by phone or email through the Contact page.",
+    suggestedPath: "/contact",
+  };
+}
+
+/** Local fallback rules when Gemini does not return a good answer */
+function answerFromKnowledge(query: string): {
+  answer: string;
+  suggestedPath: string | null;
+} | null {
+  const t = normalize(query);
+
+  // Pricing / budget / cost → always contact team
+  if (isPricingIntent(t)) return pricingContactReply();
+
+  // Blogs → mention popular posts and open blog page
+  if (isBlogIntent(t)) {
+    const tops = knowledgeBase.blogs.headings.slice(0, 3).join(", ");
+    return {
+      answer: `Some popular blog posts include ${tops}. Please go through our website for more insights.`,
+      suggestedPath: "/blog",
+    };
+  }
+
+  // Services (online/offline) → short summary + open the right page
+  if (isServicesIntent(t)) {
+    if (isOfflineIntent(t)) {
+      const picks = knowledgeBase.services.offline_services.slice(0, 4).join(", ");
+      return {
+        answer: `We provide offline services such as ${picks} and more. Please go through our website for full details.`,
+        suggestedPath: "/services/offline",
+      };
+    }
+    if (isOnlineIntent(t)) {
+      const picks = knowledgeBase.services.online_services.slice(0, 4).join(", ");
+      return {
+        answer: `We provide online services such as ${picks} and more. Please go through our website for full details.`,
+        suggestedPath: "/services/online",
+      };
+    }
+    return {
+      answer:
+        "We provide both online and offline services. Please go through our website for full details.",
+      suggestedPath: "/services/online",
+    };
+  }
+
+  // Services asked (generic) → answer with online + offline
+  if (
+    (t.includes("services") || t.includes("service")) &&
+    (t.includes("im solutions") || t.includes("you") || t.includes("your"))
+  ) {
+    return {
+      answer: "We provide both online and offline services.",
+      suggestedPath: "/services/online",
+    };
+  }
+
+  // About IM Solutions
+  if (
+    t.includes("im solutions") ||
+    (t.includes("about") && (t.includes("company") || t.includes("you"))) ||
+    t.includes("who are you")
+  ) {
+    const info = knowledgeBase.company_info;
+    const answer = `IM Solutions is a ${info.type} founded in ${info.founded} in ${info.location}, with a team of over ${info.team_size} professionals and offices in ${info.offices.join(
+      " and "
+    )}.`;
+    return { answer, suggestedPath: "/about" };
+  }
+
+  // Careers
+  if (t.includes("career") || t.includes("job") || t.includes("opening")) {
+    const roles = knowledgeBase.career_opportunities;
+    const answer = `IM Solutions offers roles such as ${roles
+      .slice(0, 4)
+      .join(", ")} and more.`;
+    return { answer, suggestedPath: "/careers" };
+  }
+
+  // Contact
+  if (t.includes("contact") || t.includes("phone") || t.includes("email")) {
+    const c = knowledgeBase.contact.corporate_office;
+    const answer = `You can reach IM Solutions at ${c.phone} or email ${c.email}, and visit our corporate office at ${c.address}.`;
+    return { answer, suggestedPath: "/contact" };
+  }
+
+  return null;
+}
+
 /* =========================
    API HANDLER
 ========================= */
 
 export async function POST(req: Request) {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return Response.json({ error: "Missing GEMINI_API_KEY" }, { status: 500 });
+    return Response.json({ error: "Missing OPENAI_API_KEY" }, { status: 500 });
   }
 
   const body = (await req.json().catch(() => ({}))) as VoiceAssistantRequest;
@@ -167,6 +286,18 @@ export async function POST(req: Request) {
 
   if (!query) {
     return Response.json({ error: "Missing query" }, { status: 400 });
+  }
+
+  // Hard rule: pricing always goes to contact (fast, deterministic)
+  const normalized = normalize(query);
+  if (isPricingIntent(normalized)) {
+    return Response.json(pricingContactReply(), { status: 200 });
+  }
+
+  // Hard rule: for blogs/services discovery, respond deterministically (and the UI will open the page)
+  if (isBlogIntent(normalized) || isServicesIntent(normalized)) {
+    const local = answerFromKnowledge(query);
+    if (local) return Response.json(local, { status: 200 });
   }
 
   const allowedPaths = [
@@ -181,9 +312,14 @@ export async function POST(req: Request) {
     "/contact",
   ];
 
-  /* =========================
-     PROMPT (STRICT & SAFE)
-  ========================= */
+  const pricingInstruction =
+    "If the user asks anything about price, pricing, cost, charges, fees or budget, DO NOT guess numbers. Instead, set answer to: 'For accurate pricing and budget details, please contact our team directly by phone or email through the Contact page.' and set suggestedPath to '/contact'.";
+
+  const servicesInstruction =
+    "If the user asks about services offered/provided, briefly mention online/offline services and set suggestedPath to '/services/online' by default (or '/services/offline' if explicitly requested). End with: 'Please go through our website for full details.'";
+
+  const blogsInstruction =
+    "If the user asks about blogs/articles/posts, mention a few popular blog headings from knowledge and set suggestedPath to '/blog'. End with: 'Please go through our website for more insights.'";
 
   const prompt = `
 You are IM Solutions Voice Assistant.
@@ -196,6 +332,9 @@ Rules:
 - No markdown
 - No extra text
 - Keep answer short (1–3 sentences)
+- ${pricingInstruction}
+- ${servicesInstruction}
+- ${blogsInstruction}
 
 JSON format:
 {
@@ -213,39 +352,34 @@ User question:
 ${query}
 IMPORTANT: Output ONLY JSON.
 `.trim();
+  const url = "https://api.openai.com/v1/chat/completions";
 
-  /* =========================
-     GEMINI CALL (STABLE)
-  ========================= */
-
-  const url =
-    `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-  const geminiRes = await fetch(url, {
+  const openaiRes = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
     body: JSON.stringify({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.1,
-        maxOutputTokens: 256,
-      },
+      model: "gpt-4.1-mini",
+      messages: [{ role: "user", content: prompt }],
+      temperature: 0.1,
+      max_tokens: 256,
     }),
   });
 
-
-  if (!geminiRes.ok) {
-    const err = await geminiRes.text();
-    return Response.json({ error: "Gemini failed", details: err }, { status: 500 });
+  if (!openaiRes.ok) {
+    const err = await openaiRes.text();
+    return Response.json(
+      { error: "OpenAI failed", details: err },
+      { status: 500 }
+    );
   }
 
-  const data = await geminiRes.json();
+  const data = await openaiRes.json();
   const rawText =
-    data?.candidates?.[0]?.content?.parts?.map((p: any) => p.text).join("") || "";
-
-  /* =========================
-     PARSE RESPONSE
-  ========================= */
+    data?.choices?.[0]?.message?.content ??
+    "";
 
   const parsed = extractJson(rawText);
   const answer =
@@ -255,7 +389,11 @@ IMPORTANT: Output ONLY JSON.
     ? parsed.suggestedPath
     : null;
 
+  // If Gemini didn't give a usable answer, fall back to our own rules
   if (!answer) {
+    const local = answerFromKnowledge(query);
+    if (local) return Response.json(local, { status: 200 });
+
     return Response.json(
       { answer: "I don't have that information yet.", suggestedPath: null },
       { status: 200 }
@@ -273,3 +411,5 @@ IMPORTANT: Output ONLY JSON.
     { status: 200 }
   );
 }
+
+

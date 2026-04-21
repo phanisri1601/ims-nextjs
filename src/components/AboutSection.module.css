@@ -75,7 +75,7 @@
 }
 
 .title {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: clamp(2rem, 4vw, 3rem); /* Reduced font size */
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1rem;
@@ -83,7 +83,7 @@
 }
 
 .subtitle {
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    font-size: clamp(0.8rem, 1.2vw, 1rem); /* Reduced font size */
     font-weight: 500;
     color: var(--color-text-secondary);
     margin-bottom: 1.5rem;

@@ -5,9 +5,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "./BlogsSection.module.css";
 
 const blogPosts = [
-    { image: "/blog_seo.png", title: "SEO Trends 2025" },
-    { image: "/wcu_marketing.png", title: "Strategic Marketing" },
-    { image: "/wcu_branding.png", title: "Brand Identity" }
+    { image: "/blog_seo.png", title: "SEO Trends 2025", slug: "top-seo-trends-2026" },
+    { image: "/wcu_marketing.png", title: "Strategic Marketing", slug: "orm-strategies-2025" },
+    { image: "/wcu_branding.png", title: "Brand Identity", slug: "ai-website-design" }
 ];
 
 export default function BlogsSection() {
@@ -61,9 +61,11 @@ export default function BlogsSection() {
                 <div className={styles.gridWrapper}>
                     <div className={styles.grid}>
                         {cards.map((c) => {
+                            const cardHref = `/blog/${c.post.slug}`;
                             if (!isDesktop) {
                                 return (
-                                    <motion.div
+                                    <motion.a
+                                        href={cardHref}
                                         key={c.key}
                                         className={styles.card}
                                         initial={{ opacity: 1, y: 0 }}
@@ -76,13 +78,14 @@ export default function BlogsSection() {
                                         <div className={styles.overlay}>
                                             <h3 className={styles.blogTitle}>{c.post.title}</h3>
                                         </div>
-                                    </motion.div>
+                                    </motion.a>
                                 );
                             }
 
                             if (c.key === "left") {
                                 return (
-                                    <motion.div
+                                    <motion.a
+                                        href={cardHref}
                                         key={c.key}
                                         className={styles.card}
                                         style={{ x: xLeft, scale: scaleSide }}
@@ -92,13 +95,14 @@ export default function BlogsSection() {
                                         <div className={styles.overlay}>
                                             <h3 className={styles.blogTitle}>{c.post.title}</h3>
                                         </div>
-                                    </motion.div>
+                                    </motion.a>
                                 );
                             }
 
                             if (c.key === "right") {
                                 return (
-                                    <motion.div
+                                    <motion.a
+                                        href={cardHref}
                                         key={c.key}
                                         className={styles.card}
                                         style={{ x: xRight, scale: scaleSide }}
@@ -108,12 +112,13 @@ export default function BlogsSection() {
                                         <div className={styles.overlay}>
                                             <h3 className={styles.blogTitle}>{c.post.title}</h3>
                                         </div>
-                                    </motion.div>
+                                    </motion.a>
                                 );
                             }
 
                             return (
-                                <motion.div
+                                <motion.a
+                                    href={cardHref}
                                     key={c.key}
                                     className={styles.card}
                                     style={{ z: zCenter, scale: scaleCenter, zIndex: 10 }}
@@ -123,7 +128,7 @@ export default function BlogsSection() {
                                     <div className={styles.overlay}>
                                         <h3 className={styles.blogTitle}>{c.post.title}</h3>
                                     </div>
-                                </motion.div>
+                                </motion.a>
                             );
                         })}
                     </div>

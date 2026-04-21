@@ -28,9 +28,7 @@ export default function AboutHero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    <a href="/">Home</a>
-                    <span> / </span>
-                    <span>About Us</span>
+                    
                 </motion.nav>
             </div>
         </section>

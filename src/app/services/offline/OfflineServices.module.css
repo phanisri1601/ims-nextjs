@@ -1,8 +1,7 @@
 .container {
     min-height: 100vh;
     padding: calc(var(--header-height) + 24px) 20px 60px;
-    background: linear-gradient(135deg, var(--color-bg-primary) 0%, rgba(255, 102, 0, 0.05) 100%);
-}
+    background: white; }
 
 .header {
     max-width: 100%;

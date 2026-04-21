@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { FiArrowRight } from 'react-icons/fi';
 import ScrollReveal from '@/components/ScrollReveal';
+import CreativeShowcaseSection from '@/components/CreativeShowcaseSection';
+import { blogPosts } from '../../../data/blogPosts';
 
 
 const serviceData: {
@@ -1397,6 +1399,8 @@ export default function ServiceDetailPage() {
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const [provideHover, setProvideHover] = useState<number>(0);
+
   // Related Services Logic
   const allServices = Object.entries(serviceData).map(([s, d]) => ({
     slug: s,
@@ -1411,16 +1415,16 @@ export default function ServiceDetailPage() {
   const displayRelated = limitedRelated;
 
   const defaultFaqs = [
-    { 
-      q: 'How long until we see results?', 
+    {
+      q: 'How long until we see results?',
       a: 'Depending on the channel, initial impact can be seen within a few weeks; measurable outcomes typically within 60-90 days.'
     },
-    { 
-      q: 'Do you handle creative and media buying?', 
+    {
+      q: 'Do you handle creative and media buying?',
       a: 'Yes — we do end-to-end campaign management including creative, media planning, buying, and optimization.'
     },
-    { 
-      q: 'Can you work with our internal team?', 
+    {
+      q: 'Can you work with our internal team?',
       a: 'Absolutely. We work as an extension of your team and integrate with internal stakeholders.'
     },
     {
@@ -1450,6 +1454,31 @@ export default function ServiceDetailPage() {
   ];
 
   const displayFaqs = (service.faqs ?? defaultFaqs).slice(0, 7);
+
+  const serviceKeywords = Array.from(
+    new Set(
+      [...slug.split('-'), ...service.title.split(' ')].map((k) => k.trim().toLowerCase()).filter(Boolean)
+    )
+  );
+
+  const relevantPosts = blogPosts
+    .map((p) => {
+      const haystack = `${p.title} ${p.excerpt}`.toLowerCase();
+      const tags = (p.tags ?? []).map((t) => t.toLowerCase());
+      const score = serviceKeywords.reduce((acc, k) => {
+        const tagScore = tags.includes(k) ? 3 : 0;
+        const titleScore = p.title.toLowerCase().includes(k) ? 2 : 0;
+        const textScore = haystack.includes(k) ? 1 : 0;
+        return acc + tagScore + titleScore + textScore;
+      }, 0);
+      return { post: p, score };
+    })
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return b.post.id - a.post.id;
+    })
+    .map((x) => x.post)
+    .slice(0, 3);
 
   const coreServices = [
     {
@@ -1487,6 +1516,17 @@ export default function ServiceDetailPage() {
   const totalServices = coreServices.length;
   const progressPercentage = ((coreServicesActiveIndex + 1) / totalServices) * 100;
 
+  const provideItems = service.features.slice(0, 4);
+  const provideImages = [
+    service.heroImage ?? service.collageMain ?? '/services/pro-thumb-1.svg',
+    service.collageTop ?? '/services/pro-thumb-2.svg',
+    service.collageBottom ?? '/services/pro-thumb-3.svg',
+    '/services/pro-thumb-4.svg',
+  ];
+  const provideDescriptions = provideItems.map((t) =>
+    `We deliver ${t.toLowerCase()} as part of our ${service.title}—built to support your goals with clear execution and measurable outcomes.`
+  );
+
   return (
     <main className={styles.serviceDetail}>
       <div className={styles.heroSection}>
@@ -1502,22 +1542,67 @@ export default function ServiceDetailPage() {
         </div>
       </div>
 
-      {/* Creative Animated Showcase Section */}
-      <section data-reveal="true" className={`${styles.showcaseSection} ${styles.revealOnScroll}`}>
+      <section data-reveal="true" className={`${styles.splitSection} ${styles.revealOnScroll}`}>
         <div className="container">
-          <div className={`${styles.showcaseHeader} revealChild`}>
-            <h2 className={styles.showcaseTitle}>Creative Showcase</h2>
-            <p className={styles.showcaseDesc}>Explore our creative work and service highlights.</p>
+          <div className={`${styles.splitGrid} revealChild`}>
+            <div className={styles.splitImageWrap}>
+              <img
+                src={service.heroImage ?? '/services/digital-marketing-1.svg'}
+                alt={service.title}
+                className={styles.splitImage}
+              />
+            </div>
+            <div className={styles.splitContent}>
+              <h2 className={styles.splitTitle}>Grow Faster With {service.title}</h2>
+              <p className={styles.splitDesc}>
+                We plan, build, and optimize campaigns that connect with the right audience—turning attention into leads and
+                measurable growth.
+              </p>
+
+            </div>
           </div>
-          <div className={`${styles.showcaseGrid} revealChild`}>
-            {/* Example animated cards - replace with real images/content as needed */}
-            {['/services/pro-thumb-1.svg', '/services/digital-marketing-1.svg', '/services/advertising-agency-2.svg'].map((img, idx) => (
-              <div key={idx} className={styles.showcaseCard}>
-                <img src={img} alt={`Showcase ${idx+1}`} className={styles.showcaseImage} />
-                <div className={styles.showcaseCardOverlay}></div>
-                <div className={styles.showcaseCardText}>Creative Idea {idx + 1}</div>
+        </div>
+      </section>
+
+      {/* Creative Animated Showcase Section */}
+      <CreativeShowcaseSection />
+
+      <section data-reveal="true" className={`${styles.provideSection} ${styles.revealOnScroll}`}>
+        <div className="container">
+          <div className={styles.revealChild}>
+            <h2 className={styles.provideTitle}>What We Provide</h2>
+            <div className={styles.provideGrid}>
+              <div className={styles.provideListWrap}>
+                <ul className={styles.provideList}>
+                  {provideItems.map((item, i) => (
+                    <li
+                      key={item}
+                      className={`${styles.provideItem} ${provideHover === i ? styles.provideActive : ''}`}
+                      onMouseEnter={() => setProvideHover(i)}
+                      onFocus={() => setProvideHover(i)}
+                      tabIndex={0}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
+
+              <div className={styles.provideMedia} aria-hidden>
+                <img
+                  src={provideImages[provideHover] ?? provideImages[0]}
+                  alt=""
+                  className={styles.provideImage}
+                />
+              </div>
+
+              <div className={styles.provideContent}>
+                <p className={styles.provideDesc}>{provideDescriptions[provideHover] ?? provideDescriptions[0]}</p>
+                <Link href="/contact" className={styles.provideCta}>
+                  Get Started
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1539,9 +1624,9 @@ export default function ServiceDetailPage() {
                     <li onMouseEnter={() => setBrandHover(2)} onMouseLeave={() => setBrandHover(null)}><span className={styles.itemIcon}></span>Multi-channel Media Planning</li>
                     <li onMouseEnter={() => setBrandHover(3)} onMouseLeave={() => setBrandHover(null)}><span className={styles.itemIcon}></span>Data-driven Optimization</li>
                   </ul>
-                  <div style={{marginTop: '1rem'}}>
+                  <div style={{ marginTop: '1rem' }}>
                     <button className={`${styles.ctaButton} ${styles.pulse}`}>Request Case Studies</button>
-                    <button className={styles.ctaSecondary} style={{marginLeft: '0.75rem'}}>Speak to an Expert</button>
+                    <button className={styles.ctaSecondary} style={{ marginLeft: '0.75rem' }}>Speak to an Expert</button>
                   </div>
                 </div>
 
@@ -1550,41 +1635,41 @@ export default function ServiceDetailPage() {
                   <img src="/services/pro-thumb-1.svg" alt="Campaign" className={`${styles.collageImage} ${styles.collageTop}`} style={topStyle} />
                   <img src="/services/pro-thumb-2.svg" alt="Creative" className={`${styles.collageImage} ${styles.collageBottom}`} style={bottomStyle} />
 
-                  <div className={styles.spark} style={{left: '18%', top: '12%'}}></div>
-                  <div className={styles.spark2} style={{right: '12%', bottom: '14%'}}></div>
+                  <div className={styles.spark} style={{ left: '18%', top: '12%' }}></div>
+                  <div className={styles.spark2} style={{ right: '12%', bottom: '14%' }}></div>
                 </div>
               </div>
             </div>
           </section>
 
           {/* Additional Brand Content */}
-          <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true" style={{marginTop: '2rem', marginBottom: '0', paddingBottom: '0'}}>
+          <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true" style={{ marginTop: '2rem', marginBottom: '0', paddingBottom: '0' }}>
             <div className="container">
-              <div className="revealChild" style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center'}}>
-                <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                   <img 
-                     src="/services/advertising-agency-1.svg" 
-                     alt="Advertising Agency" 
-                     className={styles.collageImage}
-                     style={{
-                       position: 'relative', 
-                       width: '100%', 
-                       maxWidth: '500px', 
-                       height: 'auto', 
-                       borderRadius: '20px', 
-                       boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
-                     }} 
-                   />
+              <div className="revealChild" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                  <img
+                    src="/services/advertising-agency-1.svg"
+                    alt="Advertising Agency"
+                    className={styles.collageImage}
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      maxWidth: '500px',
+                      height: 'auto',
+                      borderRadius: '20px',
+                      boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                    }}
+                  />
                 </div>
                 <div>
-                   <div style={{color: 'var(--color-text-secondary)', lineHeight: '1.7', fontSize: '1.05rem'}}>
-                    <p style={{marginBottom: '1rem'}}>
+                  <div style={{ color: 'var(--color-text-secondary)', lineHeight: '1.7', fontSize: '1.05rem' }}>
+                    <p style={{ marginBottom: '1rem' }}>
                       With the right advertising, you don't just get results but you multiply your profits. IM Solutions delivers just that. We are a team of experts creating unconventional ads that truly makes an impression. Our ads are short, simple and straight to the point targeting ideal customers for a faster outcome. From digital space to every nook and corner of the offline market, we cover it all.
                     </p>
                     <p>
                       IM Solutions connects people and businesses across the digital and physical world, powering people-based marketing. Presentation matters! We help brands present themselves better and reach their customers with our advertising expertise. In simple, we amplifying your business and enhance your branding. Why wait when you can start now? Contact us for more details..
                     </p>
-                   </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1594,12 +1679,12 @@ export default function ServiceDetailPage() {
           <section className={`${styles.coreServicesSection} revealOnScroll`} data-reveal="true">
             <div className="container">
               <div className={styles.revealChild}>
-                <h2 className={styles.showcaseTitle} style={{marginBottom: '3rem', textAlign: 'center'}}>Our Core Services</h2>
-                
+                <h2 className={styles.showcaseTitle} style={{ marginBottom: '3rem', textAlign: 'center' }}>Our Core Services</h2>
+
                 <div className={styles.coreServicesGrid} ref={coreServicesRef}>
                   {coreServices.map((service, index) => (
-                    <div 
-                      key={index} 
+                    <div
+                      key={index}
                       className={`${styles.coreServiceCard} ${coreServicesActiveIndex === index ? styles.active : ''}`}
                     >
                       <div className={styles.serviceIconWrapper}>
@@ -1612,15 +1697,15 @@ export default function ServiceDetailPage() {
                 </div>
 
                 <div className={styles.progressBarContainer}>
-                  <div 
-                    className={styles.progressBar} 
+                  <div
+                    className={styles.progressBar}
                     style={{ width: `${progressPercentage}%` }}
                   ></div>
                 </div>
 
                 <div className={styles.arrowControls}>
-                  <button 
-                    className={styles.arrowButton} 
+                  <button
+                    className={styles.arrowButton}
                     onClick={scrollCoreServicesLeft}
                     aria-label="Previous service"
                   >
@@ -1629,8 +1714,8 @@ export default function ServiceDetailPage() {
                       <polyline points="12 19 5 12 12 5"></polyline>
                     </svg>
                   </button>
-                  <button 
-                    className={styles.arrowButton} 
+                  <button
+                    className={styles.arrowButton}
                     onClick={scrollCoreServicesRight}
                     aria-label="Next service"
                   >
@@ -1654,8 +1739,8 @@ export default function ServiceDetailPage() {
                     <h2 className={styles.showcaseTitle}>WHY US?</h2>
                     <div className={styles.whyChooseUsBody}>
                       <p>Want to increase your online visibility and generate more leads for your business? IM Solutions is among the best and leading Marketing Companies in Bangalore excelling in providing top notch digital marketing services. As a leading Digital Marketing Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.Agency in India our clientele is spread across the country. Having years of experience in advertising niche, IM Solutions is an expert navigating the fast-evolving digital landscape and delivering quality digital marketing services.</p>
-                      
-                      
+
+
                     </div>
                   </div>
 
@@ -1668,10 +1753,10 @@ export default function ServiceDetailPage() {
                 <div className={`${styles.whyChooseUsContent} ${styles.reverseRow}`}>
                   <div className={styles.whyChooseUsText}>
                     <div className={styles.whyChooseUsBody}>
-                      
-                      
+
+
                       <h3 className={styles.whyChooseUsSubtitle}>IM Solutions offers the following advantages:</h3>
-                      
+
                       <ul className={styles.whyChooseUsList}>
                         <li>Proactive online reputation management solutions</li>
                         <li>In-house outsourcing solution by experts</li>
@@ -1700,12 +1785,12 @@ export default function ServiceDetailPage() {
             <div className={styles.marqueeContainer}>
               <div className={styles.marqueeContent}>
                 {displayRelated.map((item, idx) => (
-                  <Link 
-                    key={idx} 
-                    href={`/services/${item.slug}`} 
+                  <Link
+                    key={idx}
+                    href={`/services/${item.slug}`}
                     className={styles.relatedServiceCard}
                   >
-                    <div 
+                    <div
                       className={styles.relatedServiceImageWrapper}
                     >
                       <img src={item.image} alt={item.title} className={styles.relatedServiceImage} />
@@ -1747,6 +1832,37 @@ export default function ServiceDetailPage() {
                         </div>
                       </div>
                     </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section data-reveal="true" className={`${styles.relevantBlogsSection} ${styles.revealOnScroll}`}>
+            <div className="container">
+              <div className={styles.revealChild}>
+                <h3 className={styles.showcaseTitle}>Relevant Blogs</h3>
+                <div className={styles.relevantBlogsGrid}>
+                  {relevantPosts.map((post) => (
+                    <Link key={post.slug} href={`/blog/${post.slug}`} className={styles.relevantBlogCard}>
+                      <div className={styles.relevantBlogImageWrap}>
+                        <img
+                          src={post.image || '/blog_seo.png'}
+                          alt={post.title}
+                          className={styles.relevantBlogImage}
+                        />
+                      </div>
+                      <div className={styles.relevantBlogContent}>
+                        <div className={styles.relevantBlogMeta}>
+                          <span>{post.date}</span>
+                          <span className={styles.relevantBlogDot}>•</span>
+                          <span>{post.readingTime ?? 'Blog'}</span>
+                        </div>
+                        <h4 className={styles.relevantBlogTitle}>{post.title}</h4>
+                        <p className={styles.relevantBlogExcerpt}>{post.excerpt}</p>
+                        <span className={styles.relevantBlogCta}>Read more →</span>
+                      </div>
+                    </Link>
                   ))}
                 </div>
               </div>

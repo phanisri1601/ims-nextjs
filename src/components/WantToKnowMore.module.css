@@ -40,8 +40,7 @@
     overflow-x: auto;
     padding: 1rem 0 2rem 0;
     /* Padding for hover lift & shadow */
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     -webkit-overflow-scrolling: touch;
 
     /* Hide scrollbar */
@@ -66,7 +65,6 @@
     cursor: pointer;
     background: var(--color-surface-elevated);
     transition: transform 0.3s ease;
-    scroll-snap-align: center;
     /* Gentle snapping */
 }
 
@@ -159,60 +157,9 @@
     }
 }
 
-/* Arrow Controls */
-.arrowControls {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    pointer-events: none;
-    z-index: 5;
-    padding: 0 1rem;
-}
-
-.arrowButton {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(255, 0, 51, 0.15);
-    border: 2px solid var(--color-accent-primary);
-    color: var(--color-accent-primary);
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    pointer-events: all;
-    padding: 0;
-    flex-shrink: 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.arrowButton:hover {
-    background: var(--color-accent-primary);
-    color: white;
-    transform: scale(1.1);
-}
-
 @media (max-width: 768px) {
     .section {
         min-height: auto;
-    }
-
-    .arrowButton {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-
-    .arrowControls {
-        padding: 0 0.5rem;
     }
 }
 
@@ -326,15 +273,5 @@
     .cardDesc {
         font-size: 0.8rem;
         line-height: 1.4;
-    }
-
-    .arrowButton {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-    }
-
-    .arrowControls {
-        padding: 0 0.25rem;
     }
 }

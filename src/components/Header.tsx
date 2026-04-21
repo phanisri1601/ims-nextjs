@@ -145,8 +145,10 @@ export default function Header() {
     const t = normalize(rawTranscript);
     return (
       t.startsWith('what is') ||
+      t.startsWith('what are') ||
       t.startsWith('whats') ||
       t.startsWith("what's") ||
+      t.startsWith('what services') ||
       t.startsWith('who is') ||
       t.startsWith('where is') ||
       t.startsWith('when') ||
@@ -155,9 +157,19 @@ export default function Header() {
       t.startsWith('explain') ||
       t.startsWith('tell me') ||
       t.startsWith('describe') ||
+      t.startsWith('do you') ||
+      t === 'blog' ||
+      t === 'blogs' ||
+      t.includes('blog') ||
+      t.includes('blogs') ||
+      t.includes('articles') ||
+      t.includes('do you offer') ||
+      t.includes('do you provide') ||
+      t.includes('what are') ||
       t.includes('what is') ||
       t.includes('whats') ||
       t.includes("what's") ||
+      t.includes('what services') ||
       t.includes('explain')
     );
   };
@@ -171,6 +183,28 @@ export default function Header() {
       t.includes('take me') ||
       t.includes('show me')
     );
+  };
+
+  const shouldAutoNavigateForInfo = (rawTranscript: string, suggestedPath: string | null) => {
+    if (!suggestedPath) return false;
+    const t = normalize(rawTranscript);
+
+    // For "tell me about blogs/services" style queries, we want to open the relevant page
+    const isInfoAsk =
+      t.includes('tell me about') ||
+      t.includes('information about') ||
+      t.includes('details about') ||
+      t.includes('explain') ||
+      t.includes('describe');
+
+    const isBlogs = t.includes('blog') || t.includes('blogs') || t.includes('articles') || t.includes('posts');
+    const isServices = t.includes('service') || t.includes('services') || t.includes('online') || t.includes('offline');
+
+    // Only auto-navigate to blog/services pages (avoid surprising redirects elsewhere)
+    const isSuggestedBlogOrServices =
+      suggestedPath.startsWith('/blog') || suggestedPath.startsWith('/services');
+
+    return isSuggestedBlogOrServices && (isInfoAsk || isBlogs || isServices);
   };
 
   const speak = (text: string) => {
@@ -386,18 +420,24 @@ export default function Header() {
             const finalAnswer = answer || "I don't have that information yet.";
             setVoiceError(finalAnswer);
 
-            // Speak first, then pause briefly, then redirect
-            await speakAsync(finalAnswer, 5000);
-            // Brief pause after speaking
-            await new Promise(r => setTimeout(r, 800));
+            const shouldNavigate =
+              !!suggestedPath &&
+              (isExplicitNavigationRequest(transcript) ||
+                shouldAutoNavigateForInfo(transcript, suggestedPath));
 
-            // Only redirect if user explicitly asked to navigate
-            if (suggestedPath && isExplicitNavigationRequest(transcript)) {
+            // Start speaking immediately. If we need to navigate, don't block on speech ending
+            // (some browsers don't reliably fire onend for SpeechSynthesis).
+            const speakPromise = speakAsync(finalAnswer, 5000);
+
+            if (shouldNavigate && suggestedPath) {
               setIsMenuOpen(false);
               setIsServicesOpen(false);
               setIsMobileServicesOpen(false);
-              router.push(suggestedPath);
+              window.setTimeout(() => router.push(suggestedPath), 350);
             }
+
+            // Still await speech so UI timing stays consistent (but navigation won't be blocked).
+            await speakPromise;
           } catch (e: any) {
             const msg = typeof e?.message === 'string' ? e.message : 'Assistant failed. Please try again.';
             setVoiceError(msg);
@@ -475,7 +515,7 @@ export default function Header() {
           <img
             src="/weblogo.png"
             alt="IM Solutions"
-            style={{ height: '50px', width: 'auto' }} // Inline style for immediate sizing control
+            style={{ height: '44px', width: 'auto' }} // Inline style for immediate sizing control
           />
         </Link>
 
@@ -593,6 +633,14 @@ export default function Header() {
               {voiceError && (
                 <div className={styles.micResponse}>
                   <div className={styles.responseBubble}>
+                    <button
+                      type="button"
+                      className={styles.closeResponseButton}
+                      onClick={() => setVoiceError(null)}
+                      aria-label="Close voice message"
+                    >
+                      <TimesIcon />
+                    </button>
                     {voiceError}
                   </div>
                 </div>

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FaArrowRight, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import styles from "./WantToKnowMore.module.css";
 
 const services = [
@@ -19,7 +19,7 @@ const services = [
         link: "services/seo"
     },
     {
-        title: "Digital Marketing",
+        title: "Full Stack Marketing ",
         description: "360° campaigns that amplify your brand's voice across all channels.",
         image: "/wcu_marketing.png", // Reuse high-quality asset
         link: "services/digital-marketing-service"
@@ -32,7 +32,7 @@ const services = [
     },
     {
         title: "Social Media",
-        description: "Engaging communities with creative content and strategic outreach.",
+        description: "Transforming audience attention into meaningful brand engagement.",
         image: "/wcu_marketing.png",
         link: "/services/social-media-optimization"
     },
@@ -86,6 +86,50 @@ export default function WantToKnowMore() {
         return () => grid.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Auto-scroll functionality - smooth continuous movement
+    useEffect(() => {
+        const grid = gridRef.current;
+        if (!grid) return;
+
+        let animationId: number;
+        let isHovered = false;
+        const scrollSpeed = 1; // pixels per frame
+
+        const autoScroll = () => {
+            if (!isHovered && grid) {
+                const maxScroll = grid.scrollWidth - grid.clientWidth;
+                
+                // If at the end, reset to start
+                if (grid.scrollLeft >= maxScroll - 1) {
+                    grid.scrollLeft = 0;
+                } else {
+                    grid.scrollLeft += scrollSpeed;
+                }
+                
+                // Update active index based on scroll position
+                const cardWidth = 350 + 32;
+                const index = Math.round(grid.scrollLeft / cardWidth);
+                setActiveIndex(Math.min(index, services.length - 1));
+            }
+            animationId = requestAnimationFrame(autoScroll);
+        };
+
+        const handleMouseEnter = () => { isHovered = true; };
+        const handleMouseLeave = () => { isHovered = false; };
+
+        grid.addEventListener("mouseenter", handleMouseEnter);
+        grid.addEventListener("mouseleave", handleMouseLeave);
+        
+        // Start immediately
+        animationId = requestAnimationFrame(autoScroll);
+
+        return () => {
+            cancelAnimationFrame(animationId);
+            grid.removeEventListener("mouseenter", handleMouseEnter);
+            grid.removeEventListener("mouseleave", handleMouseLeave);
+        };
+    }, []);
+
     const scrollToCard = (index: number) => {
         if (gridRef.current) {
             const cardWidth = 350 + 32;
@@ -94,21 +138,6 @@ export default function WantToKnowMore() {
                 behavior: "smooth"
             });
             setActiveIndex(index);
-        }
-    };
-
-    const scrollLeft = () => {
-        if (gridRef.current) {
-            const cardWidth = 350 + 32;
-            const newIndex = Math.max(0, activeIndex - 1);
-            scrollToCard(newIndex);
-        }
-    };
-
-    const scrollRight = () => {
-        if (gridRef.current) {
-            const newIndex = Math.min(services.length - 1, activeIndex + 1);
-            scrollToCard(newIndex);
         }
     };
 
@@ -158,23 +187,6 @@ export default function WantToKnowMore() {
                             </div>
                         </motion.a>
                     ))}
-                </div>
-
-                <div className={styles.arrowControls}>
-                    <button 
-                        className={styles.arrowButton} 
-                        onClick={scrollLeft}
-                        aria-label="Previous"
-                    >
-                        <FaChevronLeft />
-                    </button>
-                    <button 
-                        className={styles.arrowButton} 
-                        onClick={scrollRight}
-                        aria-label="Next"
-                    >
-                        <FaChevronRight />
-                    </button>
                 </div>
             </div>
         </section>

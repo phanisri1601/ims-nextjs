@@ -1,6 +1,7 @@
 import styles from "./ClientsPage.module.css";
 import fs from "fs";
 import path from "path";
+import ClientsHeadlineScroll from "./ClientsHeadlineScroll";
 
 const clientFiles = fs
   .readdirSync(path.join(process.cwd(), "public", "clients"))
@@ -50,6 +51,8 @@ export default function ClientsPage() {
         </div>
         <div className={styles.heroGlow} aria-hidden />
       </section>
+
+      <ClientsHeadlineScroll />
 
       <section className={styles.gridSection}>
         <div className="container">

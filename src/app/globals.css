@@ -49,7 +49,8 @@
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
   --shadow-glow: 0 0 20px rgba(255, 0, 51, 0.15);
 
-  --header-height: 96px;
+  /* Match the actual fixed header height (logo + padding) so there's no white gap */
+  --header-height: 72px;
 }
 
 * {
@@ -174,7 +175,7 @@ a:hover {
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 84px;
+    --header-height: 68px;
   }
 }
 
@@ -186,7 +187,7 @@ a:hover {
 
 @media (max-width: 480px) {
   :root {
-    --header-height: 76px;
+    --header-height: 64px;
   }
 }
 

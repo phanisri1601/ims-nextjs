@@ -75,6 +75,121 @@
   background: linear-gradient(180deg, rgba(255, 0, 51, 0.06), transparent 35%);
 }
 
+.imageHeadlineSection {
+  padding: calc(var(--spacing-xl) * 1.5) 0;
+  background: #ffffff;
+  color: #0b0b0f;
+}
+
+.imageHeadlineWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4.5rem;
+}
+
+.imageHeadline {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  font-size: clamp(1.6rem, 3.2vw, 3rem);
+  width: 100%;
+  max-width: 1400px;
+  transition: color 220ms ease;
+}
+
+.imageHeadline br {
+  content: "";
+}
+
+.mutedLine {
+  color: rgba(11, 11, 15, 0.28);
+  transition: color 220ms ease;
+}
+
+.headlineMuted {
+  color: rgba(11, 11, 15, 0.28);
+}
+
+.headlineMuted .mutedLine {
+  color: rgba(11, 11, 15, 0.28);
+}
+
+.headlineActive {
+  color: #0b0b0f;
+}
+
+.headlineActive .mutedLine {
+  color: rgba(11, 11, 15, 0.70);
+}
+
+.headlineLine {
+  display: block;
+  color: rgba(11, 11, 15, 0.28);
+  transition: color 220ms ease;
+}
+
+.headlineLineActive {
+  color: #0b0b0f;
+}
+
+.inlinePill {
+  display: inline-block;
+  width: 74px;
+  height: 36px;
+  padding: 4px;
+  margin: 0 0.35rem;
+  border-radius: 999px;
+  background: rgba(11, 11, 15, 0.05);
+  border: 1px solid rgba(11, 11, 15, 0.10);
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.inlinePill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 999px;
+  display: block;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  justify-items: center;
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statValue {
+  font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.statLabel {
+  margin-top: 0.7rem;
+  color: rgba(11, 11, 15, 0.55);
+  font-size: 0.95rem;
+}
+
+.statDivider {
+  width: 1px;
+  height: 64px;
+  background: rgba(11, 11, 15, 0.12);
+}
+
 .textBlock {
   max-width: 900px;
   margin-bottom: var(--spacing-lg);
@@ -216,6 +331,16 @@
 
   .logoWrap {
     height: 80px;
+  }
+
+  .statsRow {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .statDivider {
+    width: 60px;
+    height: 1px;
   }
 }
 

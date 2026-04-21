@@ -8,13 +8,13 @@ import styles from "./WhyChooseUs.module.css";
 const reasons = [
     {
         image: "/wcu_marketing.png",
-        title: "360° Digital Marketing Solution",
-        description: "We take pride in delivering fully-integrated and measurable digital marketing solutions. We help support all your brands digital needs."
+        title: "360° Marketing Solution",
+        description: "We take pride in delivering fully-integrated and measurable marketing solutions. We help support all your brands digital needs."
     },
     {
         image: "/wcu_growth.png",
         title: "Maximise your Lead Generation",
-        description: "Research shows that 70% of the data are vague. To increase your sales and grow your client base, you need accurate lead generation."
+        description: "Growth begins with accuracy. Our data-led strategies ensure your brand attracts the right audience - not just more clicks."
     },
     {
         image: "/wcu_branding.png",

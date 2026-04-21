@@ -31,7 +31,7 @@
 
 .cardsGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 4rem;
 }
@@ -42,6 +42,11 @@
     border-radius: 24px;
     padding: 2.5rem 2rem;
     text-align: center;
+    min-height: 360px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -58,6 +63,15 @@
     align-items: center;
     margin-bottom: 1.5rem;
     height: 80px;
+}
+
+.imagePlaceholder {
+    width: 64px;
+    height: 64px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.12));
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .iconWrapper svg {
@@ -91,6 +105,7 @@
     color: var(--color-text-secondary);
     line-height: 1.6;
     margin: 0;
+    flex: 1;
 }
 
 .divider {

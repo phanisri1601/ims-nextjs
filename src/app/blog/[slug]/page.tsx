@@ -12,6 +12,37 @@ export async function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
 }
 
+function extractArticleHtml(html: string) {
+  const match = html.match(/<article[\s\S]*?<\/article>/i);
+  if (!match) return null;
+
+  let articleHtml = match[0];
+  articleHtml = articleHtml.replace(/<script[\s\S]*?<\/script>/gi, "");
+  articleHtml = articleHtml.replace(/<style[\s\S]*?<\/style>/gi, "");
+  articleHtml = articleHtml.replace(/<noscript[\s\S]*?<\/noscript>/gi, "");
+  return articleHtml;
+}
+
+async function fetchExternalArticle(post: BlogPost) {
+  if (!post.externalUrl) return null;
+
+  try {
+    const res = await fetch(post.externalUrl, {
+      next: { revalidate: 3600 },
+      headers: {
+        "user-agent": "Mozilla/5.0",
+        accept: "text/html,application/xhtml+xml",
+      },
+    });
+
+    if (!res.ok) return null;
+    const html = await res.text();
+    return extractArticleHtml(html);
+  } catch {
+    return null;
+  }
+}
+
 function getRelatedPosts(current: BlogPost, limit = 3) {
   const currentTags = new Set((current.tags ?? []).map((t) => t.toLowerCase()));
   const scored = blogPosts
@@ -80,6 +111,7 @@ export default async function PostPage({ params }: Props) {
   }
 
   const relatedPosts = getRelatedPosts(post);
+  const externalArticleHtml = await fetchExternalArticle(post);
 
   return (
     <main className={styles.page}>
@@ -108,6 +140,10 @@ export default async function PostPage({ params }: Props) {
             </div>
 
             <p className={styles.cardExcerpt}>{post.excerpt}</p>
+
+            {externalArticleHtml ? (
+              <section className={styles.externalContent} dangerouslySetInnerHTML={{ __html: externalArticleHtml }} />
+            ) : null}
 
             {post.animatedImages?.length ? (
               <section className={styles.animatedGallery}>

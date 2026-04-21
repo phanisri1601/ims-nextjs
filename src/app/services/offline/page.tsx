@@ -5,6 +5,7 @@ import styles from './OfflineServices.module.css';
 import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
+import StackingCardsSection from '@/components/StackingCardsSection';
 
 const serviceUrlMap: { [key: string]: string } = {
   'Bus Branding': '/services/bus-branding',
@@ -237,36 +238,7 @@ export default function OfflineServicesPage() {
         </p>
       </div>
 
-      {/* Featured vertical list (left/right images) */}
-      <section className={styles.featured} ref={featuredRef}>
-        <div className={styles.leftImage} style={{ top: imageTopLeft !== null ? `${imageTopLeft}px` : undefined, left: imageLeft !== null ? `${imageLeft}px` : undefined }}>
-          {active !== null && (
-            <img src={featured[active].img1} alt={featured[active].title} className={`${styles.image} ${active !== null ? styles.show : ''}`} />
-          )}
-        </div>
-
-        <ul className={styles.featuredList}>
-          {featured.map((s, i) => (
-            <li
-              key={s.slug}
-              ref={(el) => { itemRefs.current[i] = el; }}
-              className={`${styles.featuredItem} ${active === i ? styles.featuredActive : ''}`}
-              onMouseEnter={() => handleEnter(i)}
-              onMouseLeave={handleLeave}
-            >
-              <Link href={`/services/${s.slug}`} className={styles.featuredLink}>
-                {s.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
-        <div className={styles.rightImage} style={{ top: imageTopRight !== null ? `${imageTopRight}px` : undefined, left: imageRight !== null ? `${imageRight}px` : undefined }}>
-          {active !== null && (
-            <img src={featured[active].img2} alt={featured[active].title} className={`${styles.image} ${active !== null ? styles.show : ''}`} />
-          )}
-        </div>
-      </section>
+      <StackingCardsSection />
 
       <div className={styles.servicesGrid}>
         {offlineServices.map((service, index) => (

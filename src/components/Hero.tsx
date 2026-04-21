@@ -111,22 +111,17 @@ export default function Hero() {
                     animate="visible"
                 >
                     <motion.h1 className={styles.heroTitle} variants={itemVariants}>
-                        Best Advertising Agency in{' '}
-                        <motion.span
-                            className={styles.animatedText}
-                            variants={textVariants}
-                        >
-                            Bangalore
-                        </motion.span>
+                        A Full Stack Marketing Powerhouse
+                        
                     </motion.h1>
 
                     <motion.p className={styles.heroDescription} variants={itemVariants}>
-                        We are a full-service creative powerhouse dedicated to transforming brands through innovative strategies, stunning design, and data-driven marketing. From digital dominance to traditional excellence, we craft campaigns that resonate and convert.
+                        Taking brands from visible to unstoppable.
                     </motion.p>
 
                     <motion.div variants={itemVariants}>
                         <a href="/contact" className={styles.ctaButton}>
-                            Enquiry Now
+                            Let's Grow
                         </a>
                     </motion.div>
                 </motion.div>

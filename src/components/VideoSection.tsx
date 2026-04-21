@@ -79,12 +79,10 @@ const VideoSection = () => {
 
                     <div className={styles.videoOverlay}>
                         <h2 className={styles.videoTitle}>
-                            See It In <span className={styles.textHighlight}>Action</span>
+                            WATCH STRATEGIES TURN INTO
+                            <br />
+                            MOMENTUM WITH US.
                         </h2>
-                        <p className={styles.videoDescription}>
-                            Experience the power of premium digital solutions.
-                            Smooth interactions, flawless performance.
-                        </p>
                     </div>
                 </motion.div>
             </div>
