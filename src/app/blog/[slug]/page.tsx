@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FAQ from "@/components/FAQ";
 import { blogPosts, type BlogContentBlock, type BlogPost } from "../../../data/blogPosts";
+import BlogPortfolioVideo from "../BlogPortfolioVideo";
 import styles from "../BlogPage.module.css";
 
 type Props = {
@@ -118,15 +119,7 @@ export default async function PostPage({ params }: Props) {
       <section className={styles.gridSection}>
         <div className="container">
           <article className={styles.article}>
-            <div className={styles.articleCover}>
-              <Image
-                src={post.image || "/blog_seo.png"}
-                alt={post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 900px"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
+            <BlogPortfolioVideo title={post.title} className={styles.articleCoverVideo} />
 
             <h1>{post.title}</h1>
             <p className={styles.cardExcerpt}>{post.excerpt}</p>
@@ -195,28 +188,20 @@ export default async function PostPage({ params }: Props) {
               <h2 className={styles.relatedTitle}>Related posts</h2>
               <div className={styles.relatedGrid}>
                 {relatedPosts.map((rp) => (
-                  <article key={rp.slug} className={styles.blogCard}>
-                    <div className={styles.cardImage}>
-                      <Image
-                        src={rp.image || "/blog_seo.png"}
-                        alt={rp.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.cardMeta}>
-                        <span className={styles.date}>{rp.date}</span>
-                        <span className={styles.separator}>•</span>
-                        <span className={styles.author}>Posted by {rp.author}</span>
+                  <article key={rp.slug} className={styles.portfolioCard}>
+                    <Link href={`/blog/${rp.slug}`} className={styles.portfolioCardLink}>
+                      <BlogPortfolioVideo title={rp.title} />
+                      <div className={styles.portfolioMeta}>
+                        <h3 className={styles.portfolioTitle}>{rp.title}</h3>
+                        <div className={styles.portfolioTags}>
+                          {(rp.tags ?? ["Blog"]).slice(0, 3).map((tag) => (
+                            <span key={tag} className={styles.portfolioTag}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <h3 className={styles.cardTitle}>{rp.title}</h3>
-                      <p className={styles.cardExcerpt}>{rp.excerpt}</p>
-                      <Link href={`/blog/${rp.slug}`} className={styles.readMore}>
-                        Continue Reading →
-                      </Link>
-                    </div>
+                    </Link>
                   </article>
                 ))}
               </div>

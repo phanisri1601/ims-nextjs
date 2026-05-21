@@ -1,6 +1,150 @@
 .page {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background: #ffffff;
+  color: #0b0b0f;
+}
+
+/* Portfolio grid (below editorial hero) */
+.portfolioSection {
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 4vw, 3.5rem) clamp(4rem, 7vw, 6rem);
+  background: #ffffff;
+}
+
+.portfolioInner {
+  width: min(100%, 1320px);
+  margin: 0 auto;
+}
+
+.portfolioGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.75rem) clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.portfolioCard {
+  margin: 0;
+}
+
+.portfolioCardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.portfolioImage {
+  position: relative;
+  width: 100%;
+  max-width: 689.18px;
+  aspect-ratio: 689.18 / 384.41;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #f2f2f2;
+}
+
+.portfolioVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portfolioCardLink:hover .portfolioVideo,
+.portfolioCardLink:focus-visible .portfolioVideo {
+  transform: scale(1.04);
+}
+
+.articleCoverVideo {
+  width: 100%;
+  max-width: 689.18px;
+  margin: 0 auto 1.5rem;
+  aspect-ratio: 689.18 / 384.41;
+  border-radius: 20px;
+}
+
+.portfolioMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.1rem;
+}
+
+.portfolioTitle {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0b0b0f;
+  letter-spacing: -0.01em;
+}
+
+.portfolioTags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.portfolioTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.72rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 999px;
+  color: #3a3a3a;
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  background: #ffffff;
+  transition: border-color 220ms ease, color 220ms ease;
+}
+
+.portfolioCardLink:hover .portfolioTag,
+.portfolioCardLink:focus-visible .portfolioTag {
+  border-color: #b8b8b8;
+  color: #0b0b0f;
+}
+
+.portfolioPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: clamp(3rem, 5vw, 4.5rem);
+}
+
+.portfolioPageNumber {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 0.5rem;
+  border: 1px solid #e4e4e4;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b6b6b;
+  background: #ffffff;
+  transition: border-color 220ms ease, color 220ms ease, background-color 220ms ease;
+}
+
+.portfolioPageNumber:hover {
+  border-color: #c8c8c8;
+  color: #0b0b0f;
+}
+
+.portfolioPageNumberActive {
+  border-color: #0b0b0f;
+  color: #0b0b0f;
+  background: #f7f7f7;
 }
 
 /* Editorial Gallery */
@@ -1119,8 +1263,8 @@
 
 .relatedGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.75rem) clamp(1.5rem, 3vw, 2.75rem);
 }
 
 .animatedGallery {
@@ -1247,6 +1391,8 @@
   .tag,
   .articleCover,
   .articleCover img,
+  .articleCoverVideo,
+  .articleCoverVideo .portfolioVideo,
   .contentSection h2,
   .relatedTitle {
     animation: none;
@@ -1308,26 +1454,12 @@
     right: -5%;
   }
 
-  .gridSection {
-    padding: 0 0 2.5rem;
+  .portfolioSection {
+    padding: 2.5rem 1.5rem 3rem;
   }
 
-  .contentWrapper {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-md);
-  }
-
-  .sidebarCard {
-    position: static;
-    top: auto;
-  }
-
-  .blogGrid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-
-  .sidebarCard {
-    padding: 1.25rem;
+  .portfolioGrid {
+    gap: 2.25rem 1.5rem;
   }
 }
 
@@ -1446,59 +1578,31 @@
     opacity: 0.5;
   }
 
-  .gridSection {
-    padding: 0 0 2rem;
+  .portfolioSection {
+    padding: 2rem 1rem 2.5rem;
   }
 
-  .blogGrid {
+  .portfolioGrid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .pagination {
-    gap: 1.25rem;
-    margin-top: 2.25rem;
+  .portfolioMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
   }
 
-  .pageNumber {
-    width: 52px;
-    height: 52px;
-    font-size: 1.6rem;
+  .portfolioTags {
+    justify-content: flex-start;
   }
 
-  .sidebarTitle {
-    font-size: 1.1rem;
-    margin-bottom: 1.25rem;
+  .portfolioImage {
+    border-radius: 16px;
   }
 
-  .recentPostItem {
-    grid-template-columns: 70px 1fr;
-    gap: 0.625rem;
-  }
-
-  .recentPostThumb {
-    width: 70px;
-    height: 50px;
-  }
-
-  .recentPostItem h4 {
-    font-size: 0.9rem;
-  }
-
-  .cardContent {
-    padding: 1.25rem;
-  }
-
-  .cardImage {
-    height: 180px;
-  }
-
-  .cardTitle {
-    font-size: 1.1rem;
-  }
-
-  .cardExcerpt {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+  .portfolioPagination {
+    margin-top: 2.5rem;
   }
 
   .faqQuestion {
@@ -1591,75 +1695,17 @@
     opacity: 0.3;
   }
 
-  .gridSection {
-    padding: 0 0 1.5rem;
+  .portfolioSection {
+    padding: 1.5rem 0.85rem 2rem;
   }
 
-  .contentWrapper {
-    gap: 1.5rem;
-  }
-
-  .blogGrid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .blogCard {
-    border-radius: 10px;
-  }
-
-  .cardImage {
-    height: 160px;
-  }
-
-  .cardContent {
-    padding: 1rem;
-  }
-
-  .cardMeta {
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-    gap: 0.375rem;
-  }
-
-  .cardTitle {
+  .portfolioTitle {
     font-size: 1rem;
-    margin-bottom: 0.5rem;
   }
 
-  .cardExcerpt {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 0.75rem;
-  }
-
-  .readMore {
-    font-size: 0.9rem;
-  }
-
-  .sidebarCard {
-    padding: 1rem;
-    border-radius: 10px;
-  }
-
-  .sidebarTitle {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .recentPostItem {
-    grid-template-columns: 60px 1fr;
-    gap: 0.5rem;
-    padding: 0.375rem;
-  }
-
-  .recentPostThumb {
-    width: 60px;
-    height: 45px;
-  }
-
-  .recentPostItem h4 {
-    font-size: 0.85rem;
+  .portfolioTag {
+    font-size: 0.68rem;
+    padding: 0.22rem 0.6rem;
   }
 
   .tag {
