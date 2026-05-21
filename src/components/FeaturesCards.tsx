@@ -7,15 +7,18 @@ import styles from "./FeaturesCards.module.css";
 const features = [
     {
         title: "Enhanced Online Visibility",
-        description: "Stand out where it matters most - online.We combine SEO, content, social strategy, and performance campaigns to place your brand exactly where your audience is searching. From visibility to credibility, we build digital presence that converts attention into authority and results"
+        description: "Stand out where it matters most - online.We combine SEO, content, social strategy, and performance campaigns to place your brand exactly where your audience is searching. From visibility to credibility, we build digital presence that converts attention into authority and results",
+        image: "/wcu_growth.png"
     },
     {
         title: "Extensive Offline Presence",
-        description: "Strong brands build presence beyond screens. Through strategic offline campaigns, we create impactful experiences that engage audiences where it matters most. With smart targeting and deep market understanding, we expand your brand’s reach across cities, regions, and global markets."
+        description: "Strong brands build presence beyond screens. Through strategic offline campaigns, we create impactful experiences that engage audiences where it matters most. With smart targeting and deep market understanding, we expand your brand’s reach across cities, regions, and global markets.",
+        image: "/wcu_branding.png"
     },
     {
         title: "Accelerated Marketing",
-        description: "Growth happens faster when strategy works together.We integrate online and offline marketing into one seamless system that drives momentum at every stage of the customer journey.The result? Stronger engagement, smarter positioning, and sustainable brand growth."
+        description: "Growth happens faster when strategy works together.We integrate online and offline marketing into one seamless system that drives momentum at every stage of the customer journey.The result? Stronger engagement, smarter positioning, and sustainable brand growth.",
+        image: "/wcu_marketing.png"
     }
 ];
 
@@ -36,11 +39,21 @@ export default function FeaturesCards() {
                                 whileHover={{ y: -10, scale: 1.02 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <div className={styles.iconWrapper}>
-                                    <div className={styles.imagePlaceholder} />
+                                <div className={styles.cardInner}>
+                                    <div className={styles.cardFace}>
+                                        <div className={styles.cardFront}>
+                                            <img
+                                                src={feature.image}
+                                                alt={feature.title}
+                                                className={styles.cardImage}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className={`${styles.cardFace} ${styles.cardBack}`}>
+                                        <h4 className={styles.cardTitle}>{feature.title}</h4>
+                                        <p className={styles.cardDescription}>{feature.description}</p>
+                                    </div>
                                 </div>
-                                <h4 className={styles.cardTitle}>{feature.title}</h4>
-                                <p className={styles.cardDescription}>{feature.description}</p>
                             </motion.div>
                         </ScrollReveal>
                     ))}

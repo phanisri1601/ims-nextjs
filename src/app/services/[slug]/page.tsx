@@ -1545,20 +1545,22 @@ export default function ServiceDetailPage() {
       <section data-reveal="true" className={`${styles.splitSection} ${styles.revealOnScroll}`}>
         <div className="container">
           <div className={`${styles.splitGrid} revealChild`}>
-            <div className={styles.splitImageWrap}>
-              <img
-                src={service.heroImage ?? '/services/digital-marketing-1.svg'}
-                alt={service.title}
-                className={styles.splitImage}
-              />
-            </div>
             <div className={styles.splitContent}>
               <h2 className={styles.splitTitle}>Grow Faster With {service.title}</h2>
               <p className={styles.splitDesc}>
                 We plan, build, and optimize campaigns that connect with the right audience—turning attention into leads and
                 measurable growth.
               </p>
-
+            </div>
+            <div className={styles.splitImageWrap}>
+              <img
+                src={service.heroImage ?? `/services/service_${slug}.png`}
+                alt={service.title}
+                className={styles.splitImage}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = '/services/digital-marketing-1.svg';
+                }}
+              />
             </div>
           </div>
         </div>
@@ -1645,7 +1647,9 @@ export default function ServiceDetailPage() {
           {/* Additional Brand Content */}
           <section className={`${styles.buildBrandSection} revealOnScroll`} data-reveal="true" style={{ marginTop: '2rem', marginBottom: '0', paddingBottom: '0' }}>
             <div className="container">
-              <div className="revealChild" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+              <div
+                className={`revealChild ${styles.additionalBrandGrid}`}
+              >
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                   <img
                     src="/services/advertising-agency-1.svg"

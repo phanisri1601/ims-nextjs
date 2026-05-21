@@ -13,7 +13,7 @@
 .faqItem {
     background: var(--color-bg-card);
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: 0;
     margin-bottom: 1.5rem;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -126,7 +126,7 @@
 
     .faqItem {
         margin-bottom: 1rem;
-        border-radius: 10px;
+        border-radius: 0;
     }
 
     .faqQuestion {
@@ -161,7 +161,7 @@
 
     .faqItem {
         margin-bottom: 0.75rem;
-        border-radius: 8px;
+        border-radius: 0;
     }
 
     .faqQuestion {

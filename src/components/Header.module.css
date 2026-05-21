@@ -5,17 +5,22 @@
     right: 0;
     z-index: 1000;
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    border-bottom: 1px solid var(--color-border);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    backdrop-filter: blur(25px) saturate(150%);
+    -webkit-backdrop-filter: blur(25px) saturate(150%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
 }
 
+
+/* On homepage AND scrolled, or just scrolled on other pages, become glassy */
 .header.scrolled {
-    background: transparent;
-    border-bottom-color: transparent;
-    box-shadow: none;
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: blur(26px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(26px) saturate(150%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.65) !important;
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.1) !important;
 }
 
 .headerContent {
@@ -112,10 +117,12 @@
     margin-top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
     animation: fadeIn 0.18s ease;
     z-index: 1200;
     padding: 0.75rem 1.25rem;
@@ -146,7 +153,7 @@
     font-weight: 600;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    border-radius: 4px;
+    border-radius: 0;
 }
 
 .tabButton:hover {
@@ -172,7 +179,7 @@
     padding: 1.5rem;
     background: var(--color-bg-secondary);
     border: 1px solid var(--color-border);
-    border-radius: 8px;
+    border-radius: 0;
     text-decoration: none;
     color: var(--color-text-secondary);
     transition: all 0.3s ease;
@@ -255,7 +262,7 @@
     text-decoration: none;
     transition: all 0.2s ease;
     font-size: 0.85rem;
-    border-radius: 4px;
+    border-radius: 0;
     /* allow wrapping so long service names remain visible */
     white-space: normal;
     overflow: visible;
@@ -274,10 +281,10 @@
     gap: 1rem;
 }
 
-/* Voice Assistant UI */
+/* Voice Assistant UI - Hidden */
 .micWrap {
     position: relative;
-    display: inline-flex;
+    display: none;
     align-items: center;
     justify-content: center;
 }
@@ -330,14 +337,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    .logo {
-        font-size: 1.2rem;
-        position: absolute;
-        top: 50%;
-        left: 0.5rem;
-        transform: translateY(-50%);
-        z-index: 5;
-    }
+
     height: 48px;
     border-radius: 50%;
     border: 2px solid rgba(245, 87, 108, 0.6);
@@ -365,9 +365,12 @@
 }
 
 @keyframes micPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
     }
+
     50% {
         box-shadow: 0 4px 25px rgba(245, 87, 108, 0.5);
     }
@@ -379,6 +382,7 @@
         height: 48px;
         opacity: 0.8;
     }
+
     100% {
         width: 120px;
         height: 120px;
@@ -397,15 +401,16 @@
 }
 
 .responseBubble {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(30, 30, 30, 0.9) 100%);
+    background: rgba(0, 0, 0, 0.7);
     color: #fff;
     padding: 16px 20px;
-    border-radius: 20px;
+    border-radius: 12px;
     font-size: 0.9rem;
     line-height: 1.4;
     text-align: left;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
@@ -446,6 +451,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -456,6 +462,7 @@
     0% {
         transform: translateX(-100%);
     }
+
     100% {
         transform: translateX(100%);
     }
@@ -467,36 +474,37 @@
         width: 42px;
         height: 42px;
     }
-    
+
     .micIcon {
         width: 20px;
         height: 20px;
     }
-    
+
     .ring {
         width: 42px;
         height: 42px;
     }
-    
+
     @keyframes ringExpand {
         0% {
             width: 42px;
             height: 42px;
             opacity: 0.8;
         }
+
         100% {
             width: 100px;
             height: 100px;
             opacity: 0;
         }
     }
-    
+
     .micResponse {
         min-width: 240px;
         max-width: min(90vw, 320px);
         right: -10px;
     }
-    
+
     .responseBubble {
         padding: 12px 14px;
         font-size: 0.8rem;
@@ -826,38 +834,4 @@
     .chevron {
         font-size: 0.75rem;
     }
-}
-
-/* Ensure hamburger menu is visible in mobile view */
-.menuToggle {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .menuToggle {
-    display: block;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1100;
-  }
-
-  .nav {
-    display: none;
-  }
-
-  .navOpen {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
 }

@@ -77,13 +77,7 @@ const VideoSection = () => {
                         }}
                     />
 
-                    <div className={styles.videoOverlay}>
-                        <h2 className={styles.videoTitle}>
-                            WATCH STRATEGIES TURN INTO
-                            <br />
-                            MOMENTUM WITH US.
-                        </h2>
-                    </div>
+                    
                 </motion.div>
             </div>
         </section>

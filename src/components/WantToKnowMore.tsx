@@ -176,14 +176,13 @@ export default function WantToKnowMore() {
                         >
                             <div className={styles.imageWrapper}>
                                 <img src={service.image} alt={service.title} className={styles.image} />
-                                {/* The Hover Arrow Overlay */}
+                                <div className={styles.contentOverlay}>
+                                    <h3 className={styles.cardTitle}>{service.title}</h3>
+                                    <p className={styles.cardDesc}>{service.description}</p>
+                                </div>
                                 <div className={styles.arrowOverlay}>
                                     <FaArrowRight className={styles.arrowIcon} />
                                 </div>
-                            </div>
-                            <div className={styles.content}>
-                                <h3 className={styles.cardTitle}>{service.title}</h3>
-                                <p className={styles.cardDesc}>{service.description}</p>
                             </div>
                         </motion.a>
                     ))}

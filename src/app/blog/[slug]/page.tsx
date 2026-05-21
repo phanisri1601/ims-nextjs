@@ -115,17 +115,6 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className="container">
-          <div className={styles.heroContent}>
-            <p className={styles.breadcrumb}>
-              <Link href="/blog">Blog</Link> <span aria-hidden>→</span> {post.title}
-            </p>
-            <h1>{post.title}</h1>
-          </div>
-        </div>
-      </section>
-
       <section className={styles.gridSection}>
         <div className="container">
           <article className={styles.article}>
@@ -139,6 +128,7 @@ export default async function PostPage({ params }: Props) {
               />
             </div>
 
+            <h1>{post.title}</h1>
             <p className={styles.cardExcerpt}>{post.excerpt}</p>
 
             {externalArticleHtml ? (

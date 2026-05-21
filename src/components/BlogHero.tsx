@@ -9,11 +9,6 @@ export default function BlogHero() {
             <div className={styles.overlay}></div>
             <div className={styles.content}>
                 <h1 className={styles.title}>BLOG</h1>
-                <nav className={styles.breadcrumb}>
-                    <a href="/">Home</a>
-                    <span> / </span>
-                    <span>Blog</span>
-                </nav>
             </div>
         </section>
     );

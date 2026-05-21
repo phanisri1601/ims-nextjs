@@ -36,7 +36,7 @@
   --font-size-2xl: 3rem;
   --font-size-3xl: 4rem;
 
-  --font-varela: var(--font-varela-round), "Varela Round", Arial, "Helvetica Neue", Helvetica, serif;
+  --font-varela: var(--font-poppins), "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Transitions */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -109,7 +109,7 @@ html {
 }
 
 main {
-  padding-top: var(--header-height);
+  /* removed padding-top to allow hero to start from top */
 }
 
 /* Typography */
@@ -120,7 +120,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-varela);
-  font-weight: 400;
+  font-weight: 500 !important;
   line-height: 1.6;
   margin-bottom: var(--spacing-sm);
   letter-spacing: 0;
@@ -215,7 +215,7 @@ a:hover {
   padding: 0.875rem 2rem;
   font-size: var(--font-size-sm);
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
   transition: all var(--transition-normal);
   border: none;

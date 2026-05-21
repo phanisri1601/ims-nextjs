@@ -1,6 +1,7 @@
 import styles from "./BlogPage.module.css";
 import { blogPosts } from "../../data/blogPosts";
 import Image from "next/image";
+import EditorialBlogGallery from "./EditorialBlogGallery";
 
 export const metadata = {
   title: "Blog | IM Solutions",
@@ -24,29 +25,20 @@ export default async function BlogPage({ searchParams }: Props) {
   const clampedPage = Math.min(Math.max(currentPage, 1), totalPages);
 
   const postsForPage = blogPosts.filter((p) => (p.page ?? 1) === clampedPage);
+  const featuredPosts = postsForPage.slice(0, 3);
+  const listedPosts = postsForPage.slice(3);
   const recentPosts = [...blogPosts].sort((a, b) => b.id - a.id).slice(0, 5);
 
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className="container">
-          <div className={styles.heroContent}>
-            <p className={styles.kicker}>Our Insights</p>
-            <h1>Latest from our blog</h1>
-            <p className={styles.lead}>
-              Discover trends, strategies, and insights across SEO, digital marketing, design, and technology.
-            </p>
-          </div>
-        </div>
-        <div className={styles.heroGlow} aria-hidden />
-      </section>
+      <EditorialBlogGallery posts={featuredPosts} />
 
       <section className={styles.gridSection}>
         <div className="container">
           <div className={styles.contentWrapper}>
             <div className={styles.postsColumn}>
               <div className={styles.blogGrid}>
-                {postsForPage.map((post) => (
+                {listedPosts.map((post) => (
                   <article key={post.id} className={styles.blogCard}>
                     <div className={styles.cardImage}>
                       <Image

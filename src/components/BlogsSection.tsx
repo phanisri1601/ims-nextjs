@@ -1,156 +1,178 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue, useAnimationFrame } from "framer-motion";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import styles from "./BlogsSection.module.css";
 
-const blogPosts = [
-    { image: "/blog_seo.png", title: "SEO Trends 2025", slug: "top-seo-trends-2026" },
-    { image: "/wcu_marketing.png", title: "Strategic Marketing", slug: "orm-strategies-2025" },
-    { image: "/wcu_branding.png", title: "Brand Identity", slug: "ai-website-design" }
-];
+import { blogPosts as allPosts } from "../data/blogPosts";
+
+const blogPosts = allPosts.slice(0, 7);
 
 export default function BlogsSection() {
-    const [isDesktop, setIsDesktop] = useState(false);
-    const containerRef = useRef<HTMLElement | null>(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [paused, setPaused] = useState(false);
 
     useEffect(() => {
-        const update = () => setIsDesktop(window.innerWidth >= 769);
-        update();
-        window.addEventListener("resize", update);
-        return () => window.removeEventListener("resize", update);
-    }, []);
+        if (paused) return;
+        const timer = setInterval(() => {
+            setActiveIndex((prev) => (prev + 1) % blogPosts.length);
+        }, 3500); // Keep each card visible ~3.5s
+        return () => clearInterval(timer);
+    }, [paused]);
 
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"],
-    });
-
-    const xLeft = useTransform(scrollYProgress, [0.2, 0.8], [0, -160]);
-    const xRight = useTransform(scrollYProgress, [0.2, 0.8], [0, 160]);
-    const scaleSide = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [1, 1.15, 1]);
-    const zCenter = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [0, 150, 0]);
-    const scaleCenter = useTransform(scrollYProgress, [0.2, 0.5, 0.8], [1, 1.6, 1]);
-
-    const cards = useMemo(
-        () => [
-            {
-                key: "left",
-                post: blogPosts[0],
-            },
-            {
-                key: "center",
-                post: blogPosts[1],
-            },
-            {
-                key: "right",
-                post: blogPosts[2],
-            },
-        ],
-        []
-    );
+    const nextSlide = () => setActiveIndex((prev) => (prev + 1) % blogPosts.length);
+    const prevSlide = () => setActiveIndex((prev) => (prev - 1 + blogPosts.length) % blogPosts.length);
 
     return (
-        <section className={styles.section} ref={containerRef}>
+        <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.header}>
                     <span className={styles.eyebrow}>INSIGHTS & NEWS</span>
                     <h2 className={styles.title}>Latest From Our Blog</h2>
                 </div>
 
-                <div className={styles.gridWrapper}>
-                    <div className={styles.grid}>
-                        {cards.map((c) => {
-                            const cardHref = `/blog/${c.post.slug}`;
-                            if (!isDesktop) {
-                                return (
-                                    <motion.a
-                                        href={cardHref}
-                                        key={c.key}
-                                        className={styles.card}
-                                        initial={{ opacity: 1, y: 0 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, amount: 0.25 }}
-                                        transition={{ duration: 0.45, ease: "easeOut" }}
-                                    >
-                                        <img src={c.post.image} alt={c.post.title} className={styles.image} />
-                                        <div className={styles.overlay}>
-                                            <h3 className={styles.blogTitle}>{c.post.title}</h3>
-                                        </div>
-                                    </motion.a>
-                                );
-                            }
+                <div className={styles.carouselContainer}>
+                    <motion.button 
+                        className={`${styles.navButton} ${styles.prevButton}`}
+                        onClick={prevSlide}
+                    >
+                        <FiChevronLeft />
+                    </motion.button>
 
-                            if (c.key === "left") {
-                                return (
-                                    <motion.a
-                                        href={cardHref}
-                                        key={c.key}
-                                        className={styles.card}
-                                        style={{ x: xLeft, scale: scaleSide }}
-                                        animate={{ opacity: 1 }}
-                                    >
-                                        <img src={c.post.image} alt={c.post.title} className={styles.image} />
-                                        <div className={styles.overlay}>
-                                            <h3 className={styles.blogTitle}>{c.post.title}</h3>
-                                        </div>
-                                    </motion.a>
-                                );
-                            }
+                    <div className={styles.carouselWrapper}>
+                        <div className={styles.carousel}>
+                            {blogPosts.map((post, index) => {
+                                 let position = "hidden";
+                                const total = blogPosts.length;
+                                
+                                // Calculate position relative to activeIndex
+                                const relativeIndex = (index - activeIndex + total) % total;
+                                
+                                if (relativeIndex === 0) position = "center";
+                                else if (relativeIndex === 1) position = "right";
+                                else if (relativeIndex === 2) position = "hiddenRight";
+                                else if (relativeIndex === total - 1) position = "left";
+                                else if (relativeIndex === total - 2) position = "hiddenLeft";
+                                else position = "hidden";
 
-                            if (c.key === "right") {
+                                const cardHref = `/blog/${post.slug}`;
+                                
                                 return (
-                                    <motion.a
-                                        href={cardHref}
-                                        key={c.key}
-                                        className={styles.card}
-                                        style={{ x: xRight, scale: scaleSide }}
-                                        animate={{ opacity: 1 }}
-                                    >
-                                        <img src={c.post.image} alt={c.post.title} className={styles.image} />
-                                        <div className={styles.overlay}>
-                                            <h3 className={styles.blogTitle}>{c.post.title}</h3>
-                                        </div>
-                                    </motion.a>
+                                    <BlogCard 
+                                        key={post.slug} 
+                                        post={post} 
+                                        cardHref={cardHref} 
+                                        position={position} 
+                                        onHoverChange={setPaused}
+                                    />
                                 );
-                            }
-
-                            return (
-                                <motion.a
-                                    href={cardHref}
-                                    key={c.key}
-                                    className={styles.card}
-                                    style={{ z: zCenter, scale: scaleCenter, zIndex: 10 }}
-                                    animate={{ opacity: 1 }}
-                                >
-                                    <img src={c.post.image} alt={c.post.title} className={styles.image} />
-                                    <div className={styles.overlay}>
-                                        <h3 className={styles.blogTitle}>{c.post.title}</h3>
-                                    </div>
-                                </motion.a>
-                            );
-                        })}
+                            })}
+                        </div>
                     </div>
+
+                    <motion.button 
+                        className={`${styles.navButton} ${styles.nextButton}`}
+                        onClick={nextSlide}
+                    >
+                        <FiChevronRight />
+                    </motion.button>
                 </div>
 
                 <div className={styles.footer}>
-                    {isDesktop ? (
-                        <motion.a
-                            href="/blog"
-                            className={styles.viewAllButton}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            View All Blogs
-                        </motion.a>
-                    ) : (
-                        <a href="/blog" className={styles.viewAllButton}>
-                            View All Blogs
-                        </a>
-                    )}
+                    <motion.a
+                        href="/blog"
+                        className={styles.viewAllButton}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        View All Blogs
+                    </motion.a>
                 </div>
             </div>
         </section>
+    );
+}
+
+const variants = {
+    center: {
+        x: "0%",
+        scale: 1.2,
+        zIndex: 10,
+        opacity: 1,
+        filter: "blur(0px)",
+        pointerEvents: "auto" as const,
+    },
+    left: {
+        x: "-60%",
+        scale: 0.8,
+        zIndex: 5,
+        opacity: 1, // Removed transparency
+        filter: "blur(0px)",
+        pointerEvents: "none" as const,
+    },
+    right: {
+        x: "60%",
+        scale: 0.8,
+        zIndex: 5,
+        opacity: 1, // Removed transparency
+        filter: "blur(0px)",
+        pointerEvents: "none" as const,
+    },
+    hidden: {
+        x: "0%",
+        scale: 0.5,
+        zIndex: 0,
+        opacity: 0,
+        filter: "blur(10px)",
+        pointerEvents: "none" as const,
+    },
+    hiddenLeft: {
+        x: "-100%",
+        scale: 0.4,
+        zIndex: 0,
+        opacity: 0,
+        filter: "blur(15px)",
+        pointerEvents: "none" as const,
+    },
+    hiddenRight: {
+        x: "100%",
+        scale: 0.4,
+        zIndex: 0,
+        opacity: 0,
+        filter: "blur(15px)",
+        pointerEvents: "none" as const,
+    }
+};
+
+function BlogCard({ post, cardHref, position, onHoverChange }: { post: any, cardHref: string, position: string, onHoverChange: (paused: boolean) => void }) {
+    return (
+        <motion.div
+            className={styles.cardWrapper}
+            initial="hidden"
+            animate={position}
+            variants={variants}
+            transition={{ type: "spring", stiffness: 200, damping: 25, duration: 0.8 }}
+        >
+            <motion.a
+                href={cardHref}
+                className={styles.card}
+                whileHover={position === "center" ? { scale: 1.25 } : {}}
+                onMouseEnter={() => onHoverChange(true)}
+                onMouseLeave={() => onHoverChange(false)}
+            >
+                <img src={post.image} alt={post.title} className={styles.image} />
+                <div className={styles.overlay}>
+                    <div className={styles.metaData}>
+                        <span>{post.date}</span>
+                        <span>{post.author}</span>
+                        {post.readingTime && (
+                           <span className={styles.readingTime}>{post.readingTime}</span>
+                        )}
+                    </div>
+                    <h3 className={styles.blogTitle}>{post.title}</h3>
+                </div>
+            </motion.a>
+        </motion.div>
     );
 }

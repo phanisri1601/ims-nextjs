@@ -2,7 +2,7 @@
     background: #f5f5f5;
     border-top: 1px solid var(--color-border);
     padding: 4rem 2rem 2rem;
-    margin-top: 4rem;
+    margin-top: 0;
 }
 
 .footerContainer {
@@ -332,7 +332,7 @@
 @media (max-width: 768px) {
     .footer {
         padding: 3rem 1rem 2rem;
-        margin-top: 2rem;
+        margin-top: 0;
     }
 
     .footerContainer {
@@ -414,5 +414,106 @@
         flex-direction: column;
         gap: 0.5rem;
         justify-content: center;
+    }
+}
+
+/* More Footer (Hidden Footer) */
+.moreFooterWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    position: relative;
+}
+
+.moreFooterToggle {
+    background: #f03;
+    color: white;
+    border: none;
+    padding: 0.6rem 2.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
+    transition: all 0.3s ease;
+    z-index: 2;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.moreFooterToggle:hover {
+    background: #d02;
+    transform: translateY(-2px);
+}
+
+.moreFooterContent {
+    width: 100%;
+    background: #111;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+    border-top: 2px solid #f03;
+}
+
+.moreFooterContent.expanded {
+    max-height: 2000px;
+    padding: 2.5rem 2rem;
+}
+
+.moreFooterLinks {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.8;
+}
+
+.moreFooterLinks a {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+    display: inline-block;
+    margin: 0.25rem 0;
+}
+
+.moreFooterLinks a:hover {
+    color: #f03;
+}
+
+.moreFooterLinks span {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.separator {
+    color: #444;
+    margin: 0 0.75rem;
+    font-size: 0.8rem;
+    user-select: none;
+}
+
+@media (max-width: 768px) {
+    .moreFooterToggle {
+        padding: 0.5rem 2rem;
+        font-size: 0.85rem;
+    }
+
+    .moreFooterContent.expanded {
+        padding: 1.5rem 1rem;
+    }
+
+    .moreFooterLinks a {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .moreFooterLinks span {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .separator {
+        margin: 0 0.4rem;
     }
 }

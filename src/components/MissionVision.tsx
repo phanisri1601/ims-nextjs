@@ -47,18 +47,10 @@ export default function MissionVision() {
                     </div>
                 </div>
 
-                {/* Vision Section - Text left, Image right (same as Mission) */}
+                {/* Vision Section - Image left, Text right */}
                 <div className={styles.section}>
                     <div className={styles.contentWrapper}>
                         <ScrollReveal direction="right" delay={0.4}>
-                            <div className={styles.textContent}>
-                                <h2 className={styles.title}>{visionContent.title}</h2>
-                                <p className={styles.description}>{visionContent.description}</p>
-                                <p className={styles.additionalText}>{visionContent.additionalText}</p>
-                            </div>
-                        </ScrollReveal>
-
-                        <ScrollReveal direction="left" delay={0.5}>
                             <motion.div
                                 className={styles.imageWrapper}
                                 initial={{ opacity: 0, scale: 0.95 }}
@@ -72,6 +64,14 @@ export default function MissionVision() {
                                     className={styles.image}
                                 />
                             </motion.div>
+                        </ScrollReveal>
+
+                        <ScrollReveal direction="left" delay={0.5}>
+                            <div className={styles.textContent}>
+                                <h2 className={styles.title}>{visionContent.title}</h2>
+                                <p className={styles.description}>{visionContent.description}</p>
+                                <p className={styles.additionalText}>{visionContent.additionalText}</p>
+                            </div>
                         </ScrollReveal>
                     </div>
                 </div>

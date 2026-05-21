@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 // Lightweight inline icons to avoid client-side chunk loading issues
 function BarsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -40,8 +40,11 @@ import styles from './Header.module.css';
 
 export default function Header() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const isHome = pathname === '/';
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -509,7 +512,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isHome ? styles.isHome : ''} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContent}>
         <Link href="/" className={styles.logo}>
           <img
@@ -611,42 +614,8 @@ export default function Header() {
           </nav>
 
           <div className={styles.headerActions}>
-            <div className={styles.micWrap}>
-              <button
-                type="button"
-                className={`${styles.micButton} ${isListening ? styles.micListening : ''}`}
-                onClick={() => (isListening ? stopListening() : startListening())}
-                aria-label={isListening ? 'Stop voice search' : 'Start voice search'}
-              >
-                <div className={styles.micIcon}>
-                  <MicIcon />
-                </div>
-                {isListening && (
-                  <div className={styles.micRings}>
-                    <div className={styles.ring}></div>
-                    <div className={styles.ring}></div>
-                    <div className={styles.ring}></div>
-                  </div>
-                )}
-              </button>
-
-              {voiceError && (
-                <div className={styles.micResponse}>
-                  <div className={styles.responseBubble}>
-                    <button
-                      type="button"
-                      className={styles.closeResponseButton}
-                      onClick={() => setVoiceError(null)}
-                      aria-label="Close voice message"
-                    >
-                      <TimesIcon />
-                    </button>
-                    {voiceError}
-                  </div>
-                </div>
-              )}
-            </div>
-
+            {/* Voice chat functionality hidden */}
+            
             {/* Add hamburger menu button */}
             <button
               className={styles.menuToggle}

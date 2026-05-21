@@ -38,33 +38,33 @@ const serviceUrlMap: { [key: string]: string } = {
 };
 
 const offlineServices = [
-  'Bus Branding',
-  'RWA Activation',
-  'BTL Advertising',
-  'Advertising Activities In Malls & Multiplex',
-  'Advertisements In Tech Parks',
-  'Advertising in Airports',
-  'Paper Insertion',
-  'Advertisements In Cafes Gyms & Super Markets',
-  'Advertisement in ATMs',
-  'Auto Rickshaw Advertising',
-  'Advertisement in Magazines',
-  'Advertising in Public & Private Parking Lots',
-  'Branding Re-Branding',
-  'Corporate Gifts',
-  'Corporate Training Services',
-  'Event Management',
-  'FM Campaigns',
-  'Fabrications',
-  'Hoarding Services',
-  'Marketing Collaterals',
-  'Marketing Services for Start-ups',
-  'Photographic Services',
-  'PR Services',
-  'Printing Services',
-  'Retail Advertising',
-  'Real Estate Videography',
-  'Signage',
+  { title: 'Bus Branding', slug: 'bus-branding', image: '/services/service_bus-branding.png' },
+  { title: 'RWA Activation', slug: 'rwa-activation', image: '/services/service_rwa-activation.png' },
+  { title: 'BTL Advertising', slug: 'btl-advertising', image: '/services/service_btl-advertising.png' },
+  { title: 'Advertising Activities In Malls & Multiplex', slug: 'mall-advertising', image: '/services/service_mall-advertising.png' },
+  { title: 'Advertisements In Tech Parks', slug: 'tech-park-ads', image: '/services/service_tech-park-ads.png' },
+  { title: 'Advertising in Airports', slug: 'airport-advertising', image: '/services/service_airport-advertising.png' },
+  { title: 'Paper Insertion', slug: 'paper-insertion', image: '/services/service_paper-insertion.png' },
+  { title: 'Advertisements In Cafes Gyms & Super Markets', slug: 'cafe-gym-ads', image: '/services/service_cafe-gym-ads.png' },
+  { title: 'Advertisement in ATMs', slug: 'atm-ads', image: '/services/service_atm-ads.png' },
+  { title: 'Auto Rickshaw Advertising', slug: 'auto-rickshaw-ads', image: '/services/service_auto-rickshaw-ads.png' },
+  { title: 'Advertisement in Magazines', slug: 'magazine-ads', image: '/services/service_magazine-ads.png' },
+  { title: 'Advertising in Public & Private Parking Lots', slug: 'parking-ads', image: '/services/service_parking-ads.png' },
+  { title: 'Branding Re-Branding', slug: 'branding-rebranding', image: '/services/service_branding-rebranding.png' },
+  { title: 'Corporate Gifts', slug: 'corporate-gifts', image: '/services/service_corporate-gifts.png' },
+  { title: 'Corporate Training Services', slug: 'corporate-training', image: '/services/service_corporate-training.png' },
+  { title: 'Event Management', slug: 'event-management', image: '/services/service_event-management.png' },
+  { title: 'FM Campaigns', slug: 'fm-campaigns', image: '/services/service_fm-campaigns.png' },
+  { title: 'Fabrications', slug: 'fabrications', image: '/services/service_fabrications.png' },
+  { title: 'Hoarding Services', slug: 'hoarding-services', image: '/services/service_hoarding-services.png' },
+  { title: 'Marketing Collaterals', slug: 'marketing-collaterals', image: '/services/service_marketing-collaterals.png' },
+  { title: 'Marketing Services for Start-ups', slug: 'startup-marketing', image: '/services/service_startup-marketing.png' },
+  { title: 'Photographic Services', slug: 'photographic-services', image: '/services/service_photographic-services.png' },
+  { title: 'PR Services', slug: 'pr-services', image: '/services/service_pr-services.png' },
+  { title: 'Printing Services', slug: 'printing-services', image: '/services/service_printing-services.png' },
+  { title: 'Retail Advertising', slug: 'retail-advertising', image: '/services/service_retail-advertising.png' },
+  { title: 'Real Estate Videography', slug: 'real-estate-videography', image: '/services/service_real-estate-videography.png' },
+  { title: 'Signage', slug: 'signage', image: '/services/service_signage.png' },
 ];
 
 const getServiceUrl = (service: string) => {
@@ -232,27 +232,32 @@ export default function OfflineServicesPage() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Offline Services</h1>
-        <p className={styles.subtitle}>
-          Explore our comprehensive offline advertising and experiential marketing solutions
-        </p>
+        <div className={styles.heroContent}>
+          <h1 className={styles.title}>Offline Services</h1>
+        </div>
       </div>
 
       <StackingCardsSection />
+
+      <div className={styles.sectionTitleWrapper}>
+        <ScrollReveal>
+          <h2 className={styles.sectionTitle}>Offline Services</h2>
+        </ScrollReveal>
+      </div>
 
       <div className={styles.servicesGrid}>
         {offlineServices.map((service, index) => (
           <Link
             key={index}
-            href={getServiceUrl(service)}
+            href={getServiceUrl(service.title)}
             className={`${styles.serviceCard} ${reduceMotion ? styles.noMotion : ''}`}
-            title={service}
+            title={service.title}
             style={{ animationDelay: reduceMotion ? '0ms' : `${index * (isMobile ? 30 : 60)}ms` }}
           >
             <div className={styles.serviceThumbWrap}>
-              <img src={thumbs[index % thumbs.length]} alt={`${service} thumbnail`} className={styles.serviceThumb} />
+              <img src={service.image} alt={`${service.title} thumbnail`} className={styles.serviceThumb} />
             </div>
-            <h3 className={styles.serviceCardTitle}>{service}</h3>
+            <h3 className={styles.serviceCardTitle}>{service.title}</h3>
             <p className={styles.serviceCardDescription}>Explore this service</p>
           </Link>
         ))}

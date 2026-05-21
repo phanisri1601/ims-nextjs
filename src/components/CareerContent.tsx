@@ -1,72 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import styles from "./CareerContent.module.css";
+import { Job } from "@/data/jobs";
 
-type Job = {
-    title: string;
-    description: string;
+type CareerContentProps = {
+    jobs: Job[];
 };
 
-const jobs: Job[] = [
-    {
-        title: "Vice President – Corporate Sales",
-        description: "Lead corporate sales initiatives and drive business growth."
-    },
-    {
-        title: "Visual Content Creator",
-        description: "Create engaging visual content for digital marketing campaigns."
-    },
-    {
-        title: "SR Graphic Designer",
-        description: "Create visual graphics and design materials for marketing campaigns."
-    },
-    {
-        title: "Campaign Manager",
-        description: "Plan and execute marketing campaigns across various channels."
-    },
-    {
-        title: "Marketing Operations Executive",
-        description: "Oversee marketing operations and optimize campaign performance."
-    },
-    {
-        title: "Content Writer",
-        description: "Create compelling content for marketing and communication."
-    },
-    {
-        title: "Business Development Associate",
-        description: "Support business development and partnership initiatives."
-    },
-    {
-        title: "SEO Analyst",
-        description: "Analyze SEO performance and recommend optimization strategies."
-    },
-    {
-        title: "SEO Executive",
-        description: "Optimize website content and improve search engine rankings."
-    },
-    {
-        title: "Junior Graphic Designer",
-        description: "Assist in creating visual assets and design materials."
-    },
-    {
-        title: "Web Developer",
-        description: "Develop and maintain websites and web applications."
-    },
-    {
-        title: "Business Development Manager",
-        description: "Lead business development strategies and partnership opportunities."
-    },
-    {
-        title: "Associate Campaign Manager",
-        description: "Support campaign planning and execution activities."
-    }
-];
+export default function CareerContent({ jobs }: CareerContentProps) {
+    const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
+    const formRef = useRef<HTMLDivElement>(null);
+    const jobsToRender = Array.isArray(jobs) ? jobs : [];
 
-export default function CareerContent() {
-    const [openIndex, setOpenIndex] = useState(0);
+    const handleApplyClick = (e: React.MouseEvent, jobTitle: string) => {
+        e.stopPropagation();
+        formRef.current?.scrollIntoView({ behavior: "smooth" });
+        // Optional: Pre-fill the form "Apply For" field
+        const applyForInput = formRef.current?.querySelector('input[placeholder="APPLY FOR*"]') as HTMLInputElement;
+        if (applyForInput) {
+            applyForInput.value = jobTitle;
+        }
+    };
+
+    const toggleJob = (id: string) => {
+        setExpandedJobId(expandedJobId === id ? null : id);
+    };
 
     return (
         <section className={styles.section}>
@@ -85,37 +46,107 @@ export default function CareerContent() {
                         <ScrollReveal delay={0.3}>
                             <h3 className={styles.sectionTitle}>CURRENT OPENINGS</h3>
                         </ScrollReveal>
-                        <div className={styles.accordion}>
-                            {jobs.map((job, index) => {
-                                const isOpen = openIndex === index;
-                                return (
-                                    <motion.div
-                                        key={index}
-                                        className={`${styles.accordionItem} ${isOpen ? styles.open : ""}`}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: false, amount: 0.2 }}
-                                        transition={{ duration: 0.4, delay: 0.1 * index }}
-                                    >
-                                        <button
-                                            className={styles.accordionHeader}
-                                            onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                        {jobsToRender.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                No openings are available right now.
+                            </div>
+                        ) : (
+                            <div className={styles.jobsGrid}>
+                                {jobsToRender.map((job, index) => {
+                                    const isExpanded = expandedJobId === job.id;
+                                    return (
+                                        <motion.div
+                                            key={job.id}
+                                            className={`${styles.jobCard} ${isExpanded ? styles.expanded : ""}`}
+                                            onClick={() => toggleJob(job.id)}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true, amount: 0.1 }}
+                                            transition={{ duration: 0.4, delay: 0.05 * index }}
+                                            style={{ cursor: "pointer", gridColumn: isExpanded ? "1 / -1" : "auto" }}
                                         >
-                                            <span>{job.title}</span>
-                                            <span className={styles.chevron}>{isOpen ? "▾" : "▸"}</span>
-                                        </button>
-                                        {isOpen && (
-                                            <div className={styles.accordionBody}>
-                                                <p>{job.description}</p>
+                                            <div className={styles.jobTitle}>{job.title}</div>
+                                            <div className={styles.jobMeta}>
+                                                <span>{job.location}</span>
+                                                <span className={styles.metaDot}>•</span>
+                                                <span>{job.experience}</span>
+                                                <span className={styles.metaDot}>•</span>
+                                                <span>{job.employmentType}</span>
                                             </div>
-                                        )}
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
+                                            {!isExpanded && job.description && (
+                                                <div className={styles.jobDesc}>
+                                                    {job.description.slice(0, 120)}...
+                                                </div>
+                                            )}
+                                            
+                                            <AnimatePresence>
+                                                {isExpanded && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: "auto", opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        transition={{ duration: 0.3 }}
+                                                        className={styles.detailsContainer}
+                                                    >
+                                                        <div className={styles.detailsSection}>
+                                                            <div className={styles.detailsTitle}>Description</div>
+                                                            <div className={styles.jobDesc}>{job.description}</div>
+                                                        </div>
+
+                                                        {job.responsibilities.length > 0 && (
+                                                            <div className={styles.detailsSection}>
+                                                                <div className={styles.detailsTitle}>Responsibilities</div>
+                                                                <ul className={styles.detailsList}>
+                                                                    {job.responsibilities.map((item, i) => (
+                                                                        <li key={i}>{item}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        )}
+
+                                                        {job.skills.length > 0 && (
+                                                            <div className={styles.detailsSection}>
+                                                                <div className={styles.detailsTitle}>Skills Required</div>
+                                                                <ul className={styles.detailsList}>
+                                                                    {job.skills.map((item, i) => (
+                                                                        <li key={i}>{item}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        )}
+
+                                                        {job.qualifications && job.qualifications.length > 0 && (
+                                                            <div className={styles.detailsSection}>
+                                                                <div className={styles.detailsTitle}>Qualifications</div>
+                                                                <ul className={styles.detailsList}>
+                                                                    {job.qualifications.map((item, i) => (
+                                                                        <li key={i}>{item}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        )}
+
+                                                        <button 
+                                                            className={styles.applyBtn}
+                                                            onClick={(e) => handleApplyClick(e, job.title)}
+                                                        >
+                                                            Apply For This Role
+                                                        </button>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+
+                                            <div className={styles.jobLink}>
+                                                {isExpanded ? "Show less" : "View details"}
+                                            </div>
+                                        </motion.div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </div>
                     <ScrollReveal delay={0.4}>
-                        <div className={styles.formCard}>
+                        <div className={styles.formCard} ref={formRef}>
                             <h3 className={styles.formTitle}>APPLY NOW</h3>
                             <form className={styles.form}>
                                 <div className={styles.inputRow}>

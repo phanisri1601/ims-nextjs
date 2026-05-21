@@ -151,19 +151,25 @@ export default function StackingCardsSection() {
                   className={styles.card}
                 >
                   <div className={styles.cardInner}>
-                    <div className={styles.cardHeader}>
-                      <div className={styles.cardNumber}>{c.number}</div>
-                      <button className={styles.cardButton}>Get Started</button>
-                    </div>
-                    <div className={styles.divider}></div>
-                    <div className={styles.cardContent}>
-                      <div className={styles.textContent}>
-                        <h3 className={styles.cardTitle} style={{ fontSize: '2.2rem', fontWeight: '900', lineHeight: '1.1', marginBottom: '0.75rem' }}>{c.title}</h3>
+                    <div className={styles.textContent}>
+                      <div className={styles.cardHeader}>
+                        <div className={styles.cardNumber}>{c.number}</div>
+                      </div>
+                      <div className={styles.divider}></div>
+                      <div className={styles.textContentInner}>
+                        <h3 className={styles.cardTitle}>{c.title}</h3>
                         <p className={styles.cardDesc}>{c.description}</p>
                       </div>
-                      <div className={styles.media} aria-hidden>
-                        <img src={c.image} alt="" />
-                      </div>
+                    </div>
+                    <div className={styles.media} aria-hidden>
+                      <img 
+                        src={`/services/service_${c.title.toLowerCase().replace(/\s+/g, '-')}.png`} 
+                        alt="" 
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = c.image;
+                        }}
+                      />
+                      <button className={styles.cardButton} onClick={() => window.location.href=`/services/${c.title.toLowerCase().replace(/\s+/g, '-')}`}>Get Started</button>
                     </div>
                   </div>
                 </div>

@@ -13,102 +13,102 @@ const onlineServices = [
   {
     title: 'Digital Marketing Service',
     slug: 'digital-marketing-service',
-    image: '/services/pro-thumb-1.svg'
+    image: '/services/service_digital-marketing.png'
   },
   {
     title: 'Search Engine Optimization',
     slug: 'seo',
-    image: '/services/pro-thumb-2.svg'
+    image: '/services/service_seo.png'
   },
   {
     title: 'Search Engine Marketing',
     slug: 'sem',
-    image: '/services/pro-thumb-3.svg'
+    image: '/services/service_sem.png'
   },
   {
     title: 'Online Reputation Management',
     slug: 'online-reputation-management',
-    image: '/services/pro-thumb-4.svg'
+    image: '/services/service_orm.png'
   },
   {
     title: 'Website Designing and Development',
     slug: 'website-design-development',
-    image: '/services/pro-thumb-5.svg'
+    image: '/services/service_website-design-development.png'
   },
   {
     title: 'Social Media Optimization',
     slug: 'social-media-optimization',
-    image: '/services/pro-thumb-6.svg'
+    image: '/services/service_social-media-optimization.png'
   },
   {
     title: 'Social Media Marketing',
     slug: 'social-media-marketing',
-    image: '/services/pro-thumb-1.svg'
+    image: '/services/service_social-media-marketing.png'
   },
   {
     title: 'Software Design & Development',
     slug: 'software-design-development',
-    image: '/services/pro-thumb-2.svg'
+    image: '/services/service_software-design-development.png'
   },
   {
     title: 'Geolocation Analytical SMS',
     slug: 'geolocation-sms',
-    image: '/services/pro-thumb-3.svg'
+    image: '/services/service_geolocation-sms.png'
   },
   {
     title: 'AI Advertising Agency',
     slug: 'ai-advertising-agency',
-    image: '/services/pro-thumb-4.svg'
+    image: '/services/service_ai-advertising-agency.png'
   },
   {
     title: 'Creative Designing',
     slug: 'creative-designing',
-    image: '/services/pro-thumb-5.svg'
+    image: '/services/service_creative-designing.png'
   },
   {
     title: 'API Integration',
     slug: 'api-integration',
-    image: '/services/pro-thumb-6.svg'
+    image: '/services/service_api-integration.png'
   },
   {
     title: 'Ecommerce Solutions',
     slug: 'ecommerce-solutions',
-    image: '/services/pro-thumb-1.svg'
+    image: '/services/service_ecommerce-solutions.png'
   },
   {
     title: 'Email Marketing',
     slug: 'email-marketing',
-    image: '/services/pro-thumb-2.svg'
+    image: '/services/service_email-marketing.png'
   },
   {
     title: 'Mobile Application Development',
-    slug: 'mobile-application-development',
-    image: '/services/pro-thumb-3.svg'
+    slug: 'mobile-app-development',
+    image: '/services/service_mobile-app-development.png'
   },
   {
     title: 'Real Estate Online Marketing Service',
-    slug: 'real-estate-online-marketing',
-    image: '/services/pro-thumb-4.svg'
+    slug: 'real-estate-marketing',
+    image: '/services/service_real-estate-marketing.png'
   },
   {
     title: 'Display Advertisement',
     slug: 'display-advertisement',
-    image: '/services/pro-thumb-5.svg'
+    image: '/services/service_display-advertisement.png'
   },
   {
     title: 'Blog Articles',
     slug: 'blog-articles',
-    image: '/services/pro-thumb-6.svg'
+    image: '/services/service_blog-articles.png'
   },
   {
     title: 'Classified Portal Management',
-    slug: 'classified-portal-management',
-    image: '/services/pro-thumb-1.svg'
+    slug: 'classified-portal',
+    image: '/services/service_classified-portal.png'
   },
   {
     title: 'Press Releases Services',
-    slug: 'press-releases-services',
-    image: '/services/pro-thumb-2.svg'
+    slug: 'press-releases',
+    image: '/services/service_press-releases.png'
   }
 ];
 
@@ -275,13 +275,18 @@ export default function OnlineServicesPage() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Online Services</h1>
-        <p className={styles.subtitle}>
-          Explore our comprehensive online advertising and digital marketing solutions
-        </p>
+        <div className={styles.heroContent}>
+          <h1 className={styles.title}>Online Services</h1>
+        </div>
       </div>
 
       <StackingCardsSection />
+
+      <div className={styles.sectionTitleWrapper}>
+        <ScrollReveal>
+          <h2 className={styles.sectionTitle}>Online Services</h2>
+        </ScrollReveal>
+      </div>
 
       {/* Services Grid similar to offline */}
       <div className={styles.servicesGrid}>

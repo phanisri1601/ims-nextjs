@@ -1,17 +1,17 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Varela_Round } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const varelaRound = Varela_Round({
+const inter = Inter({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-varela-round",
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -20,14 +20,19 @@ export const metadata: Metadata = {
   keywords: "advertising agency bangalore, digital marketing, creative design, lead generation, brand activation, SEO services",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={varelaRound.variable}>
-      <body className={varelaRound.className}>
+    <html lang="en" className={inter.variable}>
+      <body className={inter.className}>
         <Script
           src="https://aichatbot-b8883.el.r.appspot.com/static/chatbot-widget.js"
           strategy="afterInteractive"

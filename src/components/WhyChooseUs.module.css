@@ -64,7 +64,7 @@
     background: var(--color-bg-card);
     /* Deep dark red/black */
     border: 1px solid rgba(51, 0, 17, 0.3);
-    border-radius: 24px;
+    border-radius: 0;
     padding: 2rem;
     /* Reduce padding slightly for images */
     text-align: center;
@@ -81,7 +81,7 @@
     aspect-ratio: 16/9;
     margin-bottom: 1.5rem;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: 0;
     border: 1px solid rgba(255, 0, 51, 0.1);
 }
 
@@ -128,9 +128,12 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(255, 0, 51, 0.15);
-    border: 2px solid var(--color-accent-primary);
-    color: var(--color-accent-primary);
+    background: rgba(255, 255, 255, 0.45);
+    border: 1.5px solid rgba(255, 255, 255, 0.65);
+    color: var(--color-text-primary);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     font-size: 1.2rem;
     display: flex;
     align-items: center;
@@ -143,8 +146,9 @@
 }
 
 .controlButton:hover {
-    background: var(--color-accent-primary);
-    color: white;
+    background: rgba(255, 255, 255, 0.62);
+    border-color: rgba(255, 255, 255, 0.85);
+    color: #000;
     transform: scale(1.1);
 }
 
@@ -220,7 +224,7 @@
         min-width: 280px;
         max-width: 280px;
         padding: 1.5rem 1.25rem;
-        border-radius: 16px;
+        border-radius: 0;
     }
 
     .imageWrapper {
@@ -306,7 +310,7 @@
         min-width: min(240px, calc(100vw - 2rem));
         max-width: min(240px, calc(100vw - 2rem));
         padding: 1rem;
-        border-radius: 12px;
+        border-radius: 0;
     }
 
     .imageWrapper {

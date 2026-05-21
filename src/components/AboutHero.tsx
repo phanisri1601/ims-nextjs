@@ -22,14 +22,6 @@ export default function AboutHero() {
                 >
                     ABOUT US
                 </motion.h1>
-                <motion.nav
-                    className={styles.breadcrumb}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                    
-                </motion.nav>
             </div>
         </section>
     );
