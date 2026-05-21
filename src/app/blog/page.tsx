@@ -1,8 +1,8 @@
 import styles from "./BlogPage.module.css";
 import { blogPosts } from "../../data/blogPosts";
 import Link from "next/link";
-import BlogPortfolioVideo from "./BlogPortfolioVideo";
 import EditorialBlogGallery from "./EditorialBlogGallery";
+import PortfolioBlogGrid from "./PortfolioBlogGrid";
 
 export const metadata = {
   title: "Blog | IM Solutions",
@@ -35,25 +35,7 @@ export default async function BlogPage({ searchParams }: Props) {
 
       <section className={styles.portfolioSection}>
         <div className={styles.portfolioInner}>
-          <div className={styles.portfolioGrid}>
-            {listedPosts.map((post) => (
-              <article key={post.id} className={styles.portfolioCard}>
-                <Link href={`/blog/${post.slug}`} className={styles.portfolioCardLink}>
-                  <BlogPortfolioVideo title={post.title} />
-                  <div className={styles.portfolioMeta}>
-                    <h2 className={styles.portfolioTitle}>{post.title}</h2>
-                    <div className={styles.portfolioTags}>
-                      {(post.tags ?? ["Blog"]).slice(0, 3).map((tag) => (
-                        <span key={tag} className={styles.portfolioTag}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
+          <PortfolioBlogGrid posts={listedPosts} />
 
           <nav className={styles.portfolioPagination} aria-label="Blog pagination">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
