@@ -51,8 +51,15 @@
   transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.portfolioCardImage {
+  object-fit: cover;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .portfolioCardLink:hover .portfolioVideo,
-.portfolioCardLink:focus-visible .portfolioVideo {
+.portfolioCardLink:focus-visible .portfolioVideo,
+.portfolioCardLink:hover .portfolioCardImage,
+.portfolioCardLink:focus-visible .portfolioCardImage {
   transform: scale(1.04);
 }
 

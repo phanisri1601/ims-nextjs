@@ -1,16 +1,29 @@
 import Link from "next/link";
-import Image from "next/image";
+import type { Metadata } from "next";
 import FAQ from "@/components/FAQ";
-import { blogPosts, type BlogContentBlock, type BlogPost } from "../../../data/blogPosts";
-import BlogPortfolioVideo from "../BlogPortfolioVideo";
-import styles from "../BlogPage.module.css";
+import { blogPosts, type BlogContentBlock, type BlogPost } from "@/data/blogPosts";
+import BlogPostSidebar from "../BlogPostSidebar";
+import BlogPostSplitBanner from "../BlogPostSplitBanner";
+import styles from "../BlogPost.module.css";
+import articleStyles from "../BlogPage.module.css";
 
 type Props = {
-  params?: { slug?: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
   return blogPosts.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
+  if (!post) return { title: "Post not found | IM Solutions" };
+
+  return {
+    title: `${post.title} | IM Solutions Blog`,
+    description: post.excerpt,
+  };
 }
 
 function extractArticleHtml(html: string) {
@@ -78,8 +91,8 @@ function renderBlock(block: BlogContentBlock, key: string) {
     case "quote":
       return (
         <figure key={key} className={styles.quote}>
-          <blockquote>“{block.text}”</blockquote>
-          {block.author ? <figcaption>— {block.author}</figcaption> : null}
+          <blockquote>&ldquo;{block.text}&rdquo;</blockquote>
+          {block.author ? <figcaption>&mdash; {block.author}</figcaption> : null}
         </figure>
       );
     case "callout":
@@ -89,67 +102,159 @@ function renderBlock(block: BlogContentBlock, key: string) {
           <p>{block.text}</p>
         </div>
       );
+    case "steps":
+      return (
+        <div key={key} className={styles.stepsBlock}>
+          {block.items.map((step, idx) => (
+            <div key={`${key}-step-${idx}`} className={styles.stepItem}>
+              <span className={styles.stepNumber}>{step.label}</span>
+              <div>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepText}>{step.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
     default:
       return null;
   }
 }
 
+function defaultArticleSections(post: BlogPost) {
+  const category = post.tags?.[0] ?? "Strategy";
+  return [
+    {
+      heading: `Why ${category.toLowerCase()} matters in 2026`,
+      blocks: [
+        {
+          type: "paragraph" as const,
+          text: post.excerpt,
+        },
+        {
+          type: "list" as const,
+          items: [
+            "Clear goals aligned with measurable outcomes",
+            "Data-informed decisions instead of guesswork",
+            "Consistent execution across channels and teams",
+            "Adaptability when market conditions shift",
+          ],
+        },
+      ],
+    },
+    {
+      heading: "Steps to build a sustainable growth strategy",
+      blocks: [
+        {
+          type: "steps" as const,
+          items: [
+            {
+              label: "step 1",
+              title: "Assess current position",
+              text: "Evaluate performance, market share, operational efficiency, and customer satisfaction to understand your starting point.",
+            },
+            {
+              label: "step 2",
+              title: "Define long-term objectives",
+              text: "Establish growth targets that align with your capabilities, budget, and market opportunities.",
+            },
+            {
+              label: "step 3",
+              title: "Develop strategic initiatives",
+              text: "Create targeted initiatives such as market expansion, product innovation, digital transformation, or partnership development.",
+            },
+            {
+              label: "step 4",
+              title: "Align teams and leadership",
+              text: "Leadership must communicate the strategy clearly and ensure every team understands their role in execution.",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      heading: "Benefits for long-term success",
+      blocks: [
+        {
+          type: "list" as const,
+          items: [
+            "Improved decision-making clarity",
+            "Stronger competitive positioning",
+            "Better forecasting and resource planning",
+            "Enhanced operational efficiency",
+            "Increased stakeholder confidence",
+            "Long-term organizational resilience",
+          ],
+        },
+        {
+          type: "paragraph" as const,
+          text: "Organizations that prioritize structured planning are better positioned to navigate uncertainty, seize opportunities, and build lasting success.",
+        },
+      ],
+    },
+  ];
+}
+
 export default async function PostPage({ params }: Props) {
-  const resolvedParams = await params;
-  const slug = resolvedParams?.slug ?? "";
+  const { slug } = await params;
   const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     return (
-      <main className={styles.page}>
-        <div className="container">
-          <h1>Post not found</h1>
-          <p>The requested post was not found.</p>
-          <Link href="/blog">← Back to blog</Link>
-        </div>
+      <main className={styles.notFound}>
+        <h1>Post not found</h1>
+        <p>The requested post was not found.</p>
+        <Link href="/blog">← Back to blog</Link>
       </main>
     );
   }
 
   const relatedPosts = getRelatedPosts(post);
   const externalArticleHtml = await fetchExternalArticle(post);
+  const primaryCategory = post.tags?.[0] ?? "Insights";
+  const sections = post.sections?.length ? post.sections : externalArticleHtml ? [] : defaultArticleSections(post);
+  const metaParts = [post.date, post.readingTime, post.author].filter(Boolean);
+
+  const bannerImage = post.image || "/blog_seo.png";
 
   return (
     <main className={styles.page}>
-      <section className={styles.gridSection}>
-        <div className="container">
-          <article className={styles.article}>
-            <BlogPortfolioVideo title={post.title} className={styles.articleCoverVideo} />
+      <header className={styles.hero}>
+        <div className={styles.heroInner}>
+          <span className={styles.categoryBadge}>{primaryCategory}</span>
+          <h1 className={styles.heroTitle}>{post.title}</h1>
+          {metaParts.length > 0 ? (
+            <div className={styles.heroMeta}>
+              {metaParts.map((part) => (
+                <span key={part}>{part}</span>
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </header>
 
-            <h1>{post.title}</h1>
-            <p className={styles.cardExcerpt}>{post.excerpt}</p>
+      <BlogPostSplitBanner src={bannerImage} alt={post.title} />
 
+      <div className={styles.layout}>
+        <BlogPostSidebar currentPost={post} allPosts={blogPosts} relatedPosts={relatedPosts} />
+
+        <article className={styles.article}>
+          <p className={styles.intro}>{post.excerpt}</p>
+
+          <div className={styles.prose}>
             {externalArticleHtml ? (
-              <section className={styles.externalContent} dangerouslySetInnerHTML={{ __html: externalArticleHtml }} />
+              <section
+                className={`${styles.externalContent} ${articleStyles.externalContent}`}
+                dangerouslySetInnerHTML={{ __html: externalArticleHtml }}
+              />
             ) : null}
 
-            {post.animatedImages?.length ? (
-              <section className={styles.animatedGallery}>
-                <h2>Highlights</h2>
-                <div className={styles.animatedGalleryGrid}>
-                  {post.animatedImages.map((img, idx) => (
-                    <div
-                      key={`${img.src}-${idx}`}
-                      className={styles.animatedGalleryItem}
-                      style={{ animationDelay: `${idx * 0.12}s` }}
-                    >
-                      <Image
-                        src={img.src || "/blog_seo.png"}
-                        alt={img.alt}
-                        width={600}
-                        height={360}
-                        style={{ width: "100%", height: "180px", objectFit: "cover", display: "block" }}
-                      />
-                    </div>
-                  ))}
-                </div>
+            {sections.map((section, idx) => (
+              <section key={`${section.heading}-${idx}`} className={styles.contentSection}>
+                <h2>{section.heading}</h2>
+                {section.blocks.map((block, bIdx) => renderBlock(block, `${idx}-${bIdx}`))}
               </section>
-            ) : null}
+            ))}
 
             {post.takeaways?.length ? (
               <section className={styles.takeawaysSection}>
@@ -162,53 +267,39 @@ export default async function PostPage({ params }: Props) {
               </section>
             ) : null}
 
-            {post.sections?.length
-              ? post.sections.map((section, idx) => (
-                  <section key={`${section.heading}-${idx}`} className={styles.contentSection}>
-                    <h2>{section.heading}</h2>
-                    {section.blocks.map((block, bIdx) => renderBlock(block, `${idx}-${bIdx}`))}
-                  </section>
-                ))
-              : null}
-
             {post.faqs?.length ? (
-              <FAQ
-                title="FAQ"
-                items={post.faqs.map((f) => ({ question: f.q, answer: f.a }))}
-              />
+              <div className={styles.faqWrap}>
+                <FAQ title="FAQ" items={post.faqs.map((f) => ({ question: f.q, answer: f.a }))} />
+              </div>
             ) : null}
+          </div>
 
-            <p className={styles.backLink}>
-              <Link href="/blog">← Back to blog</Link>
+          <div className={styles.ctaBand}>
+            <p className={styles.ctaBrand}>IM Solutions.</p>
+            <p className={styles.ctaText}>
+              We partner with brands to solve complex marketing challenges through strategy, creative,
+              and execution. Our approach is practical, data-driven, and focused on measurable results.
             </p>
-          </article>
+            <Link href="/contact" className={styles.ctaButton}>
+              Start your growth journey
+            </Link>
+          </div>
 
-          {relatedPosts.length ? (
-            <section className={styles.relatedSection}>
-              <h2 className={styles.relatedTitle}>Related posts</h2>
-              <div className={styles.relatedGrid}>
+          {relatedPosts.length > 0 ? (
+            <section className={styles.mobileRelated} aria-label="Related posts">
+              <h2 className={styles.mobileRelatedHeading}>Related post</h2>
+              <div className={styles.mobileRelatedGrid}>
                 {relatedPosts.map((rp) => (
-                  <article key={rp.slug} className={styles.portfolioCard}>
-                    <Link href={`/blog/${rp.slug}`} className={styles.portfolioCardLink}>
-                      <BlogPortfolioVideo title={rp.title} />
-                      <div className={styles.portfolioMeta}>
-                        <h3 className={styles.portfolioTitle}>{rp.title}</h3>
-                        <div className={styles.portfolioTags}>
-                          {(rp.tags ?? ["Blog"]).slice(0, 3).map((tag) => (
-                            <span key={tag} className={styles.portfolioTag}>
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </Link>
-                  </article>
+                  <Link key={rp.slug} href={`/blog/${rp.slug}`} className={styles.mobileRelatedCard}>
+                    <span className={styles.mobileRelatedDate}>{rp.date || "Insights"}</span>
+                    <p className={styles.mobileRelatedTitle}>{rp.title}</p>
+                  </Link>
                 ))}
               </div>
             </section>
           ) : null}
-        </div>
-      </section>
+        </article>
+      </div>
     </main>
   );
 }

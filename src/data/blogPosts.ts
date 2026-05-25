@@ -2,7 +2,8 @@ export type BlogContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] }
   | { type: "quote"; text: string; author?: string }
-  | { type: "callout"; title?: string; text: string };
+  | { type: "callout"; title?: string; text: string }
+  | { type: "steps"; items: { label: string; title: string; text: string }[] };
 
 export type BlogContentSection = {
   heading: string;
@@ -28,6 +29,283 @@ export type BlogPost = {
 };
 
 export const blogPosts: BlogPost[] = [
+  {
+    id: 52,
+    title: "Top SEO Trends 2026: What Businesses Need to Prepare For",
+    excerpt:
+      "Search behavior is evolving faster than ever. AI-driven experiences, voice search, visual discovery, and smarter algorithms are changing how users interact with search engines. For businesses aiming to stay visible online, understanding the Top SEO Trends 2026 is no longer optional — it's essential. Whether you're a startup, local business, or enterprise brand, adapting your SEO strategy early can help you maintain rankings, traffic, and conversions in an increasingly competitive digital landscape.",
+    image: "/blogs/magnific_prompt-create-a-premium-e_sw8DGHTl8e.png",
+    date: "May 2026",
+    author: "IM Solutions",
+    slug: "top-seo-trends-2026-what-businesses-need-to-prepare-for",
+    page: 1,
+    readingTime: "12 min read",
+    tags: ["SEO", "AI Search", "2026", "Google"],
+    sections: [
+      {
+        heading: "1. AI-Powered Search Will Dominate Search Results",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Search engines are becoming more conversational and predictive. Google's AI-driven search experiences are now capable of summarizing answers directly on the results page, reducing traditional clicks.",
+          },
+          {
+            type: "paragraph",
+            text: "To remain competitive in 2026:",
+          },
+          {
+            type: "list",
+            items: [
+              "Create experience-driven content",
+              "Focus on topical authority instead of keyword stuffing",
+              "Optimize for conversational queries",
+              "Structure content clearly with headings and FAQs",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Businesses working with an experienced SEO agency in Bangalore can better adapt their content strategies for these AI-first search experiences.",
+          },
+        ],
+      },
+      {
+        heading: "2. Search Generative Experience (SGE) Will Reshape SEO",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Google's Search Generative Experience is transforming how users consume information. Instead of browsing multiple websites, users are often shown AI-generated summaries instantly.",
+          },
+          {
+            type: "paragraph",
+            text: "To improve visibility inside AI summaries:",
+          },
+          {
+            type: "list",
+            items: [
+              "Use schema markup",
+              "Add concise answers near the top of content",
+              "Build trustworthy, expert-backed articles",
+              "Include statistics and credible references",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Brands that publish genuinely useful content are more likely to appear in these AI-generated responses.",
+          },
+        ],
+      },
+      {
+        heading: "3. Zero-Click Searches Will Continue Growing",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Featured snippets, AI summaries, maps, knowledge panels, and quick answers are reducing the need for users to click websites directly. That means SEO success is no longer measured only by clicks — visibility matters too.",
+          },
+          {
+            type: "paragraph",
+            text: "To adapt:",
+          },
+          {
+            type: "list",
+            items: [
+              "Target long-tail keywords",
+              "Use FAQ sections",
+              "Optimize for featured snippets",
+              "Add tables and structured formatting",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "A reliable SEO Service in Bangalore can help businesses optimize content specifically for modern SERP layouts.",
+          },
+        ],
+      },
+      {
+        heading: "4. Voice Search Optimization Will Become Essential",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Voice search continues to rise with mobile assistants, smart speakers, and in-car systems. People now search using natural language such as \"What are the latest SEO trends in 2026?\" or \"Which SEO company is best for local businesses?\"",
+          },
+          {
+            type: "paragraph",
+            text: "To optimize for voice search:",
+          },
+          {
+            type: "list",
+            items: [
+              "Use conversational content",
+              "Answer questions directly",
+              "Improve mobile page speed",
+              "Focus on local SEO queries",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Voice-friendly content tends to perform better in AI-generated search environments as well.",
+          },
+        ],
+      },
+      {
+        heading: "5. E-E-A-T Signals Will Matter More Than Ever",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Google continues prioritizing content that demonstrates Experience, Expertise, Authoritativeness, and Trustworthiness. Thin AI-generated articles without originality will struggle to rank.",
+          },
+          {
+            type: "paragraph",
+            text: "To strengthen E-E-A-T:",
+          },
+          {
+            type: "list",
+            items: [
+              "Add author bios",
+              "Publish original insights",
+              "Include case studies and examples",
+              "Keep content updated regularly",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Partnering with the best SEO company in Bangalore can help businesses build long-term authority through strategic content planning.",
+          },
+        ],
+      },
+      {
+        heading: "6. Mobile Experience and Core Web Vitals Still Matter",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Even with AI changing search, technical SEO remains critical. Google still prioritizes websites that are fast-loading, mobile-friendly, stable during loading, and easy to navigate.",
+          },
+          {
+            type: "paragraph",
+            text: "Important performance areas include:",
+          },
+          {
+            type: "list",
+            items: [
+              "Largest Contentful Paint (LCP)",
+              "Interaction to Next Paint (INP)",
+              "Cumulative Layout Shift (CLS)",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "A poor mobile experience can significantly affect rankings and conversions.",
+          },
+        ],
+      },
+      {
+        heading: "7. Visual Search and Video SEO Will Expand",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Users increasingly search using images and videos instead of text alone. Platforms like Google Lens, YouTube, Pinterest, and Instagram Search are influencing SEO strategies in 2026.",
+          },
+          {
+            type: "paragraph",
+            text: "Businesses should:",
+          },
+          {
+            type: "list",
+            items: [
+              "Optimize image alt text",
+              "Use descriptive filenames",
+              "Add video transcripts",
+              "Create short-form educational videos",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "Multimedia content improves engagement and supports stronger search visibility.",
+          },
+        ],
+      },
+      {
+        heading: "8. Local SEO Will Become Hyper-Personalized",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "Search engines now prioritize highly personalized local results based on user location, search history, device behavior, and real-time intent.",
+          },
+          {
+            type: "paragraph",
+            text: "For local businesses:",
+          },
+          {
+            type: "list",
+            items: [
+              "Keep Google Business Profile updated",
+              "Collect customer reviews",
+              "Use localized landing pages",
+              "Add accurate business schema",
+            ],
+          },
+          {
+            type: "paragraph",
+            text: "An experienced SEO agency in Bangalore understands how to improve local visibility for businesses targeting regional audiences.",
+          },
+        ],
+      },
+      {
+        heading: "Conclusion",
+        blocks: [
+          {
+            type: "paragraph",
+            text: "The Top SEO Trends 2026 clearly show that SEO is becoming more intelligent, user-focused, and AI-driven. Businesses that invest early in quality content, technical performance, and search experience optimization will have a major competitive advantage.",
+          },
+          {
+            type: "paragraph",
+            text: "The future of SEO is no longer just about rankings — it's about visibility, authority, and delivering value across multiple search experiences. Working with a trusted SEO Service in Bangalore can help brands adapt faster, improve organic growth, and stay aligned with evolving search engine expectations.",
+          },
+        ],
+      },
+    ],
+    faqs: [
+      {
+        q: "What are the top SEO trends in 2026?",
+        a: "AI-powered search, voice search optimization, SGE, zero-click searches, and E-E-A-T are among the biggest SEO trends in 2026.",
+      },
+      {
+        q: "Why is AI changing SEO strategies?",
+        a: "AI changes how search engines understand user intent and display answers directly on search result pages.",
+      },
+      {
+        q: "What is Search Generative Experience (SGE)?",
+        a: "SGE is Google's AI-powered search feature that generates summarized answers directly within search results.",
+      },
+      {
+        q: "How important is voice search optimization?",
+        a: "Voice search is becoming increasingly important because users now search using conversational phrases on smart devices.",
+      },
+      {
+        q: "Does technical SEO still matter in 2026?",
+        a: "Yes. Website speed, mobile usability, and Core Web Vitals remain critical ranking factors.",
+      },
+      {
+        q: "What is E-E-A-T in SEO?",
+        a: "E-E-A-T stands for Experience, Expertise, Authoritativeness, and Trustworthiness.",
+      },
+      {
+        q: "How can local businesses improve SEO rankings?",
+        a: "Local businesses can improve rankings through optimized Google Business Profiles, reviews, local content, and schema markup.",
+      },
+      {
+        q: "Why are zero-click searches increasing?",
+        a: "Google increasingly provides direct answers through featured snippets, AI summaries, and knowledge panels.",
+      },
+      {
+        q: "How does video content help SEO?",
+        a: "Video improves engagement, increases visibility in search results, and supports multimedia search optimization.",
+      },
+      {
+        q: "Why hire an SEO agency in Bangalore?",
+        a: "A professional SEO agency helps businesses adapt to evolving search algorithms, improve rankings, and build sustainable organic growth.",
+      },
+    ],
+  },
   {
     id: 1,
     title: "Top SEO Trends for 2026: What You Need to Know",

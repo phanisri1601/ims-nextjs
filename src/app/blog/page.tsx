@@ -26,8 +26,15 @@ export default async function BlogPage({ searchParams }: Props) {
   const clampedPage = Math.min(Math.max(currentPage, 1), totalPages);
 
   const postsForPage = blogPosts.filter((p) => (p.page ?? 1) === clampedPage);
-  const featuredPosts = postsForPage.slice(0, 3);
-  const listedPosts = postsForPage.slice(3);
+  const gridLeadSlug = "top-seo-trends-2026-what-businesses-need-to-prepare-for";
+  const gridLeadPost = clampedPage === 1 ? postsForPage.find((p) => p.slug === gridLeadSlug) : undefined;
+  const postsWithoutGridLead = gridLeadPost
+    ? postsForPage.filter((p) => p.slug !== gridLeadSlug)
+    : postsForPage;
+  const featuredPosts = postsWithoutGridLead.slice(0, 3);
+  const listedPosts = gridLeadPost
+    ? [gridLeadPost, ...postsWithoutGridLead.slice(3)]
+    : postsWithoutGridLead.slice(3);
 
   return (
     <main className={styles.page}>
