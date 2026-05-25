@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import styles from "./BlogPost.module.css";
 
@@ -10,18 +9,26 @@ type Props = {
   alt: string;
 };
 
+type StageSize = {
+  width: number;
+  height: number;
+};
+
 export default function BlogPostSplitBanner({ src, alt }: Props) {
   const stageRef = useRef<HTMLDivElement>(null);
   const leftTrackRef = useRef<HTMLDivElement>(null);
   const rightTrackRef = useRef<HTMLDivElement>(null);
-  const [stageWidth, setStageWidth] = useState(0);
+  const [stageSize, setStageSize] = useState<StageSize>({ width: 0, height: 0 });
 
   useLayoutEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
 
     const update = () => {
-      setStageWidth(stage.offsetWidth);
+      setStageSize({
+        width: stage.offsetWidth,
+        height: stage.offsetHeight,
+      });
     };
 
     update();
@@ -34,7 +41,7 @@ export default function BlogPostSplitBanner({ src, alt }: Props) {
     const leftEl = leftTrackRef.current;
     const rightEl = rightTrackRef.current;
     const stageEl = stageRef.current;
-    if (!leftEl || !rightEl || !stageEl || stageWidth === 0) return;
+    if (!leftEl || !rightEl || !stageEl || stageSize.width === 0) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -46,8 +53,8 @@ export default function BlogPostSplitBanner({ src, alt }: Props) {
       return;
     }
 
-    gsap.set(leftEl, { yPercent: -100, scale: 1 });
-    gsap.set(rightEl, { yPercent: 100, scale: 1 });
+    gsap.set(leftEl, { yPercent: -100 });
+    gsap.set(rightEl, { yPercent: 100 });
     gsap.set(stageEl, { scale: 1, transformOrigin: "center center" });
 
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -67,31 +74,35 @@ export default function BlogPostSplitBanner({ src, alt }: Props) {
       tl.kill();
       gsap.set(stageEl, { scale: 1 });
     };
-  }, [src, stageWidth]);
+  }, [src, stageSize.width, stageSize.height]);
 
-  const trackWidth = stageWidth > 0 ? stageWidth : undefined;
-  const rightOffset = trackWidth ? -(trackWidth / 2) : undefined;
+  const { width: stageWidth, height: stageHeight } = stageSize;
+  const trackReady = stageWidth > 0 && stageHeight > 0;
+  const rightOffset = trackReady ? -Math.round(stageWidth / 2) : undefined;
+
+  const sharedBgStyle = trackReady
+    ? {
+        width: stageWidth,
+        height: stageHeight,
+        backgroundImage: `url(${src})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center center",
+        backgroundRepeat: "no-repeat",
+      }
+    : undefined;
 
   return (
     <section className={styles.splitBanner} aria-label="Article cover">
+      <img src={src} alt={alt} className={styles.splitBannerAlt} />
       <div className={styles.splitBannerFrame}>
         <div ref={stageRef} className={styles.splitBannerStage}>
           <div className={`${styles.splitPanel} ${styles.splitPanelLeft}`}>
             <div
               ref={leftTrackRef}
               className={styles.splitImageTrack}
-              style={trackWidth ? { width: trackWidth } : undefined}
+              style={trackReady ? { width: stageWidth, height: stageHeight } : undefined}
             >
-              <div className={styles.splitImageUnified}>
-                <Image
-                  src={src}
-                  alt={alt}
-                  fill
-                  priority
-                  sizes="(max-width: 1320px) 100vw, 1320px"
-                  className={styles.splitImage}
-                />
-              </div>
+              <div className={styles.splitBg} style={sharedBgStyle} aria-hidden />
             </div>
           </div>
           <div className={`${styles.splitPanel} ${styles.splitPanelRight}`}>
@@ -99,22 +110,16 @@ export default function BlogPostSplitBanner({ src, alt }: Props) {
               ref={rightTrackRef}
               className={styles.splitImageTrack}
               style={
-                trackWidth
-                  ? { width: trackWidth, left: rightOffset }
+                trackReady
+                  ? {
+                      width: stageWidth,
+                      height: stageHeight,
+                      left: rightOffset,
+                    }
                   : undefined
               }
             >
-              <div className={styles.splitImageUnified}>
-                <Image
-                  src={src}
-                  alt=""
-                  aria-hidden
-                  fill
-                  priority
-                  sizes="(max-width: 1320px) 100vw, 1320px"
-                  className={styles.splitImage}
-                />
-              </div>
+              <div className={styles.splitBg} style={sharedBgStyle} aria-hidden />
             </div>
           </div>
         </div>

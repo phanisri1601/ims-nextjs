@@ -1,6 +1,7 @@
-import Link from "next/link";
 import type { BlogPost } from "@/data/blogPosts";
+import BlogSidebarPostLink from "./BlogSidebarPostLink";
 import styles from "./BlogPost.module.css";
+import Link from "next/link";
 
 const SIDEBAR_CATEGORIES = [
   "SEO",
@@ -18,11 +19,6 @@ type Props = {
   allPosts: BlogPost[];
   relatedPosts: BlogPost[];
 };
-
-function formatSidebarDate(date: string) {
-  if (!date?.trim()) return "Insights";
-  return date;
-}
 
 function postsForCategory(posts: BlogPost[], category: string, limit = 2) {
   return posts
@@ -50,20 +46,13 @@ export default function BlogPostSidebar({ currentPost, allPosts, relatedPosts }:
               >
                 {category}
               </span>
-              {categoryPosts.map((p) => {
-                const isActive = p.slug === currentPost.slug;
-                return (
-                  <Link
-                    key={p.slug}
-                    href={`/blog/${p.slug}`}
-                    className={`${styles.sidebarPostLink} ${isActive ? styles.sidebarPostLinkActive : ""}`}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    <span className={styles.sidebarPostDate}>{formatSidebarDate(p.date)}</span>
-                    <p className={styles.sidebarPostTitle}>{p.title}</p>
-                  </Link>
-                );
-              })}
+              {categoryPosts.map((p) => (
+                <BlogSidebarPostLink
+                  key={p.slug}
+                  post={p}
+                  isActive={p.slug === currentPost.slug}
+                />
+              ))}
             </div>
           );
         })}
@@ -75,10 +64,7 @@ export default function BlogPostSidebar({ currentPost, allPosts, relatedPosts }:
           <div className={styles.relatedList}>
             {relatedPosts.map((rp) => (
               <div key={rp.slug} className={styles.relatedItem}>
-                <Link href={`/blog/${rp.slug}`} className={styles.sidebarPostLink}>
-                  <span className={styles.sidebarPostDate}>{formatSidebarDate(rp.date)}</span>
-                  <p className={styles.sidebarPostTitle}>{rp.title}</p>
-                </Link>
+                <BlogSidebarPostLink post={rp} />
               </div>
             ))}
           </div>

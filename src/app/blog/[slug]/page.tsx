@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import BlogSidebarPostLink from "../BlogSidebarPostLink";
 import FAQ from "@/components/FAQ";
 import { blogPosts, type BlogContentBlock, type BlogPost } from "@/data/blogPosts";
 import BlogPostSidebar from "../BlogPostSidebar";
@@ -269,7 +270,12 @@ export default async function PostPage({ params }: Props) {
 
             {post.faqs?.length ? (
               <div className={styles.faqWrap}>
-                <FAQ title="FAQ" items={post.faqs.map((f) => ({ question: f.q, answer: f.a }))} />
+                <FAQ
+                  title="FAQ"
+                  variant="plain"
+                  animated={false}
+                  items={post.faqs.map((f) => ({ question: f.q, answer: f.a }))}
+                />
               </div>
             ) : null}
           </div>
@@ -290,10 +296,11 @@ export default async function PostPage({ params }: Props) {
               <h2 className={styles.mobileRelatedHeading}>Related post</h2>
               <div className={styles.mobileRelatedGrid}>
                 {relatedPosts.map((rp) => (
-                  <Link key={rp.slug} href={`/blog/${rp.slug}`} className={styles.mobileRelatedCard}>
-                    <span className={styles.mobileRelatedDate}>{rp.date || "Insights"}</span>
-                    <p className={styles.mobileRelatedTitle}>{rp.title}</p>
-                  </Link>
+                  <BlogSidebarPostLink
+                    key={rp.slug}
+                    post={rp}
+                    className={styles.mobileRelatedCard}
+                  />
                 ))}
               </div>
             </section>

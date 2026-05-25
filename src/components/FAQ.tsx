@@ -13,9 +13,18 @@ type FAQItem = {
 type FAQProps = {
     title?: string;
     items?: FAQItem[];
+    /** No grey section background; transparent cards */
+    variant?: 'default' | 'plain';
+    /** Skip scroll-reveal stagger (faster on blog posts) */
+    animated?: boolean;
 };
 
-export default function FAQ({ title = "ADVERTISING FAQ's", items }: FAQProps) {
+export default function FAQ({
+    title = "ADVERTISING FAQ's",
+    items,
+    variant = 'default',
+    animated = true,
+}: FAQProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
     const idPrefix = useId();
 
@@ -46,39 +55,60 @@ export default function FAQ({ title = "ADVERTISING FAQ's", items }: FAQProps) {
         setOpenIndex(openIndex === index ? null : index);
     };
 
+    const sectionClass = variant === 'plain' ? `${styles.faq} ${styles.faqPlain}` : styles.faq;
+
+    const faqItem = (faq: FAQItem, index: number) => (
+        <div
+            key={index}
+            className={`${styles.faqItem} ${openIndex === index ? styles.open : ''}`}
+            aria-expanded={openIndex === index}
+        >
+            <button
+                className={styles.faqQuestion}
+                onClick={() => toggleFAQ(index)}
+                aria-controls={`${idPrefix}-faq-answer-${index}`}
+            >
+                <span>{faq.question}</span>
+                <span className={styles.icon}>
+                    {openIndex === index ? <FaMinus /> : <FaPlus />}
+                </span>
+            </button>
+            <div
+                id={`${idPrefix}-faq-answer-${index}`}
+                className={styles.faqAnswer}
+                role="region"
+                aria-hidden={openIndex !== index}
+            >
+                <div className={styles.faqAnswerInner}>
+                    <p>{faq.answer}</p>
+                </div>
+            </div>
+        </div>
+    );
+
+    const titleBlock = animated ? (
+        <ScrollReveal delay={0.1}>
+            <h2 className="section-title">{title}</h2>
+        </ScrollReveal>
+    ) : (
+        <h2 className="section-title">{title}</h2>
+    );
+
     return (
-        <section className={styles.faq}>
+        <section className={sectionClass}>
             <div className="container">
-                <ScrollReveal delay={0.2}>
-                    <h2 className="section-title">{title}</h2>
-                </ScrollReveal>
+                {titleBlock}
 
                 <div className={styles.faqContainer}>
-                    {faqs.map((faq, index) => (
-                        <ScrollReveal key={index} delay={0.3 + index * 0.15}>
-                            <div
-                                className={`${styles.faqItem} ${openIndex === index ? styles.open : ''}`}
-                                aria-expanded={openIndex === index}
-                            >
-                                <button
-                                    className={styles.faqQuestion}
-                                    onClick={() => toggleFAQ(index)}
-                                    aria-controls={`${idPrefix}-faq-answer-${index}`}
-                                >
-                                    <span>{faq.question}</span>
-                                    <span className={styles.icon}>
-                                        {openIndex === index ? <FaMinus /> : <FaPlus />}
-                                    </span>
-                                </button>
-                                <div
-                                    id={`${idPrefix}-faq-answer-${index}`}
-                                    className={styles.faqAnswer}
-                                >
-                                    <p>{faq.answer}</p>
-                                </div>
-                            </div>
-                        </ScrollReveal>
-                    ))}
+                    {faqs.map((faq, index) =>
+                        animated ? (
+                            <ScrollReveal key={index} delay={0.05 + index * 0.04}>
+                                {faqItem(faq, index)}
+                            </ScrollReveal>
+                        ) : (
+                            faqItem(faq, index)
+                        )
+                    )}
                 </div>
             </div>
         </section>
