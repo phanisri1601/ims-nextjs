@@ -1,6 +1,6 @@
 .section {
   padding: 2rem 0 0;
-  margin-bottom: 0;
+  margin-bottom: -4rem;
   background: var(--color-bg-primary);
 }
 
@@ -34,7 +34,7 @@
 
 .stackArea {
   position: relative;
-  height: calc(100vh + 240px);
+  min-height: 100vh;
 }
 
 .sticky {
@@ -296,7 +296,11 @@
   }
 
   .stackArea {
-    height: calc(100vh + 360px);
+    min-height: auto;
+  }
+
+  .section {
+    margin-bottom: 0;
   }
 
   .sticky {

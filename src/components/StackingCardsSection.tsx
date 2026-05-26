@@ -9,6 +9,9 @@ import { useReducedMotion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const SEGMENT_SCROLL_VH = 110;
+const RELEASE_BUFFER_VH = 20;
+
 type StackCard = {
   title: string;
   slug: string;
@@ -90,15 +93,14 @@ export default function StackingCardsSection() {
       if (!stickyEl) return;
 
       const segments = Math.max(1, cardEls.length - 1);
-      const segmentScroll = 110;
-      const releaseBuffer = 35;
+      const scrollDistanceVh = segments * SEGMENT_SCROLL_VH + RELEASE_BUFFER_VH;
 
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: {
           trigger: stickyEl,
           start: 'center center',
-          end: `+=${segments * segmentScroll + releaseBuffer}%`,
+          end: `+=${scrollDistanceVh}%`,
           scrub: 1,
           pin: stickyEl,
           pinSpacing: true,
@@ -145,7 +147,7 @@ export default function StackingCardsSection() {
           <h2 className={styles.title}>How We Help You Grow</h2>
         </div>
 
-        <div className={styles.stackArea} style={{ height: `${(cards.length - 1) * 110 + 140}vh` }}>
+        <div className={styles.stackArea} style={reduceMotion ? { height: 'auto' } : undefined}>
           <div className={styles.sticky}>
             <div className={styles.stackViewport}>
               {cards.map((c, i) => (
