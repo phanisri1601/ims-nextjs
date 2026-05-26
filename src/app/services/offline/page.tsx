@@ -240,18 +240,17 @@ export default function OfflineServicesPage() {
 
       <StackingCardsSection />
 
-      <div className={styles.sectionTitleWrapper}>
-        <ScrollReveal>
+      <section className={styles.servicesListing}>
+        <div className={styles.sectionTitleWrapper}>
           <h2 className={styles.sectionTitle}>Offline Services</h2>
-        </ScrollReveal>
-      </div>
-
-      <ServicesVolumeGrid
-        services={offlineServices.map((service) => ({
-          ...service,
-          href: getServiceUrl(service.title),
-        }))}
-      />
+        </div>
+          <ServicesVolumeGrid
+          services={offlineServices.map((service) => ({
+            ...service,
+            href: getServiceUrl(service.title),
+          }))}
+        />
+      </section>
 
       <section className={styles.faqSection}>
         <div className={styles.faqContent}>

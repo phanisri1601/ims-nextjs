@@ -283,13 +283,12 @@ export default function OnlineServicesPage() {
 
       <StackingCardsSection />
 
-      <div className={styles.sectionTitleWrapper}>
-        <ScrollReveal>
+      <section className={styles.servicesListing}>
+        <div className={styles.sectionTitleWrapper}>
           <h2 className={styles.sectionTitle}>Online Services</h2>
-        </ScrollReveal>
-      </div>
-
-      <ServicesVolumeGrid services={onlineServices} />
+        </div>
+        <ServicesVolumeGrid services={onlineServices} />
+      </section>
 
       <section className={styles.faqSection}>
         <div className={styles.faqContent}>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ServicesVolumeGrid.module.css";
 
 export const DEFAULT_SERVICE_VIDEO_SRC = "/12642073_1920_1080_24fps.mp4";
@@ -18,6 +18,7 @@ export type ServiceGridItem = {
 type Props = {
   services: ServiceGridItem[];
   basePath?: string;
+  flushTop?: boolean;
 };
 
 function serviceDescription(title: string, custom?: string) {
@@ -35,47 +36,69 @@ function ServiceGridVideo({
   src: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [posterVisible, setPosterVisible] = useState(true);
 
-  const play = () => {
+  useEffect(() => {
+    setPosterVisible(true);
     const video = videoRef.current;
     if (!video) return;
-    void video.play().catch(() => {});
-  };
 
-  const pause = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.pause();
-    video.currentTime = 0;
-  };
+    const tryPlay = () => {
+      void video.play().catch(() => {});
+    };
+
+    tryPlay();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            tryPlay();
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(video);
+
+    video.addEventListener("loadeddata", tryPlay);
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener("loadeddata", tryPlay);
+    };
+  }, [src]);
 
   return (
-    <div
-      className={styles.mediaWrap}
-      onMouseEnter={play}
-      onMouseLeave={pause}
-      onFocus={play}
-      onBlur={pause}
-    >
+    <div className={styles.mediaWrap}>
       <video
         ref={videoRef}
         className={styles.video}
         src={src}
-        poster={poster}
+        poster={posterVisible ? poster : undefined}
+        autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         aria-label={title}
+        onPlaying={() => setPosterVisible(false)}
       />
       <span className={styles.moreBtn}>More +</span>
     </div>
   );
 }
 
-export default function ServicesVolumeGrid({ services, basePath = "/services" }: Props) {
+export default function ServicesVolumeGrid({
+  services,
+  basePath = "/services",
+  flushTop = true,
+}: Props) {
   return (
-    <div className={styles.grid}>
+    <div className={`${styles.grid} ${flushTop ? styles.gridFlush : ""}`}>
       {services.map((service) => {
         const href = service.href ?? `${basePath}/${service.slug}`;
         const videoSrc = service.video ?? DEFAULT_SERVICE_VIDEO_SRC;
