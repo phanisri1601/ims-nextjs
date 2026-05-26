@@ -181,33 +181,19 @@
 }
 
 .sectionTitleWrapper {
-    max-width: 1200px;
-    margin: 4rem auto 2rem;
-    text-align: center;
-    position: relative;
+    width: min(100%, 1400px);
+    margin: clamp(3rem, 6vw, 5rem) auto clamp(2.5rem, 5vw, 3.5rem);
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+    text-align: left;
 }
 
 .sectionTitle {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--color-text-primary);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 500;
+    color: #0b0b0f;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 1rem;
-}
-
-.sectionTitle::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-secondary));
-    border-radius: 2px;
+    letter-spacing: 0.08em;
+    margin: 0;
 }
 
 .servicesGrid {

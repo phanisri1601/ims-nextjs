@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
+import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
 
 const serviceUrlMap: { [key: string]: string } = {
   'Bus Branding': '/services/bus-branding',
@@ -245,23 +246,12 @@ export default function OfflineServicesPage() {
         </ScrollReveal>
       </div>
 
-      <div className={styles.servicesGrid}>
-        {offlineServices.map((service, index) => (
-          <Link
-            key={index}
-            href={getServiceUrl(service.title)}
-            className={`${styles.serviceCard} ${reduceMotion ? styles.noMotion : ''}`}
-            title={service.title}
-            style={{ animationDelay: reduceMotion ? '0ms' : `${index * (isMobile ? 30 : 60)}ms` }}
-          >
-            <div className={styles.serviceThumbWrap}>
-              <img src={service.image} alt={`${service.title} thumbnail`} className={styles.serviceThumb} />
-            </div>
-            <h3 className={styles.serviceCardTitle}>{service.title}</h3>
-            <p className={styles.serviceCardDescription}>Explore this service</p>
-          </Link>
-        ))}
-      </div>
+      <ServicesVolumeGrid
+        services={offlineServices.map((service) => ({
+          ...service,
+          href: getServiceUrl(service.title),
+        }))}
+      />
 
       <section className={styles.faqSection}>
         <div className={styles.faqContent}>

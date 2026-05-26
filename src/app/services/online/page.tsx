@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
+import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
 
 
 
@@ -288,24 +289,7 @@ export default function OnlineServicesPage() {
         </ScrollReveal>
       </div>
 
-      {/* Services Grid similar to offline */}
-      <div className={styles.servicesGrid}>
-        {onlineServices.map((service, index) => (
-          <Link
-            key={service.slug}
-            href={`/services/${service.slug}`}
-            className={`${styles.serviceCard} ${reduceMotion ? styles.noMotion : ''}`}
-            title={service.title}
-            style={{ animationDelay: reduceMotion ? '0ms' : `${index * (isMobile ? 30 : 60)}ms` }}
-          >
-            <div className={styles.serviceThumbWrap}>
-              <img src={service.image} alt={`${service.title} thumbnail`} className={styles.serviceThumb} />
-            </div>
-            <h3 className={styles.serviceCardTitle}>{service.title}</h3>
-            <p className={styles.serviceCardDescription}>Explore this service</p>
-          </Link>
-        ))}
-      </div>
+      <ServicesVolumeGrid services={onlineServices} />
 
       <section className={styles.faqSection}>
         <div className={styles.faqContent}>
