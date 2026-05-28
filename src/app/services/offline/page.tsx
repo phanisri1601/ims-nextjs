@@ -7,7 +7,6 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
 import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
-import ServicesWorkCtaSection from '@/components/ServicesWorkCtaSection';
 
 const serviceUrlMap: { [key: string]: string } = {
   'Bus Branding': '/services/bus-branding',
@@ -241,19 +240,18 @@ export default function OfflineServicesPage() {
 
       <StackingCardsSection />
 
-      <section className={styles.servicesListing}>
-        <div className={styles.sectionTitleWrapper}>
+      <div className={styles.sectionTitleWrapper}>
+        <ScrollReveal>
           <h2 className={styles.sectionTitle}>Offline Services</h2>
-        </div>
-          <ServicesVolumeGrid
-          services={offlineServices.map((service) => ({
-            ...service,
-            href: getServiceUrl(service.title),
-          }))}
-        />
-      </section>
+        </ScrollReveal>
+      </div>
 
-      <ServicesWorkCtaSection />
+      <ServicesVolumeGrid
+        services={offlineServices.map((service) => ({
+          ...service,
+          href: getServiceUrl(service.title),
+        }))}
+      />
 
       <section className={styles.faqSection}>
         <div className={styles.faqContent}>

@@ -1,3 +1,5 @@
+import { buildBulkBlogUpdates } from "./blogBulkContent";
+
 export type BlogContentBlock =
   | { type: "paragraph"; text: string }
   | { type: "list"; items: string[] }
@@ -26,6 +28,7 @@ export type BlogPost = {
   takeaways?: string[];
   faqs?: { q: string; a: string }[];
   sections?: BlogContentSection[];
+  articleMarkdown?: string;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -323,7 +326,7 @@ export const blogPosts: BlogPost[] = [
     id: 2,
     title: "Modern SEO strategies for AI-powered search",
     excerpt: "The world of SEO is evolving faster than ever, and AI-powered search engines are at the forefront of this transformation. Learn how to optimize for the future of search.",
-    image: "/blogs/magnific__-prompt-create-a-premium-cinematic-blog-hero-image__20324.png",
+    image: "/blog_ai_seo.png",
     date: "October 2025",
     author: "IM Solutions",
     slug: "modern-seo-ai-powered-search",
@@ -336,7 +339,7 @@ export const blogPosts: BlogPost[] = [
     id: 3,
     title: "How AI Is Transforming Website Design: Future-Proofing Your Brand",
     excerpt: "Artificial Intelligence isn't coming to web design. It's already here—redefining how we create, interact, and evolve online. Discover the impact on modern design.",
-    image: "/blogs/magnific__-prompt-create-a-premium-cinematic-blog-hero-image__20325.png",
+    image: "/wcu_branding.png",
     date: "September 2025",
     author: "IM Solutions",
     slug: "how-ai-is-transforming-website-design",
@@ -349,7 +352,7 @@ export const blogPosts: BlogPost[] = [
     id: 4,
     title: "WordPress vs Webflow vs Custom Code: What's Right for Startups?",
     excerpt: "Choosing the right platform to build your website isn't just a technical decision—it's a strategic one. Whether you're a startup or an established business, we break down the pros and cons.",
-    image: "/blogs/magnific_prompt-create-a-premium-c_BmNlDzhoQR.png",
+    image: "/blog_platforms.png",
     date: "August 2025",
     author: "IM Solutions",
     slug: "wordpress-vs-webflow-vs-custom-code",
@@ -362,7 +365,7 @@ export const blogPosts: BlogPost[] = [
     id: 5,
     title: "Top 7 ORM Strategies That Actually Work in 2025 (For Global Brands)",
     excerpt: "Online reputation is filtered through search engines, AI assistants, reviews, and Reddit threads. What shows up—and how it shows up—matters. Here are the strategies that drive real results.",
-    image: "/blogs/magnific_prompt-create-a-premium-c_mCZJJsVhJQ.png",
+    image: "/wcu_marketing.png",
     date: "July 2025",
     author: "IM Solutions",
     slug: "top-7-orm-strategies-that-actually-work-in-2025",
@@ -375,7 +378,7 @@ export const blogPosts: BlogPost[] = [
     id: 6,
     title: "How to Choose the Best Website Designing Agency: A 2025 Guide",
     excerpt: "In 2025, your website isn't just a digital space—it's your brand's first handshake. The choice of a website design agency can make or break your digital presence.",
-    image: "/blogs/magnific_prompt-create-a-premium-c_EqY3qptuuO.png",
+    image: "/wcu_branding.png",
     date: "June 2025",
     author: "IM Solutions",
     slug: "how-to-choose-the-best-website-designing-agency",
@@ -401,7 +404,7 @@ export const blogPosts: BlogPost[] = [
     id: 8,
     title: "Top 10 Website Design Trends Dominating in 2025",
     excerpt: "Design isn't just about how it looks. It's about how it feels—how seamlessly it guides, informs, and inspires. In 2025, these trends are reshaping digital experiences.",
-    image: "/blogs/magnific_prompt-create-a-premium-c_PiQvKMd42C.png",
+    image: "/wcu_branding.png",
     date: "April 2025",
     author: "IM Solutions",
     slug: "top-10-website-design-trends-dominating-in-2025",
@@ -427,7 +430,7 @@ export const blogPosts: BlogPost[] = [
     id: 10,
     title: "Video Shoots That Spark Cravings: The Recipe for Restaurant Marketing Success!",
     excerpt: "In the digital-first world, food is no longer just about taste; it's about visual storytelling that ignites cravings. Learn the secrets of successful restaurant video marketing.",
-    image: "/blogs/magnific_json-idrestaurantvideomar_1sdVBMjr4r.png",
+    image: "/wcu_marketing.png",
     date: "February 2025",
     author: "IM Solutions",
     slug: "video-shoots-that-spark-cravings",
@@ -956,5 +959,42 @@ export const blogPosts: BlogPost[] = [
     tags: ["Advertising"],
   },
 ];
+
+const bulkUpdates = buildBulkBlogUpdates();
+
+for (const post of blogPosts) {
+  const update = bulkUpdates[post.slug];
+  if (!update) continue;
+  post.title = update.title;
+  post.excerpt = update.excerpt;
+  post.articleMarkdown = update.markdown;
+  post.externalUrl = undefined;
+}
+
+const blogImageOverrides: Record<string, string> = {
+  "modern-seo-ai-powered-search":
+    "/blogs/magnific__-prompt-create-a-premium-cinematic-blog-hero-image__20324.png",
+  "how-ai-is-transforming-website-design":
+    "/blogs/magnific__-prompt-create-a-premium-cinematic-blog-hero-image__20325.png",
+  "video-shoots-that-spark-cravings":
+    "/blogs/magnific_json-idrestaurantvideomar_1sdVBMjr4r.png",
+  "wordpress-vs-webflow-vs-custom-code":
+    "/blogs/magnific_prompt-create-a-premium-c_BmNlDzhoQR.png",
+  "how-to-choose-the-best-website-designing-agency":
+    "/blogs/magnific_prompt-create-a-premium-c_EqY3qptuuO.png",
+  "top-7-orm-strategies-that-actually-work-in-2025":
+    "/blogs/magnific_prompt-create-a-premium-c_mCZJJsVhJQ.png",
+  "top-10-website-design-trends-dominating-in-2025":
+    "/blogs/magnific_prompt-create-a-premium-c_PiQvKMd42C.png",
+  "top-seo-trends-for-2026":
+    "/blogs/magnific_prompt-create-an-ultrapre_KjM8FXCkqp.png",
+  "how-performance-marketing-can-double-your-roi-in-2025":
+    "/blogs/magnific_prompt-create-a-premium-c_brMWOPn5Y2.png",
+};
+
+for (const post of blogPosts) {
+  const imageOverride = blogImageOverrides[post.slug];
+  if (imageOverride) post.image = imageOverride;
+}
 
 export default blogPosts;

@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useMemo, useRef } from 'react';
 import styles from './StackingCardsSection.module.css';
 import gsap from 'gsap';
@@ -11,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 type StackCard = {
   title: string;
-  slug: string;
   description: string;
   tag: string;
   number: number;
@@ -27,7 +25,6 @@ export default function StackingCardsSection() {
     () => [
       {
         title: 'Bus Branding',
-        slug: 'bus-branding',
         description:
           'Turn city traffic into brand visibility with high-impact transit branding designed for maximum reach.',
         tag: 'Outdoor',
@@ -36,7 +33,6 @@ export default function StackingCardsSection() {
       },
       {
         title: 'RWA Activation',
-        slug: 'rwa-activation',
         description:
           'Engage residential communities with on-ground activations that create trust, attention and enquiries.',
         tag: 'Activation',
@@ -45,7 +41,6 @@ export default function StackingCardsSection() {
       },
       {
         title: 'BTL Advertising',
-        slug: 'btl-advertising',
         description:
           'Drive direct response with targeted below-the-line campaigns—sampling, kiosks, and hyperlocal promotions.',
         tag: 'BTL',
@@ -54,7 +49,6 @@ export default function StackingCardsSection() {
       },
       {
         title: 'Advertising Activities In Malls & Multiplex',
-        slug: 'mall-advertising',
         description:
           'Capture attention where footfall is high with experiential mall and multiplex advertising that converts.',
         tag: 'Experiential',
@@ -159,26 +153,23 @@ export default function StackingCardsSection() {
                   <div className={styles.cardInner}>
                     <div className={styles.textContent}>
                       <div className={styles.cardHeader}>
-                        <div className={styles.animatedIndex} aria-label={`Step ${c.number}`}>
-                          <span className={styles.animatedIndexStroke}>
-                            {String(c.number).padStart(2, '0')}
-                          </span>
-                          <span className={styles.animatedIndexFill} aria-hidden>
-                            {String(c.number).padStart(2, '0')}
-                          </span>
-                        </div>
+                        <div className={styles.cardNumber}>{c.number}</div>
                       </div>
-                      <div className={styles.divider} />
+                      <div className={styles.divider}></div>
                       <div className={styles.textContentInner}>
                         <h3 className={styles.cardTitle}>{c.title}</h3>
                         <p className={styles.cardDesc}>{c.description}</p>
-                        <Link href={`/services/${c.slug}`} className={styles.animatedCta}>
-                          <span className={styles.animatedCtaText}>Get Started</span>
-                        </Link>
                       </div>
                     </div>
                     <div className={styles.media} aria-hidden>
-                      <img src={c.image} alt="" />
+                      <img 
+                        src={`/services/service_${c.title.toLowerCase().replace(/\s+/g, '-')}.png`} 
+                        alt="" 
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = c.image;
+                        }}
+                      />
+                      <button className={styles.cardButton} onClick={() => window.location.href=`/services/${c.title.toLowerCase().replace(/\s+/g, '-')}`}>Get Started</button>
                     </div>
                   </div>
                 </div>

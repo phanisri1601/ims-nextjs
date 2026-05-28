@@ -1,6 +1,5 @@
 .section {
-  padding: 2rem 0 0;
-  margin-bottom: -4rem;
+  padding: 2rem 0 3rem;
   background: var(--color-bg-primary);
 }
 
@@ -34,7 +33,7 @@
 
 .stackArea {
   position: relative;
-  min-height: 100vh;
+  height: calc(100vh + 240px);
 }
 
 .sticky {
@@ -81,85 +80,40 @@
   padding: 1.5rem; /* Re-add padding to header only */
 }
 
-/* Outlined animated index (01, 02, 03, 04) */
-.animatedIndex {
-  position: relative;
-  display: inline-block;
-  font-size: clamp(3.25rem, 7vw, 5.25rem);
-  font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
-  user-select: none;
-}
-
-.animatedIndexStroke {
-  display: block;
-  color: transparent;
-  -webkit-text-stroke: 2px #0b0b0f;
-  paint-order: stroke fill;
-}
-
-.animatedIndexFill {
-  position: absolute;
-  inset: 0;
-  display: block;
-  color: var(--color-accent-primary);
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.card:hover .animatedIndexFill,
-.card:focus-within .animatedIndexFill {
-  clip-path: inset(0 0 0 0);
-}
-
-/* Animated CTA — outline to filled red */
-.animatedCta {
-  position: relative;
-  display: inline-flex;
+.cardNumber {
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
-  margin-top: 1.35rem;
-  padding: 0.85rem 2rem;
-  border: 2px solid var(--color-accent-primary);
-  background: transparent;
-  text-decoration: none;
-  overflow: hidden;
-  isolation: isolate;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
 }
 
-.animatedCta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: var(--color-accent-primary);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+.cardButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+  border: none;
+  border-radius: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
-.card:hover .animatedCta::before,
-.animatedCta:focus-visible::before {
-  transform: scaleX(1);
-}
-
-.animatedCtaText {
-  position: relative;
-  z-index: 1;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-accent-primary);
-  transition: color 0.35s ease;
-}
-
-.card:hover .animatedCtaText,
-.animatedCta:focus-visible .animatedCtaText {
-  color: #ffffff;
+.cardButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.25);
 }
 
 .divider {
@@ -192,6 +146,14 @@
   object-fit: cover;
   transition: transform 0.6s ease;
   display: block;
+}
+
+.media .cardButton {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .textContent {
@@ -273,34 +235,13 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .animatedIndexFill {
-    clip-path: inset(0 0 0 0);
-    transition: none;
-  }
-
-  .animatedCta::before {
-    transform: scaleX(1);
-    transition: none;
-  }
-
-  .animatedCtaText {
-    color: #ffffff;
-    transition: none;
-  }
-}
-
 @media (max-width: 640px) {
   .section {
-    padding: 2rem 0 0;
+    padding: 3rem 0;
   }
 
   .stackArea {
-    min-height: auto;
-  }
-
-  .section {
-    margin-bottom: 0;
+    height: calc(100vh + 360px);
   }
 
   .sticky {

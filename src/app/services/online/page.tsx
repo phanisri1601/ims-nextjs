@@ -7,7 +7,6 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
 import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
-import ServicesWorkCtaSection from '@/components/ServicesWorkCtaSection';
 
 
 
@@ -284,14 +283,13 @@ export default function OnlineServicesPage() {
 
       <StackingCardsSection />
 
-      <section className={styles.servicesListing}>
-        <div className={styles.sectionTitleWrapper}>
+      <div className={styles.sectionTitleWrapper}>
+        <ScrollReveal>
           <h2 className={styles.sectionTitle}>Online Services</h2>
-        </div>
-        <ServicesVolumeGrid services={onlineServices} />
-      </section>
+        </ScrollReveal>
+      </div>
 
-      <ServicesWorkCtaSection />
+      <ServicesVolumeGrid services={onlineServices} />
 
       <section className={styles.faqSection}>
         <div className={styles.faqContent}>
