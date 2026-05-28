@@ -4,7 +4,8 @@
   gap: clamp(2.25rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.25rem);
   width: min(100%, 1400px);
   margin: 0 auto;
-  padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+  /* Reduce vertical whitespace below the cards grid */
+  padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(1.75rem, 4vw, 3rem);
 }
 
 .gridFlush {
