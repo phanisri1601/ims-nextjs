@@ -67,7 +67,7 @@ export default function TestAnimation() {
         scrollTrigger: {
           trigger: stack,
           start: 'top top',
-          end: `+=${cards.length * 90}%`,
+          end: `+=${cards.length * 52}%`,
           scrub: 1.35,
           pin: section,
           pinSpacing: true,

@@ -1,12 +1,12 @@
 .videoSection {
-    padding: 120px 0;
+    padding: var(--section-padding-y) 0;
     background: linear-gradient(180deg,
             #ffffff 0%,
             #f5f5f5 50%,
             #ffffff 100%);
     position: relative;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: auto;
 }
 
 /* Subtle Red Glow Effect */
@@ -120,7 +120,7 @@
 
 @media (max-width: 1024px) {
     .videoSection {
-        padding: 100px 0;
+        padding: var(--section-padding-y) 0;
     }
 
     .videoContainer {
@@ -145,7 +145,7 @@
 
 @media (max-width: 768px) {
     .videoSection {
-        padding: 80px 1rem;
+        padding: var(--section-padding-y) 1rem;
         min-height: auto;
     }
 
@@ -180,7 +180,7 @@
 
 @media (max-width: 480px) {
     .videoSection {
-        padding: 60px 0.75rem;
+        padding: 2rem 0.75rem;
     }
 
     .videoContainer {

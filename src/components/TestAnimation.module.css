@@ -1,8 +1,8 @@
 .section {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
-  padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+  padding: var(--section-padding-y) 1.5rem;
   background: #ffffff;
 }
 
@@ -11,7 +11,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 1.25rem;
   width: 100%;
 }
 
@@ -40,14 +40,14 @@
   align-items: center;
   position: relative;
   width: 100%;
-  min-height: clamp(480px, 62vh, 620px);
+  min-height: clamp(340px, 46vh, 480px);
 }
 
 .stack {
   position: relative;
   width: 100%;
   max-width: 1200px;
-  min-height: clamp(480px, 62vh, 620px);
+  min-height: clamp(340px, 46vh, 480px);
 }
 
 .card {
