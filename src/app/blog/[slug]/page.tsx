@@ -122,127 +122,6 @@ function renderBlock(block: BlogContentBlock, key: string) {
   }
 }
 
-function parseMarkdownArticle(markdown: string) {
-  const lines = markdown.split("\n");
-  const sections: { heading: string; blocks: BlogContentBlock[] }[] = [];
-  const faqs: { q: string; a: string }[] = [];
-
-  let inFaq = false;
-  let currentSection: { heading: string; blocks: BlogContentBlock[] } | null = null;
-  let paragraphBuffer: string[] = [];
-  let listBuffer: string[] = [];
-  let currentFaq: { q: string; a: string[] } | null = null;
-
-  const flushParagraph = () => {
-    if (!currentSection || paragraphBuffer.length === 0) return;
-    currentSection.blocks.push({
-      type: "paragraph",
-      text: paragraphBuffer.join(" ").trim(),
-    });
-    paragraphBuffer = [];
-  };
-
-  const flushList = () => {
-    if (!currentSection || listBuffer.length === 0) return;
-    currentSection.blocks.push({
-      type: "list",
-      items: [...listBuffer],
-    });
-    listBuffer = [];
-  };
-
-  const flushFaq = () => {
-    if (!currentFaq) return;
-    faqs.push({ q: currentFaq.q, a: currentFaq.a.join(" ").trim() });
-    currentFaq = null;
-  };
-
-  for (const rawLine of lines) {
-    const line = rawLine.trim();
-
-    if (!line || line === "---") {
-      flushParagraph();
-      flushList();
-      continue;
-    }
-
-    if (line.startsWith("# FAQs")) {
-      flushParagraph();
-      flushList();
-      inFaq = true;
-      continue;
-    }
-
-    if (inFaq) {
-      if (/^##\s+\d+\./.test(line)) {
-        flushFaq();
-        currentFaq = { q: line.replace(/^##\s+\d+\.\s*/, "").trim(), a: [] };
-      } else if (currentFaq) {
-        currentFaq.a.push(line);
-      }
-      continue;
-    }
-
-    if (line.startsWith("# ")) {
-      // Top H1 is already used as post title
-      continue;
-    }
-
-    if (line.startsWith("## ")) {
-      flushParagraph();
-      flushList();
-      if (currentSection) sections.push(currentSection);
-      currentSection = { heading: line.replace(/^##\s+/, "").trim(), blocks: [] };
-      continue;
-    }
-
-    if (line.startsWith("### ")) {
-      flushParagraph();
-      flushList();
-      if (!currentSection) currentSection = { heading: "Overview", blocks: [] };
-      currentSection.blocks.push({
-        type: "callout",
-        title: line.replace(/^###\s+/, "").trim(),
-        text: "",
-      });
-      continue;
-    }
-
-    if (line.startsWith("* ")) {
-      flushParagraph();
-      listBuffer.push(line.replace(/^\*\s+/, "").trim());
-      continue;
-    }
-
-    paragraphBuffer.push(line);
-  }
-
-  flushParagraph();
-  flushList();
-  if (currentSection) sections.push(currentSection);
-  flushFaq();
-
-  const normalizedSections = sections
-    .map((section) => ({
-      ...section,
-      blocks: section.blocks
-        .map((block) =>
-          block.type === "callout" && !block.text
-            ? { ...block, text: " " }
-            : block
-        )
-        .filter((block) => {
-          if (block.type === "paragraph") return block.text.trim().length > 0;
-          if (block.type === "callout") return (block.text ?? "").trim().length >= 0;
-          if (block.type === "list") return block.items.length > 0;
-          return true;
-        }),
-    }))
-    .filter((section) => section.blocks.length > 0);
-
-  return { sections: normalizedSections, faqs };
-}
-
 function defaultArticleSections(post: BlogPost) {
   const category = post.tags?.[0] ?? "Strategy";
   return [
@@ -333,20 +212,8 @@ export default async function PostPage({ params }: Props) {
 
   const relatedPosts = getRelatedPosts(post);
   const externalArticleHtml = await fetchExternalArticle(post);
-  const parsedArticle = post.articleMarkdown ? parseMarkdownArticle(post.articleMarkdown) : null;
   const primaryCategory = post.tags?.[0] ?? "Insights";
-  const sections = post.sections?.length
-    ? post.sections
-    : parsedArticle?.sections?.length
-      ? parsedArticle.sections
-      : externalArticleHtml
-        ? []
-        : defaultArticleSections(post);
-  const faqs = post.faqs?.length
-    ? post.faqs
-    : parsedArticle?.faqs?.length
-      ? parsedArticle.faqs
-      : [];
+  const sections = post.sections?.length ? post.sections : externalArticleHtml ? [] : defaultArticleSections(post);
   const metaParts = [post.date, post.readingTime, post.author].filter(Boolean);
 
   const bannerImage = post.image || "/blog_seo.png";
@@ -401,13 +268,13 @@ export default async function PostPage({ params }: Props) {
               </section>
             ) : null}
 
-            {faqs.length ? (
+            {post.faqs?.length ? (
               <div className={styles.faqWrap}>
                 <FAQ
                   title="FAQ"
                   variant="plain"
                   animated={false}
-                  items={faqs.map((f) => ({ question: f.q, answer: f.a }))}
+                  items={post.faqs.map((f) => ({ question: f.q, answer: f.a }))}
                 />
               </div>
             ) : null}

@@ -7,6 +7,11 @@
   padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
 }
 
+.gridFlush {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 .card {
   display: flex;
   flex-direction: column;

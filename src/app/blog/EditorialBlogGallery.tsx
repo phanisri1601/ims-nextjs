@@ -166,6 +166,9 @@ export default function EditorialBlogGallery({ posts }: Props) {
       ]
     : [];
 
+  const redToneSlug = posts[1]?.slug;
+  const isRedTonePost = (slug: string) => slug === redToneSlug;
+
   return (
     <section className={styles.editorialGallery} aria-label="Featured blog stories">
       <div className={styles.editorialMasthead}>
@@ -183,7 +186,7 @@ export default function EditorialBlogGallery({ posts }: Props) {
             <motion.article
               key={post.slug}
               layout
-              className={styles.editorialCard}
+              className={`${styles.editorialCard} ${index === 1 ? styles.editorialCardRed : ""}`}
               animate={{
                 opacity: shouldExit ? 0 : 1,
                 x: shouldExit ? `${direction * 34}%` : "0%",
@@ -210,11 +213,13 @@ export default function EditorialBlogGallery({ posts }: Props) {
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className={styles.editorialImage}
+                    className={`${styles.editorialImage} ${index === 1 ? styles.editorialImageRed : ""}`}
                   />
                 </motion.div>
 
-                <div className={styles.editorialShade} />
+                <div
+                  className={`${styles.editorialShade} ${index === 1 ? styles.editorialShadeRed : ""}`}
+                />
                 <div className={styles.editorialIndex}>{String(index + 1).padStart(2, "0")}</div>
                 <div className={styles.editorialContent}>
                   <div className={styles.editorialMeta}>
@@ -252,10 +257,10 @@ export default function EditorialBlogGallery({ posts }: Props) {
                 fill
                 priority
                 sizes="(max-width: 900px) 100vw, 62vw"
-                className={styles.editorialImage}
+                className={`${styles.editorialImage} ${isRedTonePost(selectedPost.slug) ? styles.editorialImageRed : ""}`}
               />
               <div
-                className={styles.expandedImageShade}
+                className={`${styles.expandedImageShade} ${isRedTonePost(selectedPost.slug) ? styles.expandedImageShadeRed : ""}`}
               />
             </motion.div>
 
