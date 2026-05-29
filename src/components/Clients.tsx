@@ -150,16 +150,6 @@ export default function Clients() {
                                 })}
                             </div>
                         </div>
-
-                        <div className={styles.centerBadge} aria-hidden="true">
-                            <div className={styles.centerBadgeInner}>
-                                <img
-                                    src="/weblogo.png"
-                                    alt="IM Solutions Logo"
-                                    className={styles.centerBadgeLogoLarge}
-                                />
-                            </div>
-                        </div>
                     </div>
                 </ScrollReveal>
             </div>

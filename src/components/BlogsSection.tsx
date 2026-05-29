@@ -162,14 +162,8 @@ function BlogCard({ post, cardHref, position, onHoverChange }: { post: any, card
                 onMouseLeave={() => onHoverChange(false)}
             >
                 <img src={post.image} alt={post.title} className={styles.image} />
-                <div className={styles.overlay}>
-                    <div className={styles.metaData}>
-                        <span>{post.date}</span>
-                        <span>{post.author}</span>
-                        {post.readingTime && (
-                           <span className={styles.readingTime}>{post.readingTime}</span>
-                        )}
-                    </div>
+                <div className={styles.imageFade} aria-hidden="true" />
+                <div className={styles.titleBlock}>
                     <h3 className={styles.blogTitle}>{post.title}</h3>
                 </div>
             </motion.a>

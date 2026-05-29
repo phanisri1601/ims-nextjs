@@ -119,7 +119,6 @@
 .imageContainer {
     width: 100%;
     max-width: 600px;
-    aspect-ratio: 4/3;
     position: relative;
     border-radius: 0;
     box-shadow:
@@ -137,17 +136,14 @@
     display: block;
 }
 
-.imageBackground {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.aboutBannerImage {
     display: block;
-    /* Use a subtle gradient instead of a second image so the banner image is the only image used */
-   background-image: linear-gradient(135deg, rgba(255,40,70,0.08), rgba(0,0,0,0.22)), url('/about_im_solutions.png');
-    box-shadow: inset 0 2px 12px rgba(0,0,0,0.08);
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0;
 }
 
 /* Floating Elements for extra depth */
@@ -268,7 +264,6 @@
 
     .imageContainer {
         max-width: 100%;
-        aspect-ratio: 4/3;
         border-radius: 16px;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(255, 0, 51, 0.15);
     }
@@ -359,7 +354,6 @@
 
     .imageContainer {
         max-width: 100%;
-        aspect-ratio: 4/3;
         border-radius: 0;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 6px 15px rgba(255, 0, 51, 0.1);
     }

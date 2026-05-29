@@ -4,6 +4,7 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import GSAPScrollReveal from "./GSAPScrollReveal";
 import TextReveal from "./TextReveal";
 import ImageReveal from "./ImageReveal";
+import { homeImage } from "@/lib/homeImages";
 import styles from "./AboutSection.module.css";
 
 type AboutSectionProps = {
@@ -94,10 +95,10 @@ function TiltImage() {
             <div
                 style={{ width: "100%", height: "100%" }}
             >
-                <div
-                    className={styles.imageBackground}
-                    role="img"
-                    aria-label="IM Solutions banner"
+                <img
+                    src={homeImage("About Us.png")}
+                    alt="IM Solutions banner"
+                    className={styles.aboutBannerImage}
                 />
             </div>
         </motion.div>

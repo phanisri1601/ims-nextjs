@@ -1,45 +1,46 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import { homeImage } from "@/lib/homeImages";
 import styles from "./WantToKnowMore.module.css";
 
 const services = [
     {
         title: "Web Design",
         description: "Crafting immersive digital experiences that captivate and convert.",
-        image: "/wcu_branding.png", // Reuse high-quality asset
+        image: homeImage("Web Design.png"),
         link: "services/website-design-development"
     },
     {
         title: "SEO Optimization",
         description: "Driving organic growth with data-driven search strategies.",
-        image: "/blog_seo.png", // Reuse high-quality asset
+        image: homeImage("Seo Optimization.png"),
         link: "services/seo"
     },
     {
         title: "Full Stack Marketing ",
         description: "360° campaigns that amplify your brand's voice across all channels.",
-        image: "/wcu_marketing.png", // Reuse high-quality asset
+        image: homeImage("Full Stack Marketing.png"),
         link: "services/digital-marketing-service"
     },
     {
         title: "Brand Identity",
         description: "Building resilient brands with distinctive visual storytelling.",
-        image: "/wcu_branding.png",
+        image: homeImage("Brand Identity.png"),
         link: "services/branding"
     },
     {
         title: "Social Media",
         description: "Transforming audience attention into meaningful brand engagement.",
-        image: "/wcu_marketing.png",
+        image: homeImage("Social Media.png"),
         link: "/services/social-media-optimization"
     },
     {
         title: "Content Strategy",
         description: "Compelling narratives that resonate with your target audience.",
-        image: "/blog_seo.png",
+        image: homeImage("Content Strategy.png"),
         link: "services/content"
     }
 ];
@@ -71,75 +72,70 @@ export default function WantToKnowMore() {
         }, 600);
     };
 
+    const getCardStep = useCallback(() => {
+        const grid = gridRef.current;
+        const firstCard = grid?.firstElementChild as HTMLElement | null;
+        if (firstCard?.offsetWidth) return firstCard.offsetWidth;
+        return window.innerWidth / 3;
+    }, []);
+
+    const scrollToCard = useCallback((index: number) => {
+        const grid = gridRef.current;
+        if (!grid) return;
+        const step = getCardStep();
+        grid.scrollTo({
+            left: index * step,
+            behavior: "smooth",
+        });
+        setActiveIndex(index);
+    }, [getCardStep]);
+
     useEffect(() => {
         const grid = gridRef.current;
         if (!grid) return;
 
         const handleScroll = () => {
-            const cardWidth = 350 + 32; // card width + gap
-            const scrollLeft = grid.scrollLeft;
-            const index = Math.round(scrollLeft / cardWidth);
-            setActiveIndex(Math.min(index, services.length - 1));
+            const step = getCardStep();
+            if (!step) return;
+            const index = Math.round(grid.scrollLeft / step);
+            setActiveIndex(Math.min(Math.max(index, 0), services.length - 1));
         };
 
         grid.addEventListener("scroll", handleScroll);
         return () => grid.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [getCardStep]);
 
-    // Auto-scroll functionality - smooth continuous movement
+    // One card slides at a time
     useEffect(() => {
         const grid = gridRef.current;
         if (!grid) return;
 
-        let animationId: number;
         let isHovered = false;
-        const scrollSpeed = 1; // pixels per frame
+        const intervalId = window.setInterval(() => {
+            if (isHovered) return;
+            setActiveIndex((prev) => {
+                const next = (prev + 1) % services.length;
+                scrollToCard(next);
+                return next;
+            });
+        }, 4500);
 
-        const autoScroll = () => {
-            if (!isHovered && grid) {
-                const maxScroll = grid.scrollWidth - grid.clientWidth;
-                
-                // If at the end, reset to start
-                if (grid.scrollLeft >= maxScroll - 1) {
-                    grid.scrollLeft = 0;
-                } else {
-                    grid.scrollLeft += scrollSpeed;
-                }
-                
-                // Update active index based on scroll position
-                const cardWidth = 350 + 32;
-                const index = Math.round(grid.scrollLeft / cardWidth);
-                setActiveIndex(Math.min(index, services.length - 1));
-            }
-            animationId = requestAnimationFrame(autoScroll);
+        const handleMouseEnter = () => {
+            isHovered = true;
         };
-
-        const handleMouseEnter = () => { isHovered = true; };
-        const handleMouseLeave = () => { isHovered = false; };
+        const handleMouseLeave = () => {
+            isHovered = false;
+        };
 
         grid.addEventListener("mouseenter", handleMouseEnter);
         grid.addEventListener("mouseleave", handleMouseLeave);
-        
-        // Start immediately
-        animationId = requestAnimationFrame(autoScroll);
 
         return () => {
-            cancelAnimationFrame(animationId);
+            window.clearInterval(intervalId);
             grid.removeEventListener("mouseenter", handleMouseEnter);
             grid.removeEventListener("mouseleave", handleMouseLeave);
         };
-    }, []);
-
-    const scrollToCard = (index: number) => {
-        if (gridRef.current) {
-            const cardWidth = 350 + 32;
-            gridRef.current.scrollTo({
-                left: index * cardWidth,
-                behavior: "smooth"
-            });
-            setActiveIndex(index);
-        }
-    };
+    }, [scrollToCard]);
 
     return (
         <section className={styles.section}>
@@ -185,6 +181,20 @@ export default function WantToKnowMore() {
                                 </div>
                             </div>
                         </motion.a>
+                    ))}
+                </div>
+
+                <div className={styles.dots} role="tablist" aria-label="Service slides">
+                    {services.map((_, index) => (
+                        <button
+                            key={index}
+                            type="button"
+                            role="tab"
+                            aria-selected={activeIndex === index}
+                            aria-label={`Go to slide ${index + 1}`}
+                            className={`${styles.dot} ${activeIndex === index ? styles.dotActive : ""}`}
+                            onClick={() => scrollToCard(index)}
+                        />
                     ))}
                 </div>
             </div>

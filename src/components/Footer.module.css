@@ -22,6 +22,12 @@
     min-width: 0;
 }
 
+/* ADD THIS JUST BELOW */
+.footerColumn:nth-child(2) {
+    align-items: center;
+    text-align: center;
+}
+
 .columnTitle {
     color: var(--color-text-primary);
     font-size: 1.2rem;
@@ -131,7 +137,6 @@
     margin: 0 0 0.5rem 0;
 }
 
-/* Quick Links */
 .linkList {
     list-style: none;
     padding: 0;
@@ -141,8 +146,15 @@
     gap: 0.75rem;
 }
 
+/* ADD THIS */
+.footerColumn:nth-child(2) .linkList {
+    align-items: center;
+}
 .linkList li {
     margin: 0;
+}
+.footerColumn:nth-child(2) .linkList li {
+    text-align: center;
 }
 
 .linkLabel {

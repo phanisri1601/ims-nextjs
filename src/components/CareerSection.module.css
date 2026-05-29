@@ -1,17 +1,24 @@
 .section {
     position: relative;
     padding: 8rem 0;
-    /* Use valid image URL from public folder */
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.15) 100%),
-        url('/wcu_marketing.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    /* Parallax effect */
-    color: var(--color-text-primary);
+    background: url('/home/Carrer.png') center / cover no-repeat fixed;
+    color: #ffffff;
+    font-family: var(--font-varela), "Poppins", "Inter", system-ui, sans-serif;
     text-align: center;
     overflow: hidden;
     min-height: 100vh;
+}
+
+.section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.58),
+        rgba(0, 0, 0, 0.58)
+    );
+    pointer-events: none;
 }
 
 .container {
@@ -25,16 +32,18 @@
 .title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     margin-bottom: 2rem;
     text-transform: uppercase;
     color: #ffffff;
+    line-height: 1.1;
 }
 
 .text {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #ffffff;
+    font-size: clamp(1rem, 1.35vw, 1.1rem);
+    font-weight: 500;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
     max-width: 1100px;
     margin-left: auto;
@@ -43,18 +52,17 @@
 
 .applyButton {
     display: inline-block;
-    background-color: #ff0033;
-    /* The specific red from reference */
-    color: white;
+    background-color: var(--color-accent-primary, #ff0033);
+    color: #ffffff;
     padding: 1rem 3rem;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     margin-top: 1rem;
     text-decoration: none;
 }
@@ -62,24 +70,27 @@
 .applyButton:hover {
     background-color: #cc0029;
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(255, 0, 51, 0.4);
-}
-
-/* Optional: Decorative overlay line or shape from reference */
-.section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
-    pointer-events: none;
+    box-shadow: 0 10px 24px rgba(255, 0, 51, 0.4);
 }
 
 @media (max-width: 768px) {
     .section {
         min-height: auto;
         padding: 4rem 0;
+        background-attachment: scroll;
+    }
+
+    .section::before {
+        background: rgba(0, 0, 0, 0.62);
+    }
+
+    .title {
+        letter-spacing: 0.1em;
+    }
+
+    .text {
+        font-weight: 400;
+        line-height: 1.65;
+        padding: 0 0.25rem;
     }
 }

@@ -71,11 +71,8 @@ export default function Footer() {
             <div className={styles.footerContainer}>
                 {/* Powered By Section */}
                 <div className={styles.footerColumn}>
-                    <h4 className={styles.columnTitle}>Powered By</h4>
-                    <div className={styles.companyInfo}>
-                        <img src="/weblogo.png" alt="IM Solutions Logo" className={styles.logoImage} />
-                        <p className={styles.tagline}>Your Path Our Success</p>
-                    </div>
+                    
+                    
 
                     <div className={styles.addressBlock}>
                         <h5 className={styles.addressTitle}>Corporate Office</h5>

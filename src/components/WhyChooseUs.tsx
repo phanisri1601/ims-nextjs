@@ -3,36 +3,37 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { homeImage } from "@/lib/homeImages";
 import styles from "./WhyChooseUs.module.css";
 
 const reasons = [
     {
-        image: "/wcu_marketing.png",
+        image: homeImage("360 degree marketing.png"),
         title: "360° Marketing Solution",
         description: "We take pride in delivering fully-integrated and measurable marketing solutions. We help support all your brands digital needs."
     },
     {
-        image: "/wcu_growth.png",
+        image: homeImage("Maximise Your Lead Generation.png"),
         title: "Maximise your Lead Generation",
         description: "Growth begins with accuracy. Our data-led strategies ensure your brand attracts the right audience - not just more clicks."
     },
     {
-        image: "/wcu_branding.png",
+        image: homeImage("Creative Branding Strategy.png"),
         title: "Creative Branding Strategy",
         description: "Brands create impressions. We make brands become iconic with stunning designs and strategic campaigns that truly resonate."
     },
     {
-        image: "/wcu_marketing.png", // Reusing for analytics
+        image: homeImage("Data Driven Analytics.png"),
         title: "Data-Driven Analytics",
         description: "We don't guess, we calculate. Our team uses relevant analytics and metrics to implement solid digital strategies customized for your business."
     },
     {
-        image: "/wcu_growth.png", // Reusing for execution
+        image: homeImage("End To End Execution.png"),
         title: "End-to-End Execution",
         description: "From concept to launch, we handle every aspect of your campaign with precision, ensuring flawless execution across all channels."
     },
     {
-        image: "/wcu_branding.png", // Reusing for client centric
+        image: homeImage("Client Centric Approach.png"),
         title: "Client-Centric Approach",
         description: "Your goal is our goal. We work as an extension of your team to ensure transparency, collaboration, and shared success."
     }

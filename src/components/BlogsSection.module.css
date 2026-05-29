@@ -155,14 +155,18 @@
         min-height: auto;
     }
 
-    .overlay {
-        padding: 1rem;
+    .imageFade,
+    .titleBlock {
+        height: 42%;
+    }
+
+    .titleBlock {
+        padding: 0 1.1rem 1.1rem 1.25rem;
     }
 
     .blogTitle {
         font-size: 0.95rem;
-        padding: 0.75rem;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        max-width: 100%;
     }
 
     .footer {
@@ -176,19 +180,21 @@
     }
 }
 
-/* Card Styling - Image Only */
+/* Card — image + bottom fade + title */
 .card {
     position: relative;
     aspect-ratio: 16/9;
-    background: #f0f0f0;
+    background: #0a0a0c;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    /* No hover effects that interfere with scroll transform */
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.04),
+        0 20px 48px rgba(0, 0, 0, 0.12);
     transform-style: preserve-3d;
     cursor: pointer;
     text-decoration: none;
     display: block;
+    isolation: isolate;
 }
 
 .image {
@@ -196,68 +202,65 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Overlay for potential title on hover if needed later, but keeping empty for now */
-/* Overlay Title */
-.overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-    opacity: 1;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* Push content to bottom */
-    align-items: center; /* Center title horizontally at the bottom per screenshot */
-    padding: 2.5rem 1.5rem;
+.card:hover .image {
+    transform: scale(1.04);
 }
 
-.metaData {
+/* Soft bottom fade — ~35% of card height, multi-stop for a premium blend */
+.imageFade {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    color: var(--color-accent-primary);
-    font-size: 0.7rem;
-    font-weight: 600;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 45%; /* slightly taller fade */
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.98) 0%,
+        rgba(0, 0, 0, 0.9) 20%,
+        rgba(0, 0, 0, 0.7) 40%,
+        rgba(0, 0, 0, 0.45) 60%,
+        rgba(0, 0, 0, 0.2) 80%,
+        rgba(0, 0, 0, 0) 100%
+    );
+}
+
+.titleBlock {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    height: 38%;
     display: flex;
-    flex-direction: column;
     align-items: flex-end;
-    gap: 0.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    justify-content: flex-start;
+    padding: 0 1.65rem 1.5rem 1.85rem;
+    pointer-events: none;
 }
 
 .blogTitle {
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     margin: 0;
-    transition: all 0.3s ease;
-    text-align: center;
-    width: 100%;
-    transform: translateY(6px);
-}
-
-.readingTime {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.65rem;
-    text-transform: none;
-    letter-spacing: normal;
-}
-
-/* Hover effects for meta details */
-.card:hover .metaData {
-    opacity: 1;
-    transform: translateY(0);
+    max-width: 94%;
+    color: #ffffff;
+    font-size: clamp(1.05rem, 2.1vw, 1.28rem);
+    font-weight: 600;
+    line-height: 1.38;
+    letter-spacing: -0.02em;
+    text-align: left;
+    text-wrap: balance;
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.35),
+        0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: transform 0.35s ease;
 }
 
 .card:hover .blogTitle {
-    transform: translateY(2px);
+    transform: translateY(-2px);
 }
 
 .footer {

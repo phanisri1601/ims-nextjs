@@ -146,71 +146,6 @@
     text-transform: uppercase;
 }
 
-.centerBadge {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 165px;
-    height: 165px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, rgba(128, 128, 128, 0.96), rgba(169, 169, 169, 0.98) 68%);
-    border: 1.5px solid rgba(255, 255, 255, 0.42);
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.38),
-        0 0 48px rgba(255, 60, 90, 0.45),
-        0 0 85px rgba(255, 120, 40, 0.22);
-    z-index: 20;
-    pointer-events: none;
-}
-
-.centerBadge::before {
-    content: "";
-    position: absolute;
-    inset: -22px;
-    border-radius: 50%;
-    background: radial-gradient(
-        circle,
-        rgba(255, 0, 51, 0.48) 0%,
-        rgba(255, 82, 40, 0.3) 30%,
-        rgba(255, 140, 70, 0.14) 48%,
-        rgba(255, 0, 51, 0) 75%
-    );
-    filter: blur(10px);
-    z-index: -1;
-}
-
-.centerBadgeInner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-}
-
-.centerBadgeLogo {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-    filter: brightness(1.08) contrast(1.05);
-}
-
-.centerBadgeLogoLarge {
-    width: 90px;
-    height: 90px;
-    display: block;
-    margin: 0 auto;
-}
-
-.centerBadgeText {
-    color: #f2f2f5;
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-}
-
 @keyframes clientMarquee {
     from {
         transform: translateX(0);
@@ -262,20 +197,6 @@
     .marqueeStack {
         gap: 0.65rem;
     }
-
-    .centerBadge {
-        width: 140px;
-        height: 140px;
-    }
-
-    .centerBadgeLogo {
-        width: 36px;
-        height: 36px;
-    }
-
-    .centerBadgeText {
-        font-size: 0.82rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -300,19 +221,5 @@
 
     .marqueeStack {
         gap: 0.5rem;
-    }
-
-    .centerBadge {
-        width: 118px;
-        height: 118px;
-    }
-
-    .centerBadgeLogo {
-        width: 30px;
-        height: 30px;
-    }
-
-    .centerBadgeText {
-        font-size: 0.72rem;
     }
 }
