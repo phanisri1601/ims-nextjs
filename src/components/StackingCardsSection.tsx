@@ -27,7 +27,7 @@ export default function StackingCardsSection() {
     () => [
       {
         title: 'Bus Branding',
-        slug: 'offline/bus-branding',
+        slug: '/Bus Branding',
         description:
           'Turn city traffic into brand visibility with high-impact transit branding designed for maximum reach.',
         tag: 'Outdoor',
@@ -36,7 +36,7 @@ export default function StackingCardsSection() {
       },
       {
         title: 'RWA Activation',
-        slug: 'offline/rwa-activation',
+        slug: '/RWA Activation',
         description:
           'Engage residential communities with on-ground activations that create trust, attention and enquiries.',
         tag: 'Activation',
@@ -45,7 +45,7 @@ export default function StackingCardsSection() {
       },
       {
         title: 'BTL Advertising',
-        slug: 'offline/btl-advertising',
+        slug: '/BTL Advertising',
         description:
           'Drive direct response with targeted below-the-line campaigns—sampling, kiosks, and hyperlocal promotions.',
         tag: 'BTL',
@@ -54,7 +54,7 @@ export default function StackingCardsSection() {
       },
       {
         title: 'Advertising Activities In Malls & Multiplex',
-        slug: 'offline/mall-advertising',
+        slug: '/Advertising Activities In Malls & Multiplex',
         description:
           'Capture attention where footfall is high with experiential mall and multiplex advertising that converts.',
         tag: 'Experiential',

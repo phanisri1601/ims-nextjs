@@ -1,46 +1,131 @@
 import type { BlogPost } from "./blogPosts";
 
-/** Categories shown on /blog and post sidebar */
-export const BLOG_FILTER_CATEGORIES = [
-  "SEO",
-  "Web Design",
-  "Digital Marketing",
-  "Branding",
-  "Social Media",
-  "Marketing",
-  "ORM",
-  "Advertising",
-] as const;
+export type BlogCategorySlug =
+  | "all"
+  | "seo"
+  | "web-design"
+  | "digital-marketing"
+  | "branding"
+  | "social-media"
+  | "advertising"
+  | "orm"
+  | "performance-marketing"
+  | "content-ai";
 
-export type BlogFilterCategory = (typeof BLOG_FILTER_CATEGORIES)[number];
+export type BlogCategory = {
+  slug: BlogCategorySlug;
+  label: string;
+  matchTags: string[];
+};
 
-export function postMatchesCategory(post: BlogPost, category: string): boolean {
-  const needle = category.toLowerCase();
-  return (post.tags ?? []).some((tag) => {
-    const t = tag.toLowerCase();
-    return t === needle || t.includes(needle);
-  });
+export const BLOG_CATEGORIES: BlogCategory[] = [
+  { slug: "all", label: "All", matchTags: [] },
+  {
+    slug: "seo",
+    label: "SEO",
+    matchTags: ["SEO", "Google", "Algorithm", "AI Search"],
+  },
+  {
+    slug: "web-design",
+    label: "Web Design",
+    matchTags: ["Web Design", "Web", "UX", "WordPress", "Webflow", "Landing Pages", "Pricing"],
+  },
+  {
+    slug: "digital-marketing",
+    label: "Digital Marketing",
+    matchTags: [
+      "Digital Marketing",
+      "Marketing",
+      "Strategy",
+      "Local",
+      "RWA",
+      "Campaigns",
+      "Personalization",
+      "CRM",
+      "Bangalore",
+      "Startups",
+    ],
+  },
+  {
+    slug: "branding",
+    label: "Branding",
+    matchTags: ["Branding", "Brand", "Creative", "Design", "Business"],
+  },
+  {
+    slug: "social-media",
+    label: "Social Media",
+    matchTags: ["Social Media", "Facebook", "Trends", "Agency"],
+  },
+  {
+    slug: "advertising",
+    label: "Advertising",
+    matchTags: ["Advertising", "Offline"],
+  },
+  {
+    slug: "orm",
+    label: "ORM",
+    matchTags: ["ORM", "Reviews"],
+  },
+  {
+    slug: "performance-marketing",
+    label: "Performance",
+    matchTags: [
+      "Performance Marketing",
+      "ROI",
+      "PPC",
+      "Ecommerce",
+      "Conversion",
+      "Email",
+      "Ads",
+      "Restaurants",
+    ],
+  },
+  {
+    slug: "content-ai",
+    label: "Content & AI",
+    matchTags: ["AI", "Content", "Video"],
+  },
+];
+
+const SLUG_SET = new Set(BLOG_CATEGORIES.map((c) => c.slug));
+
+export function parseBlogCategoryParam(
+  raw: string | string[] | undefined
+): BlogCategorySlug {
+  const value = Array.isArray(raw) ? raw[0] : raw;
+  if (!value || value === "all") return "all";
+  return SLUG_SET.has(value as BlogCategorySlug) ? (value as BlogCategorySlug) : "all";
 }
 
-export function filterPostsByCategory(posts: BlogPost[], category: string): BlogPost[] {
-  return posts.filter((post) => postMatchesCategory(post, category));
+export function postMatchesCategory(post: BlogPost, slug: BlogCategorySlug): boolean {
+  if (slug === "all") return true;
+
+  const category = BLOG_CATEGORIES.find((c) => c.slug === slug);
+  if (!category?.matchTags.length) return true;
+
+  const postTags = (post.tags ?? []).map((t) => t.toLowerCase());
+  return category.matchTags.some((tag) => postTags.includes(tag.toLowerCase()));
 }
 
-export function getCategoryCounts(posts: BlogPost[]): Record<string, number> {
-  const counts: Record<string, number> = {};
-  for (const category of BLOG_FILTER_CATEGORIES) {
-    const count = posts.filter((post) => postMatchesCategory(post, category)).length;
-    if (count > 0) counts[category] = count;
-  }
-  return counts;
+export function filterPostsByCategory(posts: BlogPost[], slug: BlogCategorySlug): BlogPost[] {
+  if (slug === "all") return posts;
+  return posts.filter((post) => postMatchesCategory(post, slug));
 }
 
-export function isValidBlogCategory(value: string | undefined): value is BlogFilterCategory {
-  if (!value) return false;
-  return BLOG_FILTER_CATEGORIES.some((c) => c.toLowerCase() === value.toLowerCase());
+export function getCategoriesWithCounts(posts: BlogPost[]) {
+  return BLOG_CATEGORIES.map((category) => ({
+    ...category,
+    count:
+      category.slug === "all"
+        ? posts.length
+        : posts.filter((post) => postMatchesCategory(post, category.slug)).length,
+  })).filter((category) => category.slug === "all" || category.count > 0);
 }
 
-export function normalizeBlogCategory(value: string): BlogFilterCategory | null {
-  const match = BLOG_FILTER_CATEGORIES.find((c) => c.toLowerCase() === value.toLowerCase());
-  return match ?? null;
+export function buildBlogListHref(page: number, category: BlogCategorySlug): string {
+  const params = new URLSearchParams();
+  if (category !== "all") params.set("category", category);
+  if (page > 1) params.set("page", String(page));
+  const query = params.toString();
+  return query ? `/blog?${query}` : "/blog";
 }

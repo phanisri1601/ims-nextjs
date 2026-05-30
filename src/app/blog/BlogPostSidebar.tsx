@@ -1,8 +1,18 @@
 import type { BlogPost } from "@/data/blogPosts";
-import { BLOG_FILTER_CATEGORIES, postMatchesCategory } from "@/data/blogCategories";
 import BlogSidebarPostLink from "./BlogSidebarPostLink";
 import styles from "./BlogPost.module.css";
 import Link from "next/link";
+
+const SIDEBAR_CATEGORIES = [
+  "SEO",
+  "Web Design",
+  "Digital Marketing",
+  "Branding",
+  "Social Media",
+  "Marketing",
+  "ORM",
+  "Advertising",
+] as const;
 
 type Props = {
   currentPost: BlogPost;
@@ -11,7 +21,9 @@ type Props = {
 };
 
 function postsForCategory(posts: BlogPost[], category: string, limit = 2) {
-  return posts.filter((p) => postMatchesCategory(p, category)).slice(0, limit);
+  return posts
+    .filter((p) => (p.tags ?? []).some((t) => t.toLowerCase() === category.toLowerCase()))
+    .slice(0, limit);
 }
 
 export default function BlogPostSidebar({ currentPost, allPosts, relatedPosts }: Props) {
@@ -21,7 +33,7 @@ export default function BlogPostSidebar({ currentPost, allPosts, relatedPosts }:
     <aside className={styles.sidebar} aria-label="Blog navigation">
       <div className={`${styles.sidebarBlock} ${styles.sidebarCategories}`}>
         <h2 className={styles.sidebarHeading}>All categories</h2>
-        {BLOG_FILTER_CATEGORIES.map((category) => {
+        {SIDEBAR_CATEGORIES.map((category) => {
           const categoryPosts = postsForCategory(allPosts, category);
           if (!categoryPosts.length) return null;
 

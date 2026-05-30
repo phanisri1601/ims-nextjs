@@ -26,8 +26,6 @@
   --spacing-md: 2rem;
   --spacing-lg: 3rem;
   --spacing-xl: 3rem;
-  --section-padding-y: clamp(2.25rem, 3.5vw, 3rem);
-  --section-header-gap: clamp(1.5rem, 2.5vw, 2rem);
 
   /* Typography */
   --font-size-xs: 0.875rem;

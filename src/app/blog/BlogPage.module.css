@@ -14,15 +14,21 @@
   margin: 0 auto;
 }
 
+/* Category filter */
+.categoryFilterSection {
+  padding: calc(var(--header-height, 80px) + 1.5rem) clamp(1.25rem, 4vw, 3.5rem) 0;
+  background: #ffffff;
+}
+
 .categoryFilter {
-  margin-bottom: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 0;
 }
 
 .categoryFilterLabel {
-  margin: 0 0 0.85rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #6b6b6b;
 }
@@ -33,7 +39,7 @@
   gap: 0.55rem;
 }
 
-.categoryFilterPill {
+.categoryFilterChip {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -42,8 +48,8 @@
   border-radius: 999px;
   background: #ffffff;
   color: #3a3a3a;
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.84rem;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   transition:
@@ -53,21 +59,21 @@
     box-shadow 220ms ease;
 }
 
-.categoryFilterPill:hover {
-  border-color: #c8c8c8;
+.categoryFilterChip:hover {
+  border-color: #b8b8b8;
   color: #0b0b0f;
 }
 
-.categoryFilterPillActive {
+.categoryFilterChipActive {
   border-color: #0b0b0f;
   background: #0b0b0f;
   color: #ffffff;
   box-shadow: 0 8px 24px rgba(11, 11, 15, 0.12);
 }
 
-.categoryFilterPillActive:hover {
-  color: #ffffff;
+.categoryFilterChipActive:hover {
   border-color: #0b0b0f;
+  color: #ffffff;
 }
 
 .categoryFilterCount {
@@ -75,40 +81,56 @@
   align-items: center;
   justify-content: center;
   min-width: 1.35rem;
-  padding: 0.1rem 0.4rem;
+  height: 1.35rem;
+  padding: 0 0.35rem;
   border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  background: rgba(11, 11, 15, 0.06);
+  font-size: 0.68rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.06);
   color: inherit;
 }
 
-.categoryFilterPillActive .categoryFilterCount {
+.categoryFilterChipActive .categoryFilterCount {
   background: rgba(255, 255, 255, 0.16);
 }
 
-.categoryFilterActiveNote {
-  margin: 0.85rem 0 0;
-  font-size: 0.9rem;
+.categoryFilterSummary {
+  margin: -1.25rem 0 clamp(1.75rem, 3vw, 2.5rem);
+  font-size: 0.92rem;
   color: #5b5b5b;
 }
 
-.categoryFilterActiveNote strong {
+.categoryFilterSummary strong {
   color: #0b0b0f;
-  font-weight: 700;
+  font-weight: 600;
 }
 
-.categoryFilterEmpty {
-  margin: 0;
-  padding: 2.5rem 0;
+.categoryEmpty {
+  padding: clamp(3rem, 6vw, 5rem) 1rem;
   text-align: center;
   color: #5b5b5b;
+}
+
+.categoryEmpty p {
+  margin: 0 0 1rem;
   font-size: 1rem;
 }
 
-.categoryFilterEmpty a {
+.categoryEmptyLink {
+  display: inline-flex;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid #0b0b0f;
+  border-radius: 999px;
   color: #0b0b0f;
+  font-size: 0.88rem;
   font-weight: 600;
+  text-decoration: none;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+.categoryEmptyLink:hover {
+  background: #0b0b0f;
+  color: #ffffff;
 }
 
 .portfolioGrid {
@@ -1743,24 +1765,6 @@
 
   .portfolioPagination {
     margin-top: 2.5rem;
-  }
-
-  .categoryFilterList {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 0.35rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .categoryFilterList::-webkit-scrollbar {
-    display: none;
-  }
-
-  .categoryFilterPill {
-    flex-shrink: 0;
-    font-size: 0.82rem;
-    padding: 0.45rem 0.85rem;
   }
 
   .faqQuestion {
