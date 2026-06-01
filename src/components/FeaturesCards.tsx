@@ -7,18 +7,18 @@ import styles from "./FeaturesCards.module.css";
 const features = [
     {
         title: "Enhanced Online Visibility",
-        description: "Stand out where it matters most - online.We combine SEO, content, social strategy, and performance campaigns to place your brand exactly where your audience is searching. From visibility to credibility, we build digital presence that converts attention into authority and results",
-        image: "/wcu_growth.png"
+        description: "Stand out where it matters most - online. We combine SEO, content, social strategy, and performance campaigns to place your brand exactly where your audience is searching. From visibility to credibility, we build digital presence that converts attention into authority and results.",
+        image: "/aboutus/online.png"
     },
     {
         title: "Extensive Offline Presence",
         description: "Strong brands build presence beyond screens. Through strategic offline campaigns, we create impactful experiences that engage audiences where it matters most. With smart targeting and deep market understanding, we expand your brand’s reach across cities, regions, and global markets.",
-        image: "/wcu_branding.png"
+        image: "/aboutus/offline.png"
     },
     {
         title: "Accelerated Marketing",
-        description: "Growth happens faster when strategy works together.We integrate online and offline marketing into one seamless system that drives momentum at every stage of the customer journey.The result? Stronger engagement, smarter positioning, and sustainable brand growth.",
-        image: "/wcu_marketing.png"
+        description: "Growth happens faster when strategy works together. We integrate online and offline marketing into one seamless system that drives momentum at every stage of the customer journey. The result? Stronger engagement, smarter positioning, and sustainable brand growth.",
+        image: "/aboutus/marketing.jpeg"
     }
 ];
 
@@ -31,7 +31,7 @@ export default function FeaturesCards() {
                     <h3 className={styles.mainTitle}>Powering Brand Growth</h3>
                 </ScrollReveal>
 
-                <div className={styles.cardsGrid}>
+                    <div className={styles.cardsGrid}>
                     {features.map((feature, index) => (
                         <ScrollReveal key={index} delay={0.2 + index * 0.1}>
                             <motion.div
@@ -39,20 +39,16 @@ export default function FeaturesCards() {
                                 whileHover={{ y: -10, scale: 1.02 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <div className={styles.cardInner}>
-                                    <div className={styles.cardFace}>
-                                        <div className={styles.cardFront}>
-                                            <img
-                                                src={feature.image}
-                                                alt={feature.title}
-                                                className={styles.cardImage}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className={`${styles.cardFace} ${styles.cardBack}`}>
-                                        <h4 className={styles.cardTitle}>{feature.title}</h4>
-                                        <p className={styles.cardDescription}>{feature.description}</p>
-                                    </div>
+                                <div className={styles.cardImageWrapper}>
+                                    <img
+                                        src={feature.image}
+                                        alt={feature.title}
+                                        className={styles.cardImage}
+                                    />
+                                </div>
+                                <div className={styles.cardContent}>
+                                    <h4 className={styles.cardTitle}>{feature.title}</h4>
+                                    <p className={styles.cardDescription}>{feature.description}</p>
                                 </div>
                             </motion.div>
                         </ScrollReveal>

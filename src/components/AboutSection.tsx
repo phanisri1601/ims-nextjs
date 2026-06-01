@@ -12,16 +12,17 @@ type AboutSectionProps = {
     title: string;
     subtitle: string;
     description: string;
+    imageSrc?: string;
 };
 
-export default function AboutSection({ eyebrow, title, subtitle, description }: AboutSectionProps) {
+export default function AboutSection({ eyebrow, title, subtitle, description, imageSrc }: AboutSectionProps) {
     return (
         <GSAPScrollReveal className={styles.aboutSection}>
             <div className={styles.container}>
                 <div className={styles.contentWrapper}>
                     {/* Left Content - Image */}
                     <div className={styles.imageWrapper}>
-                        <TiltImage />
+                        <TiltImage imageSrc={imageSrc} />
                     </div>
 
                     {/* Right Content - Text */}
@@ -50,7 +51,7 @@ export default function AboutSection({ eyebrow, title, subtitle, description }: 
     );
 }
 
-function TiltImage() {
+function TiltImage({ imageSrc }: { imageSrc?: string }) {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
@@ -82,6 +83,8 @@ function TiltImage() {
         y.set(0);
     };
 
+    const imgSrc = imageSrc ?? homeImage("About Us.png");
+
     return (
         <motion.div
             className={styles.imageContainer}
@@ -96,7 +99,7 @@ function TiltImage() {
                 style={{ width: "100%", height: "100%" }}
             >
                 <img
-                    src={homeImage("About Us.png")}
+                    src={imgSrc}
                     alt="IM Solutions banner"
                     className={styles.aboutBannerImage}
                 />

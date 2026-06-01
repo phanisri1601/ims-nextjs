@@ -38,7 +38,7 @@ export default function MissionVision() {
                                 transition={{ duration: 0.6 }}
                             >
                                 <img
-                                    src="/wcu_marketing.png"
+                                    src="/aboutus/our mission.jpeg"
                                     alt="Mission"
                                     className={styles.image}
                                 />
@@ -59,7 +59,7 @@ export default function MissionVision() {
                                 transition={{ duration: 0.6 }}
                             >
                                 <img
-                                    src="/wcu_branding.png"
+                                    src="/aboutus/our vision.jpeg"
                                     alt="Vision"
                                     className={styles.image}
                                 />
