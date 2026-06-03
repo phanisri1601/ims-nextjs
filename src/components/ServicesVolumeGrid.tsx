@@ -19,6 +19,8 @@ type Props = {
   services: ServiceGridItem[];
   basePath?: string;
   flushTop?: boolean;
+  /** When "image", cards show the service image instead of autoplay video. */
+  mediaType?: "video" | "image";
 };
 
 function serviceDescription(title: string, custom?: string) {
@@ -92,10 +94,20 @@ function ServiceGridVideo({
   );
 }
 
+function ServiceGridImage({ title, src }: { title: string; src: string }) {
+  return (
+    <div className={styles.mediaWrap}>
+      <img className={styles.video} src={src} alt={title} loading="lazy" />
+      <span className={styles.moreBtn}>More +</span>
+    </div>
+  );
+}
+
 export default function ServicesVolumeGrid({
   services,
   basePath = "/services",
   flushTop = true,
+  mediaType = "video",
 }: Props) {
   return (
     <div className={`${styles.grid} ${flushTop ? styles.gridFlush : ""}`}>
@@ -110,11 +122,15 @@ export default function ServicesVolumeGrid({
             className={styles.card}
             title={service.title}
           >
-            <ServiceGridVideo
-              title={service.title}
-              poster={service.image}
-              src={videoSrc}
-            />
+            {mediaType === "image" ? (
+              <ServiceGridImage title={service.title} src={service.image} />
+            ) : (
+              <ServiceGridVideo
+                title={service.title}
+                poster={service.image}
+                src={videoSrc}
+              />
+            )}
             <h3 className={styles.title}>{service.title}</h3>
             <p className={styles.description}>
               {serviceDescription(service.title, service.description)}

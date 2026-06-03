@@ -8,6 +8,9 @@ import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
 import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
 
+const offlineImage = (filename: string) =>
+  encodeURI(`/offline images/${filename}`);
+
 const serviceUrlMap: { [key: string]: string } = {
   'Bus Branding': '/services/bus-branding',
   'RWA Activation': '/services/rwa-activation',
@@ -40,32 +43,32 @@ const serviceUrlMap: { [key: string]: string } = {
 
 const offlineServices = [
   { title: 'Bus Branding', slug: 'bus-branding', image: '/services/service_bus-branding.png' },
-  { title: 'RWA Activation', slug: 'rwa-activation', image: '/services/service_rwa-activation.png' },
-  { title: 'BTL Advertising', slug: 'btl-advertising', image: '/services/service_btl-advertising.png' },
-  { title: 'Advertising Activities In Malls & Multiplex', slug: 'mall-advertising', image: '/services/service_mall-advertising.png' },
-  { title: 'Advertisements In Tech Parks', slug: 'tech-park-ads', image: '/services/service_tech-park-ads.png' },
-  { title: 'Advertising in Airports', slug: 'airport-advertising', image: '/services/service_airport-advertising.png' },
-  { title: 'Paper Insertion', slug: 'paper-insertion', image: '/services/service_paper-insertion.png' },
-  { title: 'Advertisements In Cafes Gyms & Super Markets', slug: 'cafe-gym-ads', image: '/services/service_cafe-gym-ads.png' },
-  { title: 'Advertisement in ATMs', slug: 'atm-ads', image: '/services/service_atm-ads.png' },
-  { title: 'Auto Rickshaw Advertising', slug: 'auto-rickshaw-ads', image: '/services/service_auto-rickshaw-ads.png' },
-  { title: 'Advertisement in Magazines', slug: 'magazine-ads', image: '/services/service_magazine-ads.png' },
-  { title: 'Advertising in Public & Private Parking Lots', slug: 'parking-ads', image: '/services/service_parking-ads.png' },
-  { title: 'Branding Re-Branding', slug: 'branding-rebranding', image: '/services/service_branding-rebranding.png' },
-  { title: 'Corporate Gifts', slug: 'corporate-gifts', image: '/services/service_corporate-gifts.png' },
-  { title: 'Corporate Training Services', slug: 'corporate-training', image: '/services/service_corporate-training.png' },
-  { title: 'Event Management', slug: 'event-management', image: '/services/service_event-management.png' },
-  { title: 'FM Campaigns', slug: 'fm-campaigns', image: '/services/service_fm-campaigns.png' },
-  { title: 'Fabrications', slug: 'fabrications', image: '/services/service_fabrications.png' },
-  { title: 'Hoarding Services', slug: 'hoarding-services', image: '/services/service_hoarding-services.png' },
-  { title: 'Marketing Collaterals', slug: 'marketing-collaterals', image: '/services/service_marketing-collaterals.png' },
-  { title: 'Marketing Services for Start-ups', slug: 'startup-marketing', image: '/services/service_startup-marketing.png' },
-  { title: 'Photographic Services', slug: 'photographic-services', image: '/services/service_photographic-services.png' },
-  { title: 'PR Services', slug: 'pr-services', image: '/services/service_pr-services.png' },
-  { title: 'Printing Services', slug: 'printing-services', image: '/services/service_printing-services.png' },
-  { title: 'Retail Advertising', slug: 'retail-advertising', image: '/services/service_retail-advertising.png' },
+  { title: 'RWA Activation', slug: 'rwa-activation', image: offlineImage('rwa activation service.png') },
+  { title: 'BTL Advertising', slug: 'btl-advertising', image: offlineImage('btl advertising service.png') },
+  { title: 'Advertising Activities In Malls & Multiplex', slug: 'mall-advertising', image: offlineImage('Advertising Activities In Malls & Multiplex service.png') },
+  { title: 'Advertisements In Tech Parks', slug: 'tech-park-ads', image: offlineImage('Advertisements In Tech Parks.png') },
+  { title: 'Advertising in Airports', slug: 'airport-advertising', image: offlineImage('Advertising in Airports.png') },
+  { title: 'Paper Insertion', slug: 'paper-insertion', image: offlineImage('paper insertion.png') },
+  { title: 'Advertisements In Cafes Gyms & Super Markets', slug: 'cafe-gym-ads', image: offlineImage('Advertisements In Cafes Gyms & Super Markets.png') },
+  { title: 'Advertisement in ATMs', slug: 'atm-ads', image: offlineImage('Advertisement in ATMs.png') },
+  { title: 'Auto Rickshaw Advertising', slug: 'auto-rickshaw-ads', image: offlineImage('Auto Rickshaw Advertising.png') },
+  { title: 'Advertisement in Magazines', slug: 'magazine-ads', image: offlineImage('Advertisement in Magazines.png') },
+  { title: 'Advertising in Public & Private Parking Lots', slug: 'parking-ads', image: offlineImage('Advertising in Public & Private Parking Lots.png') },
+  { title: 'Branding Re-Branding', slug: 'branding-rebranding', image: offlineImage('Branding Re-Branding.png') },
+  { title: 'Corporate Gifts', slug: 'corporate-gifts', image: offlineImage('Corporate Gifts.png') },
+  { title: 'Corporate Training Services', slug: 'corporate-training', image: offlineImage('Corporate Training.png') },
+  { title: 'Event Management', slug: 'event-management', image: offlineImage('Event Management.png') },
+  { title: 'FM Campaigns', slug: 'fm-campaigns', image: offlineImage('FM Campaigns.png') },
+  { title: 'Fabrications', slug: 'fabrications', image: offlineImage('Fabrications services.png') },
+  { title: 'Hoarding Services', slug: 'hoarding-services', image: offlineImage('Hoarding Services.png') },
+  { title: 'Marketing Collaterals', slug: 'marketing-collaterals', image: offlineImage('Marketing Collaterals service.png') },
+  { title: 'Marketing Services for Start-ups', slug: 'startup-marketing', image: offlineImage('Marketing Services for Start-ups.png') },
+  { title: 'Photographic Services', slug: 'photographic-services', image: offlineImage('Photographic Services.png') },
+  { title: 'PR Services', slug: 'pr-services', image: offlineImage('PR Services.png') },
+  { title: 'Printing Services', slug: 'printing-services', image: offlineImage('Printing Services.png') },
+  { title: 'Retail Advertising', slug: 'retail-advertising', image: offlineImage('retail advertising services.png') },
   { title: 'Real Estate Videography', slug: 'real-estate-videography', image: '/services/service_real-estate-videography.png' },
-  { title: 'Signage', slug: 'signage', image: '/services/service_signage.png' },
+  { title: 'Signage', slug: 'signage', image: offlineImage('signage services.png') },
 ];
 
 const getServiceUrl = (service: string) => {
@@ -245,6 +248,7 @@ export default function OfflineServicesPage() {
           <h2 className={styles.sectionTitle}>Offline Services</h2>
         </div>
           <ServicesVolumeGrid
+          mediaType="image"
           services={offlineServices.map((service) => ({
             ...service,
             href: getServiceUrl(service.title),
