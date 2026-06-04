@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './StackingCardsSection.module.css';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -9,7 +9,7 @@ import { useReducedMotion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-type StackCard = {
+export type StackCard = {
   title: string;
   slug: string;
   description: string;
@@ -18,52 +18,14 @@ type StackCard = {
   image: string;
 };
 
-export default function StackingCardsSection() {
+type Props = {
+  cards: StackCard[];
+};
+
+export default function StackingCardsSection({ cards }: Props) {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement | null>(null);
   const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
-
-  const cards = useMemo<StackCard[]>(
-    () => [
-      {
-        title: 'Bus Branding',
-        slug: '/Bus Branding',
-        description:
-          'Turn city traffic into brand visibility with high-impact transit branding designed for maximum reach.',
-        tag: 'Outdoor',
-        number: 1,
-        image: '/services/pro-thumb-1.svg',
-      },
-      {
-        title: 'RWA Activation',
-        slug: '/RWA Activation',
-        description:
-          'Engage residential communities with on-ground activations that create trust, attention and enquiries.',
-        tag: 'Activation',
-        number: 2,
-        image: '/services/pro-thumb-2.svg',
-      },
-      {
-        title: 'BTL Advertising',
-        slug: '/BTL Advertising',
-        description:
-          'Drive direct response with targeted below-the-line campaigns—sampling, kiosks, and hyperlocal promotions.',
-        tag: 'BTL',
-        number: 3,
-        image: '/services/pro-thumb-3.svg',
-      },
-      {
-        title: 'Advertising Activities In Malls & Multiplex',
-        slug: '/Advertising Activities In Malls & Multiplex',
-        description:
-          'Capture attention where footfall is high with experiential mall and multiplex advertising that converts.',
-        tag: 'Experiential',
-        number: 4,
-        image: '/services/pro-thumb-4.svg',
-      },
-    ],
-    []
-  );
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -74,8 +36,6 @@ export default function StackingCardsSection() {
     if (!section || cardEls.length === 0) return;
 
     const ctx = gsap.context(() => {
-      const baseOffsetPx = 18;
-
       cardEls.forEach((el, i) => {
         gsap.set(el, {
           y: i === 0 ? 0 : '100vh',
@@ -135,7 +95,7 @@ export default function StackingCardsSection() {
     return () => {
       ctx.revert();
     };
-  }, [reduceMotion, cards.length]);
+  }, [reduceMotion, cards]);
 
   return (
     <section ref={sectionRef} className={styles.section}>
@@ -150,7 +110,7 @@ export default function StackingCardsSection() {
             <div className={styles.stackViewport}>
               {cards.map((c, i) => (
                 <div
-                  key={c.title}
+                  key={c.slug}
                   ref={(el) => {
                     cardsRef.current[i] = el;
                   }}
@@ -178,13 +138,7 @@ export default function StackingCardsSection() {
                       </div>
                     </div>
                     <div className={styles.media} aria-hidden>
-                      <img
-                        src={`/services/service_${c.slug}.png`}
-                        alt=""
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src = c.image;
-                        }}
-                      />
+                      <img src={c.image} alt={c.title} />
                     </div>
                   </div>
                 </div>

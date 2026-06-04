@@ -8,112 +8,150 @@ import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
 import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
 
-
+const onlineImage = (filename: string) =>
+  encodeURI(`/online services/${filename}`);
 
 const onlineServices = [
   {
     title: 'Digital Marketing Service',
     slug: 'digital-marketing-service',
-    image: '/services/service_digital-marketing.png'
+    image: onlineImage('Digital Marketing Service.png'),
   },
   {
     title: 'Search Engine Optimization',
     slug: 'seo',
-    image: '/services/service_seo.png'
+    image: onlineImage('Search Engine Optimization.png'),
   },
   {
     title: 'Search Engine Marketing',
     slug: 'sem',
-    image: '/services/service_sem.png'
+    image: onlineImage('Search Engine Marketing.png'),
   },
   {
     title: 'Online Reputation Management',
     slug: 'online-reputation-management',
-    image: '/services/service_orm.png'
+    image: onlineImage('Online Reputation Management.png'),
   },
   {
     title: 'Website Designing and Development',
     slug: 'website-design-development',
-    image: '/services/service_website-design-development.png'
+    image: onlineImage('Web Designing And Development.png'),
   },
   {
     title: 'Social Media Optimization',
     slug: 'social-media-optimization',
-    image: '/services/service_social-media-optimization.png'
+    image: onlineImage('Social Media Optimization.png'),
   },
   {
     title: 'Social Media Marketing',
     slug: 'social-media-marketing',
-    image: '/services/service_social-media-marketing.png'
+    image: onlineImage('Social Media Marketing.png'),
   },
   {
     title: 'Software Design & Development',
     slug: 'software-design-development',
-    image: '/services/service_software-design-development.png'
+    image: onlineImage('Software Design and Development.png'),
   },
   {
     title: 'Geolocation Analytical SMS',
     slug: 'geolocation-sms',
-    image: '/services/service_geolocation-sms.png'
+    image: onlineImage('Geolocation Analytical SMS.png'),
   },
   {
     title: 'AI Advertising Agency',
     slug: 'ai-advertising-agency',
-    image: '/services/service_ai-advertising-agency.png'
+    image: '/services/service_ai-advertising-agency.png',
   },
   {
     title: 'Creative Designing',
     slug: 'creative-designing',
-    image: '/services/service_creative-designing.png'
+    image: onlineImage('Creative Designing.png'),
   },
   {
     title: 'API Integration',
     slug: 'api-integration',
-    image: '/services/service_api-integration.png'
+    image: onlineImage('API Integration.png'),
   },
   {
     title: 'Ecommerce Solutions',
     slug: 'ecommerce-solutions',
-    image: '/services/service_ecommerce-solutions.png'
+    image: onlineImage('Ecommerce Solutions.png'),
   },
   {
     title: 'Email Marketing',
     slug: 'email-marketing',
-    image: '/services/service_email-marketing.png'
+    image: onlineImage('Email Marketing.png'),
   },
   {
     title: 'Mobile Application Development',
     slug: 'mobile-app-development',
-    image: '/services/service_mobile-app-development.png'
+    image: onlineImage('Mobile Application Development.png'),
   },
   {
     title: 'Real Estate Online Marketing Service',
     slug: 'real-estate-marketing',
-    image: '/services/service_real-estate-marketing.png'
+    image: onlineImage('Real Estate Online Marketing Service.png'),
   },
   {
     title: 'Display Advertisement',
     slug: 'display-advertisement',
-    image: '/services/service_display-advertisement.png'
+    image: onlineImage('Display Advertisement.png'),
   },
   {
     title: 'Blog Articles',
     slug: 'blog-articles',
-    image: '/services/service_blog-articles.png'
+    image: onlineImage('Blog Articles.png'),
   },
   {
     title: 'Classified Portal Management',
     slug: 'classified-portal',
-    image: '/services/service_classified-portal.png'
+    image: onlineImage('Classified Portal Management.png'),
   },
   {
     title: 'Press Releases Services',
     slug: 'press-releases',
-    image: '/services/service_press-releases.png'
-  }
+    image: onlineImage('Press Releases Services.png'),
+  },
 ];
 
-
+const onlineStackingCards = [
+  {
+    title: 'Digital Marketing Service',
+    slug: 'digital-marketing-service',
+    description:
+      'Build full-funnel digital campaigns that drive awareness, engagement, and measurable growth across Bangalore and beyond.',
+    tag: 'Digital',
+    number: 1,
+    image: onlineImage('Digital Marketing Service.png'),
+  },
+  {
+    title: 'Search Engine Optimization',
+    slug: 'seo',
+    description:
+      'Improve organic visibility with data-led SEO—technical fixes, content strategy, and rankings that bring qualified traffic.',
+    tag: 'SEO',
+    number: 2,
+    image: onlineImage('Search Engine Optimization.png'),
+  },
+  {
+    title: 'Search Engine Marketing',
+    slug: 'sem',
+    description:
+      'Capture high-intent demand with targeted paid search campaigns optimized for leads, sales, and strong ROI.',
+    tag: 'Paid Search',
+    number: 3,
+    image: onlineImage('Search Engine Marketing.png'),
+  },
+  {
+    title: 'Online Reputation Management',
+    slug: 'online-reputation-management',
+    description:
+      'Protect and strengthen your brand online with proactive monitoring, reviews management, and trust-building content.',
+    tag: 'ORM',
+    number: 4,
+    image: onlineImage('Online Reputation Management.png'),
+  },
+];
 
 export default function OnlineServicesPage() {
 
@@ -281,13 +319,13 @@ export default function OnlineServicesPage() {
         </div>
       </div>
 
-      <StackingCardsSection />
+      <StackingCardsSection cards={onlineStackingCards} />
 
       <section className={styles.servicesListing}>
         <div className={styles.sectionTitleWrapper}>
           <h2 className={styles.sectionTitle}>Online Services</h2>
         </div>
-        <ServicesVolumeGrid services={onlineServices} />
+        <ServicesVolumeGrid mediaType="image" services={onlineServices} />
       </section>
 
       <section className={styles.faqSection}>

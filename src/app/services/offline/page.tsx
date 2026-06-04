@@ -42,7 +42,7 @@ const serviceUrlMap: { [key: string]: string } = {
 };
 
 const offlineServices = [
-  { title: 'Bus Branding', slug: 'bus-branding', image: '/services/service_bus-branding.png' },
+  { title: 'Bus Branding', slug: 'bus-branding', image: offlineImage('Bus Branding.png') },
   { title: 'RWA Activation', slug: 'rwa-activation', image: offlineImage('rwa activation service.png') },
   { title: 'BTL Advertising', slug: 'btl-advertising', image: offlineImage('btl advertising service.png') },
   { title: 'Advertising Activities In Malls & Multiplex', slug: 'mall-advertising', image: offlineImage('Advertising Activities In Malls & Multiplex service.png') },
@@ -67,8 +67,47 @@ const offlineServices = [
   { title: 'PR Services', slug: 'pr-services', image: offlineImage('PR Services.png') },
   { title: 'Printing Services', slug: 'printing-services', image: offlineImage('Printing Services.png') },
   { title: 'Retail Advertising', slug: 'retail-advertising', image: offlineImage('retail advertising services.png') },
-  { title: 'Real Estate Videography', slug: 'real-estate-videography', image: '/services/service_real-estate-videography.png' },
+  { title: 'Real Estate Videography', slug: 'real-estate-videography',image: offlineImage('Real Estate Videography service.png') },
   { title: 'Signage', slug: 'signage', image: offlineImage('signage services.png') },
+];
+
+const offlineStackingCards = [
+  {
+    title: 'Bus Branding',
+    slug: 'bus-branding',
+    description:
+      'Turn city traffic into brand visibility with high-impact transit branding designed for maximum reach.',
+    tag: 'Outdoor',
+    number: 1,
+    image: offlineImage('Bus Branding.png'),
+  },
+  {
+    title: 'RWA Activation',
+    slug: 'rwa-activation',
+    description:
+      'Engage residential communities with on-ground activations that create trust, attention and enquiries.',
+    tag: 'Activation',
+    number: 2,
+    image: offlineImage('rwa activation service.png'),
+  },
+  {
+    title: 'BTL Advertising',
+    slug: 'btl-advertising',
+    description:
+      'Drive direct response with targeted below-the-line campaigns—sampling, kiosks, and hyperlocal promotions.',
+    tag: 'BTL',
+    number: 3,
+    image: offlineImage('btl advertising service.png'),
+  },
+  {
+    title: 'Advertising Activities In Malls & Multiplex',
+    slug: 'mall-advertising',
+    description:
+      'Capture attention where footfall is high with experiential mall and multiplex advertising that converts.',
+    tag: 'Experiential',
+    number: 4,
+    image: offlineImage('Advertising Activities In Malls & Multiplex service.png'),
+  },
 ];
 
 const getServiceUrl = (service: string) => {
@@ -241,7 +280,7 @@ export default function OfflineServicesPage() {
         </div>
       </div>
 
-      <StackingCardsSection />
+      <StackingCardsSection cards={offlineStackingCards} />
 
       <section className={styles.servicesListing}>
         <div className={styles.sectionTitleWrapper}>
