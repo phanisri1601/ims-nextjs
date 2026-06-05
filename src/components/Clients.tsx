@@ -36,7 +36,7 @@ function formatClientName(clientPath: string, fallbackIndex: number) {
 
 export default function Clients() {
     const clients = getClientLogoPaths();
-    const visibleClients = clients.slice(0, 18);
+    const visibleClients = clients;
     const fallbackClients =
         visibleClients.length > 0
             ? visibleClients

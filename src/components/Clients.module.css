@@ -77,12 +77,12 @@
     align-items: center;
     gap: 0.35rem;
     width: max-content;
-    animation: clientMarquee 10s linear infinite;
+    animation: clientMarquee 60s linear infinite;
 }
 
 .reverseTrack {
     animation-direction: reverse;
-    animation-duration: 12s;
+    animation-duration: 60s;
 }
 
 .clientCard {
@@ -181,7 +181,7 @@
 
     .marqueeTrack {
         gap: 0.25rem;
-        animation-duration: 9s;
+        animation-duration: 60s;
     }
 
     .clientCard {
