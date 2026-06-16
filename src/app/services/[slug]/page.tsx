@@ -1275,8 +1275,7 @@ const serviceData: {
 
 export default function ServiceDetailPage() {
   const params = useParams();
-  const slug = params.slug as string;
-
+  const slug = params?.slug as string;
   const service = serviceData[slug];
 
   if (!service) {
@@ -1402,11 +1401,64 @@ export default function ServiceDetailPage() {
   const [provideHover, setProvideHover] = useState<number>(0);
 
   // Related Services Logic
+  const serviceImageMap: Record<string, string> = {
+    // Online services
+    'advertising-agency-bangalore':  '/online services/Advertising Agency In Banglore.png',
+    'digital-marketing':             '/online services/Digital Marketing Service.png',
+    'social-media-marketing':        '/online services/Social Media Marketing.png',
+    'social-media-optimization':     '/online services/Social Media Optimization.png',
+    'seo':                           '/online services/Search Engine Optimization.png',
+    'sem':                           '/online services/Search Engine Marketing.png',
+    'online-reputation-management':  '/online services/Online Reputation Management.png',
+    'creative-designing':            '/online services/Creative Designing.png',
+    'web-designing':                 '/online services/Web Designing And Development.png',
+    'software-development':          '/online services/Software Design and Development.png',
+    'mobile-app-development':        '/online services/Mobile Application Development.png',
+    'ecommerce-solutions':           '/online services/Ecommerce Solutions.png',
+    'email-marketing':               '/online services/Email Marketing.png',
+    'api-integration':               '/online services/API Integration.png',
+    'blog-articles':                 '/online services/Blog Articles.png',
+    'classified-portal':             '/online services/Classified Portal Management.png',
+    'display-advertisement':         '/online services/Display Advertisement.png',
+    'press-releases':                '/online services/Press Releases Services.png',
+    'real-estate-marketing':         '/online services/Real Estate Online Marketing Service.png',
+    'geolocation-sms':               '/online services/Geolocation Analytical SMS.png',
+    'ai-advertising-agency':         '/online services/Advertising Agency In Banglore.png',
+    // Offline services
+    'bus-branding':                  '/offline images/Bus Branding.png',
+    'rwa-activation':                '/offline images/rwa activation service.png',
+    'btl-advertising':               '/offline images/btl advertising service.png',
+    'mall-advertising':              '/offline images/Advertising Activities In Malls & Multiplex service.png',
+    'tech-park-ads':                 '/offline images/Advertisements In Tech Parks.png',
+    'airport-advertising':           '/offline images/Advertising in Airports.png',
+    'paper-insertion':               '/offline images/paper insertion.png',
+    'cafe-gym-ads':                  '/offline images/Advertisements In Cafes Gyms & Super Markets.png',
+    'atm-ads':                       '/offline images/Advertisement in ATMs.png',
+    'auto-rickshaw-ads':             '/offline images/Auto Rickshaw Advertising.png',
+    'magazine-ads':                  '/offline images/Advertisement in Magazines.png',
+    'parking-ads':                   '/offline images/Advertising in Public & Private Parking Lots.png',
+    'branding-rebranding':           '/offline images/Branding Re-Branding.png',
+    'corporate-gifts':               '/offline images/Corporate Gifts.png',
+    'corporate-training':            '/offline images/Corporate Training.png',
+    'event-management':              '/offline images/Event Management.png',
+    'fm-campaigns':                  '/offline images/FM Campaigns.png',
+    'fabrications':                  '/offline images/Fabrications services.png',
+    'hoarding-services':             '/offline images/Hoarding Services.png',
+    'marketing-collaterals':         '/offline images/Marketing Collaterals service.png',
+    'startup-marketing':             '/offline images/Marketing Services for Start-ups.png',
+    'photographic-services':         '/offline images/Photographic Services.png',
+    'pr-services':                   '/offline images/PR Services.png',
+    'printing-services':             '/offline images/Printing Services.png',
+    'retail-advertising':            '/offline images/retail advertising services.png',
+    'signage-services':              '/offline images/signage services.png',
+    'washroom-advertising':          '/offline images/Washroom Advertising services.png',
+  };
+
   const allServices = Object.entries(serviceData).map(([s, d]) => ({
     slug: s,
     title: d.title,
     category: d.category,
-    image: d.heroImage || d.collageMain || '/services/pro-thumb-1.svg'
+    image: d.heroImage || d.collageMain || serviceImageMap[s] || '/services/pro-thumb-1.svg'
   }));
 
   const relatedServices = allServices.filter(s => s.category === service.category && s.slug !== slug);
@@ -1633,12 +1685,12 @@ export default function ServiceDetailPage() {
                 </div>
 
                 <div className={styles.collage} aria-hidden>
-                  <img src="/services/advertising-agency-1.svg" alt="Ad hero" className={`${styles.collageImage} ${styles.collageMain}`} style={mainStyle} />
-                  <img src="/services/pro-thumb-1.svg" alt="Campaign" className={`${styles.collageImage} ${styles.collageTop}`} style={topStyle} />
-                  <img src="/services/pro-thumb-2.svg" alt="Creative" className={`${styles.collageImage} ${styles.collageBottom}`} style={bottomStyle} />
-
-                  <div className={styles.spark} style={{ left: '18%', top: '12%' }}></div>
-                  <div className={styles.spark2} style={{ right: '12%', bottom: '14%' }}></div>
+                  <img
+                    src="/Our Advertising Agency Helps You Build Your Brand.png"
+                    alt="Our Advertising Agency Helps You Build Your Brand"
+                    className={styles.collageImage}
+                    style={{ position: 'relative', width: '100%', height: 'auto', borderRadius: '16px', objectFit: 'cover' }}
+                  />
                 </div>
               </div>
             </div>
@@ -1652,8 +1704,8 @@ export default function ServiceDetailPage() {
               >
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                   <img
-                    src="/services/advertising-agency-1.svg"
-                    alt="Advertising Agency"
+                    src="/Our Advertising Agency Helps You Build Your Brand 1.png"
+                    alt="Our Advertising Agency Helps You Build Your Brand"
                     className={styles.collageImage}
                     style={{
                       position: 'relative',
@@ -1772,7 +1824,7 @@ export default function ServiceDetailPage() {
                   </div>
 
                   <div className={styles.whyChooseUsImage}>
-                    <img src={service.collageTop ?? '/services/advertising-agency-1.svg'} alt="Our Advantages" className={styles.whyChooseUsImg} />
+                    <img src={service.collageTop ?? '/imsolutions offers.png'} alt="Our Advantages" className={styles.whyChooseUsImg} />
                   </div>
                 </div>
               </div>
@@ -1858,8 +1910,8 @@ export default function ServiceDetailPage() {
                       </div>
                       <div className={styles.relevantBlogContent}>
                         <div className={styles.relevantBlogMeta}>
-                          <span>{post.date}</span>
-                          <span className={styles.relevantBlogDot}>•</span>
+                          {post.date && <span>{post.date}</span>}
+                          {post.date && post.readingTime && <span className={styles.relevantBlogDot}>•</span>}
                           <span>{post.readingTime ?? 'Blog'}</span>
                         </div>
                         <h4 className={styles.relevantBlogTitle}>{post.title}</h4>

@@ -15,10 +15,10 @@ export default function CreativeShowcaseSection() {
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const showcaseItems = [
-        { num: '01.', title: 'DISCOVERY', desc: 'We uncover the core of your brand, understanding your goals and audience to lay a solid foundation.', img: '/services/pro-thumb-1.svg', rotation: -3, offsetY: 0 },
-        { num: '02.', title: 'STRATEGY', desc: 'Crafting a tailored roadmap and creative strategy designed to effectively capture attention and drive results.', img: '/services/digital-marketing-1.svg', rotation: 2, offsetY: 30 },
-        { num: '03.', title: 'EXECUTION', desc: 'Bringing the vision to life through precision design, development, and impactful marketing campaigns.', img: '/services/advertising-agency-2.svg', rotation: -2, offsetY: 60 },
-        { num: '04.', title: 'GROWTH', desc: 'Analyzing performance data to optimize and scale your business, ensuring sustained and measurable success.', img: '/services/pro-thumb-2.svg', rotation: 4, offsetY: 10 },
+        { num: '01.', title: 'DISCOVERY', desc: 'We uncover the core of your brand, understanding your goals and audience to lay a solid foundation.', img: '/discovery.png', rotation: -3, offsetY: 0 },
+        { num: '02.', title: 'STRATEGY', desc: 'Crafting a tailored roadmap and creative strategy designed to effectively capture attention and drive results.', img: '/strategy.png', rotation: 2, offsetY: 30 },
+        { num: '03.', title: 'EXECUTION', desc: 'Bringing the vision to life through precision design, development, and impactful marketing campaigns.', img: '/execution.png', rotation: -2, offsetY: 60 },
+        { num: '04.', title: 'GROWTH', desc: 'Analyzing performance data to optimize and scale your business, ensuring sustained and measurable success.', img: '/growth.png', rotation: 4, offsetY: 10 },
     ];
 
     useEffect(() => {

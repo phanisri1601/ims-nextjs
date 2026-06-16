@@ -20,8 +20,8 @@ function buildBlogHref(category: string | null, page?: string | null) {
 
 export default function BlogCategoryFilter({ categoryCounts, totalPosts }: Props) {
   const searchParams = useSearchParams();
-  const activeCategory = searchParams.get("category");
-  const activePage = searchParams.get("page");
+  const activeCategory = searchParams?.get("category") ?? null;
+  const activePage = searchParams?.get("page") ?? null;
 
   const visibleCategories = BLOG_FILTER_CATEGORIES.filter((cat) => (categoryCounts[cat] ?? 0) > 0);
 
