@@ -35,7 +35,7 @@ const onlineServices = [
   {
     title: 'Website Designing and Development',
     slug: 'website-design-development',
-    image: onlineImage('Web Designing And Development.png'),
+    image: onlineImage('website designing and development.png'),
   },
   {
     title: 'Social Media Optimization',
@@ -55,12 +55,7 @@ const onlineServices = [
   {
     title: 'Geolocation Analytical SMS',
     slug: 'geolocation-sms',
-    image: onlineImage('Geolocation Analytical SMS.png'),
-  },
-  {
-    title: 'AI Advertising Agency',
-    slug: 'ai-advertising-agency',
-    image: '/services/service_ai-advertising-agency.png',
+    image: onlineImage('geolocaton analytical sms.png'),
   },
   {
     title: 'Creative Designing',
@@ -110,7 +105,7 @@ const onlineServices = [
   {
     title: 'Press Releases Services',
     slug: 'press-releases',
-    image: onlineImage('Press Releases Services.png'),
+    image: onlineImage('press release service.png'),
   },
 ];
 
