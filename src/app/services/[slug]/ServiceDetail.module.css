@@ -817,15 +817,13 @@
   font-size: clamp(1.6rem, 3.2vw, 2.3rem);
   font-weight: 800;
   color: var(--color-text-primary);
-  margin-bottom: auto; /* Pushes everything else down */
-  padding-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .splitDesc {
   color: var(--color-text-secondary);
   line-height: 1.7;
   font-size: 1.05rem;
-  margin: auto 0; /* Centers this specifically in the remaining space */
   margin-bottom: 1.25rem;
 }
 
