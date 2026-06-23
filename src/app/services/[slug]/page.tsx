@@ -310,18 +310,14 @@ export default function ServiceDetailPage() {
       Icon: FaMedal
     }
   ];
-
   const totalServices = coreServices.length;
   const progressPercentage = ((coreServicesActiveIndex + 1) / totalServices) * 100;
 
   const provideItems = service.features.slice(0, 4);
-  const provideImages = [
-    service.heroImage ?? service.collageMain ?? '/services/pro-thumb-1.svg',
-    service.collageTop ?? '/services/pro-thumb-2.svg',
-    service.collageBottom ?? '/services/pro-thumb-3.svg',
-    '/services/pro-thumb-4.svg',
-  ];
-  const provideDescriptions = provideItems.map((t) =>
+  const provideImages = provideItems.map((item: string) => 
+    `/${service.category === 'offline' ? 'offline images' : 'online services'}/${item}.png`
+  );
+  const provideDescriptions = provideItems.map((t: string) =>
     `We deliver ${t.toLowerCase()} as part of our ${service.title}—built to support your goals with clear execution and measurable outcomes.`
   );
 
@@ -374,7 +370,7 @@ export default function ServiceDetailPage() {
             <div className={styles.provideGrid}>
               <div className={styles.provideListWrap}>
                 <ul className={styles.provideList}>
-                  {provideItems.map((item, i) => (
+                  {provideItems.map((item: string, i: number) => (
                     <li
                       key={item}
                       className={`${styles.provideItem} ${provideHover === i ? styles.provideActive : ''}`}
@@ -393,6 +389,9 @@ export default function ServiceDetailPage() {
                   src={provideImages[provideHover] ?? provideImages[0]}
                   alt=""
                   className={styles.provideImage}
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = '/services/pro-thumb-1.svg';
+                  }}
                 />
               </div>
 
@@ -615,7 +614,7 @@ export default function ServiceDetailPage() {
                   <h3 className={styles.showcaseTitle}>Frequently Asked Questions</h3>
                 </ScrollReveal>
                 <div className={styles.faqList}>
-                  {displayFaqs.map((f, i) => (
+                  {displayFaqs.map((f: { q: string; a: string }, i: number) => (
                     <ScrollReveal key={i} delay={0.3 + i * 0.15}>
                       <div className={`${styles.faqItem} ${openFaq === i ? styles.open : ''}`}>
                         <button

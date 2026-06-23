@@ -52,12 +52,12 @@
   position: relative;
   width: 100%;
   max-width: none;
-  height: min(520px, calc(100vh - 140px));
+  display: grid;
 }
 
 .card {
-  position: absolute;
-  inset: 0;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   border-radius: 0;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -181,7 +181,6 @@
 .media {
   position: relative;
   width: 100%;
-  height: 100%; /* Cover total card height */
   overflow: hidden;
   background: var(--color-bg-secondary);
 }
@@ -189,7 +188,7 @@
 .media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.6s ease;
   display: block;
 }
@@ -269,7 +268,7 @@
   }
 
   .stackViewport {
-    height: min(640px, calc(100vh - 160px));
+    /* Let grid dictate height naturally */
   }
 }
 

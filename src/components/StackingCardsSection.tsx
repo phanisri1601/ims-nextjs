@@ -61,7 +61,7 @@ export default function StackingCardsSection({ cards }: Props) {
           end: `+=${segments * segmentScroll + releaseBuffer}%`,
           scrub: 1,
           pin: stickyEl,
-          pinSpacing: true,
+          pinSpacing: false,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
