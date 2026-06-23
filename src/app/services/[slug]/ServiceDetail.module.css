@@ -144,16 +144,19 @@
 .provideMedia {
   position: relative;
   width: 100%;
+  aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 18px 70px rgba(0, 0, 0, 0.18);
 }
 
 .provideImage {
-  display: block;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
+  transform: scale(1.02);
 }
 
 .provideContent {
