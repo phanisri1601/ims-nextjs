@@ -150,12 +150,12 @@ export default function ServiceDetailPage() {
   const serviceImageMap: Record<string, string> = {
     // Online services
     'advertising-agency-bangalore':  '/online services/Advertising Agency In Banglore.png',
-    'digital-marketing':             '/online services/Digital Marketing Service.png',
+    'digital-marketing':             '/popular services/digital services.png',
     'social-media-marketing':        '/online services/Social Media Marketing.png',
     'social-media-optimization':     '/online services/Social Media Optimization.png',
-    'seo':                           '/online services/Search Engine Optimization.png',
-    'sem':                           '/online services/Search Engine Marketing.png',
-    'online-reputation-management':  '/online services/Online Reputation Management.png',
+    'seo':                           '/popular services/Search Engine Optimization.png',
+    'sem':                           '/popular services/Search Engine Marketing.png',
+    'online-reputation-management':  '/popular services/Online Reputation Management.png',
     'creative-designing':            '/online services/Creative Designing.png',
     'web-designing':                 '/online services/Web Designing And Development.png',
     'software-development':          '/online services/Software Design and Development.png',
@@ -315,7 +315,7 @@ export default function ServiceDetailPage() {
 
   const provideItems = service.features.slice(0, 4);
   const provideImages = provideItems.map((item: string) => 
-    `/${service.category === 'offline' ? 'offline images' : 'online services'}/${item}.png`
+    `/service/${item}.png`
   );
   const provideDescriptions = provideItems.map((t: string) =>
     `We deliver ${t.toLowerCase()} as part of our ${service.title}—built to support your goals with clear execution and measurable outcomes.`
@@ -325,7 +325,7 @@ export default function ServiceDetailPage() {
     <main className={styles.serviceDetail}>
       <div className={styles.heroSection}>
         <div className={styles.heroBackground}>
-          <img ref={bgRef} src="/services/advertising-agency-1.svg" alt="Service background" className={styles.backgroundImage} />
+          <img ref={bgRef} src={service.category === 'offline' ? '/offline-banner.png' : '/onine-banner.png'} alt="Service background" className={styles.backgroundImage} />
         </div>
         <div className={styles.heroOverlay}></div>
         <div className="container">
@@ -348,7 +348,7 @@ export default function ServiceDetailPage() {
             </div>
             <div className={styles.splitImageWrap}>
               <img
-                src={service.heroImage ?? `/services/service_${slug}.png`}
+                src={service.heroImage || serviceImageMap[slug] || `/services/service_${slug}.png`}
                 alt={service.title}
                 className={styles.splitImage}
                 onError={(e) => {
@@ -652,14 +652,7 @@ export default function ServiceDetailPage() {
                         />
                       </div>
                       <div className={styles.relevantBlogContent}>
-                        <div className={styles.relevantBlogMeta}>
-                          {post.date && <span>{post.date}</span>}
-                          {post.date && post.readingTime && <span className={styles.relevantBlogDot}>•</span>}
-                          <span>{post.readingTime ?? 'Blog'}</span>
-                        </div>
                         <h4 className={styles.relevantBlogTitle}>{post.title}</h4>
-                        <p className={styles.relevantBlogExcerpt}>{post.excerpt}</p>
-                        <span className={styles.relevantBlogCta}>Read more →</span>
                       </div>
                     </Link>
                   ))}

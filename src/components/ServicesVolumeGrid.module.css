@@ -36,12 +36,13 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.15);
   transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card:hover .video,
 .card:focus-visible .video {
-  transform: scale(1.03);
+  transform: scale(1.25);
 }
 
 .moreBtn {

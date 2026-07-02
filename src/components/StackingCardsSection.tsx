@@ -131,7 +131,6 @@ export default function StackingCardsSection({ cards }: Props) {
                       <div className={styles.divider} />
                       <div className={styles.textContentInner}>
                         <h3 className={styles.cardTitle}>{c.title}</h3>
-                        <p className={styles.cardDesc}>{c.description}</p>
                         <Link href={`/services/${c.slug}`} className={styles.animatedCta}>
                           <span className={styles.animatedCtaText}>Get Started</span>
                         </Link>

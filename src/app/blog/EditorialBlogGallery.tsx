@@ -66,17 +66,23 @@ function RevealImageBlock({
   });
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.45 });
-  const y = useTransform(smoothProgress, [0, 1], [74, -74]);
-  const scale = useTransform(smoothProgress, [0, 0.5, 1], [0.94, 1.05, 0.98]);
-  const opacity = useTransform(smoothProgress, [0, 0.15, 0.85, 1], [0, 1, 1, 0]);
-  const imageY = useTransform(smoothProgress, [0, 1], [30, -30]);
-  const imageScale = useTransform(smoothProgress, [0, 0.5, 1], [1.08, 1.18, 1.1]);
+  const scale = useTransform(smoothProgress, [0, 0.5, 1], [0.96, 1, 0.98]);
+  const opacity = useTransform(smoothProgress, [0, 0.1, 0.9, 1], [0.8, 1, 1, 0.9]);
+  const imageY = useTransform(smoothProgress, [0, 1], [15, -15]);
+  const imageScale = useTransform(smoothProgress, [0, 0.5, 1], [1.04, 1.1, 1.05]);
 
   return (
     <motion.div
       ref={blockRef}
       className={styles.revealBlock}
-      style={{ y, scale, opacity }}
+      style={{
+        scale,
+        opacity,
+        position: "sticky",
+        top: `calc(1.5rem + ${index * 24}px)`,
+        zIndex: index + 1,
+        boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+      }}
       variants={revealItem}
     >
       <motion.div className={styles.revealBlockImageWrap} style={{ y: imageY, scale: imageScale }}>
@@ -222,12 +228,7 @@ export default function EditorialBlogGallery({ posts }: Props) {
                 />
                 <div className={styles.editorialIndex}>{String(index + 1).padStart(2, "0")}</div>
                 <div className={styles.editorialContent}>
-                  <div className={styles.editorialMeta}>
-                    <span>{post.tags?.[0] ?? "Insight"}</span>
-                    <span>{post.readingTime ?? post.date}</span>
-                  </div>
                   <h2>{post.title}</h2>
-                  <p>{post.excerpt}</p>
                 </div>
               </button>
             </motion.article>

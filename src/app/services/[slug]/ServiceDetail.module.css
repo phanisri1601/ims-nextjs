@@ -144,19 +144,16 @@
 .provideMedia {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 18px 70px rgba(0, 0, 0, 0.18);
 }
 
 .provideImage {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transform: scale(1.02);
+  height: auto;
+  object-fit: cover;
 }
 
 .provideContent {
@@ -210,22 +207,22 @@
   bottom: clamp(1rem, 3.5vw, 2.25rem);
   z-index: 4;
   color: var(--color-text-primary);
-  font-weight: 800;
-  font-size: clamp(1rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  font-size: clamp(0.9rem, 2.2vw, 1.5rem);
   background: rgba(255, 255, 255, 0.9);
-  padding: 0.6rem 1rem;
-  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
   backdrop-filter: blur(6px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 768px) {
   .serviceLabel {
     left: 0.9rem;
     bottom: 0.9rem;
-    font-size: 1rem;
-    padding: 0.5rem 0.85rem;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.75rem;
   }
 }
 
@@ -237,8 +234,8 @@
   .serviceLabel {
     left: 0.5rem;
     bottom: 0.5rem;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
   }
 }
 
@@ -2647,19 +2644,10 @@
 }
 
 .relatedServiceImageWrapper {
-  width: 180px;
-  height: 180px;
-  border-radius: 20px;
-  overflow: hidden;
+  width: 220px;
   margin-bottom: 1.5rem;
   position: relative;
-  border: 2px solid transparent;
   transition: all 0.4s ease;
-  background: var(--color-bg-card);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 
@@ -2692,15 +2680,14 @@
 
 .relatedServiceImage {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
   transition: transform 0.6s ease;
 }
 
 .relatedServiceCard:hover .relatedServiceImageWrapper {
-  border-color: var(--color-accent-primary);
   transform: scale(1.05);
-  box-shadow: 0 15px 35px rgba(255, 0, 51, 0.2);
 }
 
 .relatedServiceCard:hover .relatedServiceImage {
@@ -3160,19 +3147,10 @@
 }
 
 .relatedServiceImageWrapper {
-  width: 180px;
-  height: 180px;
-  border-radius: 20px;
-  overflow: hidden;
+  width: 220px;
   margin-bottom: 1.5rem;
   position: relative;
-  border: 2px solid transparent;
   transition: all 0.4s ease;
-  background: var(--color-bg-card);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 
@@ -3205,15 +3183,14 @@
 
 .relatedServiceImage {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
   transition: transform 0.6s ease;
 }
 
 .relatedServiceCard:hover .relatedServiceImageWrapper {
-  border-color: var(--color-accent-primary);
   transform: scale(1.05);
-  box-shadow: 0 15px 35px rgba(255, 0, 51, 0.2);
 }
 
 .relatedServiceCard:hover .relatedServiceImage {

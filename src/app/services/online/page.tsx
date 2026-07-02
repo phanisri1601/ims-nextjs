@@ -15,22 +15,22 @@ const onlineServices = [
   {
     title: 'Digital Marketing Service',
     slug: 'digital-marketing-service',
-    image: onlineImage('Digital Marketing Service.png'),
+    image: encodeURI('/popular services/digital services.png'),
   },
   {
     title: 'Search Engine Optimization',
     slug: 'seo',
-    image: onlineImage('Search Engine Optimization.png'),
+    image: encodeURI('/popular services/Search Engine Optimization.png'),
   },
   {
     title: 'Search Engine Marketing',
     slug: 'sem',
-    image: onlineImage('Search Engine Marketing.png'),
+    image: encodeURI('/popular services/Search Engine Marketing.png'),
   },
   {
     title: 'Online Reputation Management',
     slug: 'online-reputation-management',
-    image: onlineImage('Online Reputation Management.png'),
+    image: encodeURI('/popular services/Online Reputation Management.png'),
   },
   {
     title: 'Website Designing and Development',
@@ -109,6 +109,9 @@ const onlineServices = [
   },
 ];
 
+const popularImage = (filename: string) =>
+  encodeURI(`/popular services/${filename}`);
+
 const onlineStackingCards = [
   {
     title: 'Digital Marketing Service',
@@ -117,7 +120,7 @@ const onlineStackingCards = [
       'Build full-funnel digital campaigns that drive awareness, engagement, and measurable growth across Bangalore and beyond.',
     tag: 'Digital',
     number: 1,
-    image: onlineImage('Digital Marketing Service.png'),
+    image: popularImage('digital services.png'),
   },
   {
     title: 'Search Engine Optimization',
@@ -126,7 +129,7 @@ const onlineStackingCards = [
       'Improve organic visibility with data-led SEO—technical fixes, content strategy, and rankings that bring qualified traffic.',
     tag: 'SEO',
     number: 2,
-    image: onlineImage('Search Engine Optimization.png'),
+    image: popularImage('Search Engine Optimization.png'),
   },
   {
     title: 'Search Engine Marketing',
@@ -135,7 +138,7 @@ const onlineStackingCards = [
       'Capture high-intent demand with targeted paid search campaigns optimized for leads, sales, and strong ROI.',
     tag: 'Paid Search',
     number: 3,
-    image: onlineImage('Search Engine Marketing.png'),
+    image: popularImage('Search Engine Marketing.png'),
   },
   {
     title: 'Online Reputation Management',
@@ -144,7 +147,7 @@ const onlineStackingCards = [
       'Protect and strengthen your brand online with proactive monitoring, reviews management, and trust-building content.',
     tag: 'ORM',
     number: 4,
-    image: onlineImage('Online Reputation Management.png'),
+    image: popularImage('Online Reputation Management.png'),
   },
 ];
 
