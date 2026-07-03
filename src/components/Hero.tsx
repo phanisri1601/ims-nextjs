@@ -1,187 +1,126 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FiArrowRight } from 'react-icons/fi';
-import { FiSearch, FiTarget, FiBox, FiSend, FiZap } from 'react-icons/fi';
 import styles from './Hero.module.css';
 
-const colorStory = [
-  {
-    num: '01',
-    title: 'CLARITY',
-    desc: 'Every journey begins with clarity of purpose.',
-    img: '/Z1.png',
-    icon: <FiSearch />,
-  },
-  {
-    num: '02',
-    title: 'GROWTH',
-    desc: 'We turn insight into strategy that drives meaningful growth.',
-    img: '/Z2.png',
-    icon: <FiZap />,
-  },
-  {
-    num: '03',
-    title: 'PRECISION',
-    desc: 'Precision in every detail creates powerful brand experiences.',
-    img: '/Z3.png',
-    icon: <FiTarget />,
-  },
-  {
-    num: '04',
-    title: 'LEGACY',
-    desc: 'Great brands create impact that lasts beyond time.',
-    img: '/Z4.png',
-    icon: <FiBox />,
-  },
-  {
-    num: '05',
-    title: 'ACTION',
-    desc: 'We move brands forward with bold ideas and fearless execution.',
-    img: '/Z5.png',
-    icon: <FiSend />,
-  },
-];
-
-const processSteps = [
-  { label: 'DISCOVER', icon: <FiSearch /> },
-  { label: 'STRATEGIZE', icon: <FiTarget /> },
-  { label: 'CREATE', icon: <FiBox /> },
-  { label: 'LAUNCH', icon: <FiSend /> },
-  { label: 'LEAVE IMPACT', icon: <FiZap /> },
-];
-
 const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 36 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 32 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as any },
+  },
 });
 
 const fadeIn = (delay = 0) => ({
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.6, delay, ease: 'easeOut' } },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.7, delay, ease: 'easeOut' },
+  },
 });
 
 export default function Hero() {
   return (
     <section className={styles.hero}>
-      {/* ── Main 3-column grid ── */}
-      <div className={styles.heroGrid}>
-
-        {/* LEFT — Philosophy */}
-        <motion.div
-          className={styles.leftPanel}
+      {/* ── Left — Text content ── */}
+      <div className={styles.heroLeft}>
+        <motion.p
+          className={styles.heroTagline}
           initial="hidden"
           animate="visible"
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } } }}
+          variants={fadeIn(0.1)}
         >
-          <motion.span className={styles.eyebrow} variants={fadeIn(0)}>OUR PHILOSOPHY</motion.span>
-
-          <motion.h1 className={styles.heroTitle} variants={fadeUp(0.1)}>
-            Every brand<br />follows a journey.<br />
-            <span className={styles.redLine}>We design it.</span>
-          </motion.h1>
-
-          <motion.p className={styles.heroDesc} variants={fadeUp(0.25)}>
-            At IM Solutions, we combine strategy,<br />
-            creativity and technology to build<br />
-            brands that grow, influence<br />
-            and leave a legacy.
-          </motion.p>
-
-          <motion.div className={styles.imWatermark} variants={fadeIn(0.4)}>IM</motion.div>
-
-          <motion.a href="/services" className={styles.exploreLink} variants={fadeUp(0.45)}>
-            EXPLORE OUR SYSTEM <FiArrowRight className={styles.arrowIcon} />
-          </motion.a>
-        </motion.div>
-
-        {/* CENTER — Cube */}
+          STRATEGY. CREATIVITY. TECHNOLOGY. GROWTH.
+        </motion.p>
         <motion.div
-          className={styles.centerPanel}
-          initial={{ opacity: 0, scale: 0.93 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className={styles.heroTaglineRule}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+        />
+
+        <motion.h1
+          className={styles.heroHeading}
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
+          }}
         >
-          <div className={styles.cubeWrapper}>
-            <Image
-              src="/Cube.jpeg"
-              alt="Brand journey cubes – Clarity, Growth, Precision, Legacy"
-              fill
-              className={styles.cubeImage}
-              priority
-            />
-          </div>
+          <motion.span className={styles.heroLine} variants={fadeUp(0)}>
+            One Partner<span className={styles.heroDot}>.</span>
+          </motion.span>
+          <motion.span className={styles.heroLine} variants={fadeUp(0.12)}>
+            Every Possibility<span className={styles.heroDot}>.</span>
+          </motion.span>
+        </motion.h1>
+
+        <motion.p
+          className={styles.heroSubtext}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp(0.55)}
+        >
+          Everything your brand needs,<br />working as one.
+        </motion.p>
+
+        <motion.div
+          className={styles.heroCta}
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp(0.7)}
+        >
+          <Link href="/contact" className={styles.heroCtaBtn} aria-label="Start the journey">
+            <span className={styles.heroCtaCircle}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </span>
+            <span className={styles.heroCtaLabel}>START THE JOURNEY</span>
+          </Link>
         </motion.div>
-
-        {/* RIGHT — Color Story */}
-        <div className={styles.rightPanel}>
-          <motion.div
-            className={styles.colorStoryHeader}
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            OUR COLOR STORY
-          </motion.div>
-
-          <div className={styles.colorStoryList}>
-            {colorStory.map((item, i) => (
-              <motion.div
-                key={item.title}
-                className={`${styles.colorStoryItem} ${i === 0 ? styles.themeLight : styles.themeDark}`}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.55, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {/* Full-bleed background image */}
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className={styles.storyBgImg}
-                />
-                {/* Dark overlay for readability */}
-                <div className={styles.storyBgOverlay} />
-                {/* Content on top */}
-                <div className={styles.colorStoryText}>
-                  <span className={styles.storyNum}>{item.num}</span>
-                  <strong className={styles.storyTitle}>{item.title}</strong>
-                  <p className={styles.storyDesc}>{item.desc}</p>
-                </div>
-                <div className={styles.storyIconWrap}>{item.icon}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
 
-      {/* ── Bottom Process Bar ── */}
+      {/* ── Right — Cube image ── */}
       <motion.div
-        className={styles.processBar}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 1.1 }}
+        className={styles.heroRight}
+        initial={{ opacity: 0, x: 60, scale: 0.96 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as any }}
       >
-        <div className={styles.processLeft}>
-          <span className={styles.processTagline}>STRATEGY<br />TO LEGACY.</span>
-          <span className={styles.processSub}>WE BUILD WHAT<br />MATTERS.</span>
-        </div>
+        <Image
+          src="/Cube Home.png"
+          alt="IM Solutions – Strategy, Creative, Technology, Media, Growth"
+          fill
+          className={styles.heroCubeImg}
+          priority
+          sizes="(max-width: 768px) 100vw, 55vw"
+        />
+      </motion.div>
 
-        <div className={styles.processSteps}>
-          {processSteps.map((step, i) => (
-            <div key={step.label} className={styles.processStep}>
-              <span className={styles.processStepIcon}>{step.icon}</span>
-              <span className={styles.processStepLabel}>{step.label}</span>
-              {i < processSteps.length - 1 && <span className={styles.processDivider}>—</span>}
-            </div>
-          ))}
-        </div>
-
-        <div className={styles.processRight}>
-          <span className={styles.processEnd}>ONE SYSTEM.<br />ENDLESS IMPACT.</span>
-          <span className={styles.processIM}>IM</span>
-        </div>
+      {/* ── Scroll indicator ── */}
+      <motion.div
+        className={styles.heroScroll}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.5 }}
+      >
+        <span className={styles.heroScrollLabel}>SCROLL TO CONTINUE</span>
+        <motion.div
+          className={styles.heroScrollArrow}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <svg width="16" height="20" viewBox="0 0 16 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="8" y1="0" x2="8" y2="16" />
+            <polyline points="2 10 8 16 14 10" />
+          </svg>
+        </motion.div>
       </motion.div>
     </section>
   );

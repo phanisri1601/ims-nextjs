@@ -523,8 +523,8 @@ export default function Header() {
         </Link>
 
           <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ''}`}>
-            <Link href="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Home</Link>
-            <Link href="/about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>About Us</Link>
+            <Link href="/" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>The Beginning</Link>
+            <Link href="/about" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>The IM Perspective</Link>
 
             <div
               className={styles.dropdown}
@@ -546,7 +546,7 @@ export default function Header() {
                   }
                 }}
               >
-                Services <ChevronDownIcon className={`${styles.chevron} ${isServicesOpen || isMobileServicesOpen ? styles.chevronRotated : ''}`} />
+                Creative Solutions <ChevronDownIcon className={`${styles.chevron} ${isServicesOpen || isMobileServicesOpen ? styles.chevronRotated : ''}`} />
               </button>
               {isMobile ? (
                 isMobileServicesOpen && (
@@ -607,10 +607,10 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/clients" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Our Clients</Link>
-            <Link href="/careers" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Careers</Link>
-            <Link href="/blog" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Blog</Link>
-            <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Contact Us</Link>
+            <Link href="/clients" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>The Showcase</Link>
+            <Link href="/careers" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>The Collective</Link>
+            <Link href="/blog" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>The Inspiration</Link>
+            <Link href="/contact" className={styles.navLink} onClick={() => setIsMenuOpen(false)}>Let's Connect</Link>
           </nav>
 
           <div className={styles.headerActions}>
