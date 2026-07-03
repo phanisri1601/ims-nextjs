@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import ContactForm from "@/components/ContactForm";
 import Clients from "@/components/Clients";
+import ContactHero from "@/components/ContactHero";
 import styles from "./ContactPage.module.css";
 
 export const metadata = {
@@ -14,41 +14,8 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <main className={styles.page}>
-      {/* Hero Section */}
-      <section className={styles.heroSection}>
-        <div className={styles.heroContainer}>
-          <div className={styles.heroLeft}>
-            <span className={styles.eyebrow}>LET&apos;S CONNECT</span>
-            <h1 className={styles.title}>
-              Let&apos;s build<br />what&apos;s <span className={styles.highlight}>next</span>.
-            </h1>
-            <p className={styles.subtitle}>
-              Have a question, an idea, or a project in mind?<br />We&apos;d love to hear from you.
-            </p>
-
-            <div className={styles.contactInfoGrid}>
-              <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>EMAIL</span>
-                <a href="mailto:hello@imsolutions.com" className={styles.contactLink}>
-                  hello@imsolutions.com <FaArrowRight className={styles.linkIcon} />
-                </a>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>PHONE</span>
-                <a href="tel:+919876543210" className={styles.contactLink}>
-                  +91 98765 43210 <FaArrowRight className={styles.linkIcon} />
-                </a>
-              </div>
-              <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>LOCATION</span>
-                <a href="#map" className={styles.contactLink}>
-                  Mumbai, India <FaArrowRight className={styles.linkIcon} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section — animated */}
+      <ContactHero />
 
       {/* Partners Section */}
       <section className={styles.partnersSection}>

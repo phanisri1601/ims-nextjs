@@ -497,3 +497,65 @@
     font-size: 2.5rem;
   }
 }
+
+/* ============================================================
+   Text Loading / Reveal Animations — Contact Page Sections
+   ============================================================ */
+
+@keyframes textFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes lineExpand {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Partners section reveals */
+.partnersTitle {
+  animation: textFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.partnersDivider {
+  transform-origin: left;
+  animation: lineExpand 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+.partnersDesc {
+  animation: textFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
+}
+
+/* Conversation block reveals */
+.conversationTitle {
+  animation: textFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.conversationEyebrow {
+  display: block;
+  animation: textFadeIn 0.6s ease 0.45s both;
+}
+
+/* Office block reveals */
+.officeEyebrow {
+  animation: textFadeIn 0.6s ease 0.1s both;
+}
+
+.companyName {
+  animation: textFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.address {
+  animation: textFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}

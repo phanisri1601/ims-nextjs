@@ -223,3 +223,73 @@
         gap: 0.5rem;
     }
 }
+
+/* ============================================================
+   Text Loading / Reveal Animations — Clients Section
+   ============================================================ */
+
+@keyframes clientsTextFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes clientsSubtitleFade {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes clientNameShimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Section title reveal — triggered by parent ScrollReveal */
+.header :global(.section-title) {
+    animation: clientsTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
+}
+
+.subtitle {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #5b5b5b;
+    font-size: 0.95rem;
+    /* reveal */
+    animation: clientsSubtitleFade 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+
+/* Client name loading shimmer on first paint */
+.clientName {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Shimmer reveal: text starts semi-transparent and fades in */
+    background: linear-gradient(
+        90deg,
+        #5b5b5b 0%,
+        #a0a0b0 40%,
+        #5b5b5b 80%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: clientNameShimmer 1.8s linear 0.3s 1 forwards,
+               clientsSubtitleFade 0.5s ease 0.1s both;
+}
