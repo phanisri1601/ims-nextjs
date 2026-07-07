@@ -7,6 +7,7 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
 import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
+import ServicesHero from '@/components/ServicesHero';
 
 const onlineImage = (filename: string) =>
   encodeURI(`/online services/${filename}`);
@@ -311,11 +312,15 @@ export default function OnlineServicesPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>Online Services</h1>
-        </div>
-      </div>
+      <ServicesHero
+        eyebrow="CREATIVE SOLUTIONS"
+        headingBlack="Every brand needs
+a digital edge."
+        headingRed="We build it."
+        description="At IM Solutions, we combine strategy, creativity and technology to deliver online services that grow your brand, drive leads and leave a lasting impact."
+        ctaLabel="EXPLORE ONLINE SERVICES"
+        ctaHref="#services-listing"
+      />
 
       <StackingCardsSection cards={onlineStackingCards} />
 

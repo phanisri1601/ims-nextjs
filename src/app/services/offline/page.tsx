@@ -7,6 +7,7 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
 import StackingCardsSection from '@/components/StackingCardsSection';
 import ServicesVolumeGrid from '@/components/ServicesVolumeGrid';
+import ServicesHero from '@/components/ServicesHero';
 
 const offlineImage = (filename: string) =>
   encodeURI(`/offline images/${filename}`);
@@ -274,11 +275,15 @@ export default function OfflineServicesPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>Offline Services</h1>
-        </div>
-      </div>
+      <ServicesHero
+        eyebrow="CREATIVE SOLUTIONS"
+        headingBlack="Every brand deserves
+a real-world presence."
+        headingRed="We make it happen."
+        description="At IM Solutions, we bring your brand to life beyond the screen — through hoardings, events, transit branding and on-ground activations that create lasting impressions."
+        ctaLabel="EXPLORE OFFLINE SERVICES"
+        ctaHref="#services-listing"
+      />
 
       <StackingCardsSection cards={offlineStackingCards} />
 

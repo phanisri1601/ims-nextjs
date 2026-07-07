@@ -1,0 +1,406 @@
+/* ================================================================
+   ServicesHero — matches the editorial reference design
+   Warm beige background | Left text | Right Cube image
+   ================================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  background-color: #EDE8E1;
+  padding-top: var(--header-height, 80px);
+  overflow: hidden;
+}
+
+/* ================================================================
+   LEFT — Text panel
+   ================================================================ */
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3.5rem 5rem 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #BA3232;
+  margin-bottom: 0.55rem;
+}
+
+.eyebrowRule {
+  width: 36px;
+  height: 2px;
+  background-color: #BA3232;
+  margin-bottom: 2.8rem;
+  transform-origin: left center;
+}
+
+/* Heading */
+.heading {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: #111111;
+  letter-spacing: -0.015em;
+  margin-bottom: 1.8rem;
+}
+
+.headingRed {
+  color: #BA3232;
+  font-style: italic;
+}
+
+/* Description */
+.description {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #5a5550;
+  max-width: 360px;
+  margin-bottom: 2rem;
+}
+
+/* IM watermark */
+.watermark {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgba(17, 17, 17, 0.05);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  user-select: none;
+  margin-bottom: 2rem;
+}
+
+/* CTA link */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+  color: #111111;
+  transition: gap 0.3s ease;
+}
+
+.cta:hover {
+  gap: 1.3rem;
+}
+
+.ctaLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #111111;
+}
+
+.ctaArrow {
+  color: #BA3232;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.cta:hover .ctaArrow {
+  transform: translateX(5px);
+}
+
+/* ================================================================
+   RIGHT — Cube image
+   ================================================================ */
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Wrapper constrains the cube to fill most of the right column */
+.cubeWrapper {
+  position: relative;
+  width: min(900px, 130%);
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  /* Radial mask — fades edges into the page background */
+  -webkit-mask-image: radial-gradient(ellipse 82% 82% at 50% 50%,
+      black 32%,
+      rgba(0, 0, 0, 0.85) 52%,
+      rgba(0, 0, 0, 0.4) 70%,
+      transparent 100%);
+  mask-image: radial-gradient(ellipse 82% 82% at 50% 50%,
+      black 32%,
+      rgba(0, 0, 0, 0.85) 52%,
+      rgba(0, 0, 0, 0.4) 70%,
+      transparent 100%);
+  transition: transform 0.7s ease;
+}
+
+.cubeWrapper:hover {
+  transform: scale(1.04) translateY(-6px);
+}
+
+.cubeImg {
+  object-fit: contain;
+  object-position: center;
+}
+
+
+/* ================================================================
+   HOTSPOTS — clickable cube trigger points
+   ================================================================ */
+.hotspot {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Outer pulsing ring */
+.hotspotRing {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(186, 50, 50, 0.7);
+  animation: hotspotPulse 2s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Inner solid dot */
+.hotspotDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #BA3232;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease, background 0.2s ease;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.6);
+}
+
+.hotspot:hover .hotspotDot,
+.hotspotActive .hotspotDot {
+  transform: scale(1.3);
+  background: #CC1111;
+}
+
+@keyframes hotspotPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  70% { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Tooltip */
+.hotspotTooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(18, 15, 12, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 0.55rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+
+.hotspot:hover .hotspotTooltip,
+.hotspotActive .hotspotTooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tooltipNum {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #BA3232;
+}
+
+.tooltipLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.tooltipPlay {
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  margin-top: 0.1rem;
+}
+
+/* ================================================================
+   VIDEO MODAL
+   ================================================================ */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 6, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modalCard {
+  background: #12100E;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 860px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.modalTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+.modalNum {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #BA3232;
+}
+
+.modalLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.modalClose {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.modalClose:hover {
+  background: rgba(255,255,255,0.14);
+  transform: scale(1.08);
+}
+
+.modalVideo {
+  width: 100%;
+  display: block;
+  max-height: 72vh;
+  background: #000;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 1280px) {
+  .left {
+    padding: 3.5rem 3rem 4rem 4rem;
+  }
+
+  .heading {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    min-height: unset;
+  }
+
+  .left {
+    padding: 3rem 2.5rem 2rem;
+    order: 2;
+    align-items: center;
+    text-align: center;
+  }
+
+  .eyebrowRule {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .description {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .right {
+    order: 1;
+    min-height: 420px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .left {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .heading {
+    font-size: clamp(1.9rem, 7vw, 2.8rem);
+  }
+
+  .right {
+    min-height: 300px;
+  }
+
+  .watermark {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+}
