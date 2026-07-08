@@ -114,6 +114,45 @@
   transform: translateX(5px);
 }
 
+/* Services label + list — shown in the left panel while a cube's video plays */
+.servicesLabel {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #BA3232;
+  margin-bottom: 0.9rem;
+}
+
+.servicesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  max-width: 360px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.serviceItem {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #3a3733;
+}
+
+.serviceItem::before {
+  content: '';
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #BA3232;
+  transform: translateY(-2px);
+}
+
 /* ================================================================
    RIGHT — Cube image + video holder
    ================================================================ */
@@ -148,206 +187,57 @@
   inset: 0;
 }
 
+/* Shared positioning for both the base image and the video — same holder,
+   same box, so switching between them is a pure crossfade with no layout shift */
+.mediaLayer {
+  position: absolute;
+  inset: 0;
+}
+
 /* The cube image itself */
 .cubeImg {
   object-fit: contain;
   object-position: center;
 }
 
-/* ================================================================
-   HOTSPOT LAYER
-   Positioned absolutely to match the image fill area.
-   With object-fit: contain on a 16:9 image in a 16:9 container,
-   the image fills the container exactly — no letterboxing.
-   ================================================================ */
-.hotspotLayer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-/* ================================================================
-   HOTSPOTS — clickable cube trigger points
-   ================================================================ */
-.hotspot {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  transform: translate(-50%, -50%);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: all;
-}
-
-/* Outer pulsing ring */
-.hotspotRing {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(186, 50, 50, 0.7);
-  animation: hotspotPulse 2s ease-out infinite;
-  pointer-events: none;
-}
-
-/* Inner solid dot */
-.hotspotDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #BA3232;
-  position: relative;
-  z-index: 2;
-  transition: transform 0.2s ease, background 0.2s ease;
-  box-shadow: 0 0 0 2px rgba(255,255,255,0.6);
-}
-
-.hotspot:hover .hotspotDot,
-.hotspotActive .hotspotDot {
-  transform: scale(1.3);
-  background: #CC1111;
-}
-
-@keyframes hotspotPulse {
-  0% { transform: scale(1); opacity: 0.8; }
-  70% { transform: scale(2.2); opacity: 0; }
-  100% { transform: scale(2.2); opacity: 0; }
-}
-
-/* Tooltip */
-.hotspotTooltip {
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: rgba(18, 15, 12, 0.92);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 0.55rem 0.9rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  z-index: 20;
-}
-
-.hotspot:hover .hotspotTooltip,
-.hotspotActive .hotspotTooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.tooltipNum {
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #BA3232;
-}
-
-.tooltipLabel {
-  font-size: 0.72rem;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.05em;
-}
-
-.tooltipPlay {
-  font-size: 0.58rem;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.08em;
-  margin-top: 0.1rem;
-}
-
-/* ================================================================
-   INLINE VIDEO HOLDER
-   ================================================================ */
-.videoHolder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.inlineVideo {
+/* Full-size video — occupies the exact same holder as the image, not clipped to any face */
+.cubeVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Label overlay at top-left of video */
-.videoLabel {
+/* ================================================================
+   HOTSPOTS — invisible SVG paths, pixel-perfect to each visible cube
+   face (traced from the source image, not estimated). Pure hit areas:
+   no fill, no stroke, no hover feedback of any kind. With
+   object-fit: contain on a 16:9 image in a 16:9 container the image
+   fills the container exactly — no letterboxing — so the 0-100
+   viewBox maps 1:1 onto the image.
+   ================================================================ */
+.hotspotSvg {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 10;
-  background: rgba(18, 15, 12, 0.7);
-  backdrop-filter: blur(6px);
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.1);
+  overflow: visible;
 }
 
-.videoLabelNum {
-  font-size: 0.55rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: #BA3232;
-}
-
-.videoLabelText {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #fff;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* Skip / close button */
-.skipBtn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: rgba(18, 15, 12, 0.7);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 6px;
-  color: rgba(255,255,255,0.8);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.4rem 0.75rem;
+.hotspotPath {
+  fill: none;
+  stroke: none;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  outline: none;
+  pointer-events: all;
 }
 
-.skipBtn:hover {
-  background: rgba(186, 50, 50, 0.8);
-  color: #fff;
-  border-color: transparent;
+/* Soft gold glow shown behind the hovered face — gradient + blur, no hard edge */
+.hotspotGlow {
+  fill: url(#cubeGlowGradient);
+  filter: url(#cubeGlowBlur);
+  pointer-events: none;
 }
 
 /* ================================================================

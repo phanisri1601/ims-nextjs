@@ -31,7 +31,7 @@ export default function Hero() {
           className={styles.heroTagline}
           initial="hidden"
           animate="visible"
-          variants={fadeIn(0.1)}
+          
         >
           STRATEGY. CREATIVITY. TECHNOLOGY. GROWTH.
         </motion.p>
