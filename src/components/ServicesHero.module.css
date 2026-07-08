@@ -115,7 +115,7 @@
 }
 
 /* ================================================================
-   RIGHT — Cube image
+   RIGHT — Cube image + video holder
    ================================================================ */
 .right {
   display: flex;
@@ -124,13 +124,12 @@
   padding: 0;
 }
 
-/* Wrapper constrains the cube to fill most of the right column */
+/* Outer wrapper — square, with radial mask */
 .cubeWrapper {
   position: relative;
   width: min(900px, 130%);
   aspect-ratio: 1 / 1;
   flex-shrink: 0;
-  /* Radial mask — fades edges into the page background */
   -webkit-mask-image: radial-gradient(ellipse 82% 82% at 50% 50%,
       black 32%,
       rgba(0, 0, 0, 0.85) 52%,
@@ -141,18 +140,35 @@
       rgba(0, 0, 0, 0.85) 52%,
       rgba(0, 0, 0, 0.4) 70%,
       transparent 100%);
-  transition: transform 0.7s ease;
 }
 
-.cubeWrapper:hover {
-  transform: scale(1.04) translateY(-6px);
+/* ── Image holder — fills the wrapper ── */
+.imageHolder {
+  position: absolute;
+  inset: 0;
 }
 
+/* The cube image itself */
 .cubeImg {
   object-fit: contain;
   object-position: center;
 }
 
+/* ================================================================
+   HOTSPOT LAYER
+   The hotspots are placed relative to the IMAGE's rendered bounds.
+   The image uses object-fit: contain in a 1:1 square wrapper,
+   so the image fills the wrapper almost entirely — we position
+   hotspots as % of the imageHolder (which is the same as cubeWrapper).
+   ================================================================ */
+.hotspotLayer {
+  position: absolute;
+  /* The actual rendered image in object-fit:contain sits centered.
+     For a square image in a square container it fills exactly, so
+     hotspotLayer = 100% of imageHolder. */
+  inset: 0;
+  pointer-events: none;
+}
 
 /* ================================================================
    HOTSPOTS — clickable cube trigger points
@@ -170,6 +186,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: all;
 }
 
 /* Outer pulsing ring */
@@ -257,82 +274,84 @@
 }
 
 /* ================================================================
-   VIDEO MODAL
+   INLINE VIDEO HOLDER
    ================================================================ */
-.modalOverlay {
-  position: fixed;
+.videoHolder {
+  position: absolute;
   inset: 0;
-  background: rgba(10, 8, 6, 0.75);
-  backdrop-filter: blur(6px);
-  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-}
-
-.modalCard {
-  background: #12100E;
-  border-radius: 16px;
+  background: #000;
+  border-radius: 12px;
   overflow: hidden;
+}
+
+.inlineVideo {
   width: 100%;
-  max-width: 860px;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-.modalHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.4rem;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-.modalTitle {
+/* Label overlay at top-left of video */
+.videoLabel {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
   display: flex;
   align-items: baseline;
-  gap: 0.7rem;
+  gap: 0.5rem;
+  z-index: 10;
+  background: rgba(18, 15, 12, 0.7);
+  backdrop-filter: blur(6px);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
-.modalNum {
-  font-size: 0.62rem;
+.videoLabelNum {
+  font-size: 0.55rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   color: #BA3232;
 }
 
-.modalLabel {
-  font-size: 0.9rem;
+.videoLabelText {
+  font-size: 0.8rem;
   font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.06em;
+  color: #fff;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.modalClose {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+/* Skip / close button */
+.skipBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #ffffff;
+  gap: 0.35rem;
+  background: rgba(18, 15, 12, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
-.modalClose:hover {
-  background: rgba(255,255,255,0.14);
-  transform: scale(1.08);
-}
-
-.modalVideo {
-  width: 100%;
-  display: block;
-  max-height: 72vh;
-  background: #000;
+.skipBtn:hover {
+  background: rgba(186, 50, 50, 0.8);
+  color: #fff;
+  border-color: transparent;
 }
 
 /* ================================================================
