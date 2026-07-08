@@ -124,21 +124,21 @@
   padding: 0;
 }
 
-/* Outer wrapper — square, with radial mask */
+/* Outer wrapper — 16:9 to match the actual image dimensions */
 .cubeWrapper {
   position: relative;
-  width: min(900px, 130%);
-  aspect-ratio: 1 / 1;
+  width: min(820px, 100%);
+  aspect-ratio: 16 / 9;
   flex-shrink: 0;
-  -webkit-mask-image: radial-gradient(ellipse 82% 82% at 50% 50%,
-      black 32%,
-      rgba(0, 0, 0, 0.85) 52%,
-      rgba(0, 0, 0, 0.4) 70%,
+  -webkit-mask-image: radial-gradient(ellipse 85% 88% at 50% 50%,
+      black 35%,
+      rgba(0, 0, 0, 0.88) 55%,
+      rgba(0, 0, 0, 0.4) 75%,
       transparent 100%);
-  mask-image: radial-gradient(ellipse 82% 82% at 50% 50%,
-      black 32%,
-      rgba(0, 0, 0, 0.85) 52%,
-      rgba(0, 0, 0, 0.4) 70%,
+  mask-image: radial-gradient(ellipse 85% 88% at 50% 50%,
+      black 35%,
+      rgba(0, 0, 0, 0.88) 55%,
+      rgba(0, 0, 0, 0.4) 75%,
       transparent 100%);
 }
 
@@ -156,16 +156,12 @@
 
 /* ================================================================
    HOTSPOT LAYER
-   The hotspots are placed relative to the IMAGE's rendered bounds.
-   The image uses object-fit: contain in a 1:1 square wrapper,
-   so the image fills the wrapper almost entirely — we position
-   hotspots as % of the imageHolder (which is the same as cubeWrapper).
+   Positioned absolutely to match the image fill area.
+   With object-fit: contain on a 16:9 image in a 16:9 container,
+   the image fills the container exactly — no letterboxing.
    ================================================================ */
 .hotspotLayer {
   position: absolute;
-  /* The actual rendered image in object-fit:contain sits centered.
-     For a square image in a square container it fills exactly, so
-     hotspotLayer = 100% of imageHolder. */
   inset: 0;
   pointer-events: none;
 }

@@ -15,17 +15,17 @@ interface ServicesHeroProps {
   ctaHref?: string;
 }
 
-// Cube hotspot positions (% from top-left of the IMAGE BOUNDS — not the wrapper)
-// These are calibrated so dots land on each cube face center in the actual image.
+// Cube hotspot positions — measured directly from the 1456×816 image.
+// top/left are % of the imageHolder which matches the image's natural 16:9 ratio.
 const CUBES = [
   {
     id: 'strategy',
     label: 'Strategy',
     num: '01',
     video: '/videos/strategy video+reverse.mp4',
-    // Strategy — top cube, upper face center
-    top: '18%',
-    left: '51%',
+    // 01 Strategy — top beige cube face center: x≈728, y≈215 in 1456×816
+    top: '26%',
+    left: '50%',
     color: '#B5AC9A',
   },
   {
@@ -33,9 +33,9 @@ const CUBES = [
     label: 'Creative',
     num: '02',
     video: '/videos/creative video+reverse.mp4',
-    // Creative — middle-left cube
-    top: '45%',
-    left: '35%',
+    // 02 Creative — dark green left cube face center: x≈525, y≈400 in 1456×816
+    top: '49%',
+    left: '36%',
     color: '#3D5240',
   },
   {
@@ -43,9 +43,9 @@ const CUBES = [
     label: 'Technology',
     num: '03',
     video: '/videos/tech video+reverse.mp4',
-    // Technology — middle-right cube
-    top: '45%',
-    left: '67%',
+    // 03 Technology — light right cube face center: x≈930, y≈400 in 1456×816
+    top: '49%',
+    left: '64%',
     color: '#B5AC9A',
   },
   {
@@ -53,9 +53,9 @@ const CUBES = [
     label: 'Media',
     num: '04',
     video: '/videos/media video + reverse.mp4',
-    // Media — bottom-left cube
-    top: '68%',
-    left: '27%',
+    // 04 Media — black bottom-left cube face center: x≈445, y≈580 in 1456×816
+    top: '71%',
+    left: '31%',
     color: '#1a1a1a',
   },
   {
@@ -63,9 +63,9 @@ const CUBES = [
     label: 'Production',
     num: '05',
     video: '/videos/production video + reverse.mp4',
-    // Production — bottom-center cube
-    top: '76%',
-    left: '51%',
+    // 05 Production — navy bottom-center cube face center: x≈728, y≈640 in 1456×816
+    top: '78%',
+    left: '50%',
     color: '#1E3A4F',
   },
   {
@@ -73,9 +73,9 @@ const CUBES = [
     label: 'Growth',
     num: '06',
     video: '/videos/growth video+ reverse.mp4',
-    // Growth — bottom-right cube
-    top: '68%',
-    left: '74%',
+    // 06 Growth — dark-red bottom-right cube face center: x≈930, y≈565 in 1456×816
+    top: '69%',
+    left: '64%',
     color: '#6B2020',
   },
 ];
