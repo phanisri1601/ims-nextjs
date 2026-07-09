@@ -32,7 +32,7 @@ const CUBES: { id: string; label: string; num: string; video: string; d: string;
     id: 'strategy',
     label: 'Strategy',
     num: '01',
-    video: '/videos/strategy video+reverse.mp4',
+    video: '/videos/strategy-video.mp4',
     d: 'M 58.91,22.95 L 55.8,26.35 L 51.91,26.99 L 44.2,26.25 L 40.97,22.85 L 50.12,15.09 Z',
     content: {
       heading: 'STRATEGY',
@@ -57,7 +57,7 @@ const CUBES: { id: string; label: string; num: string; video: string; d: string;
     id: 'creative',
     label: 'Creative',
     num: '02',
-    video: '/videos/creative video+reverse.mp4',
+    video: '/videos/creative-video.mp4',
     d: 'M 32.48,34.75 L 41.03,44.31 L 40.97,60.15 L 32.42,54.2 Z',
     content: {
       heading: 'CREATIVE',
@@ -83,7 +83,7 @@ const CUBES: { id: string; label: string; num: string; video: string; d: string;
     id: 'technology',
     label: 'Technology',
     num: '03',
-    video: '/videos/tech video+reverse.mp4',
+    video: '/videos/tech-video.mp4',
     d: 'M 67.4,35.39 L 67.4,51.22 L 59.15,60.15 L 59.09,44.53 Z',
     content: {
       heading: 'TECHNOLOGY',
@@ -108,7 +108,7 @@ const CUBES: { id: string; label: string; num: string; video: string; d: string;
     id: 'media',
     label: 'Media',
     num: '04',
-    video: '/videos/media video + reverse.mp4',
+    video: '/videos/media-video.mp4',
     d: 'M 32.42,54.2 L 40.97,60.15 L 40.97,77.9 L 32.42,71.8 Z',
     content: {
       heading: 'MEDIA',
@@ -134,7 +134,7 @@ const CUBES: { id: string; label: string; num: string; video: string; d: string;
     id: 'production',
     label: 'Production',
     num: '05',
-    video: '/videos/production video + reverse.mp4',
+    video: '/videos/production-video.mp4',
     d: 'M 42.4,64.29 L 57.78,64.51 L 57.78,81.62 L 50.9,89.8 L 48.5,88.31 L 42.4,81.3 Z',
     content: {
       heading: 'PRODUCTION',
@@ -160,7 +160,7 @@ const CUBES: { id: string; label: string; num: string; video: string; d: string;
     id: 'growth',
     label: 'Growth',
     num: '06',
-    video: '/videos/growth video+ reverse.mp4',
+    video: '/videos/growth-video.mp4',
     d: 'M 59.51,80.87 L 59.57,63.23 L 67.52,54.52 L 67.52,71.84 Z',
     content: {
       heading: 'GROWTH',
@@ -374,6 +374,7 @@ export default function ServicesHero({
                     ref={videoRef}
                     className={styles.cubeVideo}
                     autoPlay
+                    muted
                     playsInline
                     onEnded={closeActive}
                   >

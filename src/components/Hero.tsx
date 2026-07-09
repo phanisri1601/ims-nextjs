@@ -94,7 +94,7 @@ export default function Hero() {
         transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as any }}
       >
         <Image
-          src="/Cube Home.png"
+          src="/Cube home.png"
           alt="IM Solutions – Strategy, Creative, Technology, Media, Growth"
           fill
           className={styles.heroCubeImg}
