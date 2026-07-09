@@ -12,7 +12,7 @@ const fadeUp = (delay = 0) => ({
     y: 0,
     transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
   },
-});
+} as const);
 
 const fadeIn = (delay = 0) => ({
   hidden: { opacity: 0 },
@@ -20,7 +20,7 @@ const fadeIn = (delay = 0) => ({
     opacity: 1,
     transition: { duration: 0.6, delay, ease: 'easeOut' },
   },
-});
+} as const);
 
 const slideIn = (delay = 0) => ({
   hidden: { scaleX: 0, transformOrigin: 'left' },
@@ -28,7 +28,7 @@ const slideIn = (delay = 0) => ({
     scaleX: 1,
     transition: { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] },
   },
-});
+} as const);
 
 export default function ContactHero() {
   const ref = useRef(null);

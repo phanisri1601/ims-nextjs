@@ -55,12 +55,12 @@ const processSteps = [
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 36 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] } },
-});
+} as const);
 
 const fadeIn = (delay = 0) => ({
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.6, delay, ease: 'easeOut' } },
-});
+} as const);
 
 export default function AboutHero() {
   return (
