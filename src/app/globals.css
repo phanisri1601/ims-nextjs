@@ -68,7 +68,9 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  /* clip (not hidden) — hidden forces overflow-y to auto per spec, which
+     breaks position: sticky for every descendant on the site */
+  overflow-x: clip;
 }
 
 img,
@@ -107,7 +109,7 @@ a {
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 main {

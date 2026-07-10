@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import VideoSection from "@/components/VideoSection";
-import AboutSection from "@/components/AboutSection";
+import PhilosophySection from "@/components/PhilosophySection";
+import IMSystemSection from "@/components/IMSystemSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import WantToKnowMore from "@/components/WantToKnowMore";
 import BlogsSection from "@/components/BlogsSection";
@@ -14,12 +15,8 @@ export default function Home() {
     <main>
       <Hero />
       <VideoSection />
-      <AboutSection
-        eyebrow="ABOUT"
-        title="IM SOLUTIONS"
-        subtitle=""
-        description={`IM Solutions is a full-stack marketing powerhouse built for brands that refuse to stay ordinary. We blend strategy, creativity, and performance into intelligent systems that turn visibility into measurable growth. From digital ecosystems to real-world impact, we don’t just run campaigns - we engineer momentum that moves brands forward.`}
-      />
+      <PhilosophySection />
+      <IMSystemSection />
       <WantToKnowMore />
       <WhyChooseUs />
       <BlogsSection />
