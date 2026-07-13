@@ -4,6 +4,7 @@ import PhilosophySection from "@/components/PhilosophySection";
 import IMSystemSection from "@/components/IMSystemSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import WantToKnowMore from "@/components/WantToKnowMore";
+import WhyIMSolutions from "@/components/WhyIMSolutions";
 import BlogsSection from "@/components/BlogsSection";
 import CareerSection from "@/components/CareerSection";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <PhilosophySection />
       <IMSystemSection />
       <WantToKnowMore />
+      <WhyIMSolutions />
       <WhyChooseUs />
       <BlogsSection />
       <CareerSection />
