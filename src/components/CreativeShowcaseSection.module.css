@@ -96,7 +96,7 @@
 .cardNumber {
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 900;
-    color: var(--color-accent-primary, #e23e3e);
+    color: var(--color-accent-primary, #BA3232);
     margin-bottom: 0.5rem;
     line-height: 1;
 }

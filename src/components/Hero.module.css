@@ -10,7 +10,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  background-color: #F5F1EC;
+  background-color: #F8F4F0;
   padding-top: var(--header-height, 80px);
   overflow: hidden;
 }
@@ -41,7 +41,7 @@
 .heroTaglineRule {
   width: 80px;
   height: 2px;
-  background-color: #CC1A1A;
+  background-color: #BA3232;
   margin-bottom: 2.5rem;
   transform-origin: left;
 }
@@ -65,7 +65,7 @@
 
 /* Red period after each heading line */
 .heroDot {
-  color: #CC1A1A;
+  color: #BA3232;
 }
 
 /* Subtext */
@@ -88,7 +88,7 @@
   align-items: center;
   gap: 1rem;
   text-decoration: none;
-  color: #CC1A1A;
+  color: #BA3232;
   transition: gap 0.3s ease;
 }
 
@@ -103,14 +103,14 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1.5px solid #CC1A1A;
-  color: #CC1A1A;
+  border: 1.5px solid #BA3232;
+  color: #BA3232;
   flex-shrink: 0;
   transition: background-color 0.25s, color 0.25s;
 }
 
 .heroCtaBtn:hover .heroCtaCircle {
-  background-color: #CC1A1A;
+  background-color: #BA3232;
   color: #ffffff;
 }
 
@@ -119,8 +119,8 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #CC1A1A;
-  border-bottom: 1px solid #CC1A1A;
+  color: #BA3232;
+  border-bottom: 1px solid #BA3232;
   padding-bottom: 2px;
   transition: opacity 0.25s;
 }
@@ -191,7 +191,7 @@
 }
 
 .heroScrollArrow {
-  color: #CC1A1A;
+  color: #BA3232;
   display: flex;
   align-items: center;
   justify-content: center;

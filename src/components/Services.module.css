@@ -106,7 +106,7 @@
     /* Slight upward movement but reduced overall size to avoid overflow */
     transform: translateY(-8px) scale(0.98);
     border-color: var(--color-accent-primary);
-    box-shadow: 0 14px 30px rgba(255, 0, 51, 0.20);
+    box-shadow: 0 14px 30px rgba(186, 50, 50, 0.20);
 }
 
 .iconContainer {
@@ -116,7 +116,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(255, 0, 51, 0.1), rgba(204, 0, 41, 0.1));
+    background: linear-gradient(135deg, rgba(186, 50, 50, 0.1), rgba(204, 0, 41, 0.1));
     border: 2px solid var(--color-accent-primary);
     border-radius: 50%;
     font-size: 1.75rem;
@@ -128,7 +128,7 @@
     transform: scale(1.15) rotate(10deg);
     background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
     color: white;
-    box-shadow: 0 10px 25px rgba(255, 0, 51, 0.4);
+    box-shadow: 0 10px 25px rgba(186, 50, 50, 0.4);
 }
 
 .serviceTitle {

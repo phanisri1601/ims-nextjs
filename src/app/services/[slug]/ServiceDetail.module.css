@@ -66,7 +66,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(255, 0, 51, 0.15));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(186, 50, 50, 0.15));
   z-index: 2;
   animation: fadeIn 1s ease-out forwards;
 }
@@ -348,12 +348,12 @@
 }
 
 .heroBadge {
-  background: linear-gradient(135deg, rgba(255, 0, 51, 0.14), rgba(255, 255, 255, 0.03));
+  background: linear-gradient(135deg, rgba(186, 50, 50, 0.14), rgba(255, 255, 255, 0.03));
   border-radius: 12px;
   padding: 0.75rem 1rem;
   text-align: center;
   min-width: 120px;
-  box-shadow: 0 10px 30px rgba(255, 0, 51, 0.06);
+  box-shadow: 0 10px 30px rgba(186, 50, 50, 0.06);
   transform: translateY(10px);
   opacity: 0;
   animation: badgeIn 800ms cubic-bezier(0.2, 1, 0.3, 1) 0.5s forwards;
@@ -703,7 +703,7 @@
 .featureBox:hover,
 .benefitBox:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 10px 30px rgba(255, 0, 51, 0.15);
+  box-shadow: 0 10px 30px rgba(186, 50, 50, 0.15);
   transform: translateY(-5px);
 }
 
@@ -767,12 +767,12 @@
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 18px rgba(255, 0, 51, 0.35);
+  box-shadow: 0 8px 18px rgba(186, 50, 50, 0.35);
 }
 
 .ctaButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(255, 0, 51, 0.4);
+  box-shadow: 0 10px 24px rgba(186, 50, 50, 0.4);
 }
 
 .splitSection {
@@ -834,12 +834,12 @@
   border-radius: 0;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 10px 26px rgba(255, 0, 51, 0.22);
+  box-shadow: 0 10px 26px rgba(186, 50, 50, 0.22);
 }
 
 .splitCta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(255, 0, 51, 0.28);
+  box-shadow: 0 14px 30px rgba(186, 50, 50, 0.28);
 }
 
 @media (max-width: 900px) {
@@ -882,14 +882,14 @@
 .relevantBlogCard:hover {
   transform: translateY(-4px);
   border-color: var(--color-accent-primary);
-  box-shadow: 0 12px 28px rgba(255, 0, 51, 0.14);
+  box-shadow: 0 12px 28px rgba(186, 50, 50, 0.14);
 }
 
 .relevantBlogImageWrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: rgba(255, 0, 51, 0.06);
+  background: rgba(186, 50, 50, 0.06);
   overflow: hidden;
 }
 
@@ -960,8 +960,8 @@
   /* reduce vertical padding so the section doesn't become a giant empty block */
   padding: 1.5rem 0 1rem 0;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255, 0, 51, 0.08), rgba(0, 0, 0, 0.12));
-  box-shadow: 0 8px 32px rgba(255, 0, 51, 0.08);
+  background: linear-gradient(135deg, rgba(186, 50, 50, 0.08), rgba(0, 0, 0, 0.12));
+  box-shadow: 0 8px 32px rgba(186, 50, 50, 0.08);
   overflow: hidden;
   animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -1310,7 +1310,7 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(255, 0, 51, 0.12), 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 24px rgba(186, 50, 50, 0.12), 0 2px 8px rgba(0, 0, 0, 0.12);
   background: var(--color-bg-card);
   width: 100%;
   max-width: 320px;
@@ -1325,7 +1325,7 @@
 
 .showcaseCard:hover {
   transform: scale(1.04) translateY(-6px);
-  box-shadow: 0 8px 32px rgba(255, 0, 51, 0.18), 0 4px 16px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 32px rgba(186, 50, 50, 0.18), 0 4px 16px rgba(0, 0, 0, 0.18);
 }
 
 .showcaseImage {
@@ -1348,7 +1348,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(255, 0, 51, 0.08));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(186, 50, 50, 0.08));
   pointer-events: none;
 }
 
@@ -1402,7 +1402,7 @@
 .showcaseOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(255, 0, 51, 0.15));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(186, 50, 50, 0.15));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1454,7 +1454,7 @@
 .processSection {
   margin: 5rem 0;
   padding: 4rem;
-  background: linear-gradient(135deg, rgba(255, 0, 51, 0.05), rgba(204, 0, 41, 0.05));
+  background: linear-gradient(135deg, rgba(186, 50, 50, 0.05), rgba(204, 0, 41, 0.05));
   border-radius: 16px;
 }
 
@@ -1506,7 +1506,7 @@
 
 .processStep:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 15px 40px rgba(255, 0, 51, 0.2);
+  box-shadow: 0 15px 40px rgba(186, 50, 50, 0.2);
   transform: translateY(-5px);
 }
 
@@ -1918,7 +1918,7 @@
 
 .faqItem:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 5px 15px rgba(255, 0, 51, 0.15);
+  box-shadow: 0 5px 15px rgba(186, 50, 50, 0.15);
 }
 
 .faqItem.open {
@@ -2104,7 +2104,7 @@
 
 .coreServiceCard.active {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 20px 50px rgba(255, 0, 51, 0.12);
+  box-shadow: 0 20px 50px rgba(186, 50, 50, 0.12);
   transform: scale(1.05) translateY(-10px);
   z-index: 2;
 }
@@ -2130,7 +2130,7 @@
   position: absolute;
   width: 140%;
   height: 140%;
-  background: radial-gradient(circle at center, rgba(255, 0, 51, 0.1) 0%, transparent);
+  background: radial-gradient(circle at center, rgba(186, 50, 50, 0.1) 0%, transparent);
   z-index: -1;
   border-radius: 50%;
   transition: all 0.4s ease;
@@ -2214,13 +2214,13 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(255, 0, 51, 0.2);
+  box-shadow: 0 8px 20px rgba(186, 50, 50, 0.2);
 }
 
 .arrowButton:hover {
-  background: #d4002d;
+  background: #BA3232;
   transform: scale(1.1);
-  box-shadow: 0 12px 25px rgba(255, 0, 51, 0.3);
+  box-shadow: 0 12px 25px rgba(186, 50, 50, 0.3);
 }
 
 .arrowButton:active {
@@ -2405,7 +2405,7 @@
 .whyChooseUsList li:hover {
   transform: translateX(8px);
   border-color: var(--color-accent-primary);
-  box-shadow: 0 8px 20px rgba(255, 0, 51, 0.1);
+  box-shadow: 0 8px 20px rgba(186, 50, 50, 0.1);
 }
 
 .whyChooseUsList li::before {
@@ -2439,7 +2439,7 @@
   position: absolute;
   width: 110%;
   height: 110%;
-  background: radial-gradient(circle at center, rgba(255, 0, 51, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(186, 50, 50, 0.05) 0%, transparent 70%);
   z-index: -1;
   animation: pulse 4s ease-in-out infinite;
 }
@@ -2472,7 +2472,7 @@
 
 .whyChooseUsImage:hover .whyChooseUsImg {
   transform: translateY(-15px) rotate(-1deg) scale(1.02);
-  box-shadow: 0 40px 80px rgba(255, 0, 51, 0.18);
+  box-shadow: 0 40px 80px rgba(186, 50, 50, 0.18);
 }
 
 @media (max-width: 1200px) {
@@ -2670,7 +2670,7 @@
   transform: translate(10px, -10px) scale(0);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 2;
-  box-shadow: 0 4px 12px rgba(255, 0, 51, 0.3);
+  box-shadow: 0 4px 12px rgba(186, 50, 50, 0.3);
 }
 
 .relatedServiceCard:hover .relatedServiceArrow {
@@ -2915,7 +2915,7 @@
 .whyChooseUsList li:hover {
   transform: translateX(8px);
   border-color: var(--color-accent-primary);
-  box-shadow: 0 8px 20px rgba(255, 0, 51, 0.1);
+  box-shadow: 0 8px 20px rgba(186, 50, 50, 0.1);
 }
 
 .whyChooseUsList li::before {
@@ -2949,7 +2949,7 @@
   position: absolute;
   width: 110%;
   height: 110%;
-  background: radial-gradient(circle at center, rgba(255, 0, 51, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(186, 50, 50, 0.05) 0%, transparent 70%);
   z-index: -1;
   animation: pulse 4s ease-in-out infinite;
 }
@@ -2982,7 +2982,7 @@
 
 .whyChooseUsImage:hover .whyChooseUsImg {
   transform: translateY(-15px) rotate(-1deg) scale(1.02);
-  box-shadow: 0 40px 80px rgba(255, 0, 51, 0.18);
+  box-shadow: 0 40px 80px rgba(186, 50, 50, 0.18);
 }
 
 @media (max-width: 1200px) {
@@ -3173,7 +3173,7 @@
   transform: translate(10px, -10px) scale(0);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 2;
-  box-shadow: 0 4px 12px rgba(255, 0, 51, 0.3);
+  box-shadow: 0 4px 12px rgba(186, 50, 50, 0.3);
 }
 
 .relatedServiceCard:hover .relatedServiceArrow {
@@ -3616,7 +3616,7 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(255, 0, 51, 0.12), 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 24px rgba(186, 50, 50, 0.12), 0 2px 8px rgba(0, 0, 0, 0.12);
   background: var(--color-bg-card);
   width: 100%;
   max-width: 320px;
@@ -3631,7 +3631,7 @@
 
 .showcaseCard:hover {
   transform: scale(1.04) translateY(-6px);
-  box-shadow: 0 8px 32px rgba(255, 0, 51, 0.18), 0 4px 16px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 32px rgba(186, 50, 50, 0.18), 0 4px 16px rgba(0, 0, 0, 0.18);
 }
 
 .showcaseImage {
@@ -3654,7 +3654,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(255, 0, 51, 0.08));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), rgba(186, 50, 50, 0.08));
   pointer-events: none;
 }
 
@@ -3723,7 +3723,7 @@
 
 .showcaseCard:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 20px 50px rgba(255, 0, 51, 0.25);
+  box-shadow: 0 20px 50px rgba(186, 50, 50, 0.25);
   transform: translateY(-10px);
 }
 
@@ -3748,7 +3748,7 @@
 .showcaseOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(255, 0, 51, 0.15));
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(186, 50, 50, 0.15));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3800,7 +3800,7 @@
 .processSection {
   margin: 5rem 0;
   padding: 4rem;
-  background: linear-gradient(135deg, rgba(255, 0, 51, 0.05), rgba(204, 0, 41, 0.05));
+  background: linear-gradient(135deg, rgba(186, 50, 50, 0.05), rgba(204, 0, 41, 0.05));
   border-radius: 16px;
 }
 
@@ -3852,7 +3852,7 @@
 
 .processStep:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 15px 40px rgba(255, 0, 51, 0.2);
+  box-shadow: 0 15px 40px rgba(186, 50, 50, 0.2);
   transform: translateY(-5px);
 }
 
@@ -4264,7 +4264,7 @@
 
 .faqItem:hover {
   border-color: var(--color-accent-primary);
-  box-shadow: 0 5px 15px rgba(255, 0, 51, 0.15);
+  box-shadow: 0 5px 15px rgba(186, 50, 50, 0.15);
 }
 
 .faqItem.open {

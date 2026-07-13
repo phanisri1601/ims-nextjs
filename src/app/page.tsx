@@ -7,13 +7,14 @@ import WantToKnowMore from "@/components/WantToKnowMore";
 import WhyIMSolutions from "@/components/WhyIMSolutions";
 import BlogsSection from "@/components/BlogsSection";
 import CareerSection from "@/components/CareerSection";
+import PartnersSection from "@/components/PartnersSection";
 
 import Clients from "@/components/Clients";
 import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
-    <main>
+    <main style={{ backgroundColor: "#F8F4F0" }}>
       <Hero />
       <VideoSection />
       <PhilosophySection />
@@ -23,9 +24,8 @@ export default function Home() {
       <WhyChooseUs />
       <BlogsSection />
       <CareerSection />
-
-      <Clients />
-      <FAQ />
+      <PartnersSection />
+      <FAQ variant="plain" />
     </main>
   );
 }

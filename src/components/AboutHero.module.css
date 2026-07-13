@@ -1,6 +1,7 @@
 /* ================================================================
    Hero — Editorial split-panel design
-   Layout: [Left Philosophy] | [Center Cube] | [Right Color Story]
+   Layout: [Left Philosophy] | [Right Cube] — matches the Services
+   page hero split (1fr 1.1fr, left text / right image).
    Bottom: Process bar
    ================================================================ */
 
@@ -14,10 +15,11 @@
   position: relative;
 }
 
-/* ── 3-column grid ── */
+/* ── 2-column grid, matching ServicesHero's split ── */
 .heroGrid {
   display: grid;
-  grid-template-columns: 1fr 1.1fr 1fr;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
   flex: 1;
   min-height: 0;
 }
@@ -26,7 +28,7 @@
    LEFT PANEL — Philosophy
    ================================================================ */
 .leftPanel {
-  padding: 3rem 3rem 3rem 4rem;
+  padding: 4rem 3.5rem 5rem 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,24 +112,22 @@
 }
 
 /* ================================================================
-   CENTER PANEL — Cube image
+   RIGHT PANEL — Cube image
    ================================================================ */
 .centerPanel {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #DDD8CE;
-  padding: 2.5rem;
+  padding: 0;
   overflow: hidden;
 }
 
 .cubeWrapper {
   position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 480px;
-  max-height: 640px;
+  width: min(820px, 100%);
+  aspect-ratio: 16 / 9;
+  flex-shrink: 0;
 }
 
 .cubeImage {
@@ -138,161 +138,6 @@
 
 .centerPanel:hover .cubeImage {
   transform: scale(1.02) translateY(-4px);
-}
-
-/* ================================================================
-   RIGHT PANEL — Color Story
-   ================================================================ */
-.rightPanel {
-  display: flex;
-  flex-direction: column;
-  border-left: 1px solid rgba(26, 26, 26, 0.1);
-  overflow: hidden;
-}
-
-.colorStoryHeader {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #5a5550;
-  padding: 1.1rem 1.4rem;
-  background-color: #D9D4CA;
-  border-bottom: 1px solid rgba(26, 26, 26, 0.1);
-  flex-shrink: 0;
-}
-
-.colorStoryList {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow: hidden;
-}
-
-.colorStoryItem {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex: 1;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  cursor: default;
-  min-height: 0;
-}
-
-.colorStoryItem:last-child {
-  border-bottom: none;
-}
-
-/* Full-bleed background image */
-.storyBgImg {
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.5s ease;
-  filter: none;
-}
-
-.colorStoryItem:hover .storyBgImg {
-  transform: scale(1.04);
-}
-
-/* No overlay — images show at full natural brightness */
-.storyBgOverlay {
-  display: none;
-}
-
-/* Text on top */
-.colorStoryText {
-  position: relative;
-  z-index: 2;
-  padding: 0.85rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  flex: 1;
-  font-family: var(--font-inter), system-ui, sans-serif;
-}
-
-.storyNum {
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-}
-
-.themeLight .storyNum {
-  color: rgba(26, 26, 26, 0.6);
-}
-.themeDark .storyNum {
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-}
-
-.storyTitle {
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.themeLight .storyTitle {
-  color: #1a1a1a;
-}
-.themeDark .storyTitle {
-  color: #ffffff;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
-}
-
-.storyDesc {
-  font-size: 0.75rem;
-  line-height: 1.6;
-  margin: 0;
-  font-weight: 400;
-}
-
-.themeLight .storyDesc {
-  color: rgba(26, 26, 26, 0.8);
-}
-.themeDark .storyDesc {
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-}
-
-/* Circle icon on the right */
-.storyIconWrap {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid;
-  font-size: 1.1rem;
-  margin: 0 1.2rem 1rem 0;
-  flex-shrink: 0;
-  align-self: flex-end;
-  transition: all 0.3s ease;
-}
-
-.themeLight .storyIconWrap {
-  border-color: rgba(196, 154, 69, 0.6);
-  color: #c49a45;
-}
-.themeLight.colorStoryItem:hover .storyIconWrap {
-  border-color: #c49a45;
-  background: rgba(196, 154, 69, 0.1);
-}
-
-.themeDark .storyIconWrap {
-  border-color: rgba(196, 154, 69, 0.5);
-  color: #c49a45;
-}
-.themeDark.colorStoryItem:hover .storyIconWrap {
-  border-color: #c49a45;
-  color: #ffffff;
-  background: rgba(196, 154, 69, 0.2);
 }
 
 /* ================================================================
@@ -411,56 +256,22 @@
 
 @media (max-width: 1024px) {
   .heroGrid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+    min-height: unset;
   }
 
   .leftPanel {
-    padding: 2.5rem 2rem 2rem 2.5rem;
-    grid-row: 1;
-    grid-column: 1;
+    padding: 3rem 2.5rem 2rem;
+    order: 2;
+    align-items: center;
+    text-align: center;
   }
 
   .centerPanel {
-    grid-row: 1;
-    grid-column: 2;
-  }
-
-  .rightPanel {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    flex-direction: row;
-    border-left: none;
-    border-top: 1px solid rgba(26, 26, 26, 0.1);
-    overflow-x: auto;
-    min-height: 220px;
-  }
-
-  .colorStoryHeader {
-    writing-mode: vertical-rl;
-    padding: 1rem 0.8rem;
-    border-bottom: none;
-    border-right: 1px solid rgba(26, 26, 26, 0.1);
-    flex-shrink: 0;
-  }
-
-  .colorStoryList {
-    flex-direction: row;
-    flex: 1;
-    min-width: max-content;
-  }
-
-  .colorStoryItem {
-    border-bottom: none;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-    min-width: 180px;
-    flex: 1;
-    min-height: 220px;
-  }
-
-  .storyIconWrap {
-    margin: 0 0.7rem 0.7rem 0;
-    align-self: flex-end;
+    order: 1;
+    min-height: 420px;
+    width: 100%;
   }
 
   .processBar {
@@ -490,48 +301,11 @@
   }
 
   .leftPanel {
-    grid-column: 1;
-    grid-row: 1;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 1.5rem;
   }
 
   .centerPanel {
-    grid-column: 1;
-    grid-row: 2;
-    min-height: 320px;
-  }
-
-  .cubeWrapper {
-    min-height: 280px;
-  }
-
-  .rightPanel {
-    grid-column: 1;
-    grid-row: 3;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .colorStoryHeader {
-    writing-mode: horizontal-tb;
-    border-right: none;
-    border-bottom: 1px solid rgba(26, 26, 26, 0.1);
-  }
-
-  .colorStoryList {
-    flex-direction: column;
-    min-width: unset;
-  }
-
-  .colorStoryItem {
-    min-height: 110px;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    min-width: unset;
-  }
-
-  .storyIconWrap {
-    margin: 0 0.7rem 0.7rem 0;
+    min-height: 300px;
   }
 
   .processBar {

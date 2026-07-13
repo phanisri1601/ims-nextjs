@@ -421,7 +421,7 @@
 
 .faqItem:hover {
     border-color: var(--color-accent-primary);
-    box-shadow: 0 5px 15px rgba(255, 0, 51, 0.15);
+    box-shadow: 0 5px 15px rgba(186, 50, 50, 0.15);
 }
 
 .faqItem.open {

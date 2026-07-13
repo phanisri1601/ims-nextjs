@@ -19,7 +19,7 @@
     width: 40%;
     height: 40%;
     background: radial-gradient(circle,
-            rgba(255, 0, 51, 0.08) 0%,
+            rgba(186, 50, 50, 0.08) 0%,
             transparent 70%);
     pointer-events: none;
     z-index: 0;
@@ -46,7 +46,7 @@
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.1),
         0 0 0 1px rgba(0, 0, 0, 0.08),
-        0 0 40px rgba(255, 0, 51, 0.1);
+        0 0 40px rgba(186, 50, 50, 0.1);
     /* Dynamic width controlled by Framer Motion, but base is responsive */
     width: 100%;
     height: 100vh;
@@ -93,7 +93,7 @@
 }
 
 .textHighlight {
-    color: #ff0033;
+    color: #ba3232;
     /* Vibrant Red */
 }
 
@@ -155,7 +155,7 @@
         box-shadow:
             0 15px 40px rgba(0, 0, 0, 0.1),
             0 0 0 1px rgba(255, 255, 255, 0.08),
-            0 0 25px rgba(255, 0, 51, 0.08);
+            0 0 25px rgba(186, 50, 50, 0.08);
     }
 
     .videoOverlay {
@@ -190,7 +190,7 @@
         box-shadow:
             0 10px 30px rgba(0, 0, 0, 0.1),
             0 0 0 1px rgba(255, 255, 255, 0.05),
-            0 0 15px rgba(255, 0, 51, 0.05);
+            0 0 15px rgba(186, 50, 50, 0.05);
     }
 
     .videoOverlay {

@@ -5,7 +5,7 @@
    ================================================================ */
 .section {
     padding: var(--section-padding-y) 0;
-    background: var(--color-bg-primary);
+    background: #F8F4F0;
 }
 
 .container {
@@ -45,8 +45,8 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--color-accent-primary);
-    background: rgba(255, 0, 51, 0.06);
-    border: 1px solid rgba(255, 0, 51, 0.18);
+    background: rgba(186, 50, 50, 0.06);
+    border: 1px solid rgba(186, 50, 50, 0.18);
     padding: 0.4rem 0.9rem;
     border-radius: 999px;
     margin-bottom: 1.25rem;

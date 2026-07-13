@@ -46,7 +46,7 @@
   bottom: -0.8rem;
   width: 40px;
   height: 1px;
-  background-color: #B02A24;
+  background-color: #BA3232;
 }
 
 .heroTitle {
@@ -59,13 +59,13 @@
 }
 
 .highlightRed {
-  color: #B02A24;
+  color: #BA3232;
 }
 
 .heroVerticalLine {
   width: 1px;
   height: 40px;
-  background-color: #B02A24;
+  background-color: #BA3232;
   margin-bottom: 2rem;
 }
 
@@ -80,7 +80,7 @@
 .exploreBtn {
   background: transparent;
   border: none;
-  color: #B02A24;
+  color: #BA3232;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -100,7 +100,7 @@
 .iconCircle {
   width: 40px;
   height: 40px;
-  border: 1px solid #B02A24;
+  border: 1px solid #BA3232;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -128,7 +128,7 @@
 .heroRightVerticalLine {
   width: 1px;
   height: 40px;
-  background-color: #B02A24;
+  background-color: #BA3232;
   margin-top: 1rem;
   margin-right: 1.5rem; /* Align under the text */
 }
@@ -260,7 +260,7 @@
   bottom: -0.8rem;
   width: 25px;
   height: 1px;
-  background-color: #B02A24;
+  background-color: #BA3232;
 }
 
 .valueDesc {
@@ -288,7 +288,7 @@
 }
 
 .statsLeft {
-  color: #B02A24; /* Make text red instead of the background */
+  color: #BA3232; /* Make text red instead of the background */
   padding: 4rem;
   display: flex;
   flex-direction: column;

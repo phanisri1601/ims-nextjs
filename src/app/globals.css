@@ -8,10 +8,8 @@
   --color-bg-secondary: #f5f5f5;
   --color-bg-card: #fafafa;
 
-  --color-accent-primary: #ff0033;
-  /* Vibrant Red */
-  --color-accent-secondary: #cc0029;
-  /* Darker Red */
+  --color-accent-primary: #ba3232;
+  --color-accent-secondary: #ba3232;
 
   --color-text-primary: #000000;
   --color-text-secondary: #333333;
@@ -49,7 +47,7 @@
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
-  --shadow-glow: 0 0 20px rgba(255, 0, 51, 0.15);
+  --shadow-glow: 0 0 20px rgba(186, 50, 50, 0.15);
 
   /* Match the actual fixed header height (logo + padding) so there's no white gap */
   --header-height: 72px;
@@ -335,11 +333,11 @@ a:hover {
 
   0%,
   100% {
-    box-shadow: 0 0 10px rgba(255, 0, 51, 0.2);
+    box-shadow: 0 0 10px rgba(186, 50, 50, 0.2);
   }
 
   50% {
-    box-shadow: 0 0 20px rgba(255, 0, 51, 0.3);
+    box-shadow: 0 0 20px rgba(186, 50, 50, 0.3);
   }
 }
 
@@ -381,7 +379,7 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: var(--color-accent-primary);
-  box-shadow: 0 0 0 3px rgba(255, 0, 51, 0.1);
+  box-shadow: 0 0 0 3px rgba(186, 50, 50, 0.1);
 }
 
 textarea {

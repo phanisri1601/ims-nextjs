@@ -6,7 +6,7 @@
 .pinWrapper {
     position: relative;
     height: 250vh;
-    background: var(--color-bg-primary);
+    background: #F8F4F0;
 }
 
 .stickyInner {
@@ -19,8 +19,8 @@
     overflow: hidden;
     padding-top: var(--header-height, 80px);
     background:
-        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255, 0, 51, 0.04), transparent 70%),
-        var(--color-bg-primary);
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(186, 50, 50, 0.04), transparent 70%),
+        #F8F4F0;
 }
 
 .container {
@@ -102,7 +102,7 @@
 /* ── Static fallback for prefers-reduced-motion — no pin, no scroll-scrub ── */
 .staticSection {
     padding: var(--section-padding-y) 0;
-    background: var(--color-bg-primary);
+    background: #F8F4F0;
 }
 
 .staticSection .container {

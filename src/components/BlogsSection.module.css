@@ -1,6 +1,6 @@
 .section {
     padding: 2rem 0; /* Reduced padding to help reduce the gap */
-    background: var(--color-bg-primary);
+    background: #F8F4F0;
     position: relative;
     overflow: hidden;
     min-height: auto;
@@ -286,7 +286,7 @@
 
 .viewAllButton:hover {
     background: var(--color-accent-primary);
-    box-shadow: 0 0 30px rgba(255, 0, 51, 0.4);
+    box-shadow: 0 0 30px rgba(186, 50, 50, 0.4);
     transform: translateY(-2px);
 }
 

@@ -1,6 +1,6 @@
 .section {
     padding: var(--spacing-xl) 0;
-    background: var(--color-bg-primary);
+    background: #F8F4F0;
     overflow: hidden;
     min-height: 100vh;
 }

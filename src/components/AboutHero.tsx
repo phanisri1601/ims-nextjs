@@ -6,44 +6,6 @@ import { FiArrowRight } from 'react-icons/fi';
 import { FiSearch, FiTarget, FiBox, FiSend, FiZap } from 'react-icons/fi';
 import styles from './AboutHero.module.css';
 
-const colorStory = [
-  {
-    num: '01',
-    title: 'CLARITY',
-    desc: 'Every journey begins with clarity of purpose.',
-    img: '/Z1.png',
-    icon: <FiSearch />,
-  },
-  {
-    num: '02',
-    title: 'GROWTH',
-    desc: 'We turn insight into strategy that drives meaningful growth.',
-    img: '/Z2.png',
-    icon: <FiZap />,
-  },
-  {
-    num: '03',
-    title: 'PRECISION',
-    desc: 'Precision in every detail creates powerful brand experiences.',
-    img: '/Z3.png',
-    icon: <FiTarget />,
-  },
-  {
-    num: '04',
-    title: 'LEGACY',
-    desc: 'Great brands create impact that lasts beyond time.',
-    img: '/Z4.png',
-    icon: <FiBox />,
-  },
-  {
-    num: '05',
-    title: 'ACTION',
-    desc: 'We move brands forward with bold ideas and fearless execution.',
-    img: '/Z5.png',
-    icon: <FiSend />,
-  },
-];
-
 const processSteps = [
   { label: 'DISCOVER', icon: <FiSearch /> },
   { label: 'STRATEGIZE', icon: <FiTarget /> },
@@ -65,7 +27,7 @@ const fadeIn = (delay = 0) => ({
 export default function AboutHero() {
   return (
     <section className={styles.hero}>
-      {/* ── Main 3-column grid ── */}
+      {/* ── Main 2-column grid ── */}
       <div className={styles.heroGrid}>
 
         {/* LEFT — Philosophy */}
@@ -114,46 +76,6 @@ export default function AboutHero() {
           </div>
         </motion.div>
 
-        {/* RIGHT — Color Story */}
-        <div className={styles.rightPanel}>
-          <motion.div
-            className={styles.colorStoryHeader}
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            OUR COLOR STORY
-          </motion.div>
-
-          <div className={styles.colorStoryList}>
-            {colorStory.map((item, i) => (
-              <motion.div
-                key={item.title}
-                className={`${styles.colorStoryItem} ${i === 0 ? styles.themeLight : styles.themeDark}`}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.55, delay: 0.5 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {/* Full-bleed background image */}
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className={styles.storyBgImg}
-                />
-                {/* Overlay slot (display: none by default) */}
-                <div className={styles.storyBgOverlay} />
-                {/* Content on top */}
-                <div className={styles.colorStoryText}>
-                  <span className={styles.storyNum}>{item.num}</span>
-                  <strong className={styles.storyTitle}>{item.title}</strong>
-                  <p className={styles.storyDesc}>{item.desc}</p>
-                </div>
-                <div className={styles.storyIconWrap}>{item.icon}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* ── Bottom Process Bar ── */}

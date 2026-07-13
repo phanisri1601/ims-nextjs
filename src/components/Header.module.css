@@ -191,7 +191,7 @@
     color: var(--color-bg-primary);
     border-color: var(--color-accent-primary);
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(255, 0, 51, 0.2);
+    box-shadow: 0 8px 16px rgba(186, 50, 50, 0.2);
 }
 
 .serviceCardContent {
