@@ -11,6 +11,7 @@ interface Panel {
     content: string[]; // paragraphs
     quote?: string;
     accent: string; // tint used for this stage's visual card
+    image?: string;
 }
 
 const SYSTEM: Panel = {
@@ -36,6 +37,7 @@ const STAGES: Panel[] = [
         ],
         quote: "The strongest ideas rarely come first.",
         accent: "#B5895B",
+        image: "1",
     },
     {
         id: "strategize",
@@ -47,6 +49,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Without strategy, creativity becomes decoration.",
         accent: "#28425E",
+        image: "2",
     },
     {
         id: "create",
@@ -58,6 +61,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Beautiful design earns attention. Meaningful design earns loyalty.",
         accent: "#5B3A6B",
+        image: "3",
     },
     {
         id: "amplify",
@@ -68,6 +72,7 @@ const STAGES: Panel[] = [
             "Performance advertising, SEO, SEM and social — reaching the right audience with the right message at the right moment.",
         ],
         accent: "#1E6E63",
+        image: "4",
     },
     {
         id: "scale",
@@ -79,6 +84,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Brands that thrive don't advertise more. They improve continuously.",
         accent: "#1F5C3C",
+        image: "5",
     },
     {
         id: "legacy",
@@ -90,6 +96,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Campaigns create conversations. Brands create memories.",
         accent: "#8A6D1E",
+        image: "6",
     },
 ];
 
@@ -111,9 +118,18 @@ function StageVisual({ panel, className }: { panel: Panel; className: string }) 
                 background: `radial-gradient(120% 120% at 25% 20%, ${panel.accent}2e 0%, ${panel.accent}12 45%, #ffffff 100%)`,
             }}
         >
-            <span className={styles.ghostNumber} style={{ color: `${panel.accent}26` }}>
-                {panel.num}
-            </span>
+            {panel.image ? (
+                <img
+                    src={`/image%20snew/${panel.image}.jpeg`}
+                    alt={`${panel.label} visual`}
+                    className={styles.stageImage}
+                    loading="lazy"
+                />
+            ) : (
+                <span className={styles.ghostNumber} style={{ color: `${panel.accent}26` }}>
+                    {panel.num}
+                </span>
+            )}
         </div>
     );
 }
