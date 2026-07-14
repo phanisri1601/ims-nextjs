@@ -10,8 +10,13 @@ export default function AboutPage() {
       <AboutSection
         eyebrow="ABOUT"
         title="IM SOLUTIONS"
-        subtitle="Turning Ideas into Industry Leadership"
-        description={`With the right advertising, you don't just get results but you multiply your profits. IM Solutions delivers just that. We are a team of experts creating unconventional ads that truly make an impression. Our ads are short, simple and straight to the point targeting ideal customers for a faster outcome. From digital space to every nook and corner of the offline market, we cover it all. IM Solutions connects people and businesses across the digital and physical world, powering people-based marketing. Presentation matters! We help brands present themselves better and reach their customers with our advertising expertise. In simple terms, we amplify your business and enhance your branding. Why wait when you can start now? Contact us for more details.`}
+        subtitle="Every extraordinary brand begins with a belief."
+        description={[
+          "A belief that it can inspire, influence, and leave an enduring mark.",
+         "At IM Solutions, we bring that belief to life through the perfect harmony of strategy, creativity, technology, and innovation. As a full-service branding, advertising, digital marketing, and technology agency, we help ambitious businesses become brands that people recognise, remember, and trust. Every identity we design, every website we develop, every story we tell, and every campaign we launch is guided by one purpose—to create meaningful growth with measurable impact. Markets evolve, technologies change, and consumer expectations shift, which is why we continuously adapt our approach to help brands stay relevant, competitive, and built for long-term success.",
+          "But brands built with purpose never lose their relevance.",
+          "That is the future we build—every single day.",
+        ]}
       />
       <FeaturesCards />
       <MissionVision />

@@ -11,7 +11,7 @@ type AboutSectionProps = {
     eyebrow: string;
     title: string;
     subtitle: string;
-    description: string;
+    description: string | string[];
     imageSrc?: string;
 };
 
@@ -40,9 +40,11 @@ export default function AboutSection({ eyebrow, title, subtitle, description, im
                         </TextReveal>
 
                         <div className={styles.description}>
-                            <TextReveal as="p" animateType="paragraph">
-                                {description}
-                            </TextReveal>
+                            {(Array.isArray(description) ? description : [description]).map((paragraph) => (
+                                <TextReveal key={paragraph} as="p" animateType="paragraph">
+                                    {paragraph}
+                                </TextReveal>
+                            ))}
                         </div>
                     </div>
                 </div>

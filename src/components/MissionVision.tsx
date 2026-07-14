@@ -6,13 +6,14 @@ import styles from "./MissionVision.module.css";
 
 const missionContent = {
     title: "Our Mission",
-    description: "Our mission is to create impactful advertising that inspires audiences and delivers measurable results for brands. We strive to develop strategic, performance-driven marketing solutions that go beyond visibility and generate real business growth. By combining creativity with data-led precision, we aim to build strong, lasting partnerships with our clients and help them excel in competitive markets. Through innovation, collaboration, and accountability, we work to leave a meaningful and lasting impact in the advertising world."
+    description: "To awaken the extraordinary within every brand.",
+    additionalText: "Turning vision into influence, and ambition into enduring value."
 };
 
 const visionContent = {
     title: "Our Vision",
-    description: "To become the growth engine behind ambitious brands across industries and borders. We envision a future where marketing is not guesswork, but a structured system built on intelligence and creativity. By uniting strategy, data, and bold execution, we aim to help businesses scale with clarity and confidence. Our goal is not just visibility - but sustainable market leadership",
-    additionalText: ""
+    description: "To create a world inspired by brands with purpose.",
+    additionalText: "To shape ideas that transcend time, industries, and generations."
 };
 
 export default function MissionVision() {
@@ -26,6 +27,7 @@ export default function MissionVision() {
                             <div className={styles.textContent}>
                                 <h2 className={styles.title}>{missionContent.title}</h2>
                                 <p className={styles.description}>{missionContent.description}</p>
+                                <p className={styles.additionalText}>{missionContent.additionalText}</p>
                             </div>
                         </ScrollReveal>
 
