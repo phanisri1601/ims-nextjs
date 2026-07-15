@@ -1,7 +1,7 @@
 .aboutSection {
     padding: calc(var(--spacing-xl) + 1rem) 0; /* slightly taller */
     min-height: 520px; /* increased height */
-    background: var(--color-bg-primary);
+    background: #f5f5f5;
     position: relative;
     overflow: hidden;
 }
@@ -11,7 +11,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: #ffffff;
+    background: #f5f5f5;
     z-index: 0;
     pointer-events: none;
 }
