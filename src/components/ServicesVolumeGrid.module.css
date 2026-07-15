@@ -56,9 +56,30 @@
   transform: scale(1.25);
 }
 
+<<<<<<< HEAD
 .card:hover .mediaImage,
 .card:focus-visible .mediaImage {
   transform: scale(1.03);
+=======
+/* Static service images (not video posters) — the wrapper drops the
+   fixed 16:10 aspect-ratio and instead sizes itself to the image's own
+   natural aspect ratio, so the image fills it completely with no
+   cropping and no empty letterbox gap. */
+.mediaWrapImage {
+  aspect-ratio: auto;
+}
+
+.imageMedia {
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+  transform: scale(1);
+}
+
+.card:hover .imageMedia,
+.card:focus-visible .imageMedia {
+  transform: scale(1.05);
+>>>>>>> 466eb4cf0f4dc84a4882e4857cd2ec28c8639698
 }
 
 .moreBtn {

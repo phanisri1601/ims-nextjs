@@ -41,14 +41,6 @@ const itemVariants = (distance: number): Variants => ({
     },
 });
 
-const imageVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: { duration: 0.9, ease: EASE },
-    },
-};
-
 // Reduces the reveal translate distance on smaller viewports (80 → 50).
 function useResponsiveDistance() {
     const [distanceY, setDistanceY] = useState(80);
@@ -113,20 +105,6 @@ export default function FeaturesCards() {
                                 </motion.span>
                             </Link>
                         </motion.div>
-                    </motion.div>
-
-                    <motion.div
-                        className={styles.imageOuter}
-                        initial={prefersReducedMotion ? undefined : "hidden"}
-                        whileInView={prefersReducedMotion ? undefined : "visible"}
-                        viewport={viewport}
-                        variants={imageVariants}
-                    >
-                        <img
-                            src="/aboutus/marketing.jpeg"
-                            alt="Powering brand growth through strategy, creativity and technology"
-                            className={styles.image}
-                        />
                     </motion.div>
                 </div>
             </div>

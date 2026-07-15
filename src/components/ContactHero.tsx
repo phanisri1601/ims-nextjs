@@ -81,19 +81,19 @@ export default function ContactHero() {
             <motion.div className={styles.contactItem} variants={fadeUp(0.6)} initial="hidden" animate={animate}>
               <span className={styles.contactLabel}>EMAIL</span>
               <a href="mailto:hello@imsolutions.com" className={styles.contactLink}>
-                hello@imsolutions.com <FaArrowRight className={styles.linkIcon} />
+                 info@imsolutions.mobi <FaArrowRight className={styles.linkIcon} />
               </a>
             </motion.div>
             <motion.div className={styles.contactItem} variants={fadeUp(0.7)} initial="hidden" animate={animate}>
               <span className={styles.contactLabel}>PHONE</span>
               <a href="tel:+919876543210" className={styles.contactLink}>
-                +91 98765 43210 <FaArrowRight className={styles.linkIcon} />
+                +91-8880564488 <FaArrowRight className={styles.linkIcon} />
               </a>
             </motion.div>
             <motion.div className={styles.contactItem} variants={fadeUp(0.8)} initial="hidden" animate={animate}>
               <span className={styles.contactLabel}>LOCATION</span>
               <a href="#map" className={styles.contactLink}>
-                Mumbai, India <FaArrowRight className={styles.linkIcon} />
+                Bengaluru, Karnataka <FaArrowRight className={styles.linkIcon} />
               </a>
             </motion.div>
           </motion.div>

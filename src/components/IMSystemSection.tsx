@@ -37,7 +37,7 @@ const STAGES: Panel[] = [
         ],
         quote: "The strongest ideas rarely come first.",
         accent: "#B5895B",
-        image: "1",
+        image: "Discover.png",
     },
     {
         id: "strategize",
@@ -49,7 +49,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Without strategy, creativity becomes decoration.",
         accent: "#28425E",
-        image: "2",
+        image: "Strategize.png",
     },
     {
         id: "create",
@@ -61,7 +61,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Beautiful design earns attention. Meaningful design earns loyalty.",
         accent: "#5B3A6B",
-        image: "3",
+        image: "Create.png",
     },
     {
         id: "amplify",
@@ -72,7 +72,7 @@ const STAGES: Panel[] = [
             "Performance advertising, SEO, SEM and social — reaching the right audience with the right message at the right moment.",
         ],
         accent: "#1E6E63",
-        image: "4",
+        image: "Amplify.png",
     },
     {
         id: "scale",
@@ -84,7 +84,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Brands that thrive don't advertise more. They improve continuously.",
         accent: "#1F5C3C",
-        image: "5",
+        image: "Scale.jpeg",
     },
     {
         id: "legacy",
@@ -96,7 +96,7 @@ const STAGES: Panel[] = [
         ],
         quote: "Campaigns create conversations. Brands create memories.",
         accent: "#8A6D1E",
-        image: "6",
+        image: "Legacy.png",
     },
 ];
 
@@ -120,7 +120,7 @@ function StageVisual({ panel, className }: { panel: Panel; className: string }) 
         >
             {panel.image ? (
                 <img
-                    src={`/image%20snew/${panel.image}.jpeg`}
+                    src={encodeURI(`/IM System/${panel.image}`)}
                     alt={`${panel.label} visual`}
                     className={styles.stageImage}
                     loading="lazy"

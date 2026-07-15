@@ -67,9 +67,9 @@ export default function ContactPage() {
               <span className={styles.officeEyebrow}>OUR HEAD OFFICE</span>
               <h3 className={styles.companyName}>IM Solutions Pvt. Ltd.</h3>
               <p className={styles.address}>
-                Unit 502, The Atelier,<br />
-                Lower Parel West,<br />
-                Mumbai – 400013, India
+                921, Laxmi Tower, 4th Floor, 5th,<br />
+                Main Rd, Sector 7, HSR Layout,<br />
+                Bengaluru, Karnataka
               </p>
               <a href="#map" className={styles.viewMapLink}>
                 VIEW ON MAP

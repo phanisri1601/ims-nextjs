@@ -27,6 +27,45 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// Removes an inline "FAQ" heading section (any level, any wording like "FAQs",
+// "Quick FAQs", "FAQs – Platform Choices...") along with everything up to the
+// next same-or-higher-level heading. We render our own structured FAQ
+// component from `post.faqs`, so the FAQ text embedded in the fetched
+// external article would otherwise show up twice on the page.
+function stripFaqSection(articleHtml: string) {
+  const headingRegex = /<h([1-6])[^>]*>/gi;
+  const headings: { level: number; start: number; end: number }[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = headingRegex.exec(articleHtml)) !== null) {
+    headings.push({ level: Number(match[1]), start: match.index, end: headingRegex.lastIndex });
+  }
+
+  let faqIndex = -1;
+  for (let i = 0; i < headings.length; i++) {
+    const { level, end } = headings[i];
+    const closeMatch = articleHtml.slice(end).match(new RegExp(`</h${level}>`, "i"));
+    if (!closeMatch || closeMatch.index === undefined) continue;
+    const headingText = articleHtml.slice(end, end + closeMatch.index).replace(/<[^>]+>/g, "");
+    if (/faq/i.test(headingText)) {
+      faqIndex = i;
+      break;
+    }
+  }
+
+  if (faqIndex === -1) return articleHtml;
+
+  const faqHeading = headings[faqIndex];
+  let sectionEnd = articleHtml.length;
+  for (let i = faqIndex + 1; i < headings.length; i++) {
+    if (headings[i].level <= faqHeading.level) {
+      sectionEnd = headings[i].start;
+      break;
+    }
+  }
+
+  return articleHtml.slice(0, faqHeading.start) + articleHtml.slice(sectionEnd);
+}
+
 function extractArticleHtml(html: string) {
   const match = html.match(/<article[\s\S]*?<\/article>/i);
   if (!match) return null;
@@ -35,6 +74,7 @@ function extractArticleHtml(html: string) {
   articleHtml = articleHtml.replace(/<script[\s\S]*?<\/script>/gi, "");
   articleHtml = articleHtml.replace(/<style[\s\S]*?<\/style>/gi, "");
   articleHtml = articleHtml.replace(/<noscript[\s\S]*?<\/noscript>/gi, "");
+  articleHtml = stripFaqSection(articleHtml);
   return articleHtml;
 }
 
