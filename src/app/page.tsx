@@ -2,10 +2,8 @@ import Hero from "@/components/Hero";
 import VideoSection from "@/components/VideoSection";
 import PhilosophySection from "@/components/PhilosophySection";
 import IMSystemSection from "@/components/IMSystemSection";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import WantToKnowMore from "@/components/WantToKnowMore";
 import WhyIMSolutions from "@/components/WhyIMSolutions";
-import BlogsSection from "@/components/BlogsSection";
+import BlogHomeSection from "@/components/BlogHomeSection";
 import CareerSection from "@/components/CareerSection";
 import PartnersSection from "@/components/PartnersSection";
 
@@ -19,10 +17,8 @@ export default function Home() {
       <VideoSection />
       <PhilosophySection />
       <IMSystemSection />
-      <WantToKnowMore />
       <WhyIMSolutions />
-      <WhyChooseUs />
-      <BlogsSection />
+      <BlogHomeSection />
       <CareerSection />
       <PartnersSection />
       <FAQ variant="plain" />

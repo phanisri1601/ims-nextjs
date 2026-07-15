@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { FiArrowRight } from "react-icons/fi";
-import styles from "./CareerSection.module.css";
+import { FiArrowDown } from "react-icons/fi";
+import styles from "./BlogHomeSection.module.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -17,13 +17,13 @@ const fadeUp = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
 };
 
-export default function CareerSection() {
+export default function BlogHomeSection() {
     const prefersReducedMotion = useReducedMotion();
     const viewport = { once: true, amount: 0.3 as const };
 
     return (
         <section className={styles.section}>
-            <img src="/career-Home.png" alt="Life at IM Solutions" className={styles.image} />
+            <img src="/Blog-Home.png" alt="IM Solutions blog — data and insights" className={styles.image} />
 
             <motion.div
                 className={styles.content}
@@ -32,32 +32,28 @@ export default function CareerSection() {
                 viewport={viewport}
                 variants={stagger}
             >
-                <motion.span variants={fadeUp} className={styles.brand}>
-                    IM SOLUTIONS
+                <motion.span variants={fadeUp} className={styles.eyebrow}>
+                    IM SOLUTIONS BLOG
                 </motion.span>
 
-                <motion.span variants={fadeUp} className={styles.eyebrow}>
-                    CAREERS AT IM SOLUTIONS
-                </motion.span>
+                <motion.span variants={fadeUp} className={styles.accentLine} />
 
                 <motion.h2 variants={fadeUp} className={styles.title}>
-                    Build your story.<br />
-                    Shape what&apos;s next.
+                    Data That<br />
+                    Drives
                 </motion.h2>
 
+                <motion.span variants={fadeUp} className={styles.accentLine} />
+
                 <motion.p variants={fadeUp} className={styles.text}>
-                    At IM Solutions, we believe the best work comes from curious minds, bold ideas, and
-                    meaningful collaboration. Join a team where your talent is nurtured, your ideas matter,
-                    and your work creates real impact.
+                    Turning insights into<br />
+                    intelligence and<br />
+                    performance.
                 </motion.p>
 
-                <motion.div variants={fadeUp} className={styles.actions}>
-                    <Link href="/careers" className={styles.primaryButton}>
-                        EXPLORE OPPORTUNITIES
-                        <FiArrowRight aria-hidden="true" />
-                    </Link>
-                    <Link href="/careers" className={styles.secondaryButton}>
-                        LIFE AT IM
+                <motion.div variants={fadeUp}>
+                    <Link href="/blog" className={styles.ctaButton} aria-label="Read the IM Solutions blog">
+                        <FiArrowDown aria-hidden="true" />
                     </Link>
                 </motion.div>
             </motion.div>

@@ -45,6 +45,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const isHome = pathname === '/';
+  const isCareers = pathname === '/careers';
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -512,7 +513,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={`${styles.header} ${isHome ? styles.isHome : ''} ${isScrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${isHome ? styles.isHome : ''} ${isCareers ? styles.solidWhite : ''} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.headerContent}>
         <Link href="/" className={styles.logo}>
           <img

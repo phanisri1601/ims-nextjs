@@ -28,7 +28,7 @@ export default function BlogsSection() {
         <section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <span className={styles.eyebrow}>INSIGHTS & NEWS</span>
+                    <span className={styles.eyebrow}>The Inspiration</span>
                     <h2 className={styles.title}>Latest From Our Blog</h2>
                 </div>
 

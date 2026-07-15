@@ -29,7 +29,11 @@ export default function CareersPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.4} direction="up">
-            <button className={styles.exploreBtn}>
+            <button
+              type="button"
+              className={styles.exploreBtn}
+              onClick={() => document.getElementById('culture')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               <div className={styles.iconCircle}>
                 <FaArrowRight />
               </div>
@@ -53,7 +57,7 @@ export default function CareersPage() {
       </section>
 
       {/* 2. CULTURE SECTION */}
-      <section className={styles.cultureSection}>
+      <section id="culture" className={styles.cultureSection}>
         <div className={styles.cultureLeft}>
           <ScrollReveal delay={0.2} direction="up" className={styles.cultureLeftContent}>
             <div className={styles.cultureEyebrow}>OUR CULTURE</div>

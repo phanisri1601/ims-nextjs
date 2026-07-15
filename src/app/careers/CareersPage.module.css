@@ -11,6 +11,7 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
+  margin-top: calc(var(--header-height, 72px) + 8px); /* Push the section (and its background image) below the fixed nav header */
   background-image: url('/S1.png');
   background-size: cover;
   background-position: center;
@@ -18,7 +19,6 @@
   display: flex;
   align-items: center;
   padding: 0 4rem;
-  padding-top: 5rem; /* Account for fixed header */
 }
 
 .heroContent {
@@ -371,7 +371,7 @@
   .heroSection {
     padding: 0 2rem;
   }
-  
+
   .valuesGridTop, .valuesGridBottom {
     grid-template-columns: 1fr 1fr;
   }
