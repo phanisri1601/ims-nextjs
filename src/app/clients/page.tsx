@@ -2,6 +2,7 @@ import styles from "./ClientsPage.module.css";
 import fs from "fs";
 import path from "path";
 import ClientsHeadlineScroll from "./ClientsHeadlineScroll";
+import ClientsShowcase from "@/components/ClientsShowcase";
 
 const clientFiles = fs
   .readdirSync(path.join(process.cwd(), "public", "clients"))
@@ -31,12 +32,7 @@ export const metadata = {
 export default function ClientsPage() {
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.title}>Our Clients</h1>
-        </div>
-      </header>
-
+      <ClientsShowcase />
 
       <ClientsHeadlineScroll />
 

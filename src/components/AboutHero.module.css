@@ -1,6 +1,6 @@
 /* ================================================================
-   Hero — Editorial split-panel design
-   Layout: [Left Philosophy] | [Right Cube] — matches the Services
+   Hero  Editorial split-panel design
+   Layout: [Left Philosophy] | [Right Cube]  matches the Services
    page hero split (1fr 1.1fr, left text / right image).
    Bottom: Process bar
    ================================================================ */
@@ -18,14 +18,14 @@
 /* ── 2-column grid, matching ServicesHero's split ── */
 .heroGrid {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: 0.9fr 1.35fr;
   align-items: center;
   flex: 1;
   min-height: 0;
 }
 
 /* ================================================================
-   LEFT PANEL — Philosophy
+   LEFT PANEL  Philosophy
    ================================================================ */
 .leftPanel {
   padding: 4rem 3.5rem 5rem 5rem;
@@ -112,7 +112,7 @@
 }
 
 /* ================================================================
-   RIGHT PANEL — Cube image
+   RIGHT PANEL  Cube image
    ================================================================ */
 .centerPanel {
   position: relative;
@@ -125,7 +125,7 @@
 
 .cubeWrapper {
   position: relative;
-  width: min(820px, 100%);
+  width: min(960px, 100%);
   aspect-ratio: 16 / 9;
   flex-shrink: 0;
 }
@@ -141,7 +141,7 @@
 }
 
 /* ================================================================
-   BOTTOM — Process Bar
+   BOTTOM  Process Bar
    ================================================================ */
 .processBar {
   display: grid;
@@ -242,7 +242,7 @@
    ================================================================ */
 @media (max-width: 1280px) {
   .heroGrid {
-    grid-template-columns: 1fr 1fr 0.7fr;
+    grid-template-columns: 0.85fr 1.15fr;
   }
 
   .leftPanel {

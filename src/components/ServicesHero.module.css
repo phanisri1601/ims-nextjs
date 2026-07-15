@@ -1,5 +1,5 @@
 /* ================================================================
-   ServicesHero — matches the editorial reference design
+   ServicesHero  matches the editorial reference design
    Warm beige background | Left text | Right Cube image
    ================================================================ */
 
@@ -15,7 +15,7 @@
 }
 
 /* ================================================================
-   LEFT — Text panel
+   LEFT  Text panel
    ================================================================ */
 .left {
   display: flex;
@@ -114,7 +114,7 @@
   transform: translateX(5px);
 }
 
-/* Services label + list — shown in the left panel while a cube's video plays */
+/* Services label + list  shown in the left panel while a cube's video plays */
 .servicesLabel {
   font-size: 0.68rem;
   font-weight: 700;
@@ -155,7 +155,7 @@
 }
 
 /* ================================================================
-   RIGHT — Cube image + video holder
+   RIGHT  Cube image + video holder
    ================================================================ */
 .right {
   display: flex;
@@ -164,7 +164,7 @@
   padding: 0;
 }
 
-/* Outer wrapper — 16:9 to match the actual image dimensions */
+/* Outer wrapper  16:9 to match the actual image dimensions */
 .cubeWrapper {
   position: relative;
   width: min(820px, 100%);
@@ -182,13 +182,13 @@
       transparent 100%);
 }
 
-/* ── Image holder — fills the wrapper ── */
+/* ── Image holder  fills the wrapper ── */
 .imageHolder {
   position: absolute;
   inset: 0;
 }
 
-/* Shared positioning for both the base image and the video — same holder,
+/* Shared positioning for both the base image and the video  same holder,
    same box, so switching between them is a pure crossfade with no layout shift */
 .mediaLayer {
   position: absolute;
@@ -201,7 +201,7 @@
   object-position: center;
 }
 
-/* Full-size video — occupies the exact same holder as the image, not clipped to any face */
+/* Full-size video  occupies the exact same holder as the image, not clipped to any face */
 .cubeVideo {
   width: 100%;
   height: 100%;
@@ -210,11 +210,11 @@
 }
 
 /* ================================================================
-   HOTSPOTS — invisible SVG paths, pixel-perfect to each visible cube
+   HOTSPOTS  invisible SVG paths, pixel-perfect to each visible cube
    face (traced from the source image, not estimated). Pure hit areas:
    no fill, no stroke, no hover feedback of any kind. With
    object-fit: contain on a 16:9 image in a 16:9 container the image
-   fills the container exactly — no letterboxing — so the 0-100
+   fills the container exactly  no letterboxing  so the 0-100
    viewBox maps 1:1 onto the image.
    ================================================================ */
 .hotspotSvg {
@@ -234,7 +234,7 @@
   pointer-events: all;
 }
 
-/* Soft gold glow shown behind the hovered face — gradient + blur, no hard edge */
+/* Soft gold glow shown behind the hovered face  gradient + blur, no hard edge */
 .hotspotGlow {
   fill: url(#cubeGlowGradient);
   filter: url(#cubeGlowBlur);

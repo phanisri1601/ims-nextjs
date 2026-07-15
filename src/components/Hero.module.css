@@ -1,5 +1,5 @@
 /* ================================================================
-   Hero — Reference design
+   Hero  Reference design
    Two-column: [Left text] | [Right cube image]
    Cream background, large serif heading, red accent dots
    ================================================================ */
@@ -16,7 +16,7 @@
 }
 
 /* ================================================================
-   LEFT — Text panel
+   LEFT  Text panel
    ================================================================ */
 .heroLeft {
   padding: 0 4rem 5rem 5rem;
@@ -130,7 +130,7 @@
 }
 
 /* ================================================================
-   RIGHT — Cube image panel
+   RIGHT  Cube image panel
    ================================================================ */
 .heroRight {
   position: relative;
@@ -146,7 +146,7 @@
   object-position: center center;
   transform: scale(1.0);
   transition: transform 0.8s ease;
-  /* Inward gradient mask — fades all edges into the cream background */
+  /* Inward gradient mask  fades all edges into the cream background */
   -webkit-mask-image: radial-gradient(
     ellipse 85% 80% at 52% 50%,
     black 40%,
@@ -168,7 +168,7 @@
 }
 
 /* ================================================================
-   SCROLL INDICATOR — pinned to bottom center
+   SCROLL INDICATOR  pinned to bottom center
    ================================================================ */
 .heroScroll {
   position: absolute;

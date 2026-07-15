@@ -208,7 +208,7 @@ export default function ServiceDetailPage() {
   }));
 
   const relatedServices = allServices.filter(s => s.category === service.category && s.slug !== slug);
-  // Keep a short, focused list for Related Services — show up to 4 items
+  // Keep a short, focused list for Related Services  show up to 4 items
   const limitedRelated = relatedServices.slice(0, 4);
   const displayRelated = limitedRelated;
 
@@ -219,7 +219,7 @@ export default function ServiceDetailPage() {
     },
     {
       q: 'Do you handle creative and media buying?',
-      a: 'Yes — we do end-to-end campaign management including creative, media planning, buying, and optimization.'
+      a: 'Yes  we do end-to-end campaign management including creative, media planning, buying, and optimization.'
     },
     {
       q: 'Can you work with our internal team?',
@@ -318,7 +318,7 @@ export default function ServiceDetailPage() {
     `/service/${item}.png`
   );
   const provideDescriptions = provideItems.map((t: string) =>
-    `We deliver ${t.toLowerCase()} as part of our ${service.title}—built to support your goals with clear execution and measurable outcomes.`
+    `We deliver ${t.toLowerCase()} as part of our ${service.title}built to support your goals with clear execution and measurable outcomes.`
   );
 
   return (
@@ -342,7 +342,7 @@ export default function ServiceDetailPage() {
             <div className={styles.splitContent}>
               <h2 className={styles.splitTitle}>Grow Faster With {service.title}</h2>
               <p className={styles.splitDesc}>
-                We plan, build, and optimize campaigns that connect with the right audience—turning attention into leads and
+                We plan, build, and optimize campaigns that connect with the right audienceturning attention into leads and
                 measurable growth.
               </p>
             </div>

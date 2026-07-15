@@ -89,7 +89,7 @@ function ServiceGridVideo({
         aria-label={title}
         onPlaying={() => setPosterVisible(false)}
       />
-      <span className={styles.moreBtn}>More +</span>
+      <span className={styles.moreBtn}>View Details +</span>
     </div>
   );
 }
@@ -106,7 +106,7 @@ function ServiceGridImage({ title, src }: { title: string; src: string }) {
         width={1200}
         height={750}
       />
-      <span className={styles.moreBtn}>More +</span>
+      <span className={styles.moreBtn}>View Details +</span>
     </div>
   );
 }

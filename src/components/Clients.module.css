@@ -225,7 +225,7 @@
 }
 
 /* ============================================================
-   Text Loading / Reveal Animations — Clients Section
+   Text Loading / Reveal Animations  Clients Section
    ============================================================ */
 
 @keyframes clientsTextFadeUp {
@@ -255,7 +255,7 @@
     100% { background-position: 200% center; }
 }
 
-/* Section title reveal — triggered by parent ScrollReveal */
+/* Section title reveal  triggered by parent ScrollReveal */
 .header :global(.section-title) {
     animation: clientsTextFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
 }
@@ -292,4 +292,4 @@
     background-clip: text;
     animation: clientNameShimmer 1.8s linear 0.3s 1 forwards,
                clientsSubtitleFade 0.5s ease 0.1s both;
-}
+}

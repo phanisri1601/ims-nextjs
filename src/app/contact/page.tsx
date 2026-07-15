@@ -14,14 +14,14 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <main className={styles.page}>
-      {/* Hero Section — animated */}
+      {/* Hero Section  animated */}
       <ContactHero />
 
       {/* Partners Section */}
       <section className={styles.partnersSection}>
         <div className={styles.partnersContainer}>
           <div className={styles.partnersLeft}>
-            <h2 className={styles.partnersTitle}>OUR PARTNERS</h2>
+            <h2 className={styles.partnersTitle}>OUR CLIENTS</h2>
             <div className={styles.partnersDivider}></div>
             <p className={styles.partnersDesc}>
               We partner with ambitious businesses across industries to create brands that endure and lead.
@@ -50,7 +50,7 @@ export default function ContactPage() {
       {/* Bottom Section */}
       <section className={styles.bottomSection}>
         <div className={styles.bottomGrid}>
-          {/* Left — conversation block with background image */}
+          {/* Left  conversation block with background image */}
           <div className={styles.conversationBlock}>
             <div className={styles.conversationContent}>
               <h2 className={styles.conversationTitle}>Great things start<br />with a conversation.</h2>
@@ -61,26 +61,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Middle — Head Office */}
-          <div className={styles.officeBlock}>
-            <div className={styles.officeContent}>
-              <span className={styles.officeEyebrow}>OUR HEAD OFFICE</span>
-              <h3 className={styles.companyName}>IM Solutions Pvt. Ltd.</h3>
-              <p className={styles.address}>
-                921, Laxmi Tower, 4th Floor, 5th,<br />
-                Main Rd, Sector 7, HSR Layout,<br />
-                Bengaluru, Karnataka
-              </p>
-              <a href="#map" className={styles.viewMapLink}>
-                VIEW ON MAP
-                <span className={styles.circleIcon}>
-                  <FaArrowRight />
-                </span>
-              </a>
-            </div>
-          </div>
-
-          {/* Right — Google Maps Embed */}
+          {/* Right  Google Maps Embed */}
           <div className={styles.mapBlock} id="map">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.0799!2d77.6300791!3d12.9097456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1491d13b6519%3A0x3cb3ab2f8e060d9!2sIM%20Solutions!5e0!3m2!1sen!2sin!4v1751452800000"

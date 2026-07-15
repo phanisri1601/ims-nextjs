@@ -30,7 +30,7 @@ export default function AboutHero() {
       {/* ── Main 2-column grid ── */}
       <div className={styles.heroGrid}>
 
-        {/* LEFT — Philosophy */}
+        {/* LEFT  Philosophy */}
         <motion.div
           className={styles.leftPanel}
           initial="hidden"
@@ -58,7 +58,7 @@ export default function AboutHero() {
           </motion.a>
         </motion.div>
 
-        {/* CENTER — Cube */}
+        {/* CENTER  Cube */}
         <motion.div
           className={styles.centerPanel}
           initial={{ opacity: 0, scale: 0.93 }}
@@ -95,7 +95,7 @@ export default function AboutHero() {
             <div key={step.label} className={styles.processStep}>
               <span className={styles.processStepIcon}>{step.icon}</span>
               <span className={styles.processStepLabel}>{step.label}</span>
-              {i < processSteps.length - 1 && <span className={styles.processDivider}>—</span>}
+              {i < processSteps.length - 1 && <span className={styles.processDivider}></span>}
             </div>
           ))}
         </div>

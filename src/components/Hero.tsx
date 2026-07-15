@@ -25,7 +25,7 @@ const fadeIn = (delay = 0) => ({
 export default function Hero() {
   return (
     <section className={styles.hero}>
-      {/* ── Left — Text content ── */}
+      {/* ── Left  Text content ── */}
       <div className={styles.heroLeft}>
         <motion.p
           className={styles.heroTagline}
@@ -86,7 +86,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ── Right — Cube image ── */}
+      {/* ── Right  Cube image ── */}
       <motion.div
         className={styles.heroRight}
         initial={{ opacity: 0, x: 60, scale: 0.96 }}

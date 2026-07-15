@@ -127,7 +127,7 @@ const onlineStackingCards = [
     title: 'Search Engine Optimization',
     slug: 'seo',
     description:
-      'Improve organic visibility with data-led SEO—technical fixes, content strategy, and rankings that bring qualified traffic.',
+      'Improve organic visibility with data-led SEOtechnical fixes, content strategy, and rankings that bring qualified traffic.',
     tag: 'SEO',
     number: 2,
     image: popularImage('Search Engine Optimization.png'),
@@ -282,7 +282,7 @@ export default function OnlineServicesPage() {
     },
     {
       question: 'What is the difference between SEO and SEM?',
-      answer: 'SEO (Search Engine Optimization) focuses on organic search results through content optimization and technical improvements. SEM (Search Engine Marketing) includes paid search advertising. Both are valuable—SEO provides long-term results while SEM offers immediate visibility. A combination strategy often works best.'
+      answer: 'SEO (Search Engine Optimization) focuses on organic search results through content optimization and technical improvements. SEM (Search Engine Marketing) includes paid search advertising. Both are valuableSEO provides long-term results while SEM offers immediate visibility. A combination strategy often works best.'
     },
     {
       question: 'How do you measure the success of digital marketing campaigns?',

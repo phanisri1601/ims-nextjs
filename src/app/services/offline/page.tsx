@@ -95,7 +95,7 @@ const offlineStackingCards = [
     title: 'BTL Advertising',
     slug: 'btl-advertising',
     description:
-      'Drive direct response with targeted below-the-line campaigns—sampling, kiosks, and hyperlocal promotions.',
+      'Drive direct response with targeted below-the-line campaignssampling, kiosks, and hyperlocal promotions.',
     tag: 'BTL',
     number: 3,
     image: offlineImage('btl advertising service.png'),
@@ -280,7 +280,7 @@ export default function OfflineServicesPage() {
         headingBlack="Every brand deserves
 a real-world presence."
         headingRed="We make it happen."
-        description="At IM Solutions, we bring your brand to life beyond the screen — through hoardings, events, transit branding and on-ground activations that create lasting impressions."
+        description="At IM Solutions, we bring your brand to life beyond the screen  through hoardings, events, transit branding and on-ground activations that create lasting impressions."
         ctaLabel="EXPLORE OFFLINE SERVICES"
         ctaHref="#services-listing"
       />

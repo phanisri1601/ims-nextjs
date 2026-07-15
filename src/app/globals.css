@@ -75,7 +75,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* clip (not hidden) — hidden forces overflow-y to auto per spec, which
+  /* clip (not hidden)  hidden forces overflow-y to auto per spec, which
      breaks position: sticky for every descendant on the site */
   overflow-x: clip;
 }

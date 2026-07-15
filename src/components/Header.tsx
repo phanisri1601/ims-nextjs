@@ -519,7 +519,7 @@ export default function Header() {
           <img
             src="/weblogo.png"
             alt="IM Solutions"
-            style={{ height: '44px', width: 'auto' }} // Inline style for immediate sizing control
+            style={{ height: '52px', width: 'auto', marginLeft: '10px' }} // Inline style for immediate sizing control
           />
         </Link>
 

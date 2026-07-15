@@ -259,11 +259,10 @@
 
 .bottomGrid {
   display: grid;
-  grid-template-columns: 1.8fr 0.7fr 1.5fr;
-  /* Wider left panel | Narrower middle | Narrower map */
+  grid-template-columns: 1fr 1fr;
 }
 
-/* Left — Conversation with H2.png background */
+/* Left  Conversation with H2.png background */
 .conversationBlock {
   position: relative;
   background-image: url('/H2.png');
@@ -345,87 +344,11 @@
   color: #FFFFFF;
 }
 
-/* Middle — Office */
-.officeBlock {
-  background-color: #FAFAF8;
-  padding: clamp(2rem, 4vw, 3.5rem);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  border-left: 1px solid rgba(0, 0, 0, 0.07);
-}
-
-.officeContent {
-  max-width: 340px;
-}
-
-.officeEyebrow {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: #777;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.companyName {
-  font-size: 1.4rem;
-  font-weight: 400;
-  font-family: var(--font-primary);
-  color: #111;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-}
-
-.address {
-  font-size: 0.9rem;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 1.75rem;
-}
-
-.viewMapLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #111;
-  text-decoration: none;
-  transition: gap 0.3s ease;
-}
-
-.viewMapLink:hover {
-  gap: 1.25rem;
-  color: #BA3232;
-}
-
-.circleIcon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-}
-
-.viewMapLink:hover .circleIcon {
-  border-color: #BA3232;
-  background: #BA3232;
-  color: #fff;
-}
-
-/* Right — Map */
+/* Right  Map */
 .mapBlock {
   position: relative;
-  min-height: 260px;
+  align-self: center;
+  height: 320px;
   border-left: 1px solid rgba(0, 0, 0, 0.07);
   overflow: hidden;
   display: flex;
@@ -436,7 +359,6 @@
   flex: 1;
   width: 100%;
   height: 100%;
-  min-height: 260px;
   border: none;
   display: block;
 }
@@ -452,10 +374,6 @@
     grid-column: 1 / -1;
     min-height: 220px;
   }
-
-  .mapBlock {
-    min-height: 220px;
-  }
 }
 
 @media (max-width: 640px) {
@@ -464,13 +382,12 @@
   }
 
   .conversationBlock,
-  .officeBlock,
   .mapBlock {
     grid-column: auto;
   }
 
   .mapBlock {
-    min-height: 260px;
+    height: 260px;
   }
 }
 
@@ -499,7 +416,7 @@
 }
 
 /* ============================================================
-   Text Loading / Reveal Animations — Contact Page Sections
+   Text Loading / Reveal Animations  Contact Page Sections
    ============================================================ */
 
 @keyframes textFadeUp {

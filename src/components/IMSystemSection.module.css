@@ -1,9 +1,8 @@
 /* ================================================================
-   THE IM SYSTEM™ — a normal, editorial scrolling section (no pin,
-   no scroll-jacking). Each stage reveals once with a simple fade-up
-   as it enters the viewport, matching how the rest of the site
-   reveals content. Theme: white background, red accent, classic
-   serif headings (same Georgia treatment as the cube hero).
+   THE IM SYSTEM™  header + an animated slider that cycles through
+   each stage (Discover → Legacy), with dot navigation below.
+   Theme: warm ivory background, red accent, classic serif headings
+   (same Georgia treatment as the cube hero).
    ================================================================ */
 .section {
     padding: var(--section-padding-y) 0;
@@ -16,26 +15,11 @@
     padding: 0 var(--spacing-lg);
 }
 
-/* ── Header — system overview ── */
+/* ── Header  system overview ── */
 .header {
     max-width: 680px;
     margin: 0 auto 3.25rem;
     text-align: center;
-}
-
-.label {
-    display: inline-flex;
-    width: fit-content;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-accent-primary);
-    background: rgba(186, 50, 50, 0.06);
-    border: 1px solid rgba(186, 50, 50, 0.18);
-    padding: 0.4rem 0.9rem;
-    border-radius: 999px;
-    margin: 0 auto 1.25rem;
 }
 
 .heading {
@@ -69,8 +53,8 @@
     margin: 1.5rem auto 0;
 }
 
-/* ── Stages — editorial alternating rows, normal document flow ── */
-.stages {
+/* ── Slider ── */
+.slider {
     display: flex;
     flex-direction: column;
 }
@@ -79,20 +63,10 @@
     display: flex;
     align-items: center;
     gap: clamp(2.5rem, 5vw, 4.5rem);
-    padding: 2.25rem 0;
-    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 0 2.5rem;
 }
 
-.stageRow:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.stageRow:first-child {
-    padding-top: 0;
-}
-
-.stageRow:nth-child(even) {
+.stageRowReverse {
     flex-direction: row-reverse;
 }
 
@@ -133,14 +107,6 @@
     gap: 0.6rem;
 }
 
-.stageLabel {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-accent-primary);
-}
-
 .stageHeading {
     font-family: var(--font-primary);
     font-size: clamp(1.4rem, 2.2vw, 1.9rem);
@@ -168,6 +134,36 @@
     max-width: 500px;
 }
 
+/* ── Dots ── */
+.dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    background: var(--color-border);
+    cursor: pointer;
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+.dot:hover {
+    background: var(--color-accent-primary);
+    opacity: 0.6;
+}
+
+.dotActive {
+    background: var(--color-accent-primary);
+    transform: scale(1.3);
+}
+
 @media (max-width: 900px) {
     .container {
         padding: 0 var(--spacing-md);
@@ -184,11 +180,11 @@
 
 @media (max-width: 700px) {
     .stageRow,
-    .stageRow:nth-child(even) {
+    .stageRowReverse {
         flex-direction: column;
         align-items: flex-start;
         gap: 1.25rem;
-        padding: 1.75rem 0;
+        padding: 0.5rem 0 1.75rem;
     }
 
     .stageVisual {

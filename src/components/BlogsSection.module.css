@@ -180,7 +180,7 @@
     }
 }
 
-/* Card — image + bottom fade + title */
+/* Card  image + bottom fade + title */
 .card {
     position: relative;
     aspect-ratio: 16/9;
@@ -209,7 +209,7 @@
     transform: scale(1.04);
 }
 
-/* Soft bottom fade — ~35% of card height, multi-stop for a premium blend */
+/* Soft bottom fade  ~35% of card height, multi-stop for a premium blend */
 .imageFade {
     position: absolute;
     left: 0;

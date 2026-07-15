@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { FiArrowDown } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import styles from "./BlogHomeSection.module.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -23,7 +23,7 @@ export default function BlogHomeSection() {
 
     return (
         <section className={styles.section}>
-            <img src="/Blog-Home.png" alt="IM Solutions blog — data and insights" className={styles.image} />
+            <img src="/Blog-Home.png" alt="IM Solutions blog  data and insights" className={styles.image} />
 
             <motion.div
                 className={styles.content}
@@ -53,7 +53,7 @@ export default function BlogHomeSection() {
 
                 <motion.div variants={fadeUp}>
                     <Link href="/blog" className={styles.ctaButton} aria-label="Read the IM Solutions blog">
-                        <FiArrowDown aria-hidden="true" />
+                        <FiArrowRight aria-hidden="true" />
                     </Link>
                 </motion.div>
             </motion.div>

@@ -70,14 +70,23 @@ export default function Footer() {
         <footer className={styles.footer}>
             <div className={styles.footerContainer}>
                 {/* Powered By Section */}
-                <div className={styles.footerColumn}>
-                    
-                    
+                <div className={`${styles.footerColumn} ${styles.officeColumn}`}>
+
 
                     <div className={styles.addressBlock}>
-                        <h5 className={styles.addressTitle}>Corporate Office</h5>
+                        <h4 className={styles.columnTitle}>Corporate Office</h4>
                         <p className={styles.addressText}>
                             921, Laxmi Tower, 4th Floor, 5th Main Rd, Sector 7, HSR Layout, Bengaluru, Karnataka 560102
+                        </p>
+                    </div>
+
+                    <div className={styles.addressBlock}>
+                        <h4 className={styles.columnTitle}>Branch Office</h4>
+                        <p className={styles.addressText}>
+                            214, South West Block, Near Ram Mandir, Alwar, Rajasthan
+                        </p>
+                        <p className={styles.addressText}>
+                            219, Nilkanth Plaza, Near Kiran Chowk, Varachha Road, Surat, Gujarat 395010
                         </p>
                     </div>
 
@@ -92,7 +101,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className={styles.socialLinks}>
-                        <span>Follow Us :</span>
+                        
                         <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                         <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
                         <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
@@ -100,28 +109,8 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Quick Links Section */}
-                <div className={styles.footerColumn}>
-                    <h4 className={styles.columnTitle}>Quick Links</h4>
-                    <ul className={styles.linkList}>
-                        <li><Link href="/">Home</Link></li>
-                        <li><Link href="/about">About</Link></li>
-                        <li className={styles.servicesGroup}>
-                            <span className={styles.linkLabel} tabIndex={0}>Services</span>
-                            <ul className={styles.servicesSubLinks}>
-                                <li className={styles.subLinkItem}><Link href="/services/online">Online Services</Link></li>
-                                <li className={styles.subLinkItem}><Link href="/services/offline">Offline Services</Link></li>
-                            </ul>
-                        </li>
-                        <li><Link href="/blog">Blog</Link></li>
-                        <li><Link href="/careers">Career</Link></li>
-                        <li><Link href="/contact">Contact</Link></li>
-                        <li><Link href="/privacy">Privacy Policy</Link></li>
-                    </ul>
-                </div>
-
                 {/* Enquire Now Section */}
-                <div className={styles.footerColumn}>
+                <div className={`${styles.footerColumn} ${styles.enquireColumn}`}>
                     <h4 className={styles.columnTitle}>Enquire Now</h4>
                     <form className={styles.contactForm} onSubmit={handleSubmit}>
                         <input type="text" placeholder="Name" required />
@@ -139,6 +128,26 @@ export default function Footer() {
                         <textarea placeholder="Message" rows={3} required></textarea>
                         <button type="submit" className={styles.submitBtn}>Submit</button>
                     </form>
+                </div>
+
+                {/* Quick Links Section */}
+                <div className={`${styles.footerColumn} ${styles.linksColumn}`}>
+                    <h4 className={styles.columnTitle}>Quick Links</h4>
+                    <ul className={styles.linkList}>
+                        <li><Link href="/">Home</Link></li>
+                        <li><Link href="/about">About</Link></li>
+                        <li className={styles.servicesGroup}>
+                            <span className={styles.linkLabel} tabIndex={0}>Services</span>
+                            <ul className={styles.servicesSubLinks}>
+                                <li className={styles.subLinkItem}><Link href="/services/online">Online Services</Link></li>
+                                <li className={styles.subLinkItem}><Link href="/services/offline">Offline Services</Link></li>
+                            </ul>
+                        </li>
+                        <li><Link href="/blog">Blog</Link></li>
+                        <li><Link href="/careers">Career</Link></li>
+                        <li><Link href="/contact">Contact</Link></li>
+                        <li><Link href="/privacy">Privacy Policy</Link></li>
+                    </ul>
                 </div>
             </div>
 

@@ -35,7 +35,7 @@ export const blogPosts: BlogPost[] = [
     id: 52,
     title: "Top SEO Trends 2026: What Businesses Need to Prepare For",
     excerpt:
-      "Search behavior is evolving faster than ever. AI-driven experiences, voice search, visual discovery, and smarter algorithms are changing how users interact with search engines. For businesses aiming to stay visible online, understanding the Top SEO Trends 2026 is no longer optional — it's essential. Whether you're a startup, local business, or enterprise brand, adapting your SEO strategy early can help you maintain rankings, traffic, and conversions in an increasingly competitive digital landscape.",
+      "Search behavior is evolving faster than ever. AI-driven experiences, voice search, visual discovery, and smarter algorithms are changing how users interact with search engines. For businesses aiming to stay visible online, understanding the Top SEO Trends 2026 is no longer optional  it's essential. Whether you're a startup, local business, or enterprise brand, adapting your SEO strategy early can help you maintain rankings, traffic, and conversions in an increasingly competitive digital landscape.",
     image: blogImage("Top SEO Trends for 2026.png"),
     date: "May 2026",
     author: "IM Solutions",
@@ -101,7 +101,7 @@ export const blogPosts: BlogPost[] = [
         blocks: [
           {
             type: "paragraph",
-            text: "Featured snippets, AI summaries, maps, knowledge panels, and quick answers are reducing the need for users to click websites directly. That means SEO success is no longer measured only by clicks — visibility matters too.",
+            text: "Featured snippets, AI summaries, maps, knowledge panels, and quick answers are reducing the need for users to click websites directly. That means SEO success is no longer measured only by clicks  visibility matters too.",
           },
           {
             type: "paragraph",
@@ -260,7 +260,7 @@ export const blogPosts: BlogPost[] = [
           },
           {
             type: "paragraph",
-            text: "The future of SEO is no longer just about rankings — it's about visibility, authority, and delivering value across multiple search experiences. Working with a trusted SEO Service in Bangalore can help brands adapt faster, improve organic growth, and stay aligned with evolving search engine expectations.",
+            text: "The future of SEO is no longer just about rankings  it's about visibility, authority, and delivering value across multiple search experiences. Working with a trusted SEO Service in Bangalore can help brands adapt faster, improve organic growth, and stay aligned with evolving search engine expectations.",
           },
         ],
       },
@@ -313,7 +313,7 @@ export const blogPosts: BlogPost[] = [
     title:
       "Google Marketing Live 2026: The Definitive Guide to AI-Powered Search, Agentic Commerce, and Ask Advisor",
     excerpt:
-      "At Google Marketing Live 2026, Google unveiled how businesses will advertise, optimize, and connect with customers in an AI-first ecosystem—from AI-generated campaigns to conversational commerce and predictive audiences.",
+      "At Google Marketing Live 2026, Google unveiled how businesses will advertise, optimize, and connect with customers in an AI-first ecosystemfrom AI-generated campaigns to conversational commerce and predictive audiences.",
     image: blogImage("Google Marketing Live 2026 .png"),
     date: "November 2025",
     author: "IM Solutions",
@@ -383,7 +383,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 3,
     title: "How AI Is Transforming Website Design: Future-Proofing Your Brand",
-    excerpt: "Artificial Intelligence isn't coming to web design. It's already here—redefining how we create, interact, and evolve online. Discover the impact on modern design.",
+    excerpt: "Artificial Intelligence isn't coming to web design. It's already hereredefining how we create, interact, and evolve online. Discover the impact on modern design.",
     image: blogImage("How AI Is Transforming Website Design.png"),
     date: "September 2025",
     author: "IM Solutions",
@@ -418,7 +418,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 4,
     title: "WordPress vs Webflow vs Custom Code: What's Right for Startups?",
-    excerpt: "Choosing the right platform to build your website isn't just a technical decision—it's a strategic one. Whether you're a startup or an established business, we break down the pros and cons.",
+    excerpt: "Choosing the right platform to build your website isn't just a technical decisionit's a strategic one. Whether you're a startup or an established business, we break down the pros and cons.",
     image: blogImage("WordPress vs Webflow vs Custom Code.png"),
     date: "August 2025",
     author: "IM Solutions",
@@ -442,7 +442,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What's the biggest benefit of going custom?",
-        a: "It's yours end-to-end—tailored logic, security, and performance all built from scratch to support your product, not limit it.",
+        a: "It's yours end-to-endtailored logic, security, and performance all built from scratch to support your product, not limit it.",
       },
       {
         q: "Do I need a developer to manage my Webflow or WordPress site after launch?",
@@ -453,7 +453,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 5,
     title: "Top 7 ORM Strategies That Actually Work in 2025 (For Global Brands)",
-    excerpt: "Online reputation is filtered through search engines, AI assistants, reviews, and Reddit threads. What shows up—and how it shows up—matters. Here are the strategies that drive real results.",
+    excerpt: "Online reputation is filtered through search engines, AI assistants, reviews, and Reddit threads. What shows upand how it shows upmatters. Here are the strategies that drive real results.",
     image: blogImage("Top 7 ORM Strategies That Actually Work in 2025.png"),
     date: "July 2025",
     author: "IM Solutions",
@@ -465,7 +465,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Is ORM different for startups vs global brands?",
-        a: "The foundation is the same—visibility, credibility, and consistency—but the approach is tailored for scale and complexity.",
+        a: "The foundation is the samevisibility, credibility, and consistencybut the approach is tailored for scale and complexity.",
       },
       {
         q: "How does ORM affect generative AI search results?",
@@ -488,7 +488,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 6,
     title: "How to Choose the Best Website Designing Agency: A 2025 Guide",
-    excerpt: "In 2025, your website isn't just a digital space—it's your brand's first handshake. The choice of a website design agency can make or break your digital presence.",
+    excerpt: "In 2025, your website isn't just a digital spaceit's your brand's first handshake. The choice of a website design agency can make or break your digital presence.",
     image: blogImage("How to Choose the Best Website Designing Agency.png"),
     date: "June 2025",
     author: "IM Solutions",
@@ -500,7 +500,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "How do I know if a web design agency is the right fit for my industry?",
-        a: "Look at their past work and client verticals—a great agency understands industry nuances but still designs around user logic.",
+        a: "Look at their past work and client verticalsa great agency understands industry nuances but still designs around user logic.",
       },
       {
         q: "Is there a difference between a web designer and a website development company?",
@@ -523,7 +523,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 7,
     title: "Online Reputation Management in Bangalore: Why Your Brand Needs It Now",
-    excerpt: "In a world of open platforms and instant feedback, reputation isn't optional—it's your currency. At IM Solutions, we help brands build and protect their digital reputation.",
+    excerpt: "In a world of open platforms and instant feedback, reputation isn't optionalit's your currency. At IM Solutions, we help brands build and protect their digital reputation.",
     image: blogImage("Online Reputation Management in Banglore.png"),
     date: "May 2025",
     author: "IM Solutions",
@@ -535,7 +535,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "When should a brand start ORM services?",
-        a: "Now. ORM is proactive, not reactive—the best time to start is before you need it.",
+        a: "Now. ORM is proactive, not reactivethe best time to start is before you need it.",
       },
       {
         q: "Can ORM help remove negative reviews or links?",
@@ -543,11 +543,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does ORM affect SEO?",
-        a: "Absolutely. ORM-optimized content ranks well, increases engagement, and influences click-throughs—all of which support SEO.",
+        a: "Absolutely. ORM-optimized content ranks well, increases engagement, and influences click-throughsall of which support SEO.",
       },
       {
         q: "Is ORM only for large companies?",
-        a: "No. Startups, SMEs, and personal brands all need ORM—the smaller your footprint, the more important your perception.",
+        a: "No. Startups, SMEs, and personal brands all need ORMthe smaller your footprint, the more important your perception.",
       },
       {
         q: "How does ORM connect with generative AI search?",
@@ -558,7 +558,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 8,
     title: "Top 10 Website Design Trends Dominating in 2025",
-    excerpt: "Design isn't just about how it looks. It's about how it feels—how seamlessly it guides, informs, and inspires. In 2025, these trends are reshaping digital experiences.",
+    excerpt: "Design isn't just about how it looks. It's about how it feelshow seamlessly it guides, informs, and inspires. In 2025, these trends are reshaping digital experiences.",
     image: blogImage("Top 10 Website Design Trends Dominating in 2025.png"),
     date: "April 2025",
     author: "IM Solutions",
@@ -570,11 +570,11 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Why should I update my website design in 2025?",
-        a: "Design trends evolve rapidly—a fresh design ensures your brand looks current, loads faster, performs better on mobile, and meets new UX expectations.",
+        a: "Design trends evolve rapidlya fresh design ensures your brand looks current, loads faster, performs better on mobile, and meets new UX expectations.",
       },
       {
         q: "What is the difference between a web design company and a web development company?",
-        a: "A web design company focuses on aesthetics and user experience, while a web development company handles the code, functionality, and backend—ideally you get both together.",
+        a: "A web design company focuses on aesthetics and user experience, while a web development company handles the code, functionality, and backendideally you get both together.",
       },
       {
         q: "How is AI used to personalize websites?",
@@ -593,7 +593,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 9,
     title: "How Performance Marketing Can Double Your ROI in 2025",
-    excerpt: "In today's digital-first landscape, businesses can no longer afford to run ads that simply \"look good\"—they need campaigns that deliver measurable results and maximize return on investment.",
+    excerpt: "In today's digital-first landscape, businesses can no longer afford to run ads that simply \"look good\"they need campaigns that deliver measurable results and maximize return on investment.",
     image: blogImage("How Performance Marketing Can Double Your ROI in 2025.png"),
     date: "March 2025",
     author: "IM Solutions",
@@ -698,7 +698,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 12,
     title: "The Power of Personalization: How to Create Hyper-Targeted Marketing Campaigns",
-    excerpt: "Imagine a world where every message, every ad, and every touchpoint feels tailor-made just for you. This isn't the future—it's happening now with modern personalization strategies.",
+    excerpt: "Imagine a world where every message, every ad, and every touchpoint feels tailor-made just for you. This isn't the futureit's happening now with modern personalization strategies.",
     image: blogImage("The Power of Personalization How to Create Hyper-Targeted Marketing Campaigns.png"),
     date: "December 2024",
     author: "IM Solutions",
@@ -726,14 +726,14 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does personalization work for small businesses?",
-        a: "Yes—personalization helps small businesses stand out by delivering value-driven, relevant experiences to their audience.",
+        a: "Yespersonalization helps small businesses stand out by delivering value-driven, relevant experiences to their audience.",
       },
     ],
   },
   {
     id: 13,
     title: "Building Bridges, Not Just Links: The Emotional Blueprint of Digital Success",
-    excerpt: "Digital success isn't just about technical SEO and backlinks—it's about building genuine connections that resonate with your audience and create lasting brand relationships.",
+    excerpt: "Digital success isn't just about technical SEO and backlinksit's about building genuine connections that resonate with your audience and create lasting brand relationships.",
     image: blogImage("Building Bridges, Not Just Links The Emotional Blueprint of Digital Success.png"),
     date: "November 2024",
     author: "IM Solutions",
@@ -780,7 +780,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "How is SEO approached as storytelling?",
-        a: "SEO isn't just about rankings—it's treated as an immersive storytelling experience that makes your brand a captivating chapter in the digital narrative.",
+        a: "SEO isn't just about rankingsit's treated as an immersive storytelling experience that makes your brand a captivating chapter in the digital narrative.",
       },
       {
         q: "What role do PPC campaigns play beyond clicks?",
@@ -831,7 +831,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What sets this approach apart from typical digital marketing?",
-        a: "The fusion of data-driven strategy with genuine emotional understanding—treating every interaction as an opportunity to build a real connection, not just a transaction.",
+        a: "The fusion of data-driven strategy with genuine emotional understandingtreating every interaction as an opportunity to build a real connection, not just a transaction.",
       },
     ],
   },
@@ -854,11 +854,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "How important are paid ads compared to organic content?",
-        a: "Even a strong content strategy shouldn't skip paid campaigns—ad budgets are expected to keep growing as competition for attention increases.",
+        a: "Even a strong content strategy shouldn't skip paid campaignsad budgets are expected to keep growing as competition for attention increases.",
       },
       {
         q: "What is social listening and why does it matter?",
-        a: "It's the practice of monitoring audience conversations to understand needs and turn followers into a loyal, engaged community—ideally done at least quarterly.",
+        a: "It's the practice of monitoring audience conversations to understand needs and turn followers into a loyal, engaged communityideally done at least quarterly.",
       },
       {
         q: "Why are micro and nano influencers effective?",
@@ -866,7 +866,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What is user-generated content (UGC) and why does it work so well?",
-        a: "UGC is content created by customers themselves, and it's highly trusted—92% of consumers trust recommendations from friends and family over traditional ads.",
+        a: "UGC is content created by customers themselves, and it's highly trusted92% of consumers trust recommendations from friends and family over traditional ads.",
       },
     ],
   },
@@ -889,7 +889,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can you test and improve a landing page's performance?",
-        a: "Yes—A/B testing different designs, content, layouts, and CTAs helps identify what resonates best with visitors and improves results over time.",
+        a: "YesA/B testing different designs, content, layouts, and CTAs helps identify what resonates best with visitors and improves results over time.",
       },
       {
         q: "How do landing pages help with lead conversion?",
@@ -901,7 +901,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Should every marketing campaign include a landing page?",
-        a: "Yes—campaigns that skip landing pages typically underperform, since the landing page is what converts campaign traffic into real leads.",
+        a: "Yescampaigns that skip landing pages typically underperform, since the landing page is what converts campaign traffic into real leads.",
       },
     ],
   },
@@ -924,7 +924,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What did the 'About this result' update change?",
-        a: "It added context to search results—like when a page was first indexed and whether the connection is secure—helping users judge a site's credibility.",
+        a: "It added context to search resultslike when a page was first indexed and whether the connection is securehelping users judge a site's credibility.",
       },
       {
         q: "What is the Page Experience / Core Web Vitals update?",
@@ -955,7 +955,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "What makes a visual identity effective for a business?",
-        a: "A unique visual language that gives your brand its own voice—audiences respond more strongly to distinctive visuals than ordinary ones.",
+        a: "A unique visual language that gives your brand its own voiceaudiences respond more strongly to distinctive visuals than ordinary ones.",
       },
       {
         q: "Why does relevance matter more than just beautiful design?",
@@ -963,11 +963,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Why is authenticity important in creative design?",
-        a: "Copying other designs for inspiration is easy but hurts your ability to stand out—your own design aesthetic is part of your marketing strategy.",
+        a: "Copying other designs for inspiration is easy but hurts your ability to stand outyour own design aesthetic is part of your marketing strategy.",
       },
       {
         q: "Should a business say yes to every creative idea?",
-        a: "No—executing every idea can get expensive fast, so it's smarter to focus only on projects that fit your actual business plan.",
+        a: "Noexecuting every idea can get expensive fast, so it's smarter to focus only on projects that fit your actual business plan.",
       },
       {
         q: "Why does a strong business portfolio matter alongside design?",
@@ -978,7 +978,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 20,
     title: "Why Good Creative Design Is Important for your business?",
-    excerpt: "Good creative design isn't just about aesthetics—it's a strategic business asset that drives recognition, trust, and ultimately, revenue.",
+    excerpt: "Good creative design isn't just about aestheticsit's a strategic business asset that drives recognition, trust, and ultimately, revenue.",
     image: blogImage("Why Good Creative Design Is Important for your business.png"),
     date: "April 2024",
     author: "IM Solutions",
@@ -990,11 +990,11 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Why does good creative design matter for a business?",
-        a: "It communicates your brand instantly and memorably—the human brain processes images over 50,000 times faster than text.",
+        a: "It communicates your brand instantly and memorablythe human brain processes images over 50,000 times faster than text.",
       },
       {
         q: "Do design-driven companies actually perform better?",
-        a: "Yes—according to the Design Management Institute, design-driven companies have outperformed the S&P Index by 219% over a decade.",
+        a: "Yesaccording to the Design Management Institute, design-driven companies have outperformed the S&P Index by 219% over a decade.",
       },
       {
         q: "How much of communication is visual?",
@@ -1006,7 +1006,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "How does creative design connect to branding?",
-        a: "Branding is more than a logo—design communicates a company's values and personality consistently at every stage of the customer journey.",
+        a: "Branding is more than a logodesign communicates a company's values and personality consistently at every stage of the customer journey.",
       },
     ],
   },
@@ -1033,7 +1033,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does offline targeting still work in an increasingly online world?",
-        a: "Yes—RWA Activation remains one of the most effective offline platforms for direct customer interaction and hyperlocal brand building.",
+        a: "YesRWA Activation remains one of the most effective offline platforms for direct customer interaction and hyperlocal brand building.",
       },
       {
         q: "What kind of issues do RWAs typically manage?",
@@ -1072,7 +1072,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can RWA Activation help build a customer database?",
-        a: "Yes—direct engagement during these activities helps establish contact and build a database that supports future business leads.",
+        a: "Yesdirect engagement during these activities helps establish contact and build a database that supports future business leads.",
       },
       {
         q: "How does RWA Activation help evaluate business strategy?",
@@ -1102,7 +1102,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does combining design and SEO save time?",
-        a: "Yes—one team working toward the same goal avoids duplicated meetings and the blame-shifting that can happen when two firms handle separate tasks.",
+        a: "Yesone team working toward the same goal avoids duplicated meetings and the blame-shifting that can happen when two firms handle separate tasks.",
       },
       {
         q: "How does this approach improve collaboration?",
@@ -1110,7 +1110,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "When should SEO be factored into a website project?",
-        a: "From the very start—search engines begin indexing and ranking a site as soon as it launches, so SEO should be built into the content and structure from day one.",
+        a: "From the very startsearch engines begin indexing and ranking a site as soon as it launches, so SEO should be built into the content and structure from day one.",
       },
     ],
   },
@@ -1136,7 +1136,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can tech park advertising improve customer loyalty?",
-        a: "Yes—reaching working professionals in a credible, non-intrusive environment helps build trust that translates into loyalty over time.",
+        a: "Yesreaching working professionals in a credible, non-intrusive environment helps build trust that translates into loyalty over time.",
       },
       {
         q: "What kind of ROI can businesses expect?",
@@ -1178,7 +1178,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Why is authenticity important in tech park advertising?",
-        a: "Audiences expect brands to deliver on their promises—advertising built on integrity and real value performs better than exaggerated claims.",
+        a: "Audiences expect brands to deliver on their promisesadvertising built on integrity and real value performs better than exaggerated claims.",
       },
     ],
   },
@@ -1200,7 +1200,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does the type of website affect the cost?",
-        a: "Yes—free templates are cheaper but limited, while professional custom builds cost more but offer far more features and long-term value.",
+        a: "Yesfree templates are cheaper but limited, while professional custom builds cost more but offer far more features and long-term value.",
       },
       {
         q: "How does the number of pages affect pricing?",
@@ -1208,7 +1208,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Is redesigning an existing website cheaper than building from scratch?",
-        a: "Generally yes—redesigns skip many of the foundational steps required when starting a website from zero.",
+        a: "Generally yesredesigns skip many of the foundational steps required when starting a website from zero.",
       },
       {
         q: "Why does a database add to website cost?",
@@ -1230,11 +1230,11 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "What is RWA Activation?",
-        a: "It's advertising and engagement carried out directly within Resident Welfare Associations—via notice boards, kiosks, flyers, and stalls—to reach a hyperlocal audience.",
+        a: "It's advertising and engagement carried out directly within Resident Welfare Associationsvia notice boards, kiosks, flyers, and stallsto reach a hyperlocal audience.",
       },
       {
         q: "Does offline marketing like posters and flyers still work today?",
-        a: "Yes—despite the rise of digital platforms, offline BTL advertising through RWAs remains a highly effective way to build visibility and recall.",
+        a: "Yesdespite the rise of digital platforms, offline BTL advertising through RWAs remains a highly effective way to build visibility and recall.",
       },
       {
         q: "What are the main methods used in RWA activation?",
@@ -1268,7 +1268,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Did website owners need to fix anything themselves?",
-        a: "No—Google confirmed the issue originated on their end and that site owners didn't need to take any action to resolve it.",
+        a: "NoGoogle confirmed the issue originated on their end and that site owners didn't need to take any action to resolve it.",
       },
       {
         q: "How can a specific page be recrawled faster?",
@@ -1276,7 +1276,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Were all affected pages guaranteed to be reindexed?",
-        a: "Not necessarily—Google noted that even after the issue was fixed, there was no guarantee every URL on every site would be reindexed.",
+        a: "Not necessarilyGoogle noted that even after the issue was fixed, there was no guarantee every URL on every site would be reindexed.",
       },
       {
         q: "Should site owners worry about ranking drops from this issue?",
@@ -1306,7 +1306,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does AMP directly boost domain authority?",
-        a: "No—AMP won't increase your domain or page authority directly, but it can get you featured in Google's AMP carousel, driving more visitors.",
+        a: "NoAMP won't increase your domain or page authority directly, but it can get you featured in Google's AMP carousel, driving more visitors.",
       },
       {
         q: "How does AMP work technically?",
@@ -1344,7 +1344,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can invite messages sent through Messenger be personalized?",
-        a: "Yes—when inviting friends to like a page via Messenger, you can add your own personalized message before sending.",
+        a: "Yeswhen inviting friends to like a page via Messenger, you can add your own personalized message before sending.",
       },
       {
         q: "What is 'competitor espionage' on Facebook?",
@@ -1370,7 +1370,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What's the difference between image size and file size?",
-        a: "Image size refers to pixel dimensions, while file size is the storage space it takes—smaller file sizes load faster and improve site performance.",
+        a: "Image size refers to pixel dimensions, while file size is the storage space it takessmaller file sizes load faster and improve site performance.",
       },
       {
         q: "How large should thumbnail images be for upsells?",
@@ -1408,11 +1408,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Do colors trigger different emotions?",
-        a: "Yes—blue suggests trust and calm, red suggests urgency and passion, green suggests health and nature, and yellow suggests optimism and warmth.",
+        a: "Yesblue suggests trust and calm, red suggests urgency and passion, green suggests health and nature, and yellow suggests optimism and warmth.",
       },
       {
         q: "Does age affect color preference?",
-        a: "Yes—younger audiences respond to bold, vibrant colors, while older audiences tend to prefer softer, more subdued tones.",
+        a: "Yesyounger audiences respond to bold, vibrant colors, while older audiences tend to prefer softer, more subdued tones.",
       },
       {
         q: "What's a quick checklist for choosing website colors?",
@@ -1435,19 +1435,19 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Is stock photography good enough for a professional website?",
-        a: "No—stock photos tend to look generic and cheap; original photography builds a more unique, credible brand identity.",
+        a: "Nostock photos tend to look generic and cheap; original photography builds a more unique, credible brand identity.",
       },
       {
         q: "Is good usability enough to make a website successful?",
-        a: "No—a website needs to be both usable and well-designed; functionality alone isn't enough to gain traction.",
+        a: "Noa website needs to be both usable and well-designed; functionality alone isn't enough to gain traction.",
       },
       {
         q: "Does adding more features always improve a website's design?",
-        a: "No—simpler, less cluttered sites tend to perform better and communicate the brand message more effectively.",
+        a: "Nosimpler, less cluttered sites tend to perform better and communicate the brand message more effectively.",
       },
       {
         q: "Is a website ready to launch once it works on desktop?",
-        a: "No—with the range of devices people use today, a site must work equally well across desktops, tablets, and mobile phones before launch.",
+        a: "Nowith the range of devices people use today, a site must work equally well across desktops, tablets, and mobile phones before launch.",
       },
     ],
   },
@@ -1478,7 +1478,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Should businesses worry about broad core updates like Florida 2?",
-        a: "They're a reminder that over-optimizing specific tactics like anchor text is risky—content relevance and quality matter more long-term.",
+        a: "They're a reminder that over-optimizing specific tactics like anchor text is riskycontent relevance and quality matter more long-term.",
       },
     ],
   },
@@ -1501,15 +1501,15 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What is NAP consistency and why does it matter?",
-        a: "NAP (Name, Address, Phone) consistency across the web helps Google verify a business listing's legitimacy—inconsistent details can hurt rankings.",
+        a: "NAP (Name, Address, Phone) consistency across the web helps Google verify a business listing's legitimacyinconsistent details can hurt rankings.",
       },
       {
         q: "Do reviews affect carousel visibility?",
-        a: "Yes—having a strong quantity and quality of reviews on your Google Business listing improves your chances of appearing in the carousel.",
+        a: "Yeshaving a strong quantity and quality of reviews on your Google Business listing improves your chances of appearing in the carousel.",
       },
       {
         q: "Should social profiles be linked to a Google Business listing?",
-        a: "Yes—adding social media links increases your chances of appearing in Google's carousel and strengthens your listing overall.",
+        a: "Yesadding social media links increases your chances of appearing in Google's carousel and strengthens your listing overall.",
       },
       {
         q: "What's the first step to appearing in Google's Carousel?",
@@ -1532,7 +1532,7 @@ export const blogPosts: BlogPost[] = [
     faqs: [
       {
         q: "Is it possible to rank without earning backlinks?",
-        a: "Yes, by using a content or link pyramid—an internal linking structure connecting multiple pages that cover the same topic in depth.",
+        a: "Yes, by using a content or link pyramidan internal linking structure connecting multiple pages that cover the same topic in depth.",
       },
       {
         q: "What is a content or link pyramid?",
@@ -1540,7 +1540,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "How does a link pyramid help user engagement?",
-        a: "Internal links guide users from one related piece of content to another, keeping them on the site longer—a signal search engines value.",
+        a: "Internal links guide users from one related piece of content to another, keeping them on the site longera signal search engines value.",
       },
       {
         q: "How do you build a link pyramid?",
@@ -1548,7 +1548,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does a backlink to a lower-tier page still help?",
-        a: "Yes—thanks to the internal linking structure, even a backlink to a Tier 3 page can indirectly benefit the Tier 1 page.",
+        a: "Yesthanks to the internal linking structure, even a backlink to a Tier 3 page can indirectly benefit the Tier 1 page.",
       },
     ],
   },
@@ -1571,11 +1571,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can offline sales be tracked back to Facebook ads?",
-        a: "Yes—Facebook Pixel can track in-person, offline sales that result from online ad efforts.",
+        a: "YesFacebook Pixel can track in-person, offline sales that result from online ad efforts.",
       },
       {
         q: "Does advertising on Facebook also reach Instagram?",
-        a: "Yes—Facebook ads get exposure on Instagram too, opening an additional channel for sales and brand visibility.",
+        a: "YesFacebook ads get exposure on Instagram too, opening an additional channel for sales and brand visibility.",
       },
       {
         q: "Is Facebook advertising better suited to B2C or B2B?",
@@ -1610,7 +1610,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can Facebook events help with lead generation?",
-        a: "Yes—promoting a Facebook event increases exposure through attendee reminders, friend visibility, and RSVP notifications.",
+        a: "Yespromoting a Facebook event increases exposure through attendee reminders, friend visibility, and RSVP notifications.",
       },
     ],
   },
@@ -1641,7 +1641,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "What are local packs?",
-        a: "Results pulled from Google Maps and shown in a compact format for location-based searches—especially important for local businesses.",
+        a: "Results pulled from Google Maps and shown in a compact format for location-based searchesespecially important for local businesses.",
       },
     ],
   },
@@ -1667,7 +1667,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Do SERP features replace the need for good rankings?",
-        a: "No—they don't directly improve your listing position, but they help your site gain visibility in additional ways beyond the standard result.",
+        a: "Nothey don't directly improve your listing position, but they help your site gain visibility in additional ways beyond the standard result.",
       },
       {
         q: "What's an example of a SERP feature in everyday use?",
@@ -1698,11 +1698,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can paid ads improve overall search visibility?",
-        a: "Yes—adding low-cost paid ads alongside strong organic results increases the total space your brand occupies on a search results page.",
+        a: "Yesadding low-cost paid ads alongside strong organic results increases the total space your brand occupies on a search results page.",
       },
       {
         q: "Does SEO alone reach every potential customer?",
-        a: "No—many people find information through social media or by visiting trusted sites directly, so paid campaigns help extend reach beyond search engines.",
+        a: "Nomany people find information through social media or by visiting trusted sites directly, so paid campaigns help extend reach beyond search engines.",
       },
     ],
   },
@@ -1724,7 +1724,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Does brand color affect recognition?",
-        a: "Yes—80% of buyers believe that using proper colors helps increase brand recognition.",
+        a: "Yes80% of buyers believe that using proper colors helps increase brand recognition.",
       },
       {
         q: "What does the color red communicate in branding?",
@@ -1763,7 +1763,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Is any form of outdoor advertising exempt from the ban?",
-        a: "Yes—ads on skywalks and bus shelters built under public-private partnerships are excluded, since private firms hold rights to advertise there.",
+        a: "Yesads on skywalks and bus shelters built under public-private partnerships are excluded, since private firms hold rights to advertise there.",
       },
       {
         q: "What happens if a business doesn't remove banners within the deadline?",
@@ -1790,7 +1790,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "How often should you send marketing emails?",
-        a: "Consistently and as promised—if you commit to weekly emails, sending daily or too rarely can hurt campaign performance.",
+        a: "Consistently and as promisedif you commit to weekly emails, sending daily or too rarely can hurt campaign performance.",
       },
       {
         q: "What metrics matter most in email marketing?",
@@ -1868,7 +1868,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Can negative reviews or content simply be removed?",
-        a: "Sometimes—if a review violates guidelines or is defamatory, legal channels can be used to request removal, though people generally have a right to share opinions.",
+        a: "Sometimesif a review violates guidelines or is defamatory, legal channels can be used to request removal, though people generally have a right to share opinions.",
       },
       {
         q: "How do ORM agencies push down negative content?",
@@ -1903,7 +1903,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Did the rebranding change how the ad products actually work?",
-        a: "No—the underlying features didn't change; the rebrand simply reflected how Google's offerings had evolved and consolidated over time.",
+        a: "Nothe underlying features didn't change; the rebrand simply reflected how Google's offerings had evolved and consolidated over time.",
       },
       {
         q: "Why did Google decide to rebrand its advertising products?",
@@ -1969,11 +1969,11 @@ export const blogPosts: BlogPost[] = [
       },
       {
         q: "Are email ads still effective in digital marketing?",
-        a: "Yes—they remain affordable, customizable, and relationship-focused, delivering measurable results.",
+        a: "Yesthey remain affordable, customizable, and relationship-focused, delivering measurable results.",
       },
       {
         q: "How much keyword density does Google recommend for SEO content?",
-        a: "Around 5.5%—overusing keywords beyond that can lead to search engine penalties.",
+        a: "Around 5.5%overusing keywords beyond that can lead to search engine penalties.",
       },
       {
         q: "Why do picture ads matter alongside SEO content?",

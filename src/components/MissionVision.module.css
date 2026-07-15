@@ -50,16 +50,16 @@
 
 .description {
     font-size: clamp(0.9rem, 1.5vw, 1rem);
-    line-height: 1.8;
+    line-height: 1.15;
     color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     text-align: justify;
     text-justify: inter-word;
 }
 
 .additionalText {
     font-size: clamp(0.9rem, 1.5vw, 1rem);
-    line-height: 1.8;
+    line-height: 1.15;
     color: var(--color-text-secondary);
     margin-bottom: 0;
     text-align: justify;
@@ -149,8 +149,8 @@
     .description,
     .additionalText {
         font-size: clamp(0.85rem, 1.3vw, 0.95rem);
-        line-height: 1.6;
-        margin-bottom: 1rem;
+        line-height: 1.15;
+        margin-bottom: 0.6rem;
         text-align: left;
         text-justify: auto;
     }
@@ -205,8 +205,8 @@
     .description,
     .additionalText {
         font-size: clamp(0.8rem, 1.2vw, 0.9rem);
-        line-height: 1.5;
-        margin-bottom: 0.75rem;
+        line-height: 1.15;
+        margin-bottom: 0.5rem;
     }
 
     .imageWrapper,

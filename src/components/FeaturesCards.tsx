@@ -10,13 +10,12 @@ const EASE = [0.16, 1, 0.3, 1] as const;
 
 const paragraphs = [
     "Growth is more than reaching new audiences.",
-    "It is about earning trust, shaping perceptions, creating influence, and becoming the brand people instinctively choose. At IM Solutions, we transform ideas into momentum and momentum into meaningful business success by bringing together strategic thinking, compelling creativity, intelligent technology, and performance-driven marketing to build brand ecosystems that thrive across every platform and every stage of the customer journey. From strengthening your digital presence and improving organic search visibility to crafting unforgettable brand experiences and delivering measurable marketing performance, every solution is designed with one goal—to move your business forward. We believe exceptional brands are not built through isolated campaigns but through consistency, clarity, innovation, and a relentless commitment to excellence. Because when every touchpoint reflects your purpose, your brand doesn't simply grow—it creates lasting impact.",
-    "It becomes admired.",
-    "It becomes trusted.",
-    "It becomes unforgettable.",
+    "It is about earning trust, shaping perceptions, creating influence, and becoming the brand people instinctively choose. At IM Solutions, we transform ideas into momentum and momentum into meaningful business success by bringing together strategic thinking, compelling creativity, intelligent technology, and performance-driven marketing to build brand ecosystems that thrive across every platform and every stage of the customer journey. From strengthening your digital presence and improving organic search visibility to crafting unforgettable brand experiences and delivering measurable marketing performance, every solution is designed with one goalto move your business forward. We believe exceptional brands are not built through isolated campaigns but through consistency, clarity, innovation, and a relentless commitment to excellence. Because when every touchpoint reflects your purpose, your brand doesn't simply growit creates lasting impact.",
 ];
 
-// Reusable animation variants — kept separate from JSX.
+const closingStatements = ["It becomes admired.", "It becomes trusted.", "It becomes unforgettable."];
+
+// Reusable animation variants  kept separate from JSX.
 const sectionVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.6, ease: EASE } },
@@ -89,6 +88,16 @@ export default function FeaturesCards() {
                             {paragraphs.map((paragraph) => (
                                 <p key={paragraph} className={styles.paragraph}>
                                     {paragraph}
+                                </p>
+                            ))}
+                        </motion.div>
+
+                        <motion.div variants={itemVariants(distanceY)} className={styles.statementList}>
+                            {closingStatements.map((statement) => (
+                                <p key={statement} className={styles.statement}>
+                                    <span className={styles.statementDot} aria-hidden="true" />
+                                    {statement}
+                                    <FiArrowRight className={styles.statementArrow} aria-hidden="true" />
                                 </p>
                             ))}
                         </motion.div>

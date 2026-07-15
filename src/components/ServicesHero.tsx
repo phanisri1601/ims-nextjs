@@ -24,7 +24,7 @@ interface CubeContent {
 
 // Pixel-perfect outlines of each visible cube face, traced off
 // /public/strtegy pop.png via computer-vision segmentation (color/watershed
-// region growing + contour extraction), not eyeballed — each `d` is an SVG
+// region growing + contour extraction), not eyeballed  each `d` is an SVG
 // path in a 0-100 x 0-100 viewBox (percent of the image). These are hit
 // areas only; no fill is ever rendered.
 const CUBES: { id: string; label: string; num: string; video: string; d: string; content: CubeContent | null }[] = [
@@ -218,7 +218,7 @@ export default function ServicesHero({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Hotspots are only triggers. The media always plays full-size in the
-  // main image holder — clicking a face fades the cube image out and the
+  // main image holder  clicking a face fades the cube image out and the
   // video in; clicking the same face again (or the video ending) reverses it.
   const toggleCube = useCallback((cube: Cube) => {
     setActiveCube((current) => (current?.id === cube.id ? null : cube));
@@ -244,7 +244,7 @@ export default function ServicesHero({
 
   return (
     <section className={styles.hero}>
-      {/* ── LEFT panel — swaps to the active cube's content while its video plays ── */}
+      {/* ── LEFT panel  swaps to the active cube's content while its video plays ── */}
       <div className={styles.left}>
         <AnimatePresence mode="wait">
           {activeCube?.content ? (
@@ -327,7 +327,7 @@ export default function ServicesHero({
         </AnimatePresence>
       </div>
 
-      {/* ── RIGHT panel — cube image, with the media always playing full-size in the same holder ── */}
+      {/* ── RIGHT panel  cube image, with the media always playing full-size in the same holder ── */}
       <motion.div
         className={styles.right}
         initial={{ opacity: 0, x: 40 }}
@@ -359,7 +359,7 @@ export default function ServicesHero({
               )}
             </AnimatePresence>
 
-            {/* Full-size video — occupies the exact same holder, not clipped to any face */}
+            {/* Full-size video  occupies the exact same holder, not clipped to any face */}
             <AnimatePresence>
               {activeCube && (
                 <motion.div
@@ -384,7 +384,7 @@ export default function ServicesHero({
               )}
             </AnimatePresence>
 
-            {/* ── Hotspots — invisible SVG paths, pixel-perfect to each face.
+            {/* ── Hotspots  invisible SVG paths, pixel-perfect to each face.
                  A soft blurred gold glow (radial gradient, no hard edge) fades in
                  behind the hovered face; the hit areas themselves stay fully invisible. ── */}
             <svg className={styles.hotspotSvg} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="false">
@@ -419,7 +419,7 @@ export default function ServicesHero({
                     className={styles.hotspotPath}
                     role="button"
                     tabIndex={0}
-                    aria-label={isActive ? `${cube.label} video playing — press Enter to close` : `Play ${cube.label} video`}
+                    aria-label={isActive ? `${cube.label} video playing  press Enter to close` : `Play ${cube.label} video`}
                     onClick={() => toggleCube(cube)}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {

@@ -96,7 +96,6 @@ export default function ContactForm() {
                                 <input
                                     type="text"
                                     name="name"
-                                    placeholder="Your name"
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
@@ -107,7 +106,6 @@ export default function ContactForm() {
                                 <input
                                     type="email"
                                     name="email"
-                                    placeholder="you@example.com"
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
@@ -121,7 +119,6 @@ export default function ContactForm() {
                                 <input
                                     type="text"
                                     name="company"
-                                    placeholder="Your company"
                                     value={formData.company}
                                     onChange={handleChange}
                                 />
@@ -131,7 +128,7 @@ export default function ContactForm() {
                                 <input
                                     type="tel"
                                     name="phone"
-                                    placeholder="Your number"
+                                    placeholder="+91"
                                     value={formData.phone}
                                     onChange={handleChange}
                                     required
@@ -143,7 +140,6 @@ export default function ContactForm() {
                             <label>HOW CAN WE HELP?</label>
                             <textarea
                                 name="message"
-                                placeholder="Tell us about your project or inquiry"
                                 value={formData.message}
                                 onChange={handleChange}
                                 required
@@ -156,7 +152,6 @@ export default function ContactForm() {
                             <input
                                 type="text"
                                 name="projectDetails"
-                                placeholder="Share as much or as little as you like"
                                 value={formData.projectDetails}
                                 onChange={handleChange}
                             />

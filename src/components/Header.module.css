@@ -22,7 +22,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Careers page hero sits on a photo — keep the nav solid white instead of glassy */
+/* Careers page hero sits on a photo  keep the nav solid white instead of glassy */
 .header.solidWhite {
     background: #ffffff !important;
     backdrop-filter: none !important;
@@ -56,9 +56,6 @@
     background-clip: text;
 }
 
-.logo:hover {
-    transform: scale(1.05);
-}
 
 .nav {
     display: flex;

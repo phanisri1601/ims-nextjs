@@ -79,7 +79,7 @@ export const serviceData: {
       </ul>
 
       <h3>Product Launch & Brand Activation</h3>
-      <p>We plan and execute product launches and brand activations that create buzz and meaningful consumer engagement — from pre-launch hype to on-ground activations and post-launch analysis.</p>
+      <p>We plan and execute product launches and brand activations that create buzz and meaningful consumer engagement  from pre-launch hype to on-ground activations and post-launch analysis.</p>
 
       <h3>Real Estate & Start-up Marketing</h3>
       <p>For real estate developers, we provide targeted property marketing, virtual tours and lead nurturing. For startups, we offer lean, scalable marketing strategies to accelerate traction and growth.</p>
@@ -138,15 +138,15 @@ export const serviceData: {
     title: 'Best SEO Service in Bangalore',
     description: 'IM Solutions is positioned as one of the Leading SEO Company in Bangalore, offering practical and transparent SEO strategies that fit your market and search intent.',
     longDescription: `
-      <h2>Best SEO Company in Bangalore — IM Solutions</h2>
+      <h2>Best SEO Company in Bangalore  IM Solutions</h2>
       <p>Search engines have changed how people discover businesses. If your brand isn’t visible on Google, potential customers will land on a competitor instead.</p>
       <h3>Why settle for average when you can aim for the top?</h3>
       <p>IM Solutions is positioned as one of the Leading SEO Company in Bangalore, offering practical and transparent SEO strategies that fit your market and search intent. Our team stays aligned with the latest updates, supported by insights like those covered in our guide on modern SEO and AI-powered search.</p>
       <h3>10+ Years of SEO Expertise Backed by Real Growth</h3>
       <p>For more than 10 years, IM Solutions has worked with brands across different industries as a trusted SEO agency in Bangalore. We study your ideal customers, how they search, and what influences their decisions. From there, we build a clear plan that positions your business at the right moment in their search path.</p>
-      <p>Search visibility only works when users enjoy the experience on your site. That’s why we combine SEO with smart Search Engine Marketing to improve conversions and lead quality. Every project begins with a detailed audit—covering keywords, content structure, metadata, page performance, URL flows, schema setup, and other key on-site elements.</p>
+      <p>Search visibility only works when users enjoy the experience on your site. That’s why we combine SEO with smart Search Engine Marketing to improve conversions and lead quality. Every project begins with a detailed auditcovering keywords, content structure, metadata, page performance, URL flows, schema setup, and other key on-site elements.</p>
       <h3>Staying Ahead in a Constantly Changing Search Landscape</h3>
-      <p>Search behaviour changes often, and Google adjusts its systems just as quickly. IM Solutions keeps your SEO campaign ahead by adapting your plan to match current patterns. Our Digital Marketing Services evolve continuously, keeping your website aligned with what Google expects today—not last year.</p>
+      <p>Search behaviour changes often, and Google adjusts its systems just as quickly. IM Solutions keeps your SEO campaign ahead by adapting your plan to match current patterns. Our Digital Marketing Services evolve continuously, keeping your website aligned with what Google expects todaynot last year.</p>
       <h3>Ethical SEO That Actually Works</h3>
       <p>Some agencies cut corners. We don’t. IM Solutions relies only on safe, ethical SEO practices that protect your brand and support long-term results. Most businesses notice early improvements in search visibility within the first month.</p>
     `,
@@ -203,7 +203,7 @@ export const serviceData: {
     longDescription: `
       <h2>Online Reputation Management Company Bangalore</h2>
       <p>Are you looking ORM Agency in Bangalore to build your brand image and proactively create a connection with your customers? Whether you are a business house, individual, or any professional looking to expand your new popularity or counter negativity online, you have landed at the right place. Put your faith in IM Solutions ORM company Bangalore to create an impactful online reputation for you.</p>
-      <p>IM Solutions is a leading Online Reputation Management Company Bangalore serving businesses of all sizes—big, midsize, small, and start-ups with a complete range of online public relations, brand management, and digital marketing solutions. We offer the best reputation repair solution and brand management services available in the market. Our goal is to showcase all the good things your brand has to offer, adding value to the lives of people.</p>
+      <p>IM Solutions is a leading Online Reputation Management Company Bangalore serving businesses of all sizesbig, midsize, small, and start-ups with a complete range of online public relations, brand management, and digital marketing solutions. We offer the best reputation repair solution and brand management services available in the market. Our goal is to showcase all the good things your brand has to offer, adding value to the lives of people.</p>
       <p>The Internet can be misused to trash your brand image and create a negative thread, like a garbage bin where anybody can post negative comments about you. Such negative comments are not only a nuisance but also can act like a garbage bin where anybody can post negative comments about you. In a crisis like this, IM Solutions comes to the rescue of your brand, business, and ultimately, fights back against all the false rumours on the web about your brand.</p>
       <p>IM Solutions, a leading Online Reputation Management Services Bangalore, specializes in Online Reputation Management (ORM) by effectively combating negativity such as bad reviews, hate blogs, unpleasant testimonials, and scam allegations that could harm your brand’s credibility.</p>
     `,
@@ -1258,4 +1258,4 @@ export const serviceData: {
     ],
     category: 'offline'
   }
-};
+};

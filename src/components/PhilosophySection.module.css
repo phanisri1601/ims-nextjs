@@ -1,5 +1,5 @@
 /* ================================================================
-   Sticky editorial reveal — the section pins for ~150vh of scroll
+   Sticky editorial reveal  the section pins for ~150vh of scroll
    while the heading, image and statements build up in stages, then
    releases naturally over the final 100vh as the user keeps scrolling.
    ================================================================ */
@@ -99,7 +99,7 @@
     margin: 0 auto;
 }
 
-/* ── Static fallback for prefers-reduced-motion — no pin, no scroll-scrub ── */
+/* ── Static fallback for prefers-reduced-motion  no pin, no scroll-scrub ── */
 .staticSection {
     padding: var(--section-padding-y) 0;
     background: #F8F4F0;

@@ -11,7 +11,7 @@ export default function PrivacyPage() {
           <p>
             IM Solutions ("we", "our", or "us") is a leading technology and digital marketing provider based in Bengaluru. 
             This Privacy Policy applies to our website (imsolutions.co), digital campaigns, lead forms, and integration 
-            of tracking technologies—including Meta (Facebook/Instagram) and Google Ads platforms.
+            of tracking technologiesincluding Meta (Facebook/Instagram) and Google Ads platforms.
           </p>
         </div>
 

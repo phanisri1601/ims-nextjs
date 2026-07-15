@@ -17,7 +17,7 @@ const HEADING_WORDS = "Every Brand Follows A Journey. We Design It.".split(" ");
 
 const STATEMENTS = ["A logo is remembered.", "A campaign is noticed.", "A brand is experienced."];
 
-// Word-by-word heading reveal — each word owns a thin slice of the pinned
+// Word-by-word heading reveal  each word owns a thin slice of the pinned
 // scroll range so they light up left-to-right as the user scrolls.
 function RevealWord({
     word,
@@ -38,7 +38,7 @@ function RevealWord({
 }
 
 // A statement line slides up into view, then settles to a dimmed-but-visible
-// state once the next line takes focus — keeps the previous line legible
+// state once the next line takes focus  keeps the previous line legible
 // without competing with the new one.
 function StatementLine({
     text,
@@ -75,7 +75,7 @@ export default function PhilosophySection() {
     });
 
     // Smooths the raw scroll position into a slightly lagging, springy motion
-    // value — every transform below rides this instead of the raw progress,
+    // value  every transform below rides this instead of the raw progress,
     // which is what makes the reveal feel fluid rather than mechanically
     // locked to the scrollbar.
     const scrollYProgress = useSpring(rawProgress, {

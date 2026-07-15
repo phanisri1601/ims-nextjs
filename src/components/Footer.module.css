@@ -9,7 +9,7 @@
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.2fr 1fr 1.5fr;
+    grid-template-columns: 1.2fr 1.5fr 1fr;
     gap: 3rem;
     margin-bottom: 3rem;
     padding: 0 1rem;
@@ -22,9 +22,22 @@
     min-width: 0;
 }
 
-/* ADD THIS JUST BELOW */
-.footerColumn:nth-child(2) {
+/* Corporate/Branch Office column stays left-aligned */
+.officeColumn {
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* Enquire Now and Quick Links columns are centered */
+.enquireColumn,
+.linksColumn {
     align-items: center;
+    text-align: center;
+}
+
+/* Corporate Office / Branch Office titles are centered, rest of the block stays left-aligned */
+.officeColumn .addressBlock .columnTitle {
+    align-self: stretch;
     text-align: center;
 }
 
@@ -146,14 +159,13 @@
     gap: 0.75rem;
 }
 
-/* ADD THIS */
-.footerColumn:nth-child(2) .linkList {
+.linksColumn .linkList {
     align-items: center;
 }
 .linkList li {
     margin: 0;
 }
-.footerColumn:nth-child(2) .linkList li {
+.linksColumn .linkList li {
     text-align: center;
 }
 

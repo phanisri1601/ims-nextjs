@@ -19,7 +19,7 @@ export default function PartnersSection() {
         <section className={styles.partnersSection}>
             <div className={styles.partnersContainer}>
                 <div className={styles.partnersLeft}>
-                    <h2 className={styles.partnersTitle}>OUR PARTNERS</h2>
+                    <h2 className={styles.partnersTitle}>OUR CLIENTS</h2>
                     <div className={styles.partnersDivider}></div>
                     <p className={styles.partnersDesc}>
                         We partner with ambitious businesses across industries to create brands that endure and lead.

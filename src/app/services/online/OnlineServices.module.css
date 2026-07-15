@@ -627,7 +627,7 @@
         font-size: 0.95rem;
     }
 }
-/* carousel removed — consistent grid layout now used */
+/* carousel removed  consistent grid layout now used */
 @media (max-width: 1024px) {
     .carouselContainer {
         gap: 1rem;
