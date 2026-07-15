@@ -137,7 +137,7 @@ export default function StackingCardsSection({ cards }: Props) {
                       </div>
                     </div>
                     <div className={styles.media} aria-hidden>
-                      <img src={c.image} alt={c.title} />
+                      <img src={c.image} alt={c.title} className={styles.mediaImage} loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </div>

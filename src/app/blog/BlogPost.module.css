@@ -1,12 +1,3 @@
-/* Stravorex-inspired inner blog post layout */
-
-@font-face {
-  font-family: "EditorialDisplay";
-  src: url("/TK3iWkUHHAIjg752GT8Gl-1PKw.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 .page {
   background: #ffffff;
@@ -165,7 +156,7 @@
 .heroTitle {
   max-width: 18ch;
   margin: 0 0 1.25rem;
-  font-family: "EditorialDisplay", Georgia, serif;
+  font-family: var(--font-primary);
   font-size: clamp(2.4rem, 5.5vw, 4.5rem);
   font-weight: 400;
   line-height: 1.02;
@@ -634,7 +625,7 @@
 
 .ctaBrand {
   margin: 0 0 0.75rem;
-  font-family: "EditorialDisplay", Georgia, serif;
+  font-family: var(--font-primary);
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   font-weight: 400;
   letter-spacing: -0.02em;

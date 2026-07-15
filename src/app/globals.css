@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,7 +38,12 @@
   --font-size-2xl: 3rem;
   --font-size-3xl: 4rem;
 
-  --font-varela: var(--font-poppins), "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Single premium font used across the entire site */
+  --font-primary: "Playfair Display", serif;
+  --font-sans: var(--font-primary);
+  --font-serif: var(--font-primary);
+  --font-varela: var(--font-primary);
+  --font-playfair: var(--font-primary);
 
   /* Transitions */
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -57,12 +64,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-primary) !important;
 }
 
 body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
-  font-family: var(--font-varela);
+  font-family: var(--font-primary);
+  font-weight: 400;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -121,11 +130,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-varela);
-  font-weight: 500 !important;
-  line-height: 1.6;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  line-height: 1.2;
   margin-bottom: var(--spacing-sm);
-  letter-spacing: 0;
+  letter-spacing: -0.02em;
 }
 
 h1 {
@@ -206,7 +215,7 @@ a:hover {
   font-size: var(--font-size-2xl);
   margin-bottom: var(--spacing-lg);
   color: var(--color-text-primary);
-  font-family: var(--font-varela);
+  font-family: var(--font-primary);
   font-weight: 600;
   letter-spacing: -0.3px;
 }

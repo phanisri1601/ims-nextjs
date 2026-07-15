@@ -47,7 +47,7 @@
 }
 
 .heroTitle {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-primary);
   font-size: clamp(2.2rem, 3.5vw, 3.4rem);
   font-weight: 400;
   line-height: 1.12;
@@ -70,7 +70,7 @@
 }
 
 .imWatermark {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-primary);
   font-size: 3.5rem;
   font-weight: 700;
   color: rgba(26, 26, 26, 0.06);
@@ -229,7 +229,7 @@
 }
 
 .processIM {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-primary);
   font-size: 2.2rem;
   font-weight: 700;
   color: rgba(26, 26, 26, 0.12);

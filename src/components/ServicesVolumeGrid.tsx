@@ -97,7 +97,15 @@ function ServiceGridVideo({
 function ServiceGridImage({ title, src }: { title: string; src: string }) {
   return (
     <div className={styles.mediaWrap}>
-      <img className={styles.video} src={src} alt={title} loading="lazy" />
+      <img
+        className={styles.mediaImage}
+        src={src}
+        alt={title}
+        loading="lazy"
+        decoding="async"
+        width={1200}
+        height={750}
+      />
       <span className={styles.moreBtn}>More +</span>
     </div>
   );

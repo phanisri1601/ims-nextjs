@@ -40,9 +40,25 @@
   transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Dedicated styling for image media so they fill the card properly */
+.mediaImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transform: none;
+  transition: transform 0.3s ease;
+}
+
 .card:hover .video,
 .card:focus-visible .video {
   transform: scale(1.25);
+}
+
+.card:hover .mediaImage,
+.card:focus-visible .mediaImage {
+  transform: scale(1.03);
 }
 
 .moreBtn {

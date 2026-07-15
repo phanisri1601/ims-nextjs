@@ -50,7 +50,7 @@
 .heroHeading {
   display: flex;
   flex-direction: column;
-  font-family: 'Georgia', 'Times New Roman', 'Palatino Linotype', serif;
+  font-family: var(--font-primary);
   font-size: clamp(3rem, 5.5vw, 5.5rem);
   font-weight: 400;
   line-height: 1.0;

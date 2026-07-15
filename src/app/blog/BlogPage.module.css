@@ -252,14 +252,6 @@
   background: #f7f7f7;
 }
 
-/* Editorial Gallery */
-@font-face {
-  font-family: "EditorialDisplay";
-  src: url("/TK3iWkUHHAIjg752GT8Gl-1PKw.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 .editorialGallery {
   position: relative;
@@ -283,7 +275,7 @@
 
 .editorialMasthead strong {
   color: #1a1a1a;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-primary);
   font-size: clamp(1rem, 2vw, 1.45rem);
   font-weight: 700;
   letter-spacing: 0;
@@ -442,7 +434,7 @@
   max-width: 16ch;
   margin: 0;
   color: #ffffff;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-primary);
   font-size: clamp(1.15rem, 1.8vw, 1.7rem);
   font-weight: 400;
   line-height: 1.12;
@@ -538,7 +530,7 @@
   top: 50%;
   transform: translateY(-50%);
   color: #130908;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-primary);
   font-size: clamp(18rem, 35vw, 33rem);
   font-weight: 700;
   line-height: 0.8;
@@ -591,7 +583,7 @@
 .expandedCopy h2 {
   margin: 0 0 1.1rem;
   color: #130908;
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-primary);
   font-size: clamp(2rem, 4vw, 4.35rem);
   font-weight: 400 !important;
   line-height: 0.98;

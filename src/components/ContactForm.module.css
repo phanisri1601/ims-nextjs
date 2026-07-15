@@ -52,7 +52,7 @@
     line-height: 1.1;
     font-weight: 400;
     margin-bottom: 0.75rem;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--font-primary);
 }
 
 .description {
