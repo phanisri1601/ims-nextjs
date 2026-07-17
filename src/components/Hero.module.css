@@ -1,24 +1,41 @@
 /* ================================================================
-   Hero  Reference design
-   Two-column: [Left text] | [Right cube image]
+   Hero  Full-bleed banner image with overlaid text
    Cream background, large serif heading, red accent dots
    ================================================================ */
 
 .hero {
   position: relative;
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   align-items: center;
   background-color: #F8F4F0;
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
   padding-top: var(--header-height, 80px);
   overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    #F8F4F0 0%,
+    rgba(248, 244, 240, 0.85) 30%,
+    rgba(248, 244, 240, 0.35) 55%,
+    rgba(248, 244, 240, 0) 75%
+  );
+  z-index: 0;
 }
 
 /* ================================================================
    LEFT  Text panel
    ================================================================ */
 .heroLeft {
+  width: 100%;
+  max-width: 620px;
   padding: 0 4rem 5rem 5rem;
   display: flex;
   flex-direction: column;
@@ -130,44 +147,6 @@
 }
 
 /* ================================================================
-   RIGHT  Cube image panel
-   ================================================================ */
-.heroRight {
-  position: relative;
-  height: 100%;
-  min-height: 520px;
-  overflow: hidden;
-  /* Pull slightly left so the cube sits closer to center */
-  margin-left: -4%;
-}
-
-.heroCubeImg {
-  object-fit: contain;
-  object-position: center center;
-  transform: scale(1.0);
-  transition: transform 0.8s ease;
-  /* Inward gradient mask  fades all edges into the cream background */
-  -webkit-mask-image: radial-gradient(
-    ellipse 85% 80% at 52% 50%,
-    black 40%,
-    rgba(0,0,0,0.85) 58%,
-    rgba(0,0,0,0.4) 74%,
-    transparent 100%
-  );
-  mask-image: radial-gradient(
-    ellipse 85% 80% at 52% 50%,
-    black 40%,
-    rgba(0,0,0,0.85) 58%,
-    rgba(0,0,0,0.4) 74%,
-    transparent 100%
-  );
-}
-
-.heroRight:hover .heroCubeImg {
-  transform: scale(1.03) translateY(-6px);
-}
-
-/* ================================================================
    SCROLL INDICATOR  pinned to bottom center
    ================================================================ */
 .heroScroll {
@@ -212,17 +191,30 @@
 
 @media (max-width: 1024px) {
   .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    min-height: unset;
-    padding-bottom: 5rem;
+    min-height: 90vh;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    background-position: center top;
+  }
+
+  .hero::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(248, 244, 240, 0) 0%,
+      rgba(248, 244, 240, 0.4) 55%,
+      #F8F4F0 78%
+    );
   }
 
   .heroLeft {
-    padding: 3rem 3rem 0 3rem;
-    order: 2;
+    position: relative;
+    max-width: 100%;
+    padding: 2.5rem 2rem 3rem;
     align-items: center;
     text-align: center;
+    background: rgba(248, 244, 240, 0.97);
+    border-radius: 24px 24px 0 0;
   }
 
   .heroTaglineRule {
@@ -235,37 +227,26 @@
     font-size: clamp(2.4rem, 6vw, 4rem);
   }
 
-  .heroRight {
-    order: 1;
-    min-height: 380px;
-    width: 100%;
-  }
-
-  .heroCubeImg {
-    object-position: center;
-    transform: scale(1.0);
-  }
-
   .heroCta {
     justify-content: center;
   }
 
   .heroScroll {
-    bottom: 1.5rem;
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 85vh;
+  }
+
   .heroLeft {
-    padding: 2rem 1.5rem 0;
+    padding: 2rem 1.5rem 4rem;
   }
 
   .heroHeading {
     font-size: clamp(2rem, 8vw, 3rem);
-  }
-
-  .heroRight {
-    min-height: 300px;
   }
 
   .heroSubtext {

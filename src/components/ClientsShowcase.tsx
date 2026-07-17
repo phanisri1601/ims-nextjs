@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import CountUp from "./CountUp";
 import styles from "./ClientsShowcase.module.css";
 
 const bg = (filename: string) => `/clients-showcase/${filename}`;
@@ -33,10 +35,10 @@ const clientStories = [
 ];
 
 const stats = [
-  { value: "12+", label: "Years Of Experience" },
-  { value: "100+", label: "Projects Delivered" },
-  { value: "40+", label: "Satisfied Clients" },
-  { value: "8", label: "Industries Served" },
+  { value: 12, suffix: "+", label: "Years Of Experience" },
+  { value: 100, suffix: "+", label: "Projects Delivered" },
+  { value: 40, suffix: "+", label: "Satisfied Clients" },
+  { value: 8, suffix: "", label: "Industries Served" },
 ];
 
 const partnerLogos = [
@@ -54,93 +56,109 @@ const partnerLogos = [
 
 export default function ClientsShowcase() {
   return (
-    <section className={styles.bentoSection}>
-      <div className={styles.bentoContainer}>
-        <div className={styles.bentoGrid}>
-          {/* 1. Hero — The Showcase */}
-          <div
-            className={styles.panelHero}
-            style={{ backgroundImage: `url(${bg("hero.png")})` }}
-          >
-            <span className={styles.eyebrow}>Our Clients</span>
-            <h1 className={styles.heroTitle}>The Showcase</h1>
-            <p className={styles.heroDesc}>Partnerships that inspire. Work that drives impact.</p>
-          </div>
+    <div className={styles.showcase}>
+      {/* 1. Hero — The Showcase */}
+      <section className={styles.hero} style={{ backgroundImage: `url(${bg("hero.png")})` }}>
+        <div className={styles.heroInner}>
+          <span className={styles.eyebrow}>Our Clients</span>
+          <h1 className={styles.heroTitle}>The Showcase</h1>
+          <p className={styles.heroDesc}>Partnerships that inspire. Work that drives impact.</p>
+        </div>
+      </section>
 
-          {/* 2. Industries We Serve */}
-          <div className={styles.panelIndustries}>
-            <span className={styles.eyebrow}>Industries We Serve</span>
-            <div className={styles.industriesGrid}>
-              {industries.map((industry) => (
-                <div
-                  key={industry.label}
-                  className={styles.industryTile}
-                  style={{ backgroundImage: `url(${industry.image})` }}
-                >
-                  <span className={styles.industryLabel}>{industry.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 3. Featured Work */}
-          <div className={styles.panelFeatured}>
-            <span className={styles.eyebrow}>Featured Work</span>
-            <div className={styles.featuredBody}>
+      {/* 2. Industries We Serve */}
+      <section className={styles.section}>
+        <div className={styles.sectionInner}>
+          <span className={styles.eyebrow}>Industries We Serve</span>
+          <div className={styles.industriesGrid}>
+            {industries.map((industry) => (
               <div
-                className={styles.featuredImage}
-                style={{ backgroundImage: `url(${bg("featured-jewellery.png")})` }}
-              />
-              <div className={styles.featuredContent}>
-                <h3 className={styles.featuredTitle}>Jewellery &amp; Luxury Retail</h3>
-                <p className={styles.featuredDesc}>
-                  Crafting refined identities and digital campaigns for fine jewellery and luxury
-                  retail brands — from product storytelling to performance-driven visibility.
-                </p>
-                <Link href="/services" className={styles.featuredLink}>
-                  Explore Our Services <span aria-hidden="true">&rarr;</span>
-                </Link>
+                key={industry.label}
+                className={styles.industryTile}
+                style={{ backgroundImage: `url(${industry.image})` }}
+              >
+                <span className={styles.industryLabel}>{industry.label}</span>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Featured Work */}
+      <section className={styles.section}>
+        <div className={styles.sectionInner}>
+          <div className={styles.featuredHead}>
+            <span className={styles.eyebrow}>Featured Work</span>
+            <div className={styles.featuredNav} aria-hidden="true">
+              <span className={styles.navCircle}>
+                <FiArrowLeft />
+              </span>
+              <span className={styles.navCircle}>
+                <FiArrowRight />
+              </span>
             </div>
           </div>
+          <div className={styles.featuredBody}>
+            <div
+              className={styles.featuredImage}
+              style={{ backgroundImage: `url(${bg("featured-jewellery.png")})` }}
+            />
+            <div className={styles.featuredContent}>
+              <h3 className={styles.featuredTitle}>Jewellery &amp; Luxury Retail</h3>
+              <p className={styles.featuredDesc}>
+                Crafting refined identities and digital campaigns for fine jewellery and luxury
+                retail brands — from product storytelling to performance-driven visibility.
+              </p>
+              <Link href="/services" className={styles.featuredLink}>
+                Explore Our Services <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          {/* 4. Client Stories */}
-          <div className={styles.panelStories}>
-            <span className={styles.eyebrow}>Client Stories</span>
-            <div className={styles.storiesGrid}>
-              {clientStories.map((story) => (
-                <div key={story.name} className={styles.storyCard}>
-                  <img src={story.logo} alt={story.name} className={styles.storyLogo} />
-                  <p className={styles.storyText}>{story.text}</p>
+      {/* 4. Client Stories */}
+      <section
+        className={styles.storiesSection}
+        style={{ backgroundImage: `url(${bg("stories-bg.png")})` }}
+      >
+        <div className={styles.sectionInner}>
+          <span className={styles.eyebrow}>Client Stories</span>
+          <div className={styles.storiesGrid}>
+            {clientStories.map((story) => (
+              <div key={story.name} className={styles.storyCard}>
+                <img src={story.logo} alt={story.name} className={styles.storyLogo} />
+                <p className={styles.storyText}>{story.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Partnerships stats */}
+      <section
+        className={styles.statsSection}
+        style={{ backgroundImage: `url(${bg("stats-bg.png")})` }}
+      >
+        <div className={styles.sectionInner}>
+          <span className={styles.eyebrow}>Partnerships That Create Impact</span>
+          <div className={styles.statsGrid}>
+            {stats.map((stat) => (
+              <div key={stat.label} className={styles.statBlock}>
+                <div className={styles.statValue}>
+                  <CountUp end={stat.value} suffix={stat.suffix} />
                 </div>
-              ))}
-            </div>
-            <div className={styles.quoteMark} aria-hidden="true">
-              &ldquo;
-            </div>
+                <div className={styles.statLabel}>{stat.label}</div>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* 5. Partnerships stats */}
-          <div
-            className={styles.panelPartnerships}
-            style={{ backgroundImage: `url(${bg("stats-bg.png")})` }}
-          >
-            <span className={styles.eyebrow}>Partnerships That Create Impact</span>
-            <div className={styles.statsGrid}>
-              {stats.map((stat) => (
-                <div key={stat.label} className={styles.statBlock}>
-                  <div className={styles.statValue}>{stat.value}</div>
-                  <div className={styles.statLabel}>{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 6. Final CTA */}
-          <div
-            className={styles.panelCta}
-            style={{ backgroundImage: `url(${bg("cta-bg.png")})` }}
-          >
+      {/* 6. Let's Build Together — Final CTA */}
+      <section className={styles.ctaSection} style={{ backgroundImage: `url(${bg("cta-bg.png")})` }}>
+        <div className={styles.sectionInner}>
+          <div className={styles.ctaGrid}>
             <div>
               <h3 className={styles.ctaTitle}>Let&apos;s Build Something Extraordinary Together.</h3>
               <Link href="/contact" className={styles.ctaLink}>
@@ -159,7 +177,7 @@ export default function ClientsShowcase() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

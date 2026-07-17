@@ -1,9 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import styles from './Hero.module.css';
+
+const heroBanner = encodeURI('/Home Page Banner.png');
 
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 32 },
@@ -24,7 +25,7 @@ const fadeIn = (delay = 0) => ({
 
 export default function Hero() {
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} style={{ backgroundImage: `url(${heroBanner})` }}>
       {/* ── Left  Text content ── */}
       <div className={styles.heroLeft}>
         <motion.p
@@ -85,23 +86,6 @@ export default function Hero() {
           </Link>
         </motion.div>
       </div>
-
-      {/* ── Right  Cube image ── */}
-      <motion.div
-        className={styles.heroRight}
-        initial={{ opacity: 0, x: 60, scale: 0.96 }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] as any }}
-      >
-        <Image
-          src="/Cube home.png"
-          alt="IM Solutions – Strategy, Creative, Technology, Media, Growth"
-          fill
-          className={styles.heroCubeImg}
-          priority
-          sizes="(max-width: 768px) 100vw, 55vw"
-        />
-      </motion.div>
 
       {/* ── Scroll indicator ── */}
       <motion.div
