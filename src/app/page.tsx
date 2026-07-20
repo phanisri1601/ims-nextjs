@@ -3,12 +3,18 @@ import VideoSection from "@/components/VideoSection";
 import PhilosophySection from "@/components/PhilosophySection";
 import IMSystemSection from "@/components/IMSystemSection";
 import WhyIMSolutions from "@/components/WhyIMSolutions";
-import BlogHomeSection from "@/components/BlogHomeSection";
+import EditorialBlogGallery from "./blog/EditorialBlogGallery";
 import CareerSection from "@/components/CareerSection";
 import PartnersSection from "@/components/PartnersSection";
 
 import Clients from "@/components/Clients";
 import FAQ from "@/components/FAQ";
+import { blogPosts } from "@/data/blogPosts";
+
+const gridLeadSlug = "top-seo-trends-2026-what-businesses-need-to-prepare-for";
+const featuredPosts = blogPosts
+  .filter((p) => (p.page ?? 1) === 1 && p.slug !== gridLeadSlug)
+  .slice(0, 3);
 
 export default function Home() {
   return (
@@ -18,7 +24,7 @@ export default function Home() {
       <PhilosophySection />
       <IMSystemSection />
       <WhyIMSolutions />
-      <BlogHomeSection />
+      <EditorialBlogGallery posts={featuredPosts} contained />
       <CareerSection />
       <PartnersSection />
       <FAQ variant="plain" />

@@ -7,7 +7,7 @@ import {
 } from "../../data/blogCategories";
 import Link from "next/link";
 import { Suspense } from "react";
-import EditorialBlogGallery from "./EditorialBlogGallery";
+import BlogHomeSection from "@/components/BlogHomeSection";
 import PortfolioBlogGrid from "./PortfolioBlogGrid";
 import BlogCategoryFilter from "./BlogCategoryFilter";
 
@@ -72,19 +72,13 @@ export default async function BlogPage({ searchParams }: Props) {
   const postsWithoutGridLead = gridLeadPost
     ? postsForPage.filter((p) => p.slug !== gridLeadSlug)
     : postsForPage;
-  const featuredPosts =
-    activeCategory || clampedPage !== 1
-      ? []
-      : postsWithoutGridLead.slice(0, 3);
   const listedPosts = gridLeadPost
-    ? [gridLeadPost, ...postsWithoutGridLead.slice(3)]
-    : activeCategory
-      ? postsForPage
-      : postsWithoutGridLead.slice(3);
+    ? [gridLeadPost, ...postsWithoutGridLead]
+    : postsForPage;
 
   return (
     <main className={styles.page}>
-      {featuredPosts.length > 0 && <EditorialBlogGallery posts={featuredPosts} />}
+      <BlogHomeSection />
 
       <section className={styles.portfolioSection}>
         <div className={styles.portfolioInner}>

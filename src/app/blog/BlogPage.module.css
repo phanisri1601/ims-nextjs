@@ -282,6 +282,10 @@
   text-transform: none;
 }
 
+.cardsWrapper {
+  position: relative;
+}
+
 .editorialCards {
   position: relative;
   display: flex;
@@ -459,6 +463,105 @@
   background: #050507;
   color: #ffffff;
   overflow: hidden;
+}
+
+/* Contained variant: expands within the card row's own bounds instead of the full viewport */
+.expandedStoryContained {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  border-radius: 22px;
+  /* Columns must be relative to the (much narrower) card row, not the viewport  vw units here would overflow the container. */
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1fr);
+}
+
+.expandedStoryContained .expandedImage {
+  /* Stay a normal grid item (column 1)  position:absolute here would remove it from the
+     grid entirely, stretching it across both columns and pushing the panel into column 1. */
+  position: relative;
+  top: auto;
+  left: auto;
+  height: 100%;
+}
+
+.expandedStoryContained .expandedPanel {
+  height: 100%;
+}
+
+.expandedStoryContained .closeStory {
+  top: clamp(0.6rem, 1.6vw, 1.1rem);
+  right: clamp(0.6rem, 1.6vw, 1.1rem);
+  width: 36px;
+  height: 36px;
+}
+
+.expandedStoryContained .closeStory svg {
+  width: 18px;
+  height: 18px;
+}
+
+.expandedStoryContained .expandedLetter {
+  font-size: clamp(6rem, 14vw, 10rem);
+}
+
+.expandedStoryContained .expandedScroll {
+  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.expandedStoryContained .expandedCopy {
+  width: 100%;
+  min-height: 0;
+}
+
+.expandedStoryContained .expandedMeta {
+  margin-bottom: 0.6rem;
+  font-size: 0.68rem;
+}
+
+.expandedStoryContained .expandedCopy h2 {
+  margin-bottom: 0.6rem;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  line-height: 1.15;
+}
+
+.expandedStoryContained .expandedCopy p {
+  margin-bottom: 0.85rem;
+  font-size: clamp(0.82rem, 1vw, 0.92rem);
+  line-height: 1.55;
+}
+
+.expandedStoryContained .expandedTags {
+  margin-bottom: 1rem;
+}
+
+.expandedStoryContained .expandedTags span {
+  min-height: 26px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.68rem;
+}
+
+.expandedStoryContained .expandedDetails {
+  margin-bottom: 1.25rem;
+  padding-top: 1rem;
+}
+
+.expandedStoryContained .expandedDetails h3 {
+  margin-bottom: 0.4rem;
+  font-size: clamp(0.85rem, 1vw, 1rem);
+}
+
+.expandedStoryContained .expandedDetails p {
+  margin-bottom: 0.6rem;
+}
+
+.expandedStoryContained .expandedDetails ul {
+  gap: 0.5rem;
+}
+
+.expandedStoryContained .expandedReadMore {
+  min-height: 40px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.8rem;
 }
 
 .expandedImage,
@@ -1566,6 +1669,15 @@
     background: rgba(248, 244, 240, 0.97);
   }
 
+  .expandedStoryContained .expandedImage {
+    position: absolute;
+    height: 100%;
+  }
+
+  .expandedStoryContained .expandedPanel {
+    height: 100%;
+  }
+
   .hero {
     padding: 3rem var(--spacing-md);
   }
@@ -1653,6 +1765,20 @@
   .expandedCopy {
     width: 100%;
     min-height: calc(62svh - 6.55rem);
+  }
+
+  .expandedStoryContained .expandedPanel {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .expandedStoryContained .expandedImage {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .expandedStoryContained .expandedCopy {
+    min-height: 0;
   }
 
   .expandedCopy h2 {
@@ -1791,6 +1917,11 @@
   .expandedPanel {
     height: 66svh;
     min-height: 66svh;
+  }
+
+  .expandedStoryContained .expandedPanel {
+    height: 100%;
+    min-height: 0;
   }
 
   .expandedScroll {

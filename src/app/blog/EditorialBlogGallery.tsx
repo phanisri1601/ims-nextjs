@@ -11,6 +11,8 @@ import styles from "./BlogPage.module.css";
 
 type Props = {
   posts: BlogPost[];
+  /** When true, the expanded story stays within the card row's own bounds instead of taking over the full viewport. */
+  contained?: boolean;
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -106,19 +108,20 @@ function RevealImageBlock({
   );
 }
 
-export default function EditorialBlogGallery({ posts }: Props) {
+export default function EditorialBlogGallery({ posts, contained = false }: Props) {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [scrollContainerEl, setScrollContainerEl] = useState<HTMLDivElement | null>(null);
   const scrollWrapperRef = useRef<HTMLDivElement | null>(null);
   const scrollContentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (contained) return;
     document.body.style.overflow = selectedPost ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, [selectedPost]);
+  }, [selectedPost, contained]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -182,6 +185,7 @@ export default function EditorialBlogGallery({ posts }: Props) {
         <strong>Blog</strong>
       </div>
 
+      <div className={styles.cardsWrapper}>
       <motion.div className={styles.editorialCards} layout>
         {posts.map((post, index) => {
           const isSelected = selectedPost?.slug === post.slug;
@@ -239,7 +243,7 @@ export default function EditorialBlogGallery({ posts }: Props) {
       <AnimatePresence>
         {selectedPost ? (
           <motion.div
-            className={styles.expandedStory}
+            className={`${styles.expandedStory} ${contained ? styles.expandedStoryContained : ""}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -379,6 +383,7 @@ export default function EditorialBlogGallery({ posts }: Props) {
           </motion.div>
         ) : null}
       </AnimatePresence>
+      </div>
     </section>
   );
 }
