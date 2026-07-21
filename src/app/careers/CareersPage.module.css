@@ -444,14 +444,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   padding: 1.1rem 0;
+  border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: none;
+  font-family: inherit;
   font-size: 1rem;
   color: #111;
+  text-align: left;
+  cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .roleRow:hover {
+  color: #BA3232;
+}
+
+.roleRowActive {
   color: #BA3232;
 }
 
@@ -462,7 +472,8 @@
   transition: transform 0.25s ease;
 }
 
-.roleRow:hover .roleArrow {
+.roleRow:hover .roleArrow,
+.roleRowActive .roleArrow {
   transform: translateX(4px);
 }
 
@@ -486,6 +497,109 @@
   line-height: 1.7;
   color: #555;
   max-width: 560px;
+}
+
+/* Apply form */
+.applyForm {
+  width: 100%;
+  max-width: 720px;
+  margin-top: 2.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.applyFormTitle {
+  font-family: var(--font-primary);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #111;
+  margin-bottom: 1.75rem;
+}
+
+.applyFormRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.applyFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.applyFormGroup label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.applyFormGroup input,
+.applyFormGroup select,
+.applyFormGroup textarea {
+  width: 100%;
+  padding: 0.6rem 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+  border-radius: 0;
+  background: transparent;
+  color: #111;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+.applyFormGroup select {
+  appearance: auto;
+  cursor: pointer;
+}
+
+.applyFormGroup textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+.applyFormGroup input:focus,
+.applyFormGroup select:focus,
+.applyFormGroup textarea:focus {
+  outline: none;
+  border-bottom-color: #BA3232;
+}
+
+.applyFormSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 2rem;
+  background: #BA3232;
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.applyFormSubmit:hover:not(:disabled) {
+  background: #a12b2b;
+  transform: translateY(-2px);
+}
+
+.applyFormSubmit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.applyFormSuccess {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: #1f6d3c;
 }
 
 /* =========================================
@@ -766,6 +880,11 @@
 
   .processGrid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .applyFormRow {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }
 

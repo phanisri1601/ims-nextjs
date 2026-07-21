@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import ScrollReveal from '@/components/ScrollReveal';
 import styles from './CareersPage.module.css';
@@ -73,6 +74,28 @@ const testimonials = [
 ];
 
 export default function CareersPage() {
+  const [applyRole, setApplyRole] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleRoleClick = (role: string) => {
+    setApplyRole(role);
+    setIsSubmitted(false);
+    document.getElementById('careers-apply-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  const handleApplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      form.reset();
+      setApplyRole('');
+    }, 1200);
+  };
+
   return (
     <main className={styles.container}>
       {/* 1. HERO SECTION */}
@@ -277,9 +300,15 @@ export default function CareersPage() {
           </ScrollReveal>
           <div className={styles.rolesGrid}>
             {openRoles.map((role, i) => (
-              <ScrollReveal key={role} delay={0.05 * i} direction="up" className={styles.roleRow}>
-                <span>{role}</span>
-                <FaArrowRight className={styles.roleArrow} />
+              <ScrollReveal key={role} delay={0.05 * i} direction="up">
+                <button
+                  type="button"
+                  className={`${styles.roleRow} ${applyRole === role ? styles.roleRowActive : ''}`}
+                  onClick={() => handleRoleClick(role)}
+                >
+                  <span>{role}</span>
+                  <FaArrowRight className={styles.roleArrow} />
+                </button>
               </ScrollReveal>
             ))}
           </div>
@@ -288,10 +317,85 @@ export default function CareersPage() {
             <div className={styles.noRoleBlock}>
               <h4 className={styles.noRoleTitle}>Don&apos;t see a suitable role?</h4>
               <p className={styles.noRoleDesc}>
-                Great talent is always welcome. Share your portfolio or résumé with us, and
+                Great talent is always welcome. Share your portfolio or résumé with us below, and
                 we&apos;ll reach out when the right opportunity arises.
               </p>
             </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2} direction="up">
+            <form
+              id="careers-apply-form"
+              className={styles.applyForm}
+              onSubmit={handleApplySubmit}
+            >
+              <h4 className={styles.applyFormTitle}>
+                {applyRole ? `Apply for ${applyRole}` : 'Apply Now'}
+              </h4>
+
+              <div className={styles.applyFormRow}>
+                <div className={styles.applyFormGroup}>
+                  <label htmlFor="apply-name">Full Name*</label>
+                  <input id="apply-name" name="name" type="text" required />
+                </div>
+                <div className={styles.applyFormGroup}>
+                  <label htmlFor="apply-email">Email*</label>
+                  <input id="apply-email" name="email" type="email" required />
+                </div>
+              </div>
+
+              <div className={styles.applyFormRow}>
+                <div className={styles.applyFormGroup}>
+                  <label htmlFor="apply-phone">Phone*</label>
+                  <input id="apply-phone" name="phone" type="tel" required />
+                </div>
+                <div className={styles.applyFormGroup}>
+                  <label htmlFor="apply-role">Applying For*</label>
+                  <select
+                    id="apply-role"
+                    name="role"
+                    required
+                    value={applyRole}
+                    onChange={(e) => setApplyRole(e.target.value)}
+                  >
+                    <option value="" disabled>
+                      Select a role
+                    </option>
+                    {openRoles.map((role) => (
+                      <option key={role} value={role}>
+                        {role}
+                      </option>
+                    ))}
+                    <option value="General Application">General Application</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className={styles.applyFormGroup}>
+                <label htmlFor="apply-experience">Experience</label>
+                <input id="apply-experience" name="experience" type="text" placeholder="e.g. 3 years" />
+              </div>
+
+              <div className={styles.applyFormGroup}>
+                <label htmlFor="apply-portfolio">Portfolio / Résumé Link</label>
+                <input id="apply-portfolio" name="portfolio" type="url" placeholder="https://" />
+              </div>
+
+              <div className={styles.applyFormGroup}>
+                <label htmlFor="apply-message">Message</label>
+                <textarea id="apply-message" name="message" rows={4} />
+              </div>
+
+              <button type="submit" className={styles.applyFormSubmit} disabled={isSubmitting}>
+                {isSubmitting ? 'Sending…' : 'Submit Application'}
+              </button>
+
+              {isSubmitted && (
+                <p className={styles.applyFormSuccess}>
+                  Thank you — we&apos;ve received your application and will be in touch.
+                </p>
+              )}
+            </form>
           </ScrollReveal>
         </div>
       </section>

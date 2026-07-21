@@ -120,7 +120,7 @@
 }
 
 .hero .heroTitle {
-  max-width: 20ch;
+  max-width: 34ch;
   text-align: center;
 }
 
@@ -154,12 +154,12 @@
 }
 
 .heroTitle {
-  max-width: 18ch;
+  max-width: 30ch;
   margin: 0 0 1.25rem;
   font-family: var(--font-primary);
-  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-size: clamp(1.8rem, 3.2vw, 2.75rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: #0b0b0f;
 }
@@ -302,10 +302,15 @@
 }
 
 .sidebarPostTitle {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   margin: 0;
   font-size: 0.88rem;
   font-weight: 600;
   line-height: 1.35;
+  min-height: calc(1.35em * 2);
   color: inherit;
 }
 
@@ -717,8 +722,8 @@
     grid-column: 1 / -1;
   }
 
-  .heroTitle {
-    max-width: 22ch;
+  .hero .heroTitle {
+    max-width: 30ch;
   }
 }
 
@@ -727,9 +732,12 @@
     padding-top: calc(var(--header-height) + 1.5rem);
   }
 
+  .hero .heroTitle {
+    max-width: 26ch;
+  }
+
   .heroTitle {
-    max-width: none;
-    font-size: clamp(2rem, 8vw, 2.75rem);
+    font-size: clamp(1.6rem, 6vw, 2.25rem);
   }
 
   .sidebar {

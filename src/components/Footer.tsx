@@ -109,6 +109,25 @@ export default function Footer() {
                     </div>
                 </div>
 
+                <div className={`${styles.footerColumn} ${styles.linksColumn}`}>
+                    <h4 className={styles.columnTitle}>Quick Links</h4>
+                    <ul className={styles.linkList}>
+                        <li><Link href="/">Home</Link></li>
+                        <li><Link href="/about">About</Link></li>
+                        <li className={styles.servicesGroup}>
+                            <span className={styles.linkLabel} tabIndex={0}>Services</span>
+                            <ul className={styles.servicesSubLinks}>
+                                <li className={styles.subLinkItem}><Link href="/services/online">Online Services</Link></li>
+                                <li className={styles.subLinkItem}><Link href="/services/offline">Offline Services</Link></li>
+                            </ul>
+                        </li>
+                        <li><Link href="/blog">Blog</Link></li>
+                        <li><Link href="/careers">Career</Link></li>
+                        <li><Link href="/contact">Contact</Link></li>
+                        <li><Link href="/privacy">Privacy Policy</Link></li>
+                    </ul>
+                </div>
+
                 {/* Enquire Now Section */}
                 <div className={`${styles.footerColumn} ${styles.enquireColumn}`}>
                     <h4 className={styles.columnTitle}>Enquire Now</h4>
@@ -130,26 +149,9 @@ export default function Footer() {
                     </form>
                 </div>
 
-                {/* Quick Links Section */}
-                <div className={`${styles.footerColumn} ${styles.linksColumn}`}>
-                    <h4 className={styles.columnTitle}>Quick Links</h4>
-                    <ul className={styles.linkList}>
-                        <li><Link href="/">Home</Link></li>
-                        <li><Link href="/about">About</Link></li>
-                        <li className={styles.servicesGroup}>
-                            <span className={styles.linkLabel} tabIndex={0}>Services</span>
-                            <ul className={styles.servicesSubLinks}>
-                                <li className={styles.subLinkItem}><Link href="/services/online">Online Services</Link></li>
-                                <li className={styles.subLinkItem}><Link href="/services/offline">Offline Services</Link></li>
-                            </ul>
-                        </li>
-                        <li><Link href="/blog">Blog</Link></li>
-                        <li><Link href="/careers">Career</Link></li>
-                        <li><Link href="/contact">Contact</Link></li>
-                        <li><Link href="/privacy">Privacy Policy</Link></li>
-                    </ul>
-                </div>
+               
             </div>
+            
 
             {/* Hidden Footer (More Footer) Section */}
             <div className={styles.moreFooterWrapper}>
