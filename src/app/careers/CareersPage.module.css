@@ -265,7 +265,7 @@
 }
 
 .statsLeft {
-  color: #BA3232; /* Make text red instead of the background */
+  color: #ffffff;
   padding: 4rem;
   display: flex;
   flex-direction: column;
